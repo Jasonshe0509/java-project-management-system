@@ -1,5 +1,7 @@
 package com.mycompany.projectmanagementsystem;
 
+import java.awt.Toolkit;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -7,7 +9,7 @@ package com.mycompany.projectmanagementsystem;
 
 /**
  *
- * @author SHE JUN YUAN (TP065157）
+ * 
  */
 public class GeneralPage extends javax.swing.JFrame {
 
@@ -16,6 +18,7 @@ public class GeneralPage extends javax.swing.JFrame {
      */
     public GeneralPage() {
         initComponents();
+        setIconImage();
     }
 
     /**
@@ -27,46 +30,80 @@ public class GeneralPage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        NextButton = new javax.swing.JButton();
+        CopyRight = new javax.swing.JLabel();
+        Slogan2 = new javax.swing.JLabel();
+        Slogan1 = new javax.swing.JLabel();
+        logo = new javax.swing.JLabel();
+        side_bar = new javax.swing.JLabel();
+        background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("General Homepage");
-        setMaximumSize(new java.awt.Dimension(1000, 650));
-        setMinimumSize(new java.awt.Dimension(1000, 650));
+        setMaximumSize(new java.awt.Dimension(1000, 700));
+        setMinimumSize(new java.awt.Dimension(1000, 700));
         setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setMaximumSize(new java.awt.Dimension(1000, 650));
-        jPanel1.setMinimumSize(new java.awt.Dimension(1000, 650));
-        jPanel1.setPreferredSize(new java.awt.Dimension(1000, 650));
+        NextButton.setBackground(new java.awt.Color(27, 61, 96));
+        NextButton.setFont(new java.awt.Font("Bell MT", 1, 28)); // NOI18N
+        NextButton.setForeground(new java.awt.Color(255, 255, 255));
+        NextButton.setText("Next");
+        NextButton.setMaximumSize(new java.awt.Dimension(131, 52));
+        NextButton.setMinimumSize(new java.awt.Dimension(131, 52));
+        NextButton.setPreferredSize(new java.awt.Dimension(131, 52));
+        NextButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NextButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(NextButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 450, -1, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1000, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 650, Short.MAX_VALUE)
-        );
+        CopyRight.setBackground(new java.awt.Color(0, 0, 0));
+        CopyRight.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
+        CopyRight.setText("copyright @Academic Guidance Hub (AGH) All rights reserved");
+        getContentPane().add(CopyRight, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 670, 440, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
+        Slogan2.setBackground(new java.awt.Color(2, 50, 99));
+        Slogan2.setFont(new java.awt.Font("Bell MT", 1, 30)); // NOI18N
+        Slogan2.setForeground(new java.awt.Color(2, 50, 99));
+        Slogan2.setText("Your Path to Project Excellence");
+        getContentPane().add(Slogan2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 310, 450, -1));
+
+        Slogan1.setBackground(new java.awt.Color(2, 50, 99));
+        Slogan1.setFont(new java.awt.Font("Bell MT", 1, 30)); // NOI18N
+        Slogan1.setForeground(new java.awt.Color(2, 50, 99));
+        Slogan1.setText("Navigating Success Together:");
+        getContentPane().add(Slogan1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 270, 410, -1));
+
+        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Sysco_logo_word.png"))); // NOI18N
+        logo.setText("jLabel1");
+        logo.setMaximumSize(new java.awt.Dimension(234, 86));
+        logo.setMinimumSize(new java.awt.Dimension(234, 86));
+        logo.setPreferredSize(new java.awt.Dimension(234, 86));
+        getContentPane().add(logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 110, -1, -1));
+
+        side_bar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/general_side_bar.png"))); // NOI18N
+        side_bar.setText("jLabel2");
+        side_bar.setMaximumSize(new java.awt.Dimension(245, 700));
+        side_bar.setMinimumSize(new java.awt.Dimension(245, 700));
+        side_bar.setPreferredSize(new java.awt.Dimension(245, 700));
+        getContentPane().add(side_bar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main_background.png"))); // NOI18N
+        background.setText("background");
+        background.setMaximumSize(new java.awt.Dimension(1000, 700));
+        background.setMinimumSize(new java.awt.Dimension(1000, 700));
+        background.setPreferredSize(new java.awt.Dimension(1000, 700));
+        getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void NextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NextButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NextButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -102,8 +139,17 @@ public class GeneralPage extends javax.swing.JFrame {
             new GeneralPage().setVisible(true);
         });
     }
+    private void setIconImage() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Sysco_icon_with_background.png")));
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel CopyRight;
+    private javax.swing.JButton NextButton;
+    private javax.swing.JLabel Slogan1;
+    private javax.swing.JLabel Slogan2;
+    private javax.swing.JLabel background;
+    private javax.swing.JLabel logo;
+    private javax.swing.JLabel side_bar;
     // End of variables declaration//GEN-END:variables
 
 
