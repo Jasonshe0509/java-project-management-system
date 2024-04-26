@@ -29,7 +29,7 @@ public class admin_student extends javax.swing.JFrame {
         admin_studenti = new javax.swing.JLabel();
         admin_reg_student = new javax.swing.JLabel();
         regstu_background = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        admin_eci = new javax.swing.JLabel();
         admin_ec_management = new javax.swing.JLabel();
         ecmanage_background = new javax.swing.JLabel();
         admin_stu_managementi = new javax.swing.JLabel();
@@ -100,6 +100,7 @@ public class admin_student extends javax.swing.JFrame {
         admin_logout.setMinimumSize(new java.awt.Dimension(96, 73));
         admin_logout.setPreferredSize(new java.awt.Dimension(96, 73));
 
+        admin_logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Sysco_logo.png"))); // NOI18N
         admin_logo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 admin_logoMouseClicked(evt);
@@ -142,6 +143,8 @@ public class admin_student extends javax.swing.JFrame {
         );
 
         getContentPane().add(admin_header, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        admin_intakei.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Intake_icon.png"))); // NOI18N
         getContentPane().add(admin_intakei, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, -1, -1));
 
         admin_reg_intake.setBackground(new Color(76, 127, 174, 0));
@@ -166,6 +169,7 @@ public class admin_student extends javax.swing.JFrame {
         getContentPane().add(intake_background, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, 360, 220));
         intake_background.getAccessibleContext().setAccessibleName("intake_background");
 
+        admin_studenti.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Student_icon.png"))); // NOI18N
         getContentPane().add(admin_studenti, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 380, -1, -1));
 
         admin_reg_student.setBackground(new Color(192, 192, 192, 90));
@@ -188,7 +192,9 @@ public class admin_student extends javax.swing.JFrame {
         regstu_background.setBackground(new Color(192, 192, 192, 90));
         regstu_background.setOpaque(true);
         getContentPane().add(regstu_background, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 380, 360, 220));
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 110, -1, -1));
+
+        admin_eci.setIcon(new javax.swing.ImageIcon(getClass().getResource("/EC_icon.png"))); // NOI18N
+        getContentPane().add(admin_eci, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 110, -1, -1));
 
         admin_ec_management.setBackground(new Color(192, 192, 192, 90));
         admin_ec_management.setFont(new java.awt.Font("Bell MT", 1, 36)); // NOI18N
@@ -212,6 +218,7 @@ public class admin_student extends javax.swing.JFrame {
         getContentPane().add(ecmanage_background, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 110, 360, 220));
         ecmanage_background.getAccessibleContext().setAccessibleName("ecmanage_background");
 
+        admin_stu_managementi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Setting_icon.png"))); // NOI18N
         getContentPane().add(admin_stu_managementi, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 380, -1, -1));
         admin_stu_managementi.getAccessibleContext().setAccessibleDescription("");
 
@@ -237,6 +244,7 @@ public class admin_student extends javax.swing.JFrame {
         getContentPane().add(stumanage_background, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 380, 360, 220));
 
         admin_background.setBackground(new java.awt.Color(76, 127, 174));
+        admin_background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main_background.png"))); // NOI18N
         admin_background.setText("Good Day Admin!");
         admin_background.setMaximumSize(new java.awt.Dimension(1000, 700));
         admin_background.setMinimumSize(new java.awt.Dimension(1000, 700));
@@ -297,6 +305,7 @@ public class admin_student extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel admin_background;
     private javax.swing.JLabel admin_ec_management;
+    private javax.swing.JLabel admin_eci;
     private javax.swing.JPanel admin_header;
     private javax.swing.JLabel admin_intakei;
     private javax.swing.JLabel admin_lecturer;
@@ -312,7 +321,6 @@ public class admin_student extends javax.swing.JFrame {
     private javax.swing.JLabel admin_studenti;
     private javax.swing.JLabel ecmanage_background;
     private javax.swing.JLabel intake_background;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel regstu_background;
     private javax.swing.JLabel stumanage_background;
     // End of variables declaration//GEN-END:variables
