@@ -241,7 +241,7 @@
     <Component class="javax.swing.JLabel" name="admin_intakei">
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="80" y="100" width="-1" height="-1"/>
+          <AbsoluteConstraints x="90" y="110" width="-1" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -259,7 +259,7 @@
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" value="Register New Intake"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new LineBorder(new Color(76,127,174), 15, true)" type="code"/>
+          <Connection code="new LineBorder(new Color(192, 192, 192, 90), 15, true)" type="code"/>
         </Property>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[380, 240]"/>
@@ -283,8 +283,8 @@
     </Component>
     <Component class="javax.swing.JLabel" name="intake_background">
       <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ae" green="7f" red="4c" type="rgb"/>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="new Color(192, 192, 192, 90)" type="code"/>
         </Property>
         <Property name="opaque" type="boolean" value="true"/>
       </Properties>
@@ -300,14 +300,14 @@
     <Component class="javax.swing.JLabel" name="admin_studenti">
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="80" y="370" width="-1" height="-1"/>
+          <AbsoluteConstraints x="100" y="380" width="-1" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
     <Component class="javax.swing.JLabel" name="admin_reg_student">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new Color(76, 127, 174, 90)" type="code"/>
+          <Connection code="new Color(192, 192, 192, 90)" type="code"/>
         </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Bell MT" size="36" style="1"/>
@@ -318,7 +318,7 @@
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" value="Register New Student"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new LineBorder(new Color(76,127,174), 15, true)" type="code"/>
+          <Connection code="new LineBorder(new Color(192, 192, 192, 90), 15, true)" type="code"/>
         </Property>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[380, 240]"/>
@@ -342,8 +342,8 @@
     </Component>
     <Component class="javax.swing.JLabel" name="regstu_background">
       <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ae" green="7f" red="4c" type="rgb"/>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="new Color(192, 192, 192, 90)" type="code"/>
         </Property>
         <Property name="opaque" type="boolean" value="true"/>
       </Properties>
@@ -354,19 +354,16 @@
       </Constraints>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jLabel1"/>
-      </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="570" y="120" width="-1" height="-1"/>
+          <AbsoluteConstraints x="560" y="110" width="-1" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
     <Component class="javax.swing.JLabel" name="admin_ec_management">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new Color(76, 127, 174, 90)" type="code"/>
+          <Connection code="new Color(192, 192, 192, 90)" type="code"/>
         </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Bell MT" size="36" style="1"/>
@@ -377,7 +374,7 @@
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" value="EC Management"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new LineBorder(new Color(76,127,174), 15, true)" type="code"/>
+          <Connection code="new LineBorder(new Color(192, 192, 192, 90), 15, true)" type="code"/>
         </Property>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[380, 240]"/>
@@ -401,8 +398,8 @@
     </Component>
     <Component class="javax.swing.JLabel" name="ecmanage_background">
       <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ae" green="7f" red="4c" type="rgb"/>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="new Color(192, 192, 192, 90)" type="code"/>
         </Property>
         <Property name="opaque" type="boolean" value="true"/>
       </Properties>
@@ -421,14 +418,14 @@
       </AccessibilityProperties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="540" y="370" width="-1" height="-1"/>
+          <AbsoluteConstraints x="560" y="380" width="-1" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
     <Component class="javax.swing.JLabel" name="admin_stu_management">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new Color(76, 127, 174, 90)" type="code"/>
+          <Connection code="new Color(192, 192, 192, 90)" type="code"/>
         </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Bell MT" size="36" style="1"/>
@@ -439,7 +436,7 @@
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" value="View Intale/ Student"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new LineBorder(new Color(76,127,174), 15, true)" type="code"/>
+          <Connection code="new LineBorder(new Color(192, 192, 192, 90), 15, true)" type="code"/>
         </Property>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[380, 240]"/>
@@ -463,8 +460,8 @@
     </Component>
     <Component class="javax.swing.JLabel" name="stumanage_background">
       <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ae" green="7f" red="4c" type="rgb"/>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="new Color(192, 192, 192, 90)" type="code"/>
         </Property>
         <Property name="opaque" type="boolean" value="true"/>
       </Properties>
