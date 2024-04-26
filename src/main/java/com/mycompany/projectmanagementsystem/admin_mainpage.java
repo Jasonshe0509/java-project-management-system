@@ -37,6 +37,8 @@ public class admin_mainpage extends javax.swing.JFrame {
         admin_header.setMinimumSize(new java.awt.Dimension(1000, 73));
         admin_header.setPreferredSize(new java.awt.Dimension(1000, 73));
 
+        admin_logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Sysco_logo.png"))); // NOI18N
+
         admin_lecturer.setBackground(new Color(255, 255, 255, 0));
         admin_lecturer.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
         admin_lecturer.setForeground(new java.awt.Color(2, 50, 99));
@@ -142,6 +144,7 @@ public class admin_mainpage extends javax.swing.JFrame {
         admin_greeting.setPreferredSize(new java.awt.Dimension(230, 18));
         getContentPane().add(admin_greeting, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 170, 30));
 
+        admin_background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main_background.png"))); // NOI18N
         admin_background.setText("Good Day Admin!");
         admin_background.setMaximumSize(new java.awt.Dimension(1000, 700));
         admin_background.setMinimumSize(new java.awt.Dimension(1000, 700));
