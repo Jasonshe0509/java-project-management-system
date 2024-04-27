@@ -101,6 +101,7 @@ public class admin_student extends javax.swing.JFrame {
         admin_logout.setPreferredSize(new java.awt.Dimension(96, 73));
 
         admin_logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Sysco_logo.png"))); // NOI18N
+        admin_logo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         admin_logo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 admin_logoMouseClicked(evt);
@@ -257,31 +258,31 @@ public class admin_student extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void admin_reg_intakeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_admin_reg_intakeMouseClicked
-        // TODO add your handling code here:
-        admin_register_intake admin_regintake = new admin_register_intake();
-        admin_regintake.show();
+//        // TODO add your handling code here:
+//        admin_register_intake admin_regintake = new admin_register_intake();
+//        admin_regintake.show();
         
     }//GEN-LAST:event_admin_reg_intakeMouseClicked
 
     private void admin_reg_studentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_admin_reg_studentMouseClicked
-        // TODO add your handling code here:
-        admin_register_student admin_regstu = new admin_register_student();
-        admin_regstu.show();
+//        // TODO add your handling code here:
+//        admin_register_student admin_regstu = new admin_register_student();
+//        admin_regstu.show();
         
     }//GEN-LAST:event_admin_reg_studentMouseClicked
 
     private void admin_ec_managementMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_admin_ec_managementMouseClicked
-        // TODO add your handling code here:
-        admin_ec_management admin_ec_manage = new admin_ec_management();
-        admin_ec_manage.show();
-        dispose();
+//        // TODO add your handling code here:
+//        admin_ec_management admin_ec_manage = new admin_ec_management();
+//        admin_ec_manage.show();
+//        dispose();
     }//GEN-LAST:event_admin_ec_managementMouseClicked
 
     private void admin_stu_managementMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_admin_stu_managementMouseClicked
-        // TODO add your handling code here:
-        admin_student_management admin_stumanage = new admin_student_management();
-        admin_stumanage.show();
-        dispose();
+//        // TODO add your handling code here:
+//        admin_student_management admin_stumanage = new admin_student_management();
+//        admin_stumanage.show();
+//        dispose();
     }//GEN-LAST:event_admin_stu_managementMouseClicked
 
     private void admin_logoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_admin_logoMouseClicked
