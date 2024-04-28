@@ -45,6 +45,7 @@ public class admin_register_intake extends javax.swing.JFrame {
         jButton1.setText("SUBMIT");
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 210, -1, -1));
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main_background.png"))); // NOI18N
         jLabel1.setMaximumSize(new java.awt.Dimension(500, 300));
         jLabel1.setMinimumSize(new java.awt.Dimension(500, 300));
         jLabel1.setOpaque(true);
