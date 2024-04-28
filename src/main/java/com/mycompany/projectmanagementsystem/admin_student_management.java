@@ -49,6 +49,7 @@ public class admin_student_management extends javax.swing.JFrame {
         admin_header.setToolTipText("");
         admin_header.setMaximumSize(new java.awt.Dimension(1000, 73));
         admin_header.setMinimumSize(new java.awt.Dimension(1000, 73));
+        admin_header.setPreferredSize(new java.awt.Dimension(1000, 73));
 
         admin_lecturer.setBackground(new Color(255, 255, 255, 0));
         admin_lecturer.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
@@ -105,6 +106,7 @@ public class admin_student_management extends javax.swing.JFrame {
         admin_logout.setMinimumSize(new java.awt.Dimension(96, 73));
         admin_logout.setPreferredSize(new java.awt.Dimension(96, 73));
 
+        admin_logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Sysco_logo.png"))); // NOI18N
         admin_logo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 admin_logoMouseClicked(evt);
@@ -157,7 +159,7 @@ public class admin_student_management extends javax.swing.JFrame {
         totalstudent_border.setMaximumSize(new java.awt.Dimension(440, 125));
         totalstudent_border.setMinimumSize(new java.awt.Dimension(440, 125));
         totalstudent_border.setPreferredSize(new java.awt.Dimension(440, 125));
-        getContentPane().add(totalstudent_border, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 110, 460, 150));
+        getContentPane().add(totalstudent_border, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 110, 460, 150));
 
         totalintake_background.setBackground(new Color(192, 192, 192, 90));
         totalintake_background.setFont(new java.awt.Font("Bell MT", 1, 24)); // NOI18N
@@ -169,7 +171,7 @@ public class admin_student_management extends javax.swing.JFrame {
         totalintake_background.setMinimumSize(new java.awt.Dimension(418, 123));
         totalintake_background.setOpaque(true);
         totalintake_background.setPreferredSize(new java.awt.Dimension(418, 123));
-        getContentPane().add(totalintake_background, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 120, 440, 130));
+        getContentPane().add(totalintake_background, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 440, 130));
 
         totalstudent_background.setBackground(new Color(192, 192, 192, 90));
         totalstudent_background.setFont(new java.awt.Font("Bell MT", 1, 24)); // NOI18N
@@ -181,14 +183,14 @@ public class admin_student_management extends javax.swing.JFrame {
         totalstudent_background.setMinimumSize(new java.awt.Dimension(418, 123));
         totalstudent_background.setOpaque(true);
         totalstudent_background.setPreferredSize(new java.awt.Dimension(418, 123));
-        getContentPane().add(totalstudent_background, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 120, 440, 130));
+        getContentPane().add(totalstudent_background, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 120, 440, 130));
 
         totalintake_border.setBackground(new Color(2, 50, 99, 0));
         totalintake_border.setBorder(new LineBorder(new Color(192, 192, 192, 90), 15, true));
         totalintake_border.setMaximumSize(new java.awt.Dimension(440, 125));
         totalintake_border.setMinimumSize(new java.awt.Dimension(440, 125));
         totalintake_border.setPreferredSize(new java.awt.Dimension(440, 125));
-        getContentPane().add(totalintake_border, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, 460, 150));
+        getContentPane().add(totalintake_border, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 460, 150));
 
         student_record.setOpaque(true);
 
@@ -228,6 +230,7 @@ public class admin_student_management extends javax.swing.JFrame {
         student_record.getAccessibleContext().setAccessibleName("\"student_record\"");
         student_record.getAccessibleContext().setAccessibleDescription("");
 
+        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main_background.png"))); // NOI18N
         getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();

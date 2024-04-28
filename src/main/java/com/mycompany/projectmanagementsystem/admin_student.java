@@ -280,9 +280,9 @@ public class admin_student extends javax.swing.JFrame {
 
     private void admin_stu_managementMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_admin_stu_managementMouseClicked
         // TODO add your handling code here:
-//        admin_student_management admin_stumanage = new admin_student_management();
-//        admin_stumanage.show();
-//        dispose();
+        admin_student_management admin_stumanage = new admin_student_management();
+        admin_stumanage.show();
+        dispose();
     }//GEN-LAST:event_admin_stu_managementMouseClicked
 
     private void admin_logoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_admin_logoMouseClicked
