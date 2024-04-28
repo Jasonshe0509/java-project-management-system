@@ -30,7 +30,7 @@
     <Property name="useNullLayout" type="boolean" value="false"/>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JPanel" name="jPanel1">
+    <Container class="javax.swing.JPanel" name="assessmentContainer">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
           <Connection code="new Color (217,217,217,40)" type="code"/>
@@ -169,7 +169,7 @@
         </Container>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="due_date">
+    <Container class="javax.swing.JPanel" name="dueDate">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
           <Connection code="new Color(217,217,217,40)" type="code"/>
@@ -237,7 +237,7 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Container class="javax.swing.JPanel" name="upcoming_event">
+    <Container class="javax.swing.JPanel" name="upcomingEvent">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
           <Connection code="new Color(217,217,217,40)" type="code"/>
@@ -289,7 +289,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="student_header">
+    <Container class="javax.swing.JPanel" name="studentHeader">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
           <Connection code="new Color(255, 255, 255, 90)" type="code"/>
@@ -316,15 +316,15 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="student_logo" min="-2" max="-2" attributes="0"/>
+                  <Component id="studentLogo" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="352" max="32767" attributes="0"/>
-                  <Component id="student_ec_submission" min="-2" pref="130" max="-2" attributes="0"/>
+                  <Component id="studentEcSubmission" min="-2" pref="130" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                  <Component id="student_notification" min="-2" pref="106" max="-2" attributes="0"/>
+                  <Component id="studentNotification" min="-2" pref="106" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="student_profile" min="-2" max="-2" attributes="0"/>
+                  <Component id="studentProfile" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="student_logout" min="-2" max="-2" attributes="0"/>
+                  <Component id="studentLogout" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -333,23 +333,23 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="student_notification" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="student_profile" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="student_logout" alignment="3" max="32767" attributes="0"/>
-                      <Component id="student_ec_submission" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="studentNotification" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="studentProfile" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="studentLogout" alignment="3" max="32767" attributes="0"/>
+                      <Component id="studentEcSubmission" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
-                  <Component id="student_logo" min="-2" max="-2" attributes="0"/>
+                  <Component id="studentLogo" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="student_logo">
+        <Component class="javax.swing.JLabel" name="studentLogo">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Sysco_logo.png"/>
@@ -359,10 +359,10 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="student_logoMouseClicked"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="studentLogoMouseClicked"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="student_ec_submission">
+        <Component class="javax.swing.JLabel" name="studentEcSubmission">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
               <Connection code="new Color(255, 255, 255, 0)" type="code"/>
@@ -389,7 +389,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="student_notification">
+        <Component class="javax.swing.JLabel" name="studentNotification">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
               <Connection code="new Color(255, 255, 255, 0)" type="code"/>
@@ -416,7 +416,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="student_profile">
+        <Component class="javax.swing.JLabel" name="studentProfile">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
               <Connection code="new Color(255, 255, 255, 0)" type="code"/>
@@ -443,7 +443,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="student_logout">
+        <Component class="javax.swing.JLabel" name="studentLogout">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
               <Connection code="new Color(255, 255, 255, 0)" type="code"/>

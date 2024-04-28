@@ -25,22 +25,22 @@ public class StudentDashboardPage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        assessmentContainer = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
-        due_date = new javax.swing.JPanel();
+        dueDate = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        upcoming_event = new javax.swing.JPanel();
+        upcomingEvent = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        student_header = new javax.swing.JPanel();
-        student_logo = new javax.swing.JLabel();
-        student_ec_submission = new javax.swing.JLabel();
-        student_notification = new javax.swing.JLabel();
-        student_profile = new javax.swing.JLabel();
-        student_logout = new javax.swing.JLabel();
+        studentHeader = new javax.swing.JPanel();
+        studentLogo = new javax.swing.JLabel();
+        studentEcSubmission = new javax.swing.JLabel();
+        studentNotification = new javax.swing.JLabel();
+        studentProfile = new javax.swing.JLabel();
+        studentLogout = new javax.swing.JLabel();
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -49,11 +49,11 @@ public class StudentDashboardPage extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new Color (217,217,217,40));
-        jPanel1.setMaximumSize(new java.awt.Dimension(737, 564));
-        jPanel1.setMinimumSize(new java.awt.Dimension(737, 564));
-        jPanel1.setPreferredSize(new java.awt.Dimension(737, 564));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        assessmentContainer.setBackground(new Color (217,217,217,40));
+        assessmentContainer.setMaximumSize(new java.awt.Dimension(737, 564));
+        assessmentContainer.setMinimumSize(new java.awt.Dimension(737, 564));
+        assessmentContainer.setPreferredSize(new java.awt.Dimension(737, 564));
+        assessmentContainer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setMaximumSize(new java.awt.Dimension(300, 250));
         jPanel2.setMinimumSize(new java.awt.Dimension(300, 250));
@@ -69,7 +69,7 @@ public class StudentDashboardPage extends javax.swing.JFrame {
             .addGap(0, 250, Short.MAX_VALUE)
         );
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 17, -1, -1));
+        assessmentContainer.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 17, -1, -1));
 
         jPanel3.setMaximumSize(new java.awt.Dimension(300, 250));
         jPanel3.setMinimumSize(new java.awt.Dimension(300, 250));
@@ -85,7 +85,7 @@ public class StudentDashboardPage extends javax.swing.JFrame {
             .addGap(0, 250, Short.MAX_VALUE)
         );
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 17, -1, -1));
+        assessmentContainer.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 17, -1, -1));
 
         jPanel4.setMaximumSize(new java.awt.Dimension(300, 250));
         jPanel4.setMinimumSize(new java.awt.Dimension(300, 250));
@@ -101,7 +101,7 @@ public class StudentDashboardPage extends javax.swing.JFrame {
             .addGap(0, 250, Short.MAX_VALUE)
         );
 
-        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 290, -1, -1));
+        assessmentContainer.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 290, -1, -1));
 
         jPanel5.setMaximumSize(new java.awt.Dimension(300, 250));
         jPanel5.setMinimumSize(new java.awt.Dimension(300, 250));
@@ -117,15 +117,15 @@ public class StudentDashboardPage extends javax.swing.JFrame {
             .addGap(0, 250, Short.MAX_VALUE)
         );
 
-        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 290, -1, -1));
+        assessmentContainer.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 290, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(244, 120, -1, -1));
+        getContentPane().add(assessmentContainer, new org.netbeans.lib.awtextra.AbsoluteConstraints(244, 120, -1, -1));
 
-        due_date.setBackground(new Color(217,217,217,40));
-        due_date.setMaximumSize(new java.awt.Dimension(207, 203));
-        due_date.setMinimumSize(new java.awt.Dimension(207, 203));
-        due_date.setPreferredSize(new java.awt.Dimension(207, 203));
-        due_date.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        dueDate.setBackground(new Color(217,217,217,40));
+        dueDate.setMaximumSize(new java.awt.Dimension(207, 203));
+        dueDate.setMinimumSize(new java.awt.Dimension(207, 203));
+        dueDate.setPreferredSize(new java.awt.Dimension(207, 203));
+        dueDate.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(2, 50, 99));
@@ -133,20 +133,20 @@ public class StudentDashboardPage extends javax.swing.JFrame {
         jLabel3.setMaximumSize(new java.awt.Dimension(80, 18));
         jLabel3.setMinimumSize(new java.awt.Dimension(80, 18));
         jLabel3.setPreferredSize(new java.awt.Dimension(80, 18));
-        due_date.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, -1, -1));
+        dueDate.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, -1, -1));
 
-        getContentPane().add(due_date, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 120, -1, -1));
+        getContentPane().add(dueDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 120, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Bell MT", 1, 20)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(2, 50, 99));
         jLabel7.setText("Welcome: Student ()");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 200, 30));
 
-        upcoming_event.setBackground(new Color(217,217,217,40));
-        upcoming_event.setMaximumSize(new java.awt.Dimension(207, 332));
-        upcoming_event.setMinimumSize(new java.awt.Dimension(207, 332));
-        upcoming_event.setPreferredSize(new java.awt.Dimension(207, 332));
-        upcoming_event.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        upcomingEvent.setBackground(new Color(217,217,217,40));
+        upcomingEvent.setMaximumSize(new java.awt.Dimension(207, 332));
+        upcomingEvent.setMinimumSize(new java.awt.Dimension(207, 332));
+        upcomingEvent.setPreferredSize(new java.awt.Dimension(207, 332));
+        upcomingEvent.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(2, 50, 99));
@@ -154,97 +154,97 @@ public class StudentDashboardPage extends javax.swing.JFrame {
         jLabel1.setMaximumSize(new java.awt.Dimension(80, 18));
         jLabel1.setMinimumSize(new java.awt.Dimension(80, 18));
         jLabel1.setPreferredSize(new java.awt.Dimension(80, 18));
-        upcoming_event.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 140, -1));
+        upcomingEvent.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 140, -1));
 
-        getContentPane().add(upcoming_event, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 352, 210, -1));
+        getContentPane().add(upcomingEvent, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 352, 210, -1));
 
-        student_header.setBackground(new Color(255, 255, 255, 90));
-        student_header.setToolTipText("");
-        student_header.setMaximumSize(new java.awt.Dimension(1000, 73));
-        student_header.setMinimumSize(new java.awt.Dimension(1000, 73));
-        student_header.setPreferredSize(new java.awt.Dimension(1000, 73));
+        studentHeader.setBackground(new Color(255, 255, 255, 90));
+        studentHeader.setToolTipText("");
+        studentHeader.setMaximumSize(new java.awt.Dimension(1000, 73));
+        studentHeader.setMinimumSize(new java.awt.Dimension(1000, 73));
+        studentHeader.setPreferredSize(new java.awt.Dimension(1000, 73));
 
-        student_logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Sysco_logo.png"))); // NOI18N
-        student_logo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        student_logo.addMouseListener(new java.awt.event.MouseAdapter() {
+        studentLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Sysco_logo.png"))); // NOI18N
+        studentLogo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        studentLogo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                student_logoMouseClicked(evt);
+                studentLogoMouseClicked(evt);
             }
         });
 
-        student_ec_submission.setBackground(new Color(255, 255, 255, 0));
-        student_ec_submission.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
-        student_ec_submission.setForeground(new java.awt.Color(2, 50, 99));
-        student_ec_submission.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        student_ec_submission.setText("EC Submission");
-        student_ec_submission.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        student_ec_submission.setMaximumSize(new java.awt.Dimension(96, 73));
-        student_ec_submission.setMinimumSize(new java.awt.Dimension(96, 73));
-        student_ec_submission.setPreferredSize(new java.awt.Dimension(96, 73));
+        studentEcSubmission.setBackground(new Color(255, 255, 255, 0));
+        studentEcSubmission.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
+        studentEcSubmission.setForeground(new java.awt.Color(2, 50, 99));
+        studentEcSubmission.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        studentEcSubmission.setText("EC Submission");
+        studentEcSubmission.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        studentEcSubmission.setMaximumSize(new java.awt.Dimension(96, 73));
+        studentEcSubmission.setMinimumSize(new java.awt.Dimension(96, 73));
+        studentEcSubmission.setPreferredSize(new java.awt.Dimension(96, 73));
 
-        student_notification.setBackground(new Color(255, 255, 255, 0));
-        student_notification.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
-        student_notification.setForeground(new java.awt.Color(2, 50, 99));
-        student_notification.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        student_notification.setText("Notification");
-        student_notification.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        student_notification.setMaximumSize(new java.awt.Dimension(96, 73));
-        student_notification.setMinimumSize(new java.awt.Dimension(96, 73));
-        student_notification.setPreferredSize(new java.awt.Dimension(96, 73));
+        studentNotification.setBackground(new Color(255, 255, 255, 0));
+        studentNotification.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
+        studentNotification.setForeground(new java.awt.Color(2, 50, 99));
+        studentNotification.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        studentNotification.setText("Notification");
+        studentNotification.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        studentNotification.setMaximumSize(new java.awt.Dimension(96, 73));
+        studentNotification.setMinimumSize(new java.awt.Dimension(96, 73));
+        studentNotification.setPreferredSize(new java.awt.Dimension(96, 73));
 
-        student_profile.setBackground(new Color(255, 255, 255, 0));
-        student_profile.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
-        student_profile.setForeground(new java.awt.Color(2, 50, 99));
-        student_profile.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        student_profile.setText("Profile");
-        student_profile.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        student_profile.setMaximumSize(new java.awt.Dimension(96, 73));
-        student_profile.setMinimumSize(new java.awt.Dimension(96, 73));
-        student_profile.setPreferredSize(new java.awt.Dimension(96, 73));
+        studentProfile.setBackground(new Color(255, 255, 255, 0));
+        studentProfile.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
+        studentProfile.setForeground(new java.awt.Color(2, 50, 99));
+        studentProfile.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        studentProfile.setText("Profile");
+        studentProfile.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        studentProfile.setMaximumSize(new java.awt.Dimension(96, 73));
+        studentProfile.setMinimumSize(new java.awt.Dimension(96, 73));
+        studentProfile.setPreferredSize(new java.awt.Dimension(96, 73));
 
-        student_logout.setBackground(new Color(255, 255, 255, 0));
-        student_logout.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
-        student_logout.setForeground(new java.awt.Color(2, 50, 99));
-        student_logout.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        student_logout.setText("Log Out");
-        student_logout.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        student_logout.setMaximumSize(new java.awt.Dimension(96, 73));
-        student_logout.setMinimumSize(new java.awt.Dimension(96, 73));
-        student_logout.setPreferredSize(new java.awt.Dimension(96, 73));
+        studentLogout.setBackground(new Color(255, 255, 255, 0));
+        studentLogout.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
+        studentLogout.setForeground(new java.awt.Color(2, 50, 99));
+        studentLogout.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        studentLogout.setText("Log Out");
+        studentLogout.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        studentLogout.setMaximumSize(new java.awt.Dimension(96, 73));
+        studentLogout.setMinimumSize(new java.awt.Dimension(96, 73));
+        studentLogout.setPreferredSize(new java.awt.Dimension(96, 73));
 
-        javax.swing.GroupLayout student_headerLayout = new javax.swing.GroupLayout(student_header);
-        student_header.setLayout(student_headerLayout);
-        student_headerLayout.setHorizontalGroup(
-            student_headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(student_headerLayout.createSequentialGroup()
+        javax.swing.GroupLayout studentHeaderLayout = new javax.swing.GroupLayout(studentHeader);
+        studentHeader.setLayout(studentHeaderLayout);
+        studentHeaderLayout.setHorizontalGroup(
+            studentHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(studentHeaderLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(student_logo)
+                .addComponent(studentLogo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 352, Short.MAX_VALUE)
-                .addComponent(student_ec_submission, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(studentEcSubmission, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
-                .addComponent(student_notification, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(studentNotification, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(student_profile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(studentProfile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(student_logout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(studentLogout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
-        student_headerLayout.setVerticalGroup(
-            student_headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(student_headerLayout.createSequentialGroup()
-                .addGroup(student_headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(student_notification, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(student_profile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(student_logout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(student_ec_submission, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        studentHeaderLayout.setVerticalGroup(
+            studentHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(studentHeaderLayout.createSequentialGroup()
+                .addGroup(studentHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(studentNotification, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(studentProfile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(studentLogout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(studentEcSubmission, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
-            .addGroup(student_headerLayout.createSequentialGroup()
+            .addGroup(studentHeaderLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addComponent(student_logo)
+                .addComponent(studentLogo)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        getContentPane().add(student_header, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        getContentPane().add(studentHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main_background.png"))); // NOI18N
         getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -253,9 +253,9 @@ public class StudentDashboardPage extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void student_logoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_student_logoMouseClicked
+    private void studentLogoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_studentLogoMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_student_logoMouseClicked
+    }//GEN-LAST:event_studentLogoMouseClicked
 
     /**
      * @param args the command line arguments
@@ -297,22 +297,22 @@ public class StudentDashboardPage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel assessmentContainer;
     private javax.swing.JLabel background;
-    private javax.swing.JPanel due_date;
+    private javax.swing.JPanel dueDate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JLabel student_ec_submission;
-    private javax.swing.JPanel student_header;
-    private javax.swing.JLabel student_logo;
-    private javax.swing.JLabel student_logout;
-    private javax.swing.JLabel student_notification;
-    private javax.swing.JLabel student_profile;
-    private javax.swing.JPanel upcoming_event;
+    private javax.swing.JLabel studentEcSubmission;
+    private javax.swing.JPanel studentHeader;
+    private javax.swing.JLabel studentLogo;
+    private javax.swing.JLabel studentLogout;
+    private javax.swing.JLabel studentNotification;
+    private javax.swing.JLabel studentProfile;
+    private javax.swing.JPanel upcomingEvent;
     // End of variables declaration//GEN-END:variables
 }
