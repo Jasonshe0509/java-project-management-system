@@ -46,6 +46,7 @@ public class admin_modifystudent_pop extends javax.swing.JFrame {
         admin_stumanage_modifybutton.setText("MODIFY");
         getContentPane().add(admin_stumanage_modifybutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 210, -1, -1));
 
+        admin_modifystudent_pop.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main_background.png"))); // NOI18N
         admin_modifystudent_pop.setMaximumSize(new java.awt.Dimension(500, 300));
         admin_modifystudent_pop.setMinimumSize(new java.awt.Dimension(500, 300));
         admin_modifystudent_pop.setOpaque(true);
