@@ -46,7 +46,7 @@ public class admin_student extends javax.swing.JFrame {
 
         admin_header.setBackground(new Color(255, 255, 255, 90));
         admin_header.setToolTipText("");
-        admin_header.setMaximumSize(new java.awt.Dimension(1000, 73));
+        admin_header.setMaximumSize(new java.awt.Dimension(1000, 700));
         admin_header.setMinimumSize(new java.awt.Dimension(1000, 73));
         admin_header.setPreferredSize(new java.awt.Dimension(1000, 73));
 
@@ -273,9 +273,9 @@ public class admin_student extends javax.swing.JFrame {
 
     private void admin_ec_managementMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_admin_ec_managementMouseClicked
         // TODO add your handling code here:
-//        admin_ec_management admin_ec_manage = new admin_ec_management();
-//        admin_ec_manage.show();
-//        dispose();
+        admin_ec_record admin_ec_record = new admin_ec_record();
+        admin_ec_record.show();
+        dispose();
     }//GEN-LAST:event_admin_ec_managementMouseClicked
 
     private void admin_stu_managementMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_admin_stu_managementMouseClicked
