@@ -4,7 +4,9 @@ com\mycompany\projectmanagementsystem\admin_student$5.class
 com\mycompany\projectmanagementsystem\LoginPage.class
 com\mycompany\projectmanagementsystem\admin_mainpage$1.class
 com\mycompany\projectmanagementsystem\LecturerDashboardPage$5.class
+com\mycompany\projectmanagementsystem\LecturerPresentationFeedback$1.class
 com\mycompany\projectmanagementsystem\ForgetPasswordPage.class
+com\mycompany\projectmanagementsystem\LecturerPresentationFeedback.class
 com\mycompany\projectmanagementsystem\admin_mainpage.class
 com\mycompany\projectmanagementsystem\admin_student_management$1.class
 com\mycompany\projectmanagementsystem\ForgetPasswordPage$1.class
@@ -26,11 +28,13 @@ com\mycompany\projectmanagementsystem\admin_register_intake.class
 com\mycompany\projectmanagementsystem\LecturerDashboardPage$4.class
 com\mycompany\projectmanagementsystem\LecturerDashboardPage$7.class
 com\mycompany\projectmanagementsystem\StudentDashboardPage$2.class
+com\mycompany\projectmanagementsystem\LecturerPresentationFeedback$3.class
 com\mycompany\projectmanagementsystem\LecturerDashboardPage$3.class
 com\mycompany\projectmanagementsystem\GeneralPage$1.class
 com\mycompany\projectmanagementsystem\StudentDashboardPage.class
 com\mycompany\projectmanagementsystem\admin_ec_record.class
 com\mycompany\projectmanagementsystem\admin_student$3.class
+com\mycompany\projectmanagementsystem\LecturerPresentationFeedback$2.class
 com\mycompany\projectmanagementsystem\admin_ec_record$1.class
 com\mycompany\projectmanagementsystem\admin_student_management$2.class
 com\mycompany\projectmanagementsystem\ForgetPasswordPage$2.class
