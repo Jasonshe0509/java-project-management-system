@@ -4,6 +4,7 @@
  */
 package com.mycompany.projectmanagementsystem;
 
+import java.awt.Toolkit;
 import javax.swing.table.TableColumnModel;
 
 /**
@@ -14,6 +15,7 @@ public class PM_FYP_page extends javax.swing.JFrame {
 
     public PM_FYP_page() {
         initComponents();
+        setIconImage();
         jComboBox1ActionPerformed(null); // Call to populate the JComboBox
     }
 
@@ -43,6 +45,8 @@ public class PM_FYP_page extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Project Manager FYP");
+        setMaximumSize(new java.awt.Dimension(1000, 700));
         setMinimumSize(new java.awt.Dimension(1000, 700));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -194,6 +198,7 @@ public class PM_FYP_page extends javax.swing.JFrame {
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void pm_fyp_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pm_fyp_searchActionPerformed
@@ -264,6 +269,9 @@ public class PM_FYP_page extends javax.swing.JFrame {
                 new PM_FYP_page().setVisible(true);
             }
         });
+    }
+    private void setIconImage() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Sysco_icon_with_background.png")));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
