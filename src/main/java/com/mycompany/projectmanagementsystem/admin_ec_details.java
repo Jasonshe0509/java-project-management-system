@@ -208,6 +208,7 @@ public class admin_ec_details extends javax.swing.JFrame {
         ecdetail_border.setPreferredSize(new java.awt.Dimension(800, 220));
         getContentPane().add(ecdetail_border, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 800, 220));
 
+        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main_background.png"))); // NOI18N
         background.setText("jLabel1");
         background.setMaximumSize(new java.awt.Dimension(800, 500));
         background.setMinimumSize(new java.awt.Dimension(800, 500));
