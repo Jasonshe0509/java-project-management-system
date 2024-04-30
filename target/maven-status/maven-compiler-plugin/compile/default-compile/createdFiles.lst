@@ -8,10 +8,12 @@ com\mycompany\projectmanagementsystem\admin_ec_details$1.class
 com\mycompany\projectmanagementsystem\ForgetPasswordPage.class
 com\mycompany\projectmanagementsystem\admin_student_management$1.class
 com\mycompany\projectmanagementsystem\ForgetPasswordPage$1.class
+com\mycompany\projectmanagementsystem\LecturerReportGrading$3.class
 com\mycompany\projectmanagementsystem\LecturerNotiPopUp.class
 com\mycompany\projectmanagementsystem\admin_ec_details.class
 com\mycompany\projectmanagementsystem\LecturerIntakePage$3.class
 com\mycompany\projectmanagementsystem\admin_student_management.class
+com\mycompany\projectmanagementsystem\LecturerReportGrading$2.class
 com\mycompany\projectmanagementsystem\LoginPage$1.class
 com\mycompany\projectmanagementsystem\LecturerDashboardPage$1.class
 com\mycompany\projectmanagementsystem\LecturerProfile$6.class
@@ -22,6 +24,7 @@ com\mycompany\projectmanagementsystem\LecturerPresentationRequest$2.class
 com\mycompany\projectmanagementsystem\LecturerIntakePage$5.class
 com\mycompany\projectmanagementsystem\lect_PresentationPanelAction$PanelActionRenderer.class
 com\mycompany\projectmanagementsystem\admin_student$1.class
+com\mycompany\projectmanagementsystem\LecturerReportGrading.class
 com\mycompany\projectmanagementsystem\admin_ec_details$3.class
 com\mycompany\projectmanagementsystem\LecturerDashboardPage.class
 com\mycompany\projectmanagementsystem\lect_ReportPanelAction$1.class
@@ -29,6 +32,7 @@ com\mycompany\projectmanagementsystem\lect_PresentationPanelAction$2.class
 com\mycompany\projectmanagementsystem\LecturerPresentationRequest$3.class
 com\mycompany\projectmanagementsystem\admin_register_intake.class
 com\mycompany\projectmanagementsystem\LecturerDashboardPage$4.class
+com\mycompany\projectmanagementsystem\LecturerReportGrading$1.class
 com\mycompany\projectmanagementsystem\LecturerPresentationFeedback$3.class
 com\mycompany\projectmanagementsystem\LecturerSummaryReport$WrappedHeaderRenderer.class
 com\mycompany\projectmanagementsystem\LecturerSummaryReport.class
