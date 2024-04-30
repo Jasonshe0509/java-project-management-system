@@ -8,6 +8,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Toolkit;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -24,6 +25,7 @@ public class LecturerPresentationRequest extends javax.swing.JFrame {
      */
     public LecturerPresentationRequest() {
         initComponents();
+        setIconImage();
        
         // Custom cell renderer to set white background
         class WhiteBackgroundRenderer extends DefaultTableCellRenderer {
@@ -72,9 +74,10 @@ public class LecturerPresentationRequest extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Lecturer Presentation Request");
         setMaximumSize(new java.awt.Dimension(700, 500));
         setMinimumSize(new java.awt.Dimension(700, 500));
-        setPreferredSize(new java.awt.Dimension(700, 500));
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel7.setFont(new java.awt.Font("Bell MT", 1, 28)); // NOI18N
@@ -177,6 +180,7 @@ public class LecturerPresentationRequest extends javax.swing.JFrame {
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 500));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -216,6 +220,9 @@ public class LecturerPresentationRequest extends javax.swing.JFrame {
                 new LecturerPresentationRequest().setVisible(true);
             }
         });
+    }
+    private void setIconImage() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Sysco_icon_with_background.png")));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
