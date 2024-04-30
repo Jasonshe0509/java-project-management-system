@@ -4,6 +4,8 @@
  */
 package com.mycompany.projectmanagementsystem;
 
+import java.awt.Toolkit;
+
 /**
  *
  * @author user
@@ -15,6 +17,7 @@ public class LecturerReportGrading extends javax.swing.JFrame {
      */
     public LecturerReportGrading() {
         initComponents();
+        setIconImage();
     }
 
     /**
@@ -56,9 +59,10 @@ public class LecturerReportGrading extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Lecturer Grading Report");
         setMaximumSize(new java.awt.Dimension(700, 500));
         setMinimumSize(new java.awt.Dimension(700, 500));
-        setPreferredSize(new java.awt.Dimension(700, 500));
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -281,7 +285,7 @@ public class LecturerReportGrading extends javax.swing.JFrame {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel9)
-                .addContainerGap(220, Short.MAX_VALUE))
+                .addContainerGap(221, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -325,7 +329,7 @@ public class LecturerReportGrading extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(20, 20, 20)
-                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(25, 25, 25))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -382,6 +386,7 @@ public class LecturerReportGrading extends javax.swing.JFrame {
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 500));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -425,6 +430,9 @@ public class LecturerReportGrading extends javax.swing.JFrame {
                 new LecturerReportGrading().setVisible(true);
             }
         });
+    }
+    private void setIconImage() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Sysco_icon_with_background.png")));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
