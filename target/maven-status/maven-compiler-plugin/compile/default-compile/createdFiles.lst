@@ -1,6 +1,7 @@
 com\mycompany\projectmanagementsystem\ForgetPasswordPage$4.class
 com\mycompany\projectmanagementsystem\admin_lecturer_record$3.class
 com\mycompany\projectmanagementsystem\LoginPage.class
+com\mycompany\projectmanagementsystem\LecturerSummaryReport$2.class
 com\mycompany\projectmanagementsystem\admin_ec_details$1.class
 com\mycompany\projectmanagementsystem\ForgetPasswordPage.class
 com\mycompany\projectmanagementsystem\admin_student_management$1.class
@@ -14,6 +15,7 @@ com\mycompany\projectmanagementsystem\LecturerDashboardPage$1.class
 com\mycompany\projectmanagementsystem\LecturerProfile$6.class
 com\mycompany\projectmanagementsystem\admin_lecturer$3.class
 com\mycompany\projectmanagementsystem\admin_student$4.class
+com\mycompany\projectmanagementsystem\LecturerSummaryReport$1.class
 com\mycompany\projectmanagementsystem\LecturerPresentationRequest$2.class
 com\mycompany\projectmanagementsystem\LecturerIntakePage$5.class
 com\mycompany\projectmanagementsystem\lect_PresentationPanelAction$PanelActionRenderer.class
@@ -25,6 +27,8 @@ com\mycompany\projectmanagementsystem\lect_PresentationPanelAction$2.class
 com\mycompany\projectmanagementsystem\LecturerPresentationRequest$3.class
 com\mycompany\projectmanagementsystem\admin_register_intake.class
 com\mycompany\projectmanagementsystem\LecturerDashboardPage$4.class
+com\mycompany\projectmanagementsystem\LecturerSummaryReport$WrappedHeaderRenderer.class
+com\mycompany\projectmanagementsystem\LecturerSummaryReport.class
 com\mycompany\projectmanagementsystem\lect_ReportPanelAction$rPanelActionRenderer.class
 com\mycompany\projectmanagementsystem\LecturerProfile$1.class
 com\mycompany\projectmanagementsystem\LecturerDashboardPage$3.class
