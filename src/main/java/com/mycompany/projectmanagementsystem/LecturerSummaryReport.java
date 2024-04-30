@@ -8,6 +8,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Toolkit;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
@@ -22,6 +23,7 @@ public class LecturerSummaryReport extends javax.swing.JFrame {
      */
     public LecturerSummaryReport() {
         initComponents();
+        setIconImage();
         
         Color fontColor = new Color(2, 50, 99);
         jTable1.getTableHeader().setFont(new Font("SansSerif", Font.BOLD, 14)); // Adjust size as needed
@@ -70,8 +72,10 @@ public class LecturerSummaryReport extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Lecturer Summary Report");
         setMaximumSize(new java.awt.Dimension(1000, 700));
         setMinimumSize(new java.awt.Dimension(1000, 700));
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -219,6 +223,7 @@ public class LecturerSummaryReport extends javax.swing.JFrame {
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 700));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     /**
@@ -254,6 +259,9 @@ public class LecturerSummaryReport extends javax.swing.JFrame {
                 new LecturerSummaryReport().setVisible(true);
             }
         });
+    }
+    private void setIconImage() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Sysco_icon_with_background.png")));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
