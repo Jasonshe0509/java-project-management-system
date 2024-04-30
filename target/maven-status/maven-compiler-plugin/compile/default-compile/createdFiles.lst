@@ -24,6 +24,7 @@ com\mycompany\projectmanagementsystem\LecturerPresentationRequest$2.class
 com\mycompany\projectmanagementsystem\LecturerIntakePage$5.class
 com\mycompany\projectmanagementsystem\lect_PresentationPanelAction$PanelActionRenderer.class
 com\mycompany\projectmanagementsystem\admin_student$1.class
+com\mycompany\projectmanagementsystem\LecturerReportConfirm$1.class
 com\mycompany\projectmanagementsystem\LecturerReportGrading.class
 com\mycompany\projectmanagementsystem\admin_ec_details$3.class
 com\mycompany\projectmanagementsystem\LecturerDashboardPage.class
@@ -32,6 +33,9 @@ com\mycompany\projectmanagementsystem\lect_PresentationPanelAction$2.class
 com\mycompany\projectmanagementsystem\LecturerPresentationRequest$3.class
 com\mycompany\projectmanagementsystem\admin_register_intake.class
 com\mycompany\projectmanagementsystem\LecturerDashboardPage$4.class
+com\mycompany\projectmanagementsystem\LecturerReportConfirm.class
+com\mycompany\projectmanagementsystem\LecturerReportConfirm$2.class
+com\mycompany\projectmanagementsystem\LecturerReportConfirm$3.class
 com\mycompany\projectmanagementsystem\LecturerReportGrading$1.class
 com\mycompany\projectmanagementsystem\LecturerPresentationFeedback$3.class
 com\mycompany\projectmanagementsystem\LecturerSummaryReport$WrappedHeaderRenderer.class
