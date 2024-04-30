@@ -8,6 +8,8 @@ package com.mycompany.projectmanagementsystem;
  *
  * @author user
  */
+import java.awt.Toolkit;
+
 public class LecturerNotiPopUp extends javax.swing.JFrame {
 
     /**
@@ -15,6 +17,7 @@ public class LecturerNotiPopUp extends javax.swing.JFrame {
      */
     public LecturerNotiPopUp() {
         initComponents();
+        setIconImage();
     }
 
     /**
@@ -36,8 +39,10 @@ public class LecturerNotiPopUp extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Lecturer Notification");
         setMaximumSize(new java.awt.Dimension(700, 500));
         setMinimumSize(new java.awt.Dimension(700, 500));
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("Bell MT", 1, 24)); // NOI18N
@@ -102,7 +107,7 @@ public class LecturerNotiPopUp extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 357, Short.MAX_VALUE))
+                .addGap(0, 351, Short.MAX_VALUE))
         );
 
         jScrollPane1.setViewportView(jPanel2);
@@ -117,6 +122,7 @@ public class LecturerNotiPopUp extends javax.swing.JFrame {
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     /**
@@ -152,6 +158,9 @@ public class LecturerNotiPopUp extends javax.swing.JFrame {
                 new LecturerNotiPopUp().setVisible(true);
             }
         });
+    }
+    private void setIconImage() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Sysco_icon_with_background.png")));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
