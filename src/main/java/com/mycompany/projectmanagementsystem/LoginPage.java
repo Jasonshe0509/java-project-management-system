@@ -40,6 +40,7 @@ public class LoginPage extends javax.swing.JFrame {
         backButton = new javax.swing.JButton();
         loginButton = new javax.swing.JButton();
         showPasswordTickBox = new javax.swing.JCheckBox();
+        password1 = new javax.swing.JLabel();
         slogan = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         logo = new javax.swing.JLabel();
@@ -84,13 +85,13 @@ public class LoginPage extends javax.swing.JFrame {
         forgetPassword.setPreferredSize(new java.awt.Dimension(78, 22));
         jPanel1.add(forgetPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(443, 197, 150, -1));
 
-        password.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
+        password.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         password.setForeground(new java.awt.Color(2, 50, 99));
-        password.setText("Password:");
+        password.setText("Show Password");
         password.setMaximumSize(new java.awt.Dimension(78, 36));
         password.setMinimumSize(new java.awt.Dimension(78, 36));
         password.setPreferredSize(new java.awt.Dimension(78, 36));
-        jPanel1.add(password, new org.netbeans.lib.awtextra.AbsoluteConstraints(93, 127, 120, -1));
+        jPanel1.add(password, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 190, 180, -1));
 
         passwordField.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         passwordField.setMaximumSize(new java.awt.Dimension(335, 40));
@@ -121,10 +122,9 @@ public class LoginPage extends javax.swing.JFrame {
         loginButton.setPreferredSize(new java.awt.Dimension(120, 45));
         jPanel1.add(loginButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(401, 301, -1, -1));
 
-        showPasswordTickBox.setBackground(new Color(240,240,240,90));
+        showPasswordTickBox.setBackground(new java.awt.Color(255, 255, 255));
         showPasswordTickBox.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         showPasswordTickBox.setForeground(new java.awt.Color(2, 50, 99));
-        showPasswordTickBox.setText("Show Password");
         showPasswordTickBox.setBorder(null);
         showPasswordTickBox.setContentAreaFilled(false);
         showPasswordTickBox.setFocusPainted(false);
@@ -139,7 +139,15 @@ public class LoginPage extends javax.swing.JFrame {
                 showPasswordTickBoxActionPerformed(evt);
             }
         });
-        jPanel1.add(showPasswordTickBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(93, 197, -1, -1));
+        jPanel1.add(showPasswordTickBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(93, 197, 20, -1));
+
+        password1.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
+        password1.setForeground(new java.awt.Color(2, 50, 99));
+        password1.setText("Password:");
+        password1.setMaximumSize(new java.awt.Dimension(78, 36));
+        password1.setMinimumSize(new java.awt.Dimension(78, 36));
+        password1.setPreferredSize(new java.awt.Dimension(78, 36));
+        jPanel1.add(password1, new org.netbeans.lib.awtextra.AbsoluteConstraints(93, 127, 120, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 256, -1, -1));
 
@@ -236,6 +244,7 @@ public class LoginPage extends javax.swing.JFrame {
     private javax.swing.JButton loginButton;
     private javax.swing.JLabel logo;
     private javax.swing.JLabel password;
+    private javax.swing.JLabel password1;
     private javax.swing.JPasswordField passwordField;
     private javax.swing.JCheckBox showPasswordTickBox;
     private javax.swing.JLabel slogan;
