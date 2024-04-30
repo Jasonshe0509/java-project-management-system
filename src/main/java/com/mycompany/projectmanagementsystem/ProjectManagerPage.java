@@ -61,6 +61,8 @@ public class ProjectManagerPage extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Project Manager Main Page");
+        setMaximumSize(new java.awt.Dimension(1000, 700));
         setMinimumSize(new java.awt.Dimension(1000, 700));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -144,14 +146,15 @@ public class ProjectManagerPage extends javax.swing.JFrame {
         });
         pm_internship_report.add(pm_internship_view, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 220, -1, -1));
 
-        pm_internship_icon.setMaximumSize(new java.awt.Dimension(300, 125));
-        pm_internship_icon.setMinimumSize(new java.awt.Dimension(300, 125));
-        pm_internship_icon.setPreferredSize(new java.awt.Dimension(300, 125));
-        pm_internship_report.add(pm_internship_icon, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 125));
+        pm_internship_icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/internship.png"))); // NOI18N
+        pm_internship_icon.setMaximumSize(new java.awt.Dimension(300, 150));
+        pm_internship_icon.setMinimumSize(new java.awt.Dimension(300, 150));
+        pm_internship_icon.setPreferredSize(new java.awt.Dimension(300, 150));
+        pm_internship_report.add(pm_internship_icon, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         jLabel10.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel10.setText("Internship Report");
-        pm_internship_report.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, -1, -1));
+        pm_internship_report.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, -1, -1));
 
         getContentPane().add(pm_internship_report, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 300, 250));
 
@@ -169,11 +172,16 @@ public class ProjectManagerPage extends javax.swing.JFrame {
             }
         });
         pm_FYP.add(pm_FYP_view, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 220, -1, -1));
-        pm_FYP.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 125));
+
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/final_year_project.png"))); // NOI18N
+        jLabel12.setMaximumSize(new java.awt.Dimension(300, 150));
+        jLabel12.setMinimumSize(new java.awt.Dimension(300, 150));
+        jLabel12.setPreferredSize(new java.awt.Dimension(300, 150));
+        pm_FYP.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         jLabel14.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel14.setText("Final Year Project (FYP)");
-        pm_FYP.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, -1, -1));
+        pm_FYP.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, -1, -1));
 
         getContentPane().add(pm_FYP, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 140, 300, 250));
 
@@ -190,11 +198,16 @@ public class ProjectManagerPage extends javax.swing.JFrame {
             }
         });
         pm_RMCP.add(pm_RMCP_view, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 220, -1, -1));
-        pm_RMCP.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 125));
+
+        jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/research_methodology.png"))); // NOI18N
+        jLabel19.setMaximumSize(new java.awt.Dimension(300, 150));
+        jLabel19.setMinimumSize(new java.awt.Dimension(300, 150));
+        jLabel19.setPreferredSize(new java.awt.Dimension(300, 150));
+        pm_RMCP.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         jLabel20.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel20.setText("RMCP");
-        pm_RMCP.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 220, 20));
+        pm_RMCP.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 220, 20));
 
         getContentPane().add(pm_RMCP, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 140, 300, 250));
 
@@ -212,14 +225,15 @@ public class ProjectManagerPage extends javax.swing.JFrame {
         });
         pm_Investigation.add(pm_investigation_view, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 220, -1, -1));
 
-        jLabel11.setMaximumSize(new java.awt.Dimension(300, 125));
-        jLabel11.setMinimumSize(new java.awt.Dimension(300, 125));
-        jLabel11.setPreferredSize(new java.awt.Dimension(300, 125));
-        pm_Investigation.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 300, 125));
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/investigation_report.png"))); // NOI18N
+        jLabel11.setMaximumSize(new java.awt.Dimension(300, 150));
+        jLabel11.setMinimumSize(new java.awt.Dimension(300, 150));
+        jLabel11.setPreferredSize(new java.awt.Dimension(300, 150));
+        pm_Investigation.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 300, -1));
 
         jLabel13.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel13.setText("Investigation Report");
-        pm_Investigation.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, -1, -1));
+        pm_Investigation.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, -1, -1));
 
         getContentPane().add(pm_Investigation, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, 300, 250));
 
@@ -236,11 +250,16 @@ public class ProjectManagerPage extends javax.swing.JFrame {
             }
         });
         pm_CP1.add(pm_cp1_view, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 220, -1, -1));
-        pm_CP1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 125));
+
+        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/capstone_project.png"))); // NOI18N
+        jLabel15.setMaximumSize(new java.awt.Dimension(300, 150));
+        jLabel15.setMinimumSize(new java.awt.Dimension(300, 150));
+        jLabel15.setPreferredSize(new java.awt.Dimension(300, 150));
+        pm_CP1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         jLabel16.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel16.setText("Capstone Project 1");
-        pm_CP1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, -1, -1));
+        pm_CP1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, -1, -1));
 
         getContentPane().add(pm_CP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 410, 300, 250));
 
@@ -257,11 +276,16 @@ public class ProjectManagerPage extends javax.swing.JFrame {
             }
         });
         pm_CP2.add(pm_cp2_view, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 220, -1, -1));
-        pm_CP2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 125));
+
+        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/capstone_project.png"))); // NOI18N
+        jLabel17.setMaximumSize(new java.awt.Dimension(300, 150));
+        jLabel17.setMinimumSize(new java.awt.Dimension(300, 150));
+        jLabel17.setPreferredSize(new java.awt.Dimension(300, 150));
+        pm_CP2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         jLabel18.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel18.setText("Capstone Project 2");
-        pm_CP2.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, -1, -1));
+        pm_CP2.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, -1, -1));
 
         getContentPane().add(pm_CP2, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 410, 300, 250));
 
@@ -269,6 +293,7 @@ public class ProjectManagerPage extends javax.swing.JFrame {
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void pm_internship_viewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pm_internship_viewActionPerformed
