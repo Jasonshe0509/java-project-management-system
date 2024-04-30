@@ -16,6 +16,7 @@ com\mycompany\projectmanagementsystem\admin_mainpage.class
 com\mycompany\projectmanagementsystem\admin_student_management$1.class
 com\mycompany\projectmanagementsystem\ForgetPasswordPage$1.class
 com\mycompany\projectmanagementsystem\LoginPage$3.class
+com\mycompany\projectmanagementsystem\LecturerNotiPopUp.class
 com\mycompany\projectmanagementsystem\LecturerIntakePage$1WhiteBackgroundRenderer.class
 com\mycompany\projectmanagementsystem\admin_student$2.class
 com\mycompany\projectmanagementsystem\LecturerIntakePage$3.class
@@ -54,6 +55,7 @@ com\mycompany\projectmanagementsystem\LecturerProfile$3.class
 com\mycompany\projectmanagementsystem\LecturerProfile$1.class
 com\mycompany\projectmanagementsystem\admin_lecturer.class
 com\mycompany\projectmanagementsystem\LecturerDashboardPage$7.class
+com\mycompany\projectmanagementsystem\LecturerNotiPopUp$1.class
 com\mycompany\projectmanagementsystem\admin_lecturer$1.class
 com\mycompany\projectmanagementsystem\admin_lecturer$4.class
 com\mycompany\projectmanagementsystem\StudentDashboardPage$2.class
