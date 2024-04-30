@@ -5,6 +5,7 @@
 package com.mycompany.projectmanagementsystem;
 
 import com.mycompany.projectmanagementsystem.lect_PresentationPanelAction.PanelActionRenderer;
+import java.awt.Toolkit;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
@@ -24,6 +25,7 @@ public class LecturerIntakePage extends javax.swing.JFrame {
      */
     public LecturerIntakePage() {
         initComponents();
+        setIconImage();
         
         // Set preferred width for each column in presentation tab
         int[] columnWidths1 = {100, 170, 170, 200, 170}; 
@@ -149,6 +151,7 @@ public class LecturerIntakePage extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Lecturer Assessment Details");
         setMinimumSize(new java.awt.Dimension(1000, 700));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -642,13 +645,14 @@ public class LecturerIntakePage extends javax.swing.JFrame {
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel16Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel29)
-                    .addComponent(jLabel23)
-                    .addComponent(jLabel24)
+                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel29)
+                        .addComponent(jLabel23)
+                        .addComponent(jLabel24)))
                 .addContainerGap(11, Short.MAX_VALUE))
         );
 
@@ -765,7 +769,7 @@ public class LecturerIntakePage extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("People", jScrollPane4);
 
-        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 920, 500));
+        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 920, 500));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setMaximumSize(new java.awt.Dimension(1000, 73));
@@ -844,6 +848,7 @@ public class LecturerIntakePage extends javax.swing.JFrame {
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 700));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -887,6 +892,9 @@ public class LecturerIntakePage extends javax.swing.JFrame {
                 new LecturerIntakePage().setVisible(true);
             }
         });
+    }
+    private void setIconImage() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Sysco_icon_with_background.png")));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
