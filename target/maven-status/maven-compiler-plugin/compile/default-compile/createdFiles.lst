@@ -34,6 +34,7 @@ com\mycompany\projectmanagementsystem\PM_FYP_page$3.class
 com\mycompany\projectmanagementsystem\StudentProfilePage$5.class
 com\mycompany\projectmanagementsystem\PM_cp1_page.class
 com\mycompany\projectmanagementsystem\admin_student$1.class
+com\mycompany\projectmanagementsystem\LecturerComm_CreateMessage$2.class
 com\mycompany\projectmanagementsystem\admin_ec_details$3.class
 com\mycompany\projectmanagementsystem\LecturerReportConfirm$1.class
 com\mycompany\projectmanagementsystem\LecturerDashboardPage.class
@@ -48,7 +49,9 @@ com\mycompany\projectmanagementsystem\LecturerDashboardPage$4.class
 com\mycompany\projectmanagementsystem\PM_RMCP_page$3.class
 com\mycompany\projectmanagementsystem\lect_ReportPanelAction$rPanelActionRenderer.class
 com\mycompany\projectmanagementsystem\PM_cp1_page$1.class
+com\mycompany\projectmanagementsystem\LecturerComm_CreateMessage.class
 com\mycompany\projectmanagementsystem\ProjectManagerPage$1.class
+com\mycompany\projectmanagementsystem\LecturerComm_CreateMessage$1.class
 com\mycompany\projectmanagementsystem\LecturerProfile$1.class
 com\mycompany\projectmanagementsystem\PM_investigation_page$2.class
 com\mycompany\projectmanagementsystem\PM_internship_page$4.class
