@@ -122,6 +122,7 @@ com\mycompany\projectmanagementsystem\LecturerReportConfirm.class
 com\mycompany\projectmanagementsystem\LecturerReportConfirm$2.class
 com\mycompany\projectmanagementsystem\ProjectManagerPage$4.class
 com\mycompany\projectmanagementsystem\StudentEcSubmissionPage$2.class
+com\mycompany\projectmanagementsystem\StudentNotificationPage$1.class
 com\mycompany\projectmanagementsystem\LecturerProfile$3.class
 com\mycompany\projectmanagementsystem\LecturerDashboardPage$7.class
 com\mycompany\projectmanagementsystem\StudentProfilePage$4.class
@@ -134,6 +135,7 @@ com\mycompany\projectmanagementsystem\LecturerNotiPopUp$1.class
 com\mycompany\projectmanagementsystem\lect_ReportPanelAction$2.class
 com\mycompany\projectmanagementsystem\LecturerPresentationRequest$1WhiteBackgroundRenderer.class
 com\mycompany\projectmanagementsystem\admin_ec_details$4.class
+com\mycompany\projectmanagementsystem\StudentNotificationPage.class
 com\mycompany\projectmanagementsystem\GeneralPage$1.class
 com\mycompany\projectmanagementsystem\PM_cp1_page$3.class
 com\mycompany\projectmanagementsystem\LecturerReportConfirm$3.class
