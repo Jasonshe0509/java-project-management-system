@@ -4,6 +4,8 @@
  */
 package com.mycompany.projectmanagementsystem;
 
+import java.awt.Toolkit;
+
 /**
  *
  * @author shuhuilee
@@ -15,6 +17,7 @@ public class PM_profile_page extends javax.swing.JFrame {
      */
     public PM_profile_page() {
         initComponents();
+        setIconImage();
     }
 
     /**
@@ -58,6 +61,7 @@ public class PM_profile_page extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Project Manager Profile");
         setMaximumSize(new java.awt.Dimension(1000, 700));
         setMinimumSize(new java.awt.Dimension(1000, 700));
         setPreferredSize(new java.awt.Dimension(1000, 700));
@@ -349,6 +353,7 @@ public class PM_profile_page extends javax.swing.JFrame {
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
@@ -401,6 +406,9 @@ public class PM_profile_page extends javax.swing.JFrame {
                 new PM_profile_page().setVisible(true);
             }
         });
+    }
+    private void setIconImage() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Sysco_icon_with_background.png")));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
