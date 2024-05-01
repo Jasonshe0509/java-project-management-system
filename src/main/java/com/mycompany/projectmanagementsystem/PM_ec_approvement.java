@@ -4,6 +4,8 @@
  */
 package com.mycompany.projectmanagementsystem;
 
+import java.awt.Toolkit;
+
 /**
  *
  * @author shuhuilee
@@ -15,6 +17,7 @@ public class PM_ec_approvement extends javax.swing.JFrame {
      */
     public PM_ec_approvement() {
         initComponents();
+        setIconImage();
     }
 
     /**
@@ -39,6 +42,7 @@ public class PM_ec_approvement extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Project Manager EC Aprovement");
         setMaximumSize(new java.awt.Dimension(1000, 700));
         setMinimumSize(new java.awt.Dimension(1000, 700));
         setPreferredSize(new java.awt.Dimension(1000, 700));
@@ -134,6 +138,7 @@ public class PM_ec_approvement extends javax.swing.JFrame {
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 70));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     /**
@@ -169,6 +174,9 @@ public class PM_ec_approvement extends javax.swing.JFrame {
                 new PM_ec_approvement().setVisible(true);
             }
         });
+    }
+    private void setIconImage() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Sysco_icon_with_background.png")));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
