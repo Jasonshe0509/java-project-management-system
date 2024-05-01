@@ -7,13 +7,18 @@ package com.mycompany.projectmanagementsystem;
 import java.awt.Color;
 import java.awt.Toolkit;
 
-public class StudentDashboardPage extends javax.swing.JFrame {
+/**
+ *
+ * @author ASUS
+ */
+public class StudentEcSubmissionPage extends javax.swing.JFrame {
 
     /**
-     * Creates new form StudentDashboardPage
+     * Creates new form StudentEcSubmissionPage
      */
-    public StudentDashboardPage() {
+    public StudentEcSubmissionPage() {
         initComponents();
+        setIconImage();
     }
 
     /**
@@ -25,16 +30,10 @@ public class StudentDashboardPage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        assessmentContainer = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
-        jPanel5 = new javax.swing.JPanel();
-        dueDate = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        upcomingEvent = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         studentHeader = new javax.swing.JPanel();
         studentLogo = new javax.swing.JLabel();
         studentEcSubmission = new javax.swing.JLabel();
@@ -44,125 +43,52 @@ public class StudentDashboardPage extends javax.swing.JFrame {
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Student Dahsboard");
+        setTitle("Student EC Submission");
+        setMaximumSize(new java.awt.Dimension(1000, 700));
         setMinimumSize(new java.awt.Dimension(1000, 700));
-        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        assessmentContainer.setBackground(new Color (217,217,217,40));
-        assessmentContainer.setMaximumSize(new java.awt.Dimension(737, 564));
-        assessmentContainer.setMinimumSize(new java.awt.Dimension(737, 564));
-        assessmentContainer.setPreferredSize(new java.awt.Dimension(737, 564));
-        assessmentContainer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jButton1.setBackground(new java.awt.Color(27, 61, 96));
+        jButton1.setFont(new java.awt.Font("Bell MT", 1, 24)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Create");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 90, 100, 40));
 
-        jPanel2.setMaximumSize(new java.awt.Dimension(300, 250));
-        jPanel2.setMinimumSize(new java.awt.Dimension(300, 250));
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 250, Short.MAX_VALUE)
-        );
-
-        assessmentContainer.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 17, -1, -1));
-
-        jPanel3.setMaximumSize(new java.awt.Dimension(300, 250));
-        jPanel3.setMinimumSize(new java.awt.Dimension(300, 250));
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 250, Short.MAX_VALUE)
-        );
-
-        assessmentContainer.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 17, -1, -1));
-
-        jPanel4.setMaximumSize(new java.awt.Dimension(300, 250));
-        jPanel4.setMinimumSize(new java.awt.Dimension(300, 250));
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 250, Short.MAX_VALUE)
-        );
-
-        assessmentContainer.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 290, -1, -1));
-
-        jPanel5.setMaximumSize(new java.awt.Dimension(300, 250));
-        jPanel5.setMinimumSize(new java.awt.Dimension(300, 250));
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 250, Short.MAX_VALUE)
-        );
-
-        assessmentContainer.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 290, -1, -1));
-
-        getContentPane().add(assessmentContainer, new org.netbeans.lib.awtextra.AbsoluteConstraints(244, 120, -1, -1));
-
-        dueDate.setBackground(new Color(217,217,217,40));
-        dueDate.setMaximumSize(new java.awt.Dimension(207, 203));
-        dueDate.setMinimumSize(new java.awt.Dimension(207, 203));
-        dueDate.setPreferredSize(new java.awt.Dimension(207, 203));
-        dueDate.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel3.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(2, 50, 99));
-        jLabel3.setText("Due Date");
-        jLabel3.setMaximumSize(new java.awt.Dimension(80, 18));
-        jLabel3.setMinimumSize(new java.awt.Dimension(80, 18));
-        jLabel3.setPreferredSize(new java.awt.Dimension(80, 18));
-        dueDate.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, -1, -1));
-
-        getContentPane().add(dueDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 120, -1, -1));
-
-        jLabel7.setFont(new java.awt.Font("Bell MT", 1, 20)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Bell MT", 1, 28)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(2, 50, 99));
-        jLabel7.setText("Welcome: Student ()");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 200, 30));
+        jLabel7.setText("EC Submission");
+        jLabel7.setMaximumSize(new java.awt.Dimension(275, 47));
+        jLabel7.setMinimumSize(new java.awt.Dimension(275, 47));
+        jLabel7.setPreferredSize(new java.awt.Dimension(275, 47));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 275, 40));
 
-        upcomingEvent.setBackground(new Color(217,217,217,40));
-        upcomingEvent.setMaximumSize(new java.awt.Dimension(207, 332));
-        upcomingEvent.setMinimumSize(new java.awt.Dimension(207, 332));
-        upcomingEvent.setPreferredSize(new java.awt.Dimension(207, 332));
-        upcomingEvent.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "EC ID", "EC Reason", "Assessment", "Submitted Link", "Status", "Action"
+            }
+        ));
+        jTable1.setMaximumSize(new java.awt.Dimension(961, 532));
+        jTable1.setMinimumSize(new java.awt.Dimension(961, 532));
+        jTable1.setPreferredSize(new java.awt.Dimension(961, 532));
+        jScrollPane1.setViewportView(jTable1);
 
-        jLabel1.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(2, 50, 99));
-        jLabel1.setText("Upcoming Event");
-        jLabel1.setMaximumSize(new java.awt.Dimension(80, 18));
-        jLabel1.setMinimumSize(new java.awt.Dimension(80, 18));
-        jLabel1.setPreferredSize(new java.awt.Dimension(80, 18));
-        upcomingEvent.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 140, -1));
-
-        getContentPane().add(upcomingEvent, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 352, 210, -1));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 940, 530));
 
         studentHeader.setBackground(new Color(255, 255, 255, 90));
         studentHeader.setToolTipText("");
         studentHeader.setMaximumSize(new java.awt.Dimension(1000, 73));
         studentHeader.setMinimumSize(new java.awt.Dimension(1000, 73));
-        studentHeader.setPreferredSize(new java.awt.Dimension(1000, 73));
 
         studentLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Sysco_logo.png"))); // NOI18N
         studentLogo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -257,6 +183,10 @@ public class StudentDashboardPage extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_studentLogoMouseClicked
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -274,19 +204,21 @@ public class StudentDashboardPage extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(StudentDashboardPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(StudentEcSubmissionPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(StudentDashboardPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(StudentEcSubmissionPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(StudentDashboardPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(StudentEcSubmissionPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(StudentDashboardPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(StudentEcSubmissionPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> {
-            new StudentDashboardPage().setVisible(true);
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new StudentEcSubmissionPage().setVisible(true);
+            }
         });
     }
     private void setIconImage() {
@@ -294,22 +226,16 @@ public class StudentDashboardPage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel assessmentContainer;
     private javax.swing.JLabel background;
-    private javax.swing.JPanel dueDate;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JLabel studentEcSubmission;
     private javax.swing.JPanel studentHeader;
     private javax.swing.JLabel studentLogo;
     private javax.swing.JLabel studentLogout;
     private javax.swing.JLabel studentNotification;
     private javax.swing.JLabel studentProfile;
-    private javax.swing.JPanel upcomingEvent;
     // End of variables declaration//GEN-END:variables
 }
