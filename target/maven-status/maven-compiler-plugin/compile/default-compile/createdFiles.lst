@@ -59,6 +59,7 @@ com\mycompany\projectmanagementsystem\LecturerDashboardPage$3.class
 com\mycompany\projectmanagementsystem\PM_FYP_page$2.class
 com\mycompany\projectmanagementsystem\LecturerSummaryReport.class
 com\mycompany\projectmanagementsystem\PM_cp2_page$3.class
+com\mycompany\projectmanagementsystem\StudentEcSubmissionPage.class
 com\mycompany\projectmanagementsystem\admin_lecturer$4.class
 com\mycompany\projectmanagementsystem\admin_ec_record.class
 com\mycompany\projectmanagementsystem\admin_student$3.class
@@ -74,6 +75,7 @@ com\mycompany\projectmanagementsystem\PM_cp2_page$4.class
 com\mycompany\projectmanagementsystem\admin_ec_details$5.class
 com\mycompany\projectmanagementsystem\LecturerIntakePage$4.class
 com\mycompany\projectmanagementsystem\ProjectManagerPage$3.class
+com\mycompany\projectmanagementsystem\StudentEcSubmissionPage$1.class
 com\mycompany\projectmanagementsystem\admin_lecturer$2.class
 com\mycompany\projectmanagementsystem\LecturerProfile$2.class
 com\mycompany\projectmanagementsystem\admin_mainpage$1.class
@@ -114,6 +116,7 @@ com\mycompany\projectmanagementsystem\admin_lecturer.class
 com\mycompany\projectmanagementsystem\LecturerReportConfirm.class
 com\mycompany\projectmanagementsystem\LecturerReportConfirm$2.class
 com\mycompany\projectmanagementsystem\ProjectManagerPage$4.class
+com\mycompany\projectmanagementsystem\StudentEcSubmissionPage$2.class
 com\mycompany\projectmanagementsystem\LecturerProfile$3.class
 com\mycompany\projectmanagementsystem\LecturerDashboardPage$7.class
 com\mycompany\projectmanagementsystem\StudentProfilePage$4.class
@@ -141,6 +144,7 @@ com\mycompany\projectmanagementsystem\PM_FYP_page$5.class
 com\mycompany\projectmanagementsystem\admin_student_management$2.class
 com\mycompany\projectmanagementsystem\ForgetPasswordPage$2.class
 com\mycompany\projectmanagementsystem\LoginPage$2.class
+com\mycompany\projectmanagementsystem\StudentEcSubmissionPage$3.class
 com\mycompany\projectmanagementsystem\LecturerDashboardPage$6.class
 com\mycompany\projectmanagementsystem\GeneralPage.class
 com\mycompany\projectmanagementsystem\LecturerProfile$4.class
