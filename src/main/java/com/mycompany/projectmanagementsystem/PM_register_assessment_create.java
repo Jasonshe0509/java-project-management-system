@@ -4,6 +4,8 @@
  */
 package com.mycompany.projectmanagementsystem;
 
+import java.awt.Toolkit;
+
 /**
  *
  * @author shuhuilee
@@ -13,6 +15,7 @@ public class PM_register_assessment_create extends javax.swing.JFrame {
 
     public PM_register_assessment_create() {
         initComponents();
+        setIconImage();
     }
 
     /**
@@ -36,11 +39,11 @@ public class PM_register_assessment_create extends javax.swing.JFrame {
         jTextField5 = new javax.swing.JTextField();
         back_jButton1 = new javax.swing.JButton();
         create_jButton2 = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(700, 500));
         setMinimumSize(new java.awt.Dimension(700, 500));
         setResizable(false);
         setSize(new java.awt.Dimension(700, 500));
@@ -119,17 +122,9 @@ public class PM_register_assessment_create extends javax.swing.JFrame {
         });
         getContentPane().add(create_jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 430, -1, -1));
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setMaximumSize(new java.awt.Dimension(700, 73));
-        jPanel1.setMinimumSize(new java.awt.Dimension(700, 73));
-        jPanel1.setPreferredSize(new java.awt.Dimension(700, 73));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
         jLabel2.setFont(new java.awt.Font("Helvetica Neue", 1, 36)); // NOI18N
         jLabel2.setText("Register New Assessment ");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, -1, -1));
-
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 73));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main_background.png"))); // NOI18N
         jLabel1.setMaximumSize(new java.awt.Dimension(700, 500));
@@ -138,6 +133,7 @@ public class PM_register_assessment_create extends javax.swing.JFrame {
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void back_jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_jButton1ActionPerformed
@@ -186,6 +182,9 @@ public class PM_register_assessment_create extends javax.swing.JFrame {
             }
         });
     }
+    private void setIconImage() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Sysco_icon_with_background.png")));
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel assessment_type;
@@ -197,7 +196,6 @@ public class PM_register_assessment_create extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JLabel second_maker_name;
