@@ -4,85 +4,21 @@
  */
 package com.mycompany.projectmanagementsystem;
 
-import com.mycompany.projectmanagementsystem.lect_PresentationPanelAction.PanelActionRenderer;
 import java.awt.Toolkit;
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.Font;
-import javax.swing.JLabel;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.TableColumn;
-
 /**
  *
- * @author user
+ * @author ASUS
  */
-public class LecturerIntakePage extends javax.swing.JFrame {
+public class StudentAssessmentDetailPage extends javax.swing.JFrame {
 
     /**
-     * Creates new form LecturerIntakePage
+     * Creates new form StudentAssessmentDetailPage
      */
-    public LecturerIntakePage() {
+    public StudentAssessmentDetailPage() {
         initComponents();
         setIconImage();
-        
-        // Set preferred width for each column in presentation tab
-        int[] columnWidths1 = {100, 170, 170, 200, 170}; 
-        int numColumns1 = jTable1.getColumnCount();
-        for (int i = 0; i < numColumns1; i++) {
-            TableColumn column = jTable1.getColumnModel().getColumn(i);
-            column.setPreferredWidth(columnWidths1[i]);
-        }
-        
-        // Set preferred width for each column in report tab
-        int[] columnWidths2 = {110, 160, 190, 150, 110, 170}; 
-        int numColumns2 = jTable2.getColumnCount();
-        for (int i = 0; i < numColumns2; i++) {
-            TableColumn column = jTable2.getColumnModel().getColumn(i);
-            column.setPreferredWidth(columnWidths2[i]);
-        }
-        
-        // Custom cell renderer to set white background
-        class WhiteBackgroundRenderer extends DefaultTableCellRenderer {
-            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-                Component cellComponent = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-                
-            // Set white background for unselected cells
-            cellComponent.setBackground(Color.WHITE);
-
-            // If the cell is selected, use the default selection background color
-            if (isSelected) {
-                cellComponent.setBackground(table.getSelectionBackground());
-            }
-
-            return cellComponent;
-            }
-        }
-
-        for (int i = 0; i < jTable1.getColumnCount(); i++) {
-            jTable1.getColumnModel().getColumn(i).setCellRenderer(new WhiteBackgroundRenderer());            
-        }
-        
-        for (int i = 0; i < jTable2.getColumnCount(); i++) {
-            jTable2.getColumnModel().getColumn(i).setCellRenderer(new WhiteBackgroundRenderer());           
-        }
-        
-        lect_PresentationPanelAction ppanel = new lect_PresentationPanelAction();
-        jTable1.getColumnModel().getColumn(4).setCellRenderer(ppanel.new PanelActionRenderer());
-        jTable1.getTableHeader().setFont(new Font("SansSerif", Font.BOLD, 16));
-        jTable1.getTableHeader().setForeground(new Color(2, 50, 99));
-        ((DefaultTableCellRenderer)jTable1.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
-        
-        lect_ReportPanelAction rpanel = new lect_ReportPanelAction();
-        jTable2.getColumnModel().getColumn(5).setCellRenderer(rpanel.new rPanelActionRenderer());
-        jTable2.getTableHeader().setFont(new Font("SansSerif", Font.BOLD, 14));
-        jTable2.getTableHeader().setForeground(new Color(2, 50, 99));
-        ((DefaultTableCellRenderer)jTable2.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
-
     }
-    
-        
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -114,17 +50,13 @@ public class LecturerIntakePage extends javax.swing.JFrame {
         jPanel10 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
+        submitButton = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jPanel14 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel20 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
-        jPanel11 = new javax.swing.JPanel();
-        jLabel22 = new javax.swing.JLabel();
-        jPanel15 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        submitButton1 = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         jPanel12 = new javax.swing.JPanel();
         jPanel16 = new javax.swing.JPanel();
@@ -133,38 +65,37 @@ public class LecturerIntakePage extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jLabel24 = new javax.swing.JLabel();
         jLabel29 = new javax.swing.JLabel();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        jPanel13 = new javax.swing.JPanel();
-        jPanel17 = new javax.swing.JPanel();
-        jLabel27 = new javax.swing.JLabel();
-        jLabel25 = new javax.swing.JLabel();
-        jLabel26 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
-        jPanel18 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        jPanel15 = new javax.swing.JPanel();
+        ecReasonField1 = new javax.swing.JTextField();
+        jComboBox2 = new javax.swing.JComboBox<>();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jTable3 = new javax.swing.JTable();
         jLabel7 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        studentHeader = new javax.swing.JPanel();
+        studentLogo = new javax.swing.JLabel();
+        studentEcSubmission = new javax.swing.JLabel();
+        studentNotification = new javax.swing.JLabel();
+        studentProfile = new javax.swing.JLabel();
+        studentLogout = new javax.swing.JLabel();
+        background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Lecturer Assessment Details");
+        setTitle("Student Assessment Details");
+        setMaximumSize(new java.awt.Dimension(1000, 700));
         setMinimumSize(new java.awt.Dimension(1000, 700));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTabbedPane1.setBackground(new java.awt.Color(217, 217, 217));
+        jTabbedPane1.setBackground(new Color(217,217,217,40));
         jTabbedPane1.setForeground(new java.awt.Color(2, 50, 99));
-        jTabbedPane1.setToolTipText("");
         jTabbedPane1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jTabbedPane1.setMaximumSize(new java.awt.Dimension(920, 500));
-        jTabbedPane1.setMinimumSize(new java.awt.Dimension(920, 500));
-        jTabbedPane1.setPreferredSize(new java.awt.Dimension(920, 500));
+        jTabbedPane1.setMaximumSize(new java.awt.Dimension(920, 550));
+        jTabbedPane1.setMinimumSize(new java.awt.Dimension(920, 550));
+        jTabbedPane1.setPreferredSize(new java.awt.Dimension(920, 550));
+        jTabbedPane1.setRequestFocusEnabled(false);
 
-        jPanel2.setBackground(new java.awt.Color(217, 217, 217));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel3.setBackground(new java.awt.Color(217, 217, 217));
         jPanel3.setMaximumSize(new java.awt.Dimension(840, 400));
@@ -173,11 +104,10 @@ public class LecturerIntakePage extends javax.swing.JFrame {
         jPanel4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel4.setMaximumSize(new java.awt.Dimension(836, 60));
         jPanel4.setMinimumSize(new java.awt.Dimension(836, 60));
-        jPanel4.setPreferredSize(new java.awt.Dimension(836, 60));
 
         jLabel8.setFont(new java.awt.Font("SansSerif", 1, 20)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(2, 50, 99));
-        jLabel8.setText("Intake");
+        jLabel8.setText("EC Reason");
 
         jLabel14.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(2, 50, 99));
@@ -209,11 +139,10 @@ public class LecturerIntakePage extends javax.swing.JFrame {
         jPanel5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel5.setMaximumSize(new java.awt.Dimension(836, 60));
         jPanel5.setMinimumSize(new java.awt.Dimension(836, 60));
-        jPanel5.setPreferredSize(new java.awt.Dimension(836, 60));
 
         jLabel9.setFont(new java.awt.Font("SansSerif", 1, 20)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(2, 50, 99));
-        jLabel9.setText("Number of Students");
+        jLabel9.setText("Due Date");
 
         jLabel15.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(2, 50, 99));
@@ -245,11 +174,10 @@ public class LecturerIntakePage extends javax.swing.JFrame {
         jPanel6.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel6.setMaximumSize(new java.awt.Dimension(836, 60));
         jPanel6.setMinimumSize(new java.awt.Dimension(836, 60));
-        jPanel6.setPreferredSize(new java.awt.Dimension(836, 60));
 
         jLabel10.setFont(new java.awt.Font("SansSerif", 1, 20)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(2, 50, 99));
-        jLabel10.setText("Assessment Due Date");
+        jLabel10.setText("Submission Link");
 
         jLabel16.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(2, 50, 99));
@@ -281,11 +209,10 @@ public class LecturerIntakePage extends javax.swing.JFrame {
         jPanel8.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel8.setMaximumSize(new java.awt.Dimension(836, 60));
         jPanel8.setMinimumSize(new java.awt.Dimension(836, 60));
-        jPanel8.setPreferredSize(new java.awt.Dimension(836, 60));
 
         jLabel11.setFont(new java.awt.Font("SansSerif", 1, 20)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(2, 50, 99));
-        jLabel11.setText("Total Submission");
+        jLabel11.setText("Last Modified");
 
         jLabel17.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(2, 50, 99));
@@ -317,11 +244,10 @@ public class LecturerIntakePage extends javax.swing.JFrame {
         jPanel9.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel9.setMaximumSize(new java.awt.Dimension(836, 60));
         jPanel9.setMinimumSize(new java.awt.Dimension(836, 60));
-        jPanel9.setPreferredSize(new java.awt.Dimension(836, 60));
 
         jLabel12.setFont(new java.awt.Font("SansSerif", 1, 20)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(2, 50, 99));
-        jLabel12.setText("Scheduled Presentation");
+        jLabel12.setText("Grade Status");
 
         jLabel19.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(2, 50, 99));
@@ -353,11 +279,10 @@ public class LecturerIntakePage extends javax.swing.JFrame {
         jPanel10.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel10.setMaximumSize(new java.awt.Dimension(836, 60));
         jPanel10.setMinimumSize(new java.awt.Dimension(836, 60));
-        jPanel10.setPreferredSize(new java.awt.Dimension(836, 60));
 
         jLabel13.setFont(new java.awt.Font("SansSerif", 1, 20)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(2, 50, 99));
-        jLabel13.setText("Completed Presentation");
+        jLabel13.setText("Feedback");
 
         jLabel18.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(2, 50, 99));
@@ -414,26 +339,23 @@ public class LecturerIntakePage extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(49, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(36, Short.MAX_VALUE))
-        );
+        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 33, -1, -1));
+
+        submitButton.setBackground(new java.awt.Color(27, 61, 96));
+        submitButton.setFont(new java.awt.Font("Bell MT", 1, 28)); // NOI18N
+        submitButton.setForeground(new java.awt.Color(255, 255, 255));
+        submitButton.setText("Submit");
+        submitButton.setMaximumSize(new java.awt.Dimension(120, 45));
+        submitButton.setMinimumSize(new java.awt.Dimension(120, 45));
+        submitButton.setPreferredSize(new java.awt.Dimension(120, 45));
+        submitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitButtonActionPerformed(evt);
+            }
+        });
+        jPanel2.add(submitButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 450, -1, -1));
 
         jTabbedPane1.addTab("Details", jPanel2);
-
-        jPanel7.setBackground(new java.awt.Color(217, 217, 217));
 
         jPanel14.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -488,12 +410,20 @@ public class LecturerIntakePage extends javax.swing.JFrame {
         jLabel20.setFont(new java.awt.Font("Bell MT", 1, 22)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(2, 50, 99));
         jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel20.setText("Scheduled Presentation");
+        jLabel20.setText("Presentation Request");
 
-        jLabel21.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
-        jLabel21.setForeground(new java.awt.Color(2, 50, 99));
-        jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel21.setText("View Presentation List >");
+        submitButton1.setBackground(new java.awt.Color(27, 61, 96));
+        submitButton1.setFont(new java.awt.Font("Bell MT", 1, 28)); // NOI18N
+        submitButton1.setForeground(new java.awt.Color(255, 255, 255));
+        submitButton1.setText("Request");
+        submitButton1.setMaximumSize(new java.awt.Dimension(120, 45));
+        submitButton1.setMinimumSize(new java.awt.Dimension(120, 45));
+        submitButton1.setPreferredSize(new java.awt.Dimension(120, 45));
+        submitButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -501,7 +431,10 @@ public class LecturerIntakePage extends javax.swing.JFrame {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(submitButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(378, 378, 378))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -510,94 +443,18 @@ public class LecturerIntakePage extends javax.swing.JFrame {
                 .addComponent(jLabel20)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel21)
-                .addContainerGap(7, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(submitButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Presentation", jPanel7);
-
-        jPanel11.setBackground(new java.awt.Color(217, 217, 217));
-
-        jLabel22.setFont(new java.awt.Font("Bell MT", 1, 22)); // NOI18N
-        jLabel22.setForeground(new java.awt.Color(2, 50, 99));
-        jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel22.setText("Report Marking");
-
-        jPanel15.setBackground(new java.awt.Color(255, 255, 255));
-
-        jTable2.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
-        jTable2.setForeground(new java.awt.Color(2, 50, 99));
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
-            },
-            new String [] {
-                "Supervisee ID", "Name", "Submission Date", "EC Status", "Resubmission", "Action"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jTable2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jTable2.setGridColor(new java.awt.Color(0, 0, 0));
-        jTable2.setRowHeight(30);
-        jTable2.setSelectionBackground(new java.awt.Color(204, 204, 204));
-        jTable2.setSelectionForeground(new java.awt.Color(2, 50, 99));
-        jTable2.setShowGrid(false);
-        jTable2.setShowHorizontalLines(true);
-        jTable2.getTableHeader().setReorderingAllowed(false);
-        jScrollPane2.setViewportView(jTable2);
-
-        javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
-        jPanel15.setLayout(jPanel15Layout);
-        jPanel15Layout.setHorizontalGroup(
-            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 920, Short.MAX_VALUE)
-        );
-        jPanel15Layout.setVerticalGroup(
-            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
-        jPanel11.setLayout(jPanel11Layout);
-        jPanel11Layout.setHorizontalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, 920, Short.MAX_VALUE)
-            .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        jPanel11Layout.setVerticalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel11Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jLabel22)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(28, Short.MAX_VALUE))
-        );
-
-        jTabbedPane1.addTab("Report", jPanel11);
 
         jScrollPane3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
         jPanel16.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         jPanel16.setMaximumSize(new java.awt.Dimension(888, 68));
         jPanel16.setMinimumSize(new java.awt.Dimension(888, 68));
-        jPanel16.setPreferredSize(new java.awt.Dimension(888, 68));
 
         jLabel23.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(2, 50, 99));
@@ -678,188 +535,206 @@ public class LecturerIntakePage extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Communication", jScrollPane3);
 
-        jPanel17.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel17.setMaximumSize(new java.awt.Dimension(884, 41));
-        jPanel17.setMinimumSize(new java.awt.Dimension(884, 41));
-        jPanel17.setPreferredSize(new java.awt.Dimension(884, 41));
-
-        jLabel27.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel27.setText("Status");
-        jLabel27.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        jLabel25.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabel25.setForeground(new java.awt.Color(2, 50, 99));
-        jLabel25.setText("ID001");
-
-        jLabel26.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabel26.setForeground(new java.awt.Color(2, 50, 99));
-        jLabel26.setText("Chan");
-
-        jButton3.setBackground(new java.awt.Color(76, 127, 174));
-        jButton3.setFont(new java.awt.Font("Bell MT", 1, 14)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("View");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        ecReasonField1.setText("Search.....");
+        ecReasonField1.setMaximumSize(new java.awt.Dimension(335, 40));
+        ecReasonField1.setMinimumSize(new java.awt.Dimension(335, 40));
+        ecReasonField1.setPreferredSize(new java.awt.Dimension(335, 40));
+        ecReasonField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                ecReasonField1ActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
-        jPanel17.setLayout(jPanel17Layout);
-        jPanel17Layout.setHorizontalGroup(
-            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel17Layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(72, 72, 72)
-                .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 452, Short.MAX_VALUE)
-                .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton3)
-                .addGap(22, 22, 22))
-        );
-        jPanel17Layout.setVerticalGroup(
-            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel17Layout.createSequentialGroup()
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox2.setMaximumSize(new java.awt.Dimension(335, 40));
+        jComboBox2.setMinimumSize(new java.awt.Dimension(335, 40));
+        jComboBox2.setPreferredSize(new java.awt.Dimension(335, 40));
+
+        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "ID", "Name", "Role"
+            }
+        ));
+        jScrollPane5.setViewportView(jTable3);
+
+        javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
+        jPanel15.setLayout(jPanel15Layout);
+        jPanel15Layout.setHorizontalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel15Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel26, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton3))
-                .addContainerGap())
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 894, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel15Layout.createSequentialGroup()
+                        .addComponent(ecReasonField1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
+                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
-
-        jPanel18.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
-        jPanel18.setLayout(jPanel18Layout);
-        jPanel18Layout.setHorizontalGroup(
-            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 880, Short.MAX_VALUE)
+        jPanel15Layout.setVerticalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel15Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ecReasonField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(85, Short.MAX_VALUE))
         );
-        jPanel18Layout.setVerticalGroup(
-            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 37, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
-        jPanel13.setLayout(jPanel13Layout);
-        jPanel13Layout.setHorizontalGroup(
-            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel13Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(32, Short.MAX_VALUE))
-        );
-        jPanel13Layout.setVerticalGroup(
-            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel13Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(457, Short.MAX_VALUE))
-        );
-
-        jScrollPane4.setViewportView(jPanel13);
-
-        jTabbedPane1.addTab("People", jScrollPane4);
-
-        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 920, 500));
-        jTabbedPane1.getAccessibleContext().setAccessibleName("Peope");
-
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setMaximumSize(new java.awt.Dimension(1000, 73));
-        jPanel1.setMinimumSize(new java.awt.Dimension(1000, 73));
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Sysco_logo.png"))); // NOI18N
-        jLabel2.setText("logo");
-        jLabel2.setMaximumSize(new java.awt.Dimension(184, 42));
-        jLabel2.setMinimumSize(new java.awt.Dimension(184, 42));
-        jLabel2.setPreferredSize(new java.awt.Dimension(184, 42));
-
-        jLabel3.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Log Out");
-
-        jLabel4.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Profile");
-
-        jLabel5.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Notification");
-        jLabel5.setMaximumSize(new java.awt.Dimension(37, 21));
-        jLabel5.setMinimumSize(new java.awt.Dimension(37, 21));
-        jLabel5.setPreferredSize(new java.awt.Dimension(37, 21));
-
-        jLabel6.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Summary Report");
-        jLabel6.setMaximumSize(new java.awt.Dimension(37, 21));
-        jLabel6.setMinimumSize(new java.awt.Dimension(37, 21));
-        jLabel6.setPreferredSize(new java.awt.Dimension(37, 21));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 317, Short.MAX_VALUE)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26))
+            .addGap(0, 922, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(17, Short.MAX_VALUE))
+            .addGap(0, 578, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, -1));
+        jTabbedPane1.addTab("People", jPanel1);
 
-        jLabel7.setFont(new java.awt.Font("Bell MT", 1, 32)); // NOI18N
-        jLabel7.setText("Intake");
+        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, -1, -1));
+
+        jLabel7.setFont(new java.awt.Font("Bell MT", 1, 28)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(2, 50, 99));
+        jLabel7.setText("Internship Report");
         jLabel7.setMaximumSize(new java.awt.Dimension(275, 47));
         jLabel7.setMinimumSize(new java.awt.Dimension(275, 47));
         jLabel7.setPreferredSize(new java.awt.Dimension(275, 47));
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 275, 47));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 275, 40));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main_background.png"))); // NOI18N
-        jLabel1.setText("background");
-        jLabel1.setPreferredSize(new java.awt.Dimension(1000, 700));
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 700));
+        studentHeader.setBackground(new Color(255, 255, 255, 90));
+        studentHeader.setToolTipText("");
+        studentHeader.setMaximumSize(new java.awt.Dimension(1000, 73));
+        studentHeader.setMinimumSize(new java.awt.Dimension(1000, 73));
+
+        studentLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Sysco_logo.png"))); // NOI18N
+        studentLogo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        studentLogo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                studentLogoMouseClicked(evt);
+            }
+        });
+
+        studentEcSubmission.setBackground(new Color(255, 255, 255, 0));
+        studentEcSubmission.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
+        studentEcSubmission.setForeground(new java.awt.Color(2, 50, 99));
+        studentEcSubmission.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        studentEcSubmission.setText("EC Submission");
+        studentEcSubmission.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        studentEcSubmission.setMaximumSize(new java.awt.Dimension(96, 73));
+        studentEcSubmission.setMinimumSize(new java.awt.Dimension(96, 73));
+        studentEcSubmission.setPreferredSize(new java.awt.Dimension(96, 73));
+
+        studentNotification.setBackground(new Color(255, 255, 255, 0));
+        studentNotification.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
+        studentNotification.setForeground(new java.awt.Color(2, 50, 99));
+        studentNotification.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        studentNotification.setText("Notification");
+        studentNotification.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        studentNotification.setMaximumSize(new java.awt.Dimension(96, 73));
+        studentNotification.setMinimumSize(new java.awt.Dimension(96, 73));
+        studentNotification.setPreferredSize(new java.awt.Dimension(96, 73));
+
+        studentProfile.setBackground(new Color(255, 255, 255, 0));
+        studentProfile.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
+        studentProfile.setForeground(new java.awt.Color(2, 50, 99));
+        studentProfile.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        studentProfile.setText("Profile");
+        studentProfile.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        studentProfile.setMaximumSize(new java.awt.Dimension(96, 73));
+        studentProfile.setMinimumSize(new java.awt.Dimension(96, 73));
+        studentProfile.setPreferredSize(new java.awt.Dimension(96, 73));
+
+        studentLogout.setBackground(new Color(255, 255, 255, 0));
+        studentLogout.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
+        studentLogout.setForeground(new java.awt.Color(2, 50, 99));
+        studentLogout.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        studentLogout.setText("Log Out");
+        studentLogout.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        studentLogout.setMaximumSize(new java.awt.Dimension(96, 73));
+        studentLogout.setMinimumSize(new java.awt.Dimension(96, 73));
+        studentLogout.setPreferredSize(new java.awt.Dimension(96, 73));
+
+        javax.swing.GroupLayout studentHeaderLayout = new javax.swing.GroupLayout(studentHeader);
+        studentHeader.setLayout(studentHeaderLayout);
+        studentHeaderLayout.setHorizontalGroup(
+            studentHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(studentHeaderLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(studentLogo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 352, Short.MAX_VALUE)
+                .addComponent(studentEcSubmission, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(studentNotification, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(studentProfile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(studentLogout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        studentHeaderLayout.setVerticalGroup(
+            studentHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(studentHeaderLayout.createSequentialGroup()
+                .addGroup(studentHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(studentNotification, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(studentProfile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(studentLogout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(studentEcSubmission, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+            .addGroup(studentHeaderLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(studentLogo)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(studentHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main_background.png"))); // NOI18N
+        getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void studentLogoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_studentLogoMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_studentLogoMouseClicked
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_submitButtonActionPerformed
+
+    private void submitButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_submitButton1ActionPerformed
+
+    private void ecReasonField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ecReasonField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ecReasonField1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -878,20 +753,20 @@ public class LecturerIntakePage extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LecturerIntakePage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(StudentAssessmentDetailPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LecturerIntakePage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(StudentAssessmentDetailPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LecturerIntakePage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(StudentAssessmentDetailPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LecturerIntakePage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(StudentAssessmentDetailPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LecturerIntakePage().setVisible(true);
+                new StudentAssessmentDetailPage().setVisible(true);
             }
         });
     }
@@ -900,10 +775,11 @@ public class LecturerIntakePage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel background;
+    private javax.swing.JTextField ecReasonField1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -914,33 +790,19 @@ public class LecturerIntakePage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel29;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
-    private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;
-    private javax.swing.JPanel jPanel17;
-    private javax.swing.JPanel jPanel18;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -950,11 +812,18 @@ public class LecturerIntakePage extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JTable jTable3;
+    private javax.swing.JLabel studentEcSubmission;
+    private javax.swing.JPanel studentHeader;
+    private javax.swing.JLabel studentLogo;
+    private javax.swing.JLabel studentLogout;
+    private javax.swing.JLabel studentNotification;
+    private javax.swing.JLabel studentProfile;
+    private javax.swing.JButton submitButton;
+    private javax.swing.JButton submitButton1;
     // End of variables declaration//GEN-END:variables
 }
