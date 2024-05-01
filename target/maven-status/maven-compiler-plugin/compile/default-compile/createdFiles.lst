@@ -23,6 +23,7 @@ com\mycompany\projectmanagementsystem\ProjectManagerPage$7.class
 com\mycompany\projectmanagementsystem\LecturerDashboardPage$1.class
 com\mycompany\projectmanagementsystem\LecturerProfile$6.class
 com\mycompany\projectmanagementsystem\admin_lecturer$3.class
+com\mycompany\projectmanagementsystem\admin_register_schoolwiselist.class
 com\mycompany\projectmanagementsystem\admin_student$4.class
 com\mycompany\projectmanagementsystem\LecturerPresentationRequest$2.class
 com\mycompany\projectmanagementsystem\PM_investigation_page$4.class
@@ -45,6 +46,7 @@ com\mycompany\projectmanagementsystem\PM_investigation_page$1.class
 com\mycompany\projectmanagementsystem\LecturerPresentationRequest$3.class
 com\mycompany\projectmanagementsystem\admin_register_intake.class
 com\mycompany\projectmanagementsystem\LecturerDashboardPage$4.class
+com\mycompany\projectmanagementsystem\admin_register_schoolwiselist$1.class
 com\mycompany\projectmanagementsystem\PM_RMCP_page$3.class
 com\mycompany\projectmanagementsystem\lect_ReportPanelAction$rPanelActionRenderer.class
 com\mycompany\projectmanagementsystem\PM_cp1_page$1.class
@@ -64,6 +66,7 @@ com\mycompany\projectmanagementsystem\admin_lecturer$4.class
 com\mycompany\projectmanagementsystem\admin_ec_record.class
 com\mycompany\projectmanagementsystem\admin_student$3.class
 com\mycompany\projectmanagementsystem\admin_ec_record$1.class
+com\mycompany\projectmanagementsystem\admin_register_schoolwiselist$2.class
 com\mycompany\projectmanagementsystem\LecturerDashboardPage$2.class
 com\mycompany\projectmanagementsystem\lect_PresentationPanelAction.class
 com\mycompany\projectmanagementsystem\PM_internship_page$5.class
