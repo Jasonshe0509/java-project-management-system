@@ -21,6 +21,7 @@ com\mycompany\projectmanagementsystem\LecturerReportGrading$2.class
 com\mycompany\projectmanagementsystem\LoginPage$1.class
 com\mycompany\projectmanagementsystem\ProjectManagerPage$7.class
 com\mycompany\projectmanagementsystem\LecturerDashboardPage$1.class
+com\mycompany\projectmanagementsystem\LecturerPeopleProfile$2.class
 com\mycompany\projectmanagementsystem\LecturerProfile$6.class
 com\mycompany\projectmanagementsystem\admin_lecturer$3.class
 com\mycompany\projectmanagementsystem\admin_student$4.class
@@ -63,6 +64,7 @@ com\mycompany\projectmanagementsystem\admin_lecturer$4.class
 com\mycompany\projectmanagementsystem\admin_ec_record.class
 com\mycompany\projectmanagementsystem\admin_student$3.class
 com\mycompany\projectmanagementsystem\admin_ec_record$1.class
+com\mycompany\projectmanagementsystem\LecturerPeopleProfile$1.class
 com\mycompany\projectmanagementsystem\LecturerDashboardPage$2.class
 com\mycompany\projectmanagementsystem\lect_PresentationPanelAction.class
 com\mycompany\projectmanagementsystem\PM_internship_page$5.class
@@ -109,6 +111,7 @@ com\mycompany\projectmanagementsystem\LecturerIntakePage$2.class
 com\mycompany\projectmanagementsystem\PM_FYP_page.class
 com\mycompany\projectmanagementsystem\PM_cp1_page$4.class
 com\mycompany\projectmanagementsystem\admin_student.class
+com\mycompany\projectmanagementsystem\LecturerPeopleProfile.class
 com\mycompany\projectmanagementsystem\LecturerReportGrading$1.class
 com\mycompany\projectmanagementsystem\admin_lecturer.class
 com\mycompany\projectmanagementsystem\LecturerReportConfirm.class
