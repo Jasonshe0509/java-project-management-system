@@ -35,6 +35,9 @@ public class admin_student extends javax.swing.JFrame {
         admin_stu_managementi = new javax.swing.JLabel();
         admin_stu_management = new javax.swing.JLabel();
         stumanage_background = new javax.swing.JLabel();
+        admin_studenti1 = new javax.swing.JLabel();
+        admin_reg_student1 = new javax.swing.JLabel();
+        regstu_background1 = new javax.swing.JLabel();
         admin_background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -144,14 +147,14 @@ public class admin_student extends javax.swing.JFrame {
 
         getContentPane().add(admin_header, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        admin_intakei.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Intake_icon.png"))); // NOI18N
-        getContentPane().add(admin_intakei, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, -1, -1));
+        admin_intakei.setIcon(new javax.swing.ImageIcon(getClass().getResource("/intake_icon.png"))); // NOI18N
+        getContentPane().add(admin_intakei, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, 80, 70));
 
         admin_reg_intake.setBackground(new Color(76, 127, 174, 0));
         admin_reg_intake.setFont(new java.awt.Font("Bell MT", 1, 36)); // NOI18N
         admin_reg_intake.setForeground(new java.awt.Color(2, 50, 99));
         admin_reg_intake.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        admin_reg_intake.setText("Register New Intake");
+        admin_reg_intake.setText("<html><div style = \"text-align: center; width: 70px;\">Register New Intake</div></html>");
         admin_reg_intake.setBorder(new LineBorder(new Color(192, 192, 192, 90), 15, true));
         admin_reg_intake.setMaximumSize(new java.awt.Dimension(380, 240));
         admin_reg_intake.setMinimumSize(new java.awt.Dimension(380, 240));
@@ -162,21 +165,21 @@ public class admin_student extends javax.swing.JFrame {
                 admin_reg_intakeMouseClicked(evt);
             }
         });
-        getContentPane().add(admin_reg_intake, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, -1, -1));
+        getContentPane().add(admin_reg_intake, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, 260, 260));
 
         intake_background.setBackground(new Color(192, 192, 192, 90));
         intake_background.setOpaque(true);
-        getContentPane().add(intake_background, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, 360, 220));
+        getContentPane().add(intake_background, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, 240, 240));
         intake_background.getAccessibleContext().setAccessibleName("intake_background");
 
-        admin_studenti.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Student_icon.png"))); // NOI18N
-        getContentPane().add(admin_studenti, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 380, -1, -1));
+        admin_studenti.setIcon(new javax.swing.ImageIcon(getClass().getResource("/student_icon.png"))); // NOI18N
+        getContentPane().add(admin_studenti, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 110, 70, 80));
 
         admin_reg_student.setBackground(new Color(192, 192, 192, 90));
         admin_reg_student.setFont(new java.awt.Font("Bell MT", 1, 36)); // NOI18N
         admin_reg_student.setForeground(new java.awt.Color(2, 50, 99));
         admin_reg_student.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        admin_reg_student.setText("Register New Student");
+        admin_reg_student.setText("<html><div style = \"text-align: center; width: 70px;\">Register New Student</div></html>");
         admin_reg_student.setBorder(new LineBorder(new Color(192, 192, 192, 90), 15, true));
         admin_reg_student.setMaximumSize(new java.awt.Dimension(380, 240));
         admin_reg_student.setMinimumSize(new java.awt.Dimension(380, 240));
@@ -187,14 +190,14 @@ public class admin_student extends javax.swing.JFrame {
                 admin_reg_studentMouseClicked(evt);
             }
         });
-        getContentPane().add(admin_reg_student, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 370, -1, -1));
+        getContentPane().add(admin_reg_student, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 110, 260, 260));
 
         regstu_background.setBackground(new Color(192, 192, 192, 90));
         regstu_background.setOpaque(true);
-        getContentPane().add(regstu_background, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 380, 360, 220));
+        getContentPane().add(regstu_background, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 120, 240, 240));
 
         admin_eci.setIcon(new javax.swing.ImageIcon(getClass().getResource("/EC_icon.png"))); // NOI18N
-        getContentPane().add(admin_eci, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 110, -1, -1));
+        getContentPane().add(admin_eci, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 420, -1, -1));
 
         admin_ec_management.setBackground(new Color(192, 192, 192, 90));
         admin_ec_management.setFont(new java.awt.Font("Bell MT", 1, 36)); // NOI18N
@@ -211,15 +214,15 @@ public class admin_student extends javax.swing.JFrame {
                 admin_ec_managementMouseClicked(evt);
             }
         });
-        getContentPane().add(admin_ec_management, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 100, -1, -1));
+        getContentPane().add(admin_ec_management, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 410, -1, -1));
 
         ecmanage_background.setBackground(new Color(192, 192, 192, 90));
         ecmanage_background.setOpaque(true);
-        getContentPane().add(ecmanage_background, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 110, 360, 220));
+        getContentPane().add(ecmanage_background, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 420, 360, 220));
         ecmanage_background.getAccessibleContext().setAccessibleName("ecmanage_background");
 
         admin_stu_managementi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Setting_icon.png"))); // NOI18N
-        getContentPane().add(admin_stu_managementi, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 380, -1, -1));
+        getContentPane().add(admin_stu_managementi, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 420, -1, -1));
         admin_stu_managementi.getAccessibleContext().setAccessibleDescription("");
 
         admin_stu_management.setBackground(new Color(192, 192, 192, 90));
@@ -237,11 +240,35 @@ public class admin_student extends javax.swing.JFrame {
                 admin_stu_managementMouseClicked(evt);
             }
         });
-        getContentPane().add(admin_stu_management, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 370, -1, -1));
+        getContentPane().add(admin_stu_management, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 410, -1, -1));
 
         stumanage_background.setBackground(new Color(192, 192, 192, 90));
         stumanage_background.setOpaque(true);
-        getContentPane().add(stumanage_background, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 380, 360, 220));
+        getContentPane().add(stumanage_background, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 420, 360, 220));
+
+        admin_studenti1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/student_course_icon.png"))); // NOI18N
+        getContentPane().add(admin_studenti1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 110, 70, 70));
+
+        admin_reg_student1.setBackground(new Color(192, 192, 192, 90));
+        admin_reg_student1.setFont(new java.awt.Font("Bell MT", 1, 36)); // NOI18N
+        admin_reg_student1.setForeground(new java.awt.Color(2, 50, 99));
+        admin_reg_student1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        admin_reg_student1.setText("<html><div style = \"text-align: center; width: 70px;\">Register New Course</div></html>");
+        admin_reg_student1.setBorder(new LineBorder(new Color(192, 192, 192, 90), 15, true));
+        admin_reg_student1.setMaximumSize(new java.awt.Dimension(380, 240));
+        admin_reg_student1.setMinimumSize(new java.awt.Dimension(380, 240));
+        admin_reg_student1.setOpaque(true);
+        admin_reg_student1.setPreferredSize(new java.awt.Dimension(380, 240));
+        admin_reg_student1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                admin_reg_student1MouseClicked(evt);
+            }
+        });
+        getContentPane().add(admin_reg_student1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 110, 260, 260));
+
+        regstu_background1.setBackground(new Color(192, 192, 192, 90));
+        regstu_background1.setOpaque(true);
+        getContentPane().add(regstu_background1, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 120, 240, 240));
 
         admin_background.setBackground(new java.awt.Color(76, 127, 174));
         admin_background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main_background.png"))); // NOI18N
@@ -291,6 +318,10 @@ public class admin_student extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_admin_logoMouseClicked
 
+    private void admin_reg_student1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_admin_reg_student1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_admin_reg_student1MouseClicked
+
     
     public static void main(String args[]) {
 
@@ -314,14 +345,17 @@ public class admin_student extends javax.swing.JFrame {
     private javax.swing.JLabel admin_profile;
     private javax.swing.JLabel admin_reg_intake;
     private javax.swing.JLabel admin_reg_student;
+    private javax.swing.JLabel admin_reg_student1;
     private javax.swing.JLabel admin_report;
     private javax.swing.JLabel admin_stu_management;
     private javax.swing.JLabel admin_stu_managementi;
     private javax.swing.JLabel admin_student;
     private javax.swing.JLabel admin_studenti;
+    private javax.swing.JLabel admin_studenti1;
     private javax.swing.JLabel ecmanage_background;
     private javax.swing.JLabel intake_background;
     private javax.swing.JLabel regstu_background;
+    private javax.swing.JLabel regstu_background1;
     private javax.swing.JLabel stumanage_background;
     // End of variables declaration//GEN-END:variables
 }
