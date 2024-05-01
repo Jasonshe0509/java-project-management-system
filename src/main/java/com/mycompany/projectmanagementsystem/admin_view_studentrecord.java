@@ -5,12 +5,14 @@
 package com.mycompany.projectmanagementsystem;
 
 import java.awt.Color;
+import java.awt.Toolkit;
 import javax.swing.border.LineBorder;
 
 public class admin_view_studentrecord extends javax.swing.JFrame {
 
     public admin_view_studentrecord() {
         initComponents();
+        setIconImage();
     }
     
     @SuppressWarnings("unchecked")
@@ -265,6 +267,9 @@ public class admin_view_studentrecord extends javax.swing.JFrame {
                 new admin_view_studentrecord().setVisible(true);
             }
         });
+    }
+    private void setIconImage() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Sysco_icon.png")));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

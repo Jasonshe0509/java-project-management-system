@@ -1,32 +1,33 @@
-C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\LecturerIntakePage.java
-C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\LecturerPresentationRequest.java
-C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\LecturerSummaryReport.java
-C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\StudentProfilePage.java
-C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\admin_ec_record.java
-C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\admin_lecturer_record.java
-C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\lect_PresentationPanelAction.java
-C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\StudentEcSubmissionPage.java
-C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\PM_cp2_page.java
-C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\admin_student.java
-C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\admin_mainpage.java
-C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\LecturerNotiPopUp.java
-C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\PM_FYP_page.java
-C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\GeneralPage.java
-C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\LecturerReportGrading.java
-C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\PM_internship_page.java
-C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\ProjectManagerPage.java
-C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\LoginPage.java
-C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\admin_register_intake.java
-C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\PM_investigation_page.java
-C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\PM_RMCP_page.java
-C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\ForgetPasswordPage.java
-C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\StudentDashboardPage.java
-C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\admin_student_management.java
-C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\LecturerReportConfirm.java
-C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\admin_lecturer.java
-C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\LecturerDashboardPage.java
-C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\PM_cp1_page.java
-C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\admin_ec_details.java
-C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\lect_ReportPanelAction.java
-C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\LecturerPresentationFeedback.java
-C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\LecturerProfile.java
+C:\Users\ASUS\OneDrive\Documents\NetBeansProjects\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\admin_ec_details.java
+C:\Users\ASUS\OneDrive\Documents\NetBeansProjects\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\LecturerNotiPopUp.java
+C:\Users\ASUS\OneDrive\Documents\NetBeansProjects\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\admin_lecturer.java
+C:\Users\ASUS\OneDrive\Documents\NetBeansProjects\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\admin_lecturer_record.java
+C:\Users\ASUS\OneDrive\Documents\NetBeansProjects\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\admin_view_studentrecord.java
+C:\Users\ASUS\OneDrive\Documents\NetBeansProjects\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\LecturerSummaryReport.java
+C:\Users\ASUS\OneDrive\Documents\NetBeansProjects\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\admin_student.java
+C:\Users\ASUS\OneDrive\Documents\NetBeansProjects\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\LecturerProfile.java
+C:\Users\ASUS\OneDrive\Documents\NetBeansProjects\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\admin_mainpage.java
+C:\Users\ASUS\OneDrive\Documents\NetBeansProjects\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\StudentEcSubmissionPage.java
+C:\Users\ASUS\OneDrive\Documents\NetBeansProjects\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\PM_internship_page.java
+C:\Users\ASUS\OneDrive\Documents\NetBeansProjects\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\LecturerPresentationFeedback.java
+C:\Users\ASUS\OneDrive\Documents\NetBeansProjects\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\PM_cp2_page.java
+C:\Users\ASUS\OneDrive\Documents\NetBeansProjects\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\LecturerIntakePage.java
+C:\Users\ASUS\OneDrive\Documents\NetBeansProjects\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\StudentDashboardPage.java
+C:\Users\ASUS\OneDrive\Documents\NetBeansProjects\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\PM_RMCP_page.java
+C:\Users\ASUS\OneDrive\Documents\NetBeansProjects\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\admin_student_management.java
+C:\Users\ASUS\OneDrive\Documents\NetBeansProjects\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\LoginPage.java
+C:\Users\ASUS\OneDrive\Documents\NetBeansProjects\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\ProjectManagerPage.java
+C:\Users\ASUS\OneDrive\Documents\NetBeansProjects\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\lect_ReportPanelAction.java
+C:\Users\ASUS\OneDrive\Documents\NetBeansProjects\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\PM_cp1_page.java
+C:\Users\ASUS\OneDrive\Documents\NetBeansProjects\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\PM_investigation_page.java
+C:\Users\ASUS\OneDrive\Documents\NetBeansProjects\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\admin_ec_record.java
+C:\Users\ASUS\OneDrive\Documents\NetBeansProjects\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\admin_register_intake.java
+C:\Users\ASUS\OneDrive\Documents\NetBeansProjects\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\PM_FYP_page.java
+C:\Users\ASUS\OneDrive\Documents\NetBeansProjects\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\GeneralPage.java
+C:\Users\ASUS\OneDrive\Documents\NetBeansProjects\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\StudentProfilePage.java
+C:\Users\ASUS\OneDrive\Documents\NetBeansProjects\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\LecturerDashboardPage.java
+C:\Users\ASUS\OneDrive\Documents\NetBeansProjects\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\LecturerReportGrading.java
+C:\Users\ASUS\OneDrive\Documents\NetBeansProjects\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\lect_PresentationPanelAction.java
+C:\Users\ASUS\OneDrive\Documents\NetBeansProjects\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\ForgetPasswordPage.java
+C:\Users\ASUS\OneDrive\Documents\NetBeansProjects\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\LecturerPresentationRequest.java
+C:\Users\ASUS\OneDrive\Documents\NetBeansProjects\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\LecturerReportConfirm.java
