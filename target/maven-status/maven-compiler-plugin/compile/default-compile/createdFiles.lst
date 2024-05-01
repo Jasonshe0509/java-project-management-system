@@ -17,6 +17,7 @@ com\mycompany\projectmanagementsystem\LecturerIntakePage$3.class
 com\mycompany\projectmanagementsystem\PM_cp1_page$5.class
 com\mycompany\projectmanagementsystem\PM_cp2_page$5.class
 com\mycompany\projectmanagementsystem\admin_student_management.class
+com\mycompany\projectmanagementsystem\StudentEcForm$3.class
 com\mycompany\projectmanagementsystem\LecturerReportGrading$2.class
 com\mycompany\projectmanagementsystem\LoginPage$1.class
 com\mycompany\projectmanagementsystem\ProjectManagerPage$7.class
@@ -27,6 +28,7 @@ com\mycompany\projectmanagementsystem\admin_student$4.class
 com\mycompany\projectmanagementsystem\LecturerPresentationRequest$2.class
 com\mycompany\projectmanagementsystem\PM_investigation_page$4.class
 com\mycompany\projectmanagementsystem\LecturerIntakePage$5.class
+com\mycompany\projectmanagementsystem\StudentEcForm.class
 com\mycompany\projectmanagementsystem\PM_cp1_page$2.class
 com\mycompany\projectmanagementsystem\lect_PresentationPanelAction$PanelActionRenderer.class
 com\mycompany\projectmanagementsystem\PM_cp2_page$2.class
@@ -62,6 +64,7 @@ com\mycompany\projectmanagementsystem\PM_cp2_page$3.class
 com\mycompany\projectmanagementsystem\StudentEcSubmissionPage.class
 com\mycompany\projectmanagementsystem\admin_lecturer$4.class
 com\mycompany\projectmanagementsystem\admin_ec_record.class
+com\mycompany\projectmanagementsystem\StudentEcForm$1.class
 com\mycompany\projectmanagementsystem\admin_student$3.class
 com\mycompany\projectmanagementsystem\admin_ec_record$1.class
 com\mycompany\projectmanagementsystem\LecturerDashboardPage$2.class
@@ -77,6 +80,7 @@ com\mycompany\projectmanagementsystem\LecturerIntakePage$4.class
 com\mycompany\projectmanagementsystem\ProjectManagerPage$3.class
 com\mycompany\projectmanagementsystem\StudentEcSubmissionPage$1.class
 com\mycompany\projectmanagementsystem\admin_lecturer$2.class
+com\mycompany\projectmanagementsystem\StudentEcForm$2.class
 com\mycompany\projectmanagementsystem\LecturerProfile$2.class
 com\mycompany\projectmanagementsystem\admin_mainpage$1.class
 com\mycompany\projectmanagementsystem\StudentProfilePage$6.class
@@ -109,6 +113,7 @@ com\mycompany\projectmanagementsystem\PM_RMCP_page$4.class
 com\mycompany\projectmanagementsystem\LecturerReportGrading.class
 com\mycompany\projectmanagementsystem\LecturerIntakePage$2.class
 com\mycompany\projectmanagementsystem\PM_FYP_page.class
+com\mycompany\projectmanagementsystem\StudentEcForm$4.class
 com\mycompany\projectmanagementsystem\PM_cp1_page$4.class
 com\mycompany\projectmanagementsystem\admin_student.class
 com\mycompany\projectmanagementsystem\LecturerReportGrading$1.class
