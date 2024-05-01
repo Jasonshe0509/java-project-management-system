@@ -42,7 +42,7 @@ public class admin_register_lecturer extends javax.swing.JFrame {
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Register Student");
+        setTitle("Register Lecturer");
         setMaximumSize(new java.awt.Dimension(700, 580));
         setMinimumSize(new java.awt.Dimension(700, 580));
         setPreferredSize(new java.awt.Dimension(700, 580));
