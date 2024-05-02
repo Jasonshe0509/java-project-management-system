@@ -462,7 +462,7 @@
           <Color blue="63" green="32" red="2" type="rgb"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="View Intale/ Student"/>
+        <Property name="text" type="java.lang.String" value="View Intake/ Student"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
           <Connection code="new LineBorder(new Color(192, 192, 192, 90), 15, true)" type="code"/>
         </Property>

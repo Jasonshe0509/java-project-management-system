@@ -227,7 +227,7 @@ public class admin_student extends javax.swing.JFrame {
         admin_stu_management.setFont(new java.awt.Font("Bell MT", 1, 36)); // NOI18N
         admin_stu_management.setForeground(new java.awt.Color(2, 50, 99));
         admin_stu_management.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        admin_stu_management.setText("View Intale/ Student");
+        admin_stu_management.setText("View Intake/ Student");
         admin_stu_management.setBorder(new LineBorder(new Color(192, 192, 192, 90), 15, true));
         admin_stu_management.setMaximumSize(new java.awt.Dimension(380, 240));
         admin_stu_management.setMinimumSize(new java.awt.Dimension(380, 240));
