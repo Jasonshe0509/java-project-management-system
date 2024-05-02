@@ -22,6 +22,7 @@ com\mycompany\projectmanagementsystem\PM_cp1_page$5.class
 com\mycompany\projectmanagementsystem\PM_cp2_page$5.class
 com\mycompany\projectmanagementsystem\ProjectManagerPage$7.class
 com\mycompany\projectmanagementsystem\LecturerDashboardPage$1.class
+com\mycompany\projectmanagementsystem\LecturerPeopleProfile$2.class
 com\mycompany\projectmanagementsystem\admin_lecturer$3.class
 com\mycompany\projectmanagementsystem\admin_student$4.class
 com\mycompany\projectmanagementsystem\admin_modify_studentrecord$4.class
@@ -163,14 +164,13 @@ com\mycompany\projectmanagementsystem\LecturerDashboardPage$3.class
 com\mycompany\projectmanagementsystem\LecturerSummaryReport.class
 com\mycompany\projectmanagementsystem\StudentAssessmentDetailPage$7.class
 com\mycompany\projectmanagementsystem\PM_cp2_page$3.class
+com\mycompany\projectmanagementsystem\LecturerPeopleProfile$1.class
 com\mycompany\projectmanagementsystem\StudentEcSubmissionPage.class
 com\mycompany\projectmanagementsystem\admin_view_studentrecord$4.class
 com\mycompany\projectmanagementsystem\StudentPresentationRequestPage$1.class
-com\mycompany\projectmanagementsystem\StudentAssessmentDetailPage$1.class
 com\mycompany\projectmanagementsystem\LecturerDashboardPage$2.class
 com\mycompany\projectmanagementsystem\lect_PresentationPanelAction.class
 com\mycompany\projectmanagementsystem\PM_internship_page$5.class
-com\mycompany\projectmanagementsystem\LecturerPresentationRequest$1.class
 com\mycompany\projectmanagementsystem\PM_investigation_page$3.class
 com\mycompany\projectmanagementsystem\LecturerCommunication$1.class
 com\mycompany\projectmanagementsystem\PM_cp2_page$4.class
@@ -200,6 +200,7 @@ com\mycompany\projectmanagementsystem\PM_FYP_page.class
 com\mycompany\projectmanagementsystem\StudentEcForm$4.class
 com\mycompany\projectmanagementsystem\StudentAssessmentDetailPage.class
 com\mycompany\projectmanagementsystem\PM_cp1_page$4.class
+com\mycompany\projectmanagementsystem\LecturerPeopleProfile.class
 com\mycompany\projectmanagementsystem\admin_lecturer.class
 com\mycompany\projectmanagementsystem\admin_modify_studentrecord$3.class
 com\mycompany\projectmanagementsystem\StudentNotificationPage$1.class
