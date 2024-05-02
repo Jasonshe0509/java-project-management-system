@@ -19,9 +19,11 @@ com\mycompany\projectmanagementsystem\ForgetPasswordPage$1.class
 com\mycompany\projectmanagementsystem\StudentSubmissionPage.class
 com\mycompany\projectmanagementsystem\PM_RMCP_page$5.class
 com\mycompany\projectmanagementsystem\PM_cp1_page$5.class
+com\mycompany\projectmanagementsystem\admin_register_lecturer$12.class
 com\mycompany\projectmanagementsystem\PM_cp2_page$5.class
 com\mycompany\projectmanagementsystem\ProjectManagerPage$7.class
 com\mycompany\projectmanagementsystem\LecturerDashboardPage$1.class
+com\mycompany\projectmanagementsystem\admin_register_lecturer$5.class
 com\mycompany\projectmanagementsystem\LecturerPeopleProfile$2.class
 com\mycompany\projectmanagementsystem\admin_lecturer$3.class
 com\mycompany\projectmanagementsystem\admin_register_schoolwiselist.class
@@ -36,6 +38,8 @@ com\mycompany\projectmanagementsystem\StudentProfilePage$5.class
 com\mycompany\projectmanagementsystem\PM_cp1_page.class
 com\mycompany\projectmanagementsystem\lect_PresentationPanelAction$2.class
 com\mycompany\projectmanagementsystem\PM_investigation_page$1.class
+com\mycompany\projectmanagementsystem\admin_register_lecturer$13.class
+com\mycompany\projectmanagementsystem\admin_register_lecturer$6.class
 com\mycompany\projectmanagementsystem\admin_register_schoolwiselist$1.class
 com\mycompany\projectmanagementsystem\admin_view_studentrecord$3.class
 com\mycompany\projectmanagementsystem\PM_profile_page$5.class
@@ -54,6 +58,15 @@ com\mycompany\projectmanagementsystem\admin_ec_record.class
 com\mycompany\projectmanagementsystem\StudentEcForm$1.class
 com\mycompany\projectmanagementsystem\admin_student$3.class
 com\mycompany\projectmanagementsystem\admin_ec_record$1.class
+com\mycompany\projectmanagementsystem\admin_register_lecturer$11.class
+com\mycompany\projectmanagementsystem\admin_register_lecturer$9.class
+com\mycompany\projectmanagementsystem\admin_register_lecturer$10.class
+com\mycompany\projectmanagementsystem\admin_register_lecturer$8.class
+com\mycompany\projectmanagementsystem\admin_register_lecturer$2.class
+com\mycompany\projectmanagementsystem\admin_register_lecturer.class
+com\mycompany\projectmanagementsystem\admin_register_lecturer$7.class
+com\mycompany\projectmanagementsystem\admin_register_lecturer$4.class
+com\mycompany\projectmanagementsystem\admin_register_lecturer$1.class
 com\mycompany\projectmanagementsystem\admin_register_schoolwiselist$2.class
 com\mycompany\projectmanagementsystem\LecturerPresentationRequest.class
 com\mycompany\projectmanagementsystem\admin_student$5.class
@@ -189,6 +202,7 @@ com\mycompany\projectmanagementsystem\admin_register_intake$1.class
 com\mycompany\projectmanagementsystem\admin_student$2.class
 com\mycompany\projectmanagementsystem\LecturerProfile.class
 com\mycompany\projectmanagementsystem\admin_lecturer$5.class
+com\mycompany\projectmanagementsystem\admin_register_lecturer$3.class
 com\mycompany\projectmanagementsystem\LecturerCommunication.class
 com\mycompany\projectmanagementsystem\StudentAssessmentDetailPage$5.class
 com\mycompany\projectmanagementsystem\admin_student_management$3.class
