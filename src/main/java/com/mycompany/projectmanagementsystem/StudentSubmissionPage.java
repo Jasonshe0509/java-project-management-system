@@ -41,7 +41,7 @@ public class StudentSubmissionPage extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(500, 300));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        email.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
+        email.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         email.setForeground(new java.awt.Color(2, 50, 99));
         email.setText("Moodle Link:");
         email.setMaximumSize(new java.awt.Dimension(78, 36));
