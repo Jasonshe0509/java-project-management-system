@@ -18,6 +18,14 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
     public StudentAssessmentDetailPage() {
         initComponents();
         setIconImage();
+        int x = 1;
+        if(x == 2){
+            int index = jTabbedPane1.indexOfComponent(jPanel11);
+            jTabbedPane1.removeTabAt(index);
+        }else{
+            int index = jTabbedPane1.indexOfComponent(jPanel7);
+            jTabbedPane1.removeTabAt(index);
+        }
     }
 
     /**
@@ -57,6 +65,13 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jLabel20 = new javax.swing.JLabel();
         submitButton1 = new javax.swing.JButton();
+        jPanel11 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jPanel12 = new javax.swing.JPanel();
         jPanel16 = new javax.swing.JPanel();
@@ -71,7 +86,6 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
         jComboBox2 = new javax.swing.JComboBox<>();
         jScrollPane5 = new javax.swing.JScrollPane();
         jTable3 = new javax.swing.JTable();
-        jLabel7 = new javax.swing.JLabel();
         studentHeader = new javax.swing.JPanel();
         studentLogo = new javax.swing.JLabel();
         studentEcSubmission = new javax.swing.JLabel();
@@ -79,10 +93,10 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
         studentProfile = new javax.swing.JLabel();
         studentLogout = new javax.swing.JLabel();
         background = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Student Assessment Details");
-        setMaximumSize(new java.awt.Dimension(1000, 700));
         setMinimumSize(new java.awt.Dimension(1000, 700));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -450,6 +464,93 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Presentation", jPanel7);
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation_background.png"))); // NOI18N
+        jLabel1.setText("jLabel1");
+        jLabel1.setMaximumSize(new java.awt.Dimension(260, 480));
+        jLabel1.setMinimumSize(new java.awt.Dimension(260, 480));
+        jLabel1.setPreferredSize(new java.awt.Dimension(260, 480));
+
+        jLabel7.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(2, 50, 99));
+        jLabel7.setText("Second Marker:");
+        jLabel7.setMaximumSize(new java.awt.Dimension(275, 47));
+        jLabel7.setMinimumSize(new java.awt.Dimension(275, 47));
+        jLabel7.setPreferredSize(new java.awt.Dimension(275, 47));
+
+        jLabel22.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jLabel22.setForeground(new java.awt.Color(2, 50, 99));
+        jLabel22.setText("Supervisor:");
+        jLabel22.setMaximumSize(new java.awt.Dimension(275, 47));
+        jLabel22.setMinimumSize(new java.awt.Dimension(275, 47));
+        jLabel22.setPreferredSize(new java.awt.Dimension(275, 47));
+
+        jLabel25.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jLabel25.setForeground(new java.awt.Color(2, 50, 99));
+        jLabel25.setText("Presentation Date:");
+        jLabel25.setMaximumSize(new java.awt.Dimension(275, 47));
+        jLabel25.setMinimumSize(new java.awt.Dimension(275, 47));
+        jLabel25.setPreferredSize(new java.awt.Dimension(275, 47));
+
+        jLabel26.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jLabel26.setForeground(new java.awt.Color(2, 50, 99));
+        jLabel26.setText("Status:");
+        jLabel26.setMaximumSize(new java.awt.Dimension(275, 47));
+        jLabel26.setMinimumSize(new java.awt.Dimension(275, 47));
+        jLabel26.setPreferredSize(new java.awt.Dimension(275, 47));
+
+        jLabel27.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jLabel27.setForeground(new java.awt.Color(2, 50, 99));
+        jLabel27.setText("Feedback:");
+        jLabel27.setMaximumSize(new java.awt.Dimension(275, 47));
+        jLabel27.setMinimumSize(new java.awt.Dimension(275, 47));
+        jLabel27.setPreferredSize(new java.awt.Dimension(275, 47));
+
+        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
+        jPanel11.setLayout(jPanel11Layout);
+        jPanel11Layout.setHorizontalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(425, Short.MAX_VALUE))
+            .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel11Layout.createSequentialGroup()
+                    .addGap(307, 307, 307)
+                    .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(426, Short.MAX_VALUE)))
+        );
+        jPanel11Layout.setVerticalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addGap(97, 97, 97)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(13, Short.MAX_VALUE))
+            .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel11Layout.createSequentialGroup()
+                    .addGap(42, 42, 42)
+                    .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(433, Short.MAX_VALUE)))
+        );
+
+        jTabbedPane1.addTab("Presentation", jPanel11);
+
         jScrollPane3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
         jPanel16.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -614,14 +715,6 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
 
         getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, -1, -1));
 
-        jLabel7.setFont(new java.awt.Font("Bell MT", 1, 28)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(2, 50, 99));
-        jLabel7.setText("Internship Report");
-        jLabel7.setMaximumSize(new java.awt.Dimension(275, 47));
-        jLabel7.setMinimumSize(new java.awt.Dimension(275, 47));
-        jLabel7.setPreferredSize(new java.awt.Dimension(275, 47));
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 275, 40));
-
         studentHeader.setBackground(new Color(255, 255, 255, 90));
         studentHeader.setToolTipText("");
         studentHeader.setMaximumSize(new java.awt.Dimension(1000, 73));
@@ -712,6 +805,14 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main_background.png"))); // NOI18N
         getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
+        jLabel21.setFont(new java.awt.Font("Bell MT", 1, 28)); // NOI18N
+        jLabel21.setForeground(new java.awt.Color(2, 50, 99));
+        jLabel21.setText("Internship Report");
+        jLabel21.setMaximumSize(new java.awt.Dimension(275, 47));
+        jLabel21.setMinimumSize(new java.awt.Dimension(275, 47));
+        jLabel21.setPreferredSize(new java.awt.Dimension(275, 47));
+        getContentPane().add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 275, 40));
+
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
@@ -780,6 +881,7 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -791,14 +893,20 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel15;
