@@ -23,6 +23,7 @@ com\mycompany\projectmanagementsystem\PM_cp1_page$5.class
 com\mycompany\projectmanagementsystem\admin_register_lecturer$12.class
 com\mycompany\projectmanagementsystem\PM_cp2_page$5.class
 com\mycompany\projectmanagementsystem\ProjectManagerPage$7.class
+com\mycompany\projectmanagementsystem\admin_register_course.class
 com\mycompany\projectmanagementsystem\LecturerDashboardPage$1.class
 com\mycompany\projectmanagementsystem\admin_register_lecturer$5.class
 com\mycompany\projectmanagementsystem\LecturerPeopleProfile$2.class
@@ -148,6 +149,7 @@ com\mycompany\projectmanagementsystem\admin_view_studentrecord$11.class
 com\mycompany\projectmanagementsystem\admin_view_studentrecord$5.class
 com\mycompany\projectmanagementsystem\ForgetPasswordPage$4.class
 com\mycompany\projectmanagementsystem\StudentSubmissionPage$2.class
+com\mycompany\projectmanagementsystem\admin_register_course$1.class
 com\mycompany\projectmanagementsystem\PM_RMCP_page.class
 com\mycompany\projectmanagementsystem\PM_profile_page$3.class
 com\mycompany\projectmanagementsystem\LecturerSummaryReport$2.class
@@ -200,6 +202,7 @@ com\mycompany\projectmanagementsystem\StudentAssessmentDetailPage$7.class
 com\mycompany\projectmanagementsystem\PM_cp2_page$3.class
 com\mycompany\projectmanagementsystem\LecturerPeopleProfile$1.class
 com\mycompany\projectmanagementsystem\StudentEcSubmissionPage.class
+com\mycompany\projectmanagementsystem\admin_register_course$2.class
 com\mycompany\projectmanagementsystem\admin_view_studentrecord$4.class
 com\mycompany\projectmanagementsystem\StudentPresentationRequestPage$1.class
 com\mycompany\projectmanagementsystem\LecturerDashboardPage$2.class
