@@ -47,7 +47,6 @@ public class admin_modify_lecturerrecord extends javax.swing.JFrame {
         setTitle("Modify Lecturer Record");
         setMaximumSize(new java.awt.Dimension(700, 580));
         setMinimumSize(new java.awt.Dimension(700, 580));
-        setPreferredSize(new java.awt.Dimension(700, 580));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -291,7 +290,7 @@ public class admin_modify_lecturerrecord extends javax.swing.JFrame {
         });
     }
         private void setIconImage() {
-        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Sysco_icon.png")));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Sysco_icon_with_background.png")));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
