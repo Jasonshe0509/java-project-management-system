@@ -4,6 +4,8 @@
  */
 package com.mycompany.projectmanagementsystem;
 
+import java.awt.Toolkit;
+
 /**
  *
  * @author user
@@ -15,6 +17,7 @@ public class LecturerPeopleProfile extends javax.swing.JFrame {
      */
     public LecturerPeopleProfile() {
         initComponents();
+        setIconImage();
     }
 
     /**
@@ -58,6 +61,8 @@ public class LecturerPeopleProfile extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Lecturer People Profile");
+        setMaximumSize(new java.awt.Dimension(900, 500));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -417,6 +422,7 @@ public class LecturerPeopleProfile extends javax.swing.JFrame {
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 500));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -456,6 +462,9 @@ public class LecturerPeopleProfile extends javax.swing.JFrame {
                 new LecturerPeopleProfile().setVisible(true);
             }
         });
+    }
+    private void setIconImage() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Sysco_icon_with_background.png")));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
