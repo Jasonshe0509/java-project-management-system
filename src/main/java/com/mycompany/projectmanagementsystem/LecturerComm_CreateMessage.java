@@ -4,6 +4,8 @@
  */
 package com.mycompany.projectmanagementsystem;
 
+import java.awt.Toolkit;
+
 /**
  *
  * @author user
@@ -15,6 +17,7 @@ public class LecturerComm_CreateMessage extends javax.swing.JFrame {
      */
     public LecturerComm_CreateMessage() {
         initComponents();
+        setIconImage();
     }
 
     /**
@@ -38,6 +41,7 @@ public class LecturerComm_CreateMessage extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Lecturer Create Message");
         setMaximumSize(new java.awt.Dimension(700, 500));
         setMinimumSize(new java.awt.Dimension(700, 500));
         setResizable(false);
@@ -146,6 +150,7 @@ public class LecturerComm_CreateMessage extends javax.swing.JFrame {
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
@@ -185,6 +190,9 @@ public class LecturerComm_CreateMessage extends javax.swing.JFrame {
                 new LecturerComm_CreateMessage().setVisible(true);
             }
         });
+    }
+    private void setIconImage() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Sysco_icon_with_background.png")));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
