@@ -4,6 +4,8 @@
  */
 package com.mycompany.projectmanagementsystem;
 
+import java.awt.Toolkit;
+
 /**
  *
  * @author shuhuilee
@@ -15,6 +17,7 @@ public class PM_duedate_edit extends javax.swing.JFrame {
      */
     public PM_duedate_edit() {
         initComponents();
+        setIconImage();
     }
 
     /**
@@ -34,6 +37,7 @@ public class PM_duedate_edit extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Edit duedate");
+        setMaximumSize(new java.awt.Dimension(500, 300));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -71,6 +75,7 @@ public class PM_duedate_edit extends javax.swing.JFrame {
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -111,6 +116,9 @@ public class PM_duedate_edit extends javax.swing.JFrame {
                 new PM_duedate_edit().setVisible(true);
             }
         });
+    }
+    private void setIconImage() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Sysco_icon_with_background.png")));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
