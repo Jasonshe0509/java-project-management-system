@@ -137,7 +137,7 @@ public class admin_register_lecturer extends javax.swing.JFrame {
         lecturer_email_title.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         lecturer_email_title.setForeground(new java.awt.Color(2, 50, 99));
         lecturer_email_title.setText("<html><div style = 'text-align: center; width:90px;'>Email Address</div></html>");
-        getContentPane().add(lecturer_email_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 140, -1, -1));
+        getContentPane().add(lecturer_email_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 140, 120, 50));
 
         lecturer_email.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         lecturer_email.addActionListener(new java.awt.event.ActionListener() {
@@ -215,7 +215,7 @@ public class admin_register_lecturer extends javax.swing.JFrame {
         background.setMaximumSize(new java.awt.Dimension(700, 580));
         background.setMinimumSize(new java.awt.Dimension(700, 580));
         background.setPreferredSize(new java.awt.Dimension(700, 580));
-        getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 550));
+        getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, -1));
 
         pack();
         setLocationRelativeTo(null);
@@ -279,7 +279,7 @@ public class admin_register_lecturer extends javax.swing.JFrame {
         });
     }
     private void setIconImage() {
-        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Sysco_icon.png")));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Sysco_icon_with_background.png")));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
