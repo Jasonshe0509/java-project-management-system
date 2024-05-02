@@ -104,7 +104,10 @@ com\mycompany\projectmanagementsystem\admin_student_management$1.class
 com\mycompany\projectmanagementsystem\PM_ec_approvement$1.class
 com\mycompany\projectmanagementsystem\LecturerNotiPopUp.class
 com\mycompany\projectmanagementsystem\admin_ec_details.class
+com\mycompany\projectmanagementsystem\PM_RMCP_page$5.class
 com\mycompany\projectmanagementsystem\LecturerIntakePage$3.class
+com\mycompany\projectmanagementsystem\PM_cp1_page$5.class
+com\mycompany\projectmanagementsystem\PM_cp2_page$5.class
 com\mycompany\projectmanagementsystem\admin_student_management.class
 com\mycompany\projectmanagementsystem\StudentEcForm$3.class
 com\mycompany\projectmanagementsystem\LecturerReportGrading$2.class
@@ -147,6 +150,7 @@ com\mycompany\projectmanagementsystem\lect_PresentationPanelAction.class
 com\mycompany\projectmanagementsystem\PM_internship_page$5.class
 com\mycompany\projectmanagementsystem\LecturerPresentationRequest$1.class
 com\mycompany\projectmanagementsystem\PM_investigation_page$3.class
+com\mycompany\projectmanagementsystem\LecturerCommunication$1.class
 com\mycompany\projectmanagementsystem\PM_cp2_page$4.class
 com\mycompany\projectmanagementsystem\LecturerIntakePage$4.class
 com\mycompany\projectmanagementsystem\StudentEcForm$2.class
@@ -158,7 +162,9 @@ com\mycompany\projectmanagementsystem\LecturerProfile$5.class
 com\mycompany\projectmanagementsystem\admin_register_intake$1.class
 com\mycompany\projectmanagementsystem\admin_student$2.class
 com\mycompany\projectmanagementsystem\LecturerProfile.class
+com\mycompany\projectmanagementsystem\ProjectManagerPage$6.class
 com\mycompany\projectmanagementsystem\admin_lecturer$5.class
+com\mycompany\projectmanagementsystem\LecturerCommunication.class
 com\mycompany\projectmanagementsystem\StudentAssessmentDetailPage$5.class
 com\mycompany\projectmanagementsystem\admin_student_management$3.class
 com\mycompany\projectmanagementsystem\PM_cp2_page.class
