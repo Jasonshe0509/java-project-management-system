@@ -24,6 +24,7 @@ com\mycompany\projectmanagementsystem\ProjectManagerPage$7.class
 com\mycompany\projectmanagementsystem\LecturerDashboardPage$1.class
 com\mycompany\projectmanagementsystem\LecturerPeopleProfile$2.class
 com\mycompany\projectmanagementsystem\admin_lecturer$3.class
+com\mycompany\projectmanagementsystem\admin_register_schoolwiselist.class
 com\mycompany\projectmanagementsystem\admin_student$4.class
 com\mycompany\projectmanagementsystem\admin_modify_studentrecord$4.class
 com\mycompany\projectmanagementsystem\LecturerComm_CreateDiscussion$2.class
@@ -35,6 +36,7 @@ com\mycompany\projectmanagementsystem\StudentProfilePage$5.class
 com\mycompany\projectmanagementsystem\PM_cp1_page.class
 com\mycompany\projectmanagementsystem\lect_PresentationPanelAction$2.class
 com\mycompany\projectmanagementsystem\PM_investigation_page$1.class
+com\mycompany\projectmanagementsystem\admin_register_schoolwiselist$1.class
 com\mycompany\projectmanagementsystem\admin_view_studentrecord$3.class
 com\mycompany\projectmanagementsystem\PM_profile_page$5.class
 com\mycompany\projectmanagementsystem\lect_ReportPanelAction$rPanelActionRenderer.class
@@ -52,6 +54,7 @@ com\mycompany\projectmanagementsystem\admin_ec_record.class
 com\mycompany\projectmanagementsystem\StudentEcForm$1.class
 com\mycompany\projectmanagementsystem\admin_student$3.class
 com\mycompany\projectmanagementsystem\admin_ec_record$1.class
+com\mycompany\projectmanagementsystem\admin_register_schoolwiselist$2.class
 com\mycompany\projectmanagementsystem\LecturerPresentationRequest.class
 com\mycompany\projectmanagementsystem\admin_student$5.class
 com\mycompany\projectmanagementsystem\PM_cp2_page$4.class
