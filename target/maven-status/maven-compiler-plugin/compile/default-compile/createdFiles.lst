@@ -5,6 +5,7 @@ com\mycompany\projectmanagementsystem\StudentCreateNewDiscussionPage.class
 com\mycompany\projectmanagementsystem\admin_ec_details$1.class
 com\mycompany\projectmanagementsystem\admin_view_studentrecord$2.class
 com\mycompany\projectmanagementsystem\LecturerPresentationFeedback$1.class
+com\mycompany\projectmanagementsystem\StudentCreateNewMessagePage$1.class
 com\mycompany\projectmanagementsystem\ForgetPasswordPage.class
 com\mycompany\projectmanagementsystem\PM_register_assessment_create.class
 com\mycompany\projectmanagementsystem\admin_modify_studentrecord$12.class
@@ -189,6 +190,7 @@ com\mycompany\projectmanagementsystem\PM_register_assessment_create$4.class
 com\mycompany\projectmanagementsystem\PM_ec_approvement.class
 com\mycompany\projectmanagementsystem\PM_RMCP_page$3.class
 com\mycompany\projectmanagementsystem\StudentAssessmentDetailPage$2.class
+com\mycompany\projectmanagementsystem\StudentCreateNewMessagePage.class
 com\mycompany\projectmanagementsystem\PM_cp1_page$1.class
 com\mycompany\projectmanagementsystem\PM_assessment_edit$2.class
 com\mycompany\projectmanagementsystem\LecturerProfile$1.class
@@ -244,6 +246,7 @@ com\mycompany\projectmanagementsystem\StudentEcForm$4.class
 com\mycompany\projectmanagementsystem\StudentAssessmentDetailPage.class
 com\mycompany\projectmanagementsystem\PM_cp1_page$4.class
 com\mycompany\projectmanagementsystem\LecturerPeopleProfile.class
+com\mycompany\projectmanagementsystem\StudentCreateNewMessagePage$2.class
 com\mycompany\projectmanagementsystem\admin_modify_lecturerrecord$3.class
 com\mycompany\projectmanagementsystem\admin_lecturer.class
 com\mycompany\projectmanagementsystem\StudentNotificationPage$1.class
