@@ -4,6 +4,7 @@
  */
 package com.mycompany.projectmanagementsystem;
 
+import java.awt.Toolkit;
 import javax.swing.JPanel;
 
 /**
@@ -15,6 +16,7 @@ public class LecturerCommunication extends javax.swing.JFrame {
     
     public LecturerCommunication() {
         initComponents();
+        setIconImage();
     }
 
     @SuppressWarnings("unchecked")
@@ -40,9 +42,9 @@ public class LecturerCommunication extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Lecturer Communication");
         setMaximumSize(new java.awt.Dimension(920, 500));
         setMinimumSize(new java.awt.Dimension(920, 500));
-        setPreferredSize(new java.awt.Dimension(920, 500));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -255,6 +257,7 @@ public class LecturerCommunication extends javax.swing.JFrame {
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 500));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     /**
@@ -298,6 +301,9 @@ public class LecturerCommunication extends javax.swing.JFrame {
 
     public void setjPanel1(JPanel jPanel1) {
         this.jPanel1 = jPanel1;
+    }
+    private void setIconImage() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Sysco_icon_with_background.png")));
     }
     
     
