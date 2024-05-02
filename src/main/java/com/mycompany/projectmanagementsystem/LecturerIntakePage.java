@@ -158,6 +158,7 @@ public class LecturerIntakePage extends javax.swing.JFrame {
 
         jTabbedPane1.setBackground(new java.awt.Color(217, 217, 217));
         jTabbedPane1.setForeground(new java.awt.Color(2, 50, 99));
+        jTabbedPane1.setToolTipText("");
         jTabbedPane1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jTabbedPane1.setMaximumSize(new java.awt.Dimension(920, 500));
         jTabbedPane1.setMinimumSize(new java.awt.Dimension(920, 500));
@@ -770,6 +771,7 @@ public class LecturerIntakePage extends javax.swing.JFrame {
         jTabbedPane1.addTab("People", jScrollPane4);
 
         getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 920, 500));
+        jTabbedPane1.getAccessibleContext().setAccessibleName("Peope");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setMaximumSize(new java.awt.Dimension(1000, 73));
