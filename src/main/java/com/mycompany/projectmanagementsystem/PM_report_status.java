@@ -4,6 +4,8 @@
  */
 package com.mycompany.projectmanagementsystem;
 
+import java.awt.Toolkit;
+
 /**
  *
  * @author shuhuilee
@@ -15,6 +17,7 @@ public class PM_report_status extends javax.swing.JFrame {
      */
     public PM_report_status() {
         initComponents();
+        setIconImage();
     }
 
     /**
@@ -126,6 +129,9 @@ public class PM_report_status extends javax.swing.JFrame {
                 new PM_report_status().setVisible(true);
             }
         });
+    }
+    private void setIconImage() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Sysco_icon_with_background.png")));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
