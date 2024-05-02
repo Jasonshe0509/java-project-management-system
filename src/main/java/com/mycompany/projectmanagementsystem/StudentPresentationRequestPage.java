@@ -10,12 +10,12 @@ import java.awt.Toolkit;
  *
  * @author ASUS
  */
-public class StudentSubmissionPage extends javax.swing.JFrame {
+public class StudentPresentationRequestPage extends javax.swing.JFrame {
 
     /**
-     * Creates new form StudentSubmissionPage
+     * Creates new form StudentPresentationRequestPage
      */
-    public StudentSubmissionPage() {
+    public StudentPresentationRequestPage() {
         initComponents();
         setIconImage();
     }
@@ -36,18 +36,19 @@ public class StudentSubmissionPage extends javax.swing.JFrame {
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Student Submission");
+        setTitle("Student Presentation Request");
         setMaximumSize(new java.awt.Dimension(500, 300));
         setMinimumSize(new java.awt.Dimension(500, 300));
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         email.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         email.setForeground(new java.awt.Color(2, 50, 99));
-        email.setText("Moodle Link:");
+        email.setText("Presentation Date:");
         email.setMaximumSize(new java.awt.Dimension(78, 36));
         email.setMinimumSize(new java.awt.Dimension(78, 36));
         email.setPreferredSize(new java.awt.Dimension(78, 36));
-        getContentPane().add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 140, -1));
+        getContentPane().add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 160, -1));
 
         emailField.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         emailField.setMaximumSize(new java.awt.Dimension(335, 40));
@@ -62,8 +63,8 @@ public class StudentSubmissionPage extends javax.swing.JFrame {
 
         admin_register_intake_title.setFont(new java.awt.Font("Bell MT", 1, 24)); // NOI18N
         admin_register_intake_title.setForeground(new java.awt.Color(2, 50, 99));
-        admin_register_intake_title.setText("Moodle Link Submission");
-        getContentPane().add(admin_register_intake_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 30, -1, -1));
+        admin_register_intake_title.setText("Presentation Request");
+        getContentPane().add(admin_register_intake_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 30, -1, -1));
 
         jButton1.setBackground(new java.awt.Color(27, 61, 96));
         jButton1.setFont(new java.awt.Font("Bell MT", 1, 19)); // NOI18N
@@ -103,26 +104,27 @@ public class StudentSubmissionPage extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(StudentSubmissionPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(StudentPresentationRequestPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(StudentSubmissionPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(StudentPresentationRequestPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(StudentSubmissionPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(StudentPresentationRequestPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(StudentSubmissionPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(StudentPresentationRequestPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new StudentSubmissionPage().setVisible(true);
+                new StudentPresentationRequestPage().setVisible(true);
             }
         });
     }
     private void setIconImage() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Sysco_icon_with_background.png")));
     }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel admin_register_intake_title;
     private javax.swing.JLabel background;
