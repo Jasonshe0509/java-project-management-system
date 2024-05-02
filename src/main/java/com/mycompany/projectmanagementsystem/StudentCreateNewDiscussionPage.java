@@ -17,6 +17,7 @@ public class StudentCreateNewDiscussionPage extends javax.swing.JFrame {
      */
     public StudentCreateNewDiscussionPage() {
         initComponents();
+        setIconImage();
     }
 
     /**
