@@ -44,6 +44,7 @@ public class admin_view_lec_details extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("View Lecturer Record");
+        setMaximumSize(new java.awt.Dimension(700, 580));
         setMinimumSize(new java.awt.Dimension(700, 580));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -282,7 +283,7 @@ public class admin_view_lec_details extends javax.swing.JFrame {
         });
     }
         private void setIconImage() {
-        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Sysco_icon.png")));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Sysco_icon_with_background.png")));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
