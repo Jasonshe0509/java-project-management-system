@@ -1,5 +1,5 @@
-School of Foundation,SF
-School of Computing,SC
-School of Business,SB
-School of Engineering,SOE
-School of General Studies,SGS
+School of Foundation
+School of Computing
+School of Business
+School of Engineering
+School of General Studies
