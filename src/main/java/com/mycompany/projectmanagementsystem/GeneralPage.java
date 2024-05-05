@@ -5,10 +5,13 @@
 package com.mycompany.projectmanagementsystem;
 
 import java.awt.Toolkit;
+import com.mycompany.projectmanagementsystem.FileManagement.FileHandler;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
- * 
+ *
  */
 public class GeneralPage extends javax.swing.JFrame {
 
@@ -18,6 +21,25 @@ public class GeneralPage extends javax.swing.JFrame {
     public GeneralPage() {
         initComponents();
         setIconImage();
+        //write file
+//        String schoolName = "School of General Studies";
+//        String schoolCode = "SGS";
+//        String record = schoolName +","+schoolCode;
+//        FileHandler.writeFile("school_wise.txt", record);
+        //modify file
+//        List<String> data = FileHandler.readFile("school_wise.txt");
+//        ArrayList<String> array_list = new ArrayList<>();
+//        for (String line : data) {
+//            String[]list = line.split(",");
+//            if(schoolCode.equals(list[1])){
+//                list[1] = "SOE";
+//                line = String.join(",", list);
+//                array_list.add(line);
+//            }else{
+//                array_list.add(line);
+//            }
+//        }
+//        FileHandler.modifyFileData("school_wise.txt", array_list);
     }
 
     /**
@@ -131,13 +153,14 @@ public class GeneralPage extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-        
+
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
             new GeneralPage().setVisible(true);
         });
     }
+
     private void setIconImage() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Sysco_icon_with_background.png")));
     }
@@ -150,6 +173,5 @@ public class GeneralPage extends javax.swing.JFrame {
     private javax.swing.JLabel logo;
     private javax.swing.JLabel side_bar;
     // End of variables declaration//GEN-END:variables
-
 
 }
