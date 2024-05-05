@@ -5,7 +5,8 @@
 package com.mycompany.projectmanagementsystem;
 
 import java.awt.Toolkit;
-import com.mycompany.projectmanagementsystem.FileManagement.FileHandler;
+import com.mycompany.projectmanagementsystem.GeneralFunction.FileHandler;
+import com.mycompany.projectmanagementsystem.GeneralFunction.IDGenerator;
 import java.util.ArrayList;
 import java.util.List;
 
