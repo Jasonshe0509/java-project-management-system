@@ -80,9 +80,15 @@ public class LoginPage extends javax.swing.JFrame {
         forgetPassword.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         forgetPassword.setForeground(new java.awt.Color(2, 50, 99));
         forgetPassword.setText("Forget Password?");
+        forgetPassword.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         forgetPassword.setMaximumSize(new java.awt.Dimension(78, 22));
         forgetPassword.setMinimumSize(new java.awt.Dimension(78, 22));
         forgetPassword.setPreferredSize(new java.awt.Dimension(78, 22));
+        forgetPassword.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                forgetPasswordMouseClicked(evt);
+            }
+        });
         jPanel1.add(forgetPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(443, 197, 150, -1));
 
         password.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
@@ -197,6 +203,12 @@ public class LoginPage extends javax.swing.JFrame {
     private void showPasswordTickBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showPasswordTickBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_showPasswordTickBoxActionPerformed
+
+    private void forgetPasswordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_forgetPasswordMouseClicked
+        ForgetPasswordPage forgetPassword = new ForgetPasswordPage();
+        forgetPassword.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_forgetPasswordMouseClicked
 
     /**
      * @param args the command line arguments

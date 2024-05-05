@@ -31,7 +31,7 @@ public class GeneralPage extends javax.swing.JFrame {
 //        List<String> data = FileHandler.readFile("school_wise.txt");
 //        ArrayList<String> array_list = new ArrayList<>();
 //        for (String line : data) {
-//            String[]list = line.split(",");
+//            String[]list = line.split(";");
 //            if(schoolCode.equals(list[1])){
 //                list[1] = "SOE";
 //                line = String.join(",", list);
@@ -62,7 +62,6 @@ public class GeneralPage extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("General Homepage");
-        setMaximumSize(new java.awt.Dimension(1000, 700));
         setMinimumSize(new java.awt.Dimension(1000, 700));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -71,6 +70,7 @@ public class GeneralPage extends javax.swing.JFrame {
         NextButton.setFont(new java.awt.Font("Bell MT", 1, 28)); // NOI18N
         NextButton.setForeground(new java.awt.Color(255, 255, 255));
         NextButton.setText("Next");
+        NextButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         NextButton.setMaximumSize(new java.awt.Dimension(131, 52));
         NextButton.setMinimumSize(new java.awt.Dimension(131, 52));
         NextButton.setPreferredSize(new java.awt.Dimension(131, 52));
@@ -124,7 +124,9 @@ public class GeneralPage extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void NextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NextButtonActionPerformed
-        // TODO add your handling code here:
+        LoginPage login = new LoginPage();
+        login.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_NextButtonActionPerformed
 
     /**

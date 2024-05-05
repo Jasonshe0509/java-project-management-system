@@ -20,7 +20,7 @@ public class IDGenerator {
         String[] recList;
         String oldNo, newID, code = "";
         try (BufferedReader br = new BufferedReader(new FileReader("serial.txt"))) {
-            recList = br.readLine().trim().split(",");
+            recList = br.readLine().trim().split(";");
             switch (IDType.toUpperCase()) {
                 //User ID
                 case "TP" -> {
@@ -98,7 +98,7 @@ public class IDGenerator {
             br.close();
             //Rewrite IDlist to ID.txt
             BufferedWriter bw = new BufferedWriter(new FileWriter("serial.txt"));
-            bw.write(String.join(",", recList) + "\n");
+            bw.write(String.join(";", recList) + "\n");
             bw.close();
         } catch (IOException e) {
             e.printStackTrace();
