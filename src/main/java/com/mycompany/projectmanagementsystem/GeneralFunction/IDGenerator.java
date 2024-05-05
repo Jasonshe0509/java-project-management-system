@@ -18,7 +18,7 @@ public class IDGenerator {
 
     public static String genID(String IDType) {
         String[] recList;
-        String oldNo, newID, code = "";
+        String oldNo, newID = null , code;
         try (BufferedReader br = new BufferedReader(new FileReader("serial.txt"))) {
             recList = br.readLine().trim().split(";");
             switch (IDType.toUpperCase()) {
@@ -103,7 +103,7 @@ public class IDGenerator {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return null;
+        return newID;
     }
 
     public static String joinID(String oldNo, String code) {

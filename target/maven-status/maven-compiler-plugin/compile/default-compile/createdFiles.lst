@@ -241,6 +241,7 @@ com\mycompany\projectmanagementsystem\admin_lecturer$5.class
 com\mycompany\projectmanagementsystem\PM_report_status$2.class
 com\mycompany\projectmanagementsystem\StudentAssessmentDetailPage$5.class
 com\mycompany\projectmanagementsystem\admin_view_lec_details$3.class
+com\mycompany\projectmanagementsystem\Notification\NotificationController.class
 com\mycompany\projectmanagementsystem\admin_student_management$3.class
 com\mycompany\projectmanagementsystem\PM_cp2_page.class
 com\mycompany\projectmanagementsystem\PM_notification_page.class
@@ -281,6 +282,7 @@ com\mycompany\projectmanagementsystem\PM_investigation_page.class
 com\mycompany\projectmanagementsystem\PM_FYP_page$5.class
 com\mycompany\projectmanagementsystem\admin_student_management$2.class
 com\mycompany\projectmanagementsystem\LoginPage$2.class
+com\mycompany\projectmanagementsystem\Notification\Notification.class
 com\mycompany\projectmanagementsystem\User\ProjectManager.class
 com\mycompany\projectmanagementsystem\StudentSubmissionPage$1.class
 com\mycompany\projectmanagementsystem\GeneralPage.class
