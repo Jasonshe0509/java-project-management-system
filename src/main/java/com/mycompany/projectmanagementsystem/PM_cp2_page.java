@@ -5,6 +5,7 @@
 package com.mycompany.projectmanagementsystem;
 
 import java.awt.Toolkit;
+import java.awt.Color;
 import javax.swing.table.TableColumnModel;
 
 /**
@@ -28,13 +29,6 @@ public class PM_cp2_page extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        pm_logo_sysco = new javax.swing.JLabel();
-        pm_ec_approvement = new javax.swing.JLabel();
-        pm_report_status = new javax.swing.JLabel();
-        pm_notification = new javax.swing.JLabel();
-        pm_profile = new javax.swing.JLabel();
-        pm_logout = new javax.swing.JLabel();
         pm_cp2_report = new javax.swing.JLabel();
         pm_cp2_search = new javax.swing.JTextField();
         jComboBox1 = new javax.swing.JComboBox<>();
@@ -42,74 +36,19 @@ public class PM_cp2_page extends javax.swing.JFrame {
         pm_cp2_table = new javax.swing.JTable();
         pm_cp2_create_button1 = new javax.swing.JButton();
         pm_cp2_back_button2 = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        pm_logo_sysco = new javax.swing.JLabel();
+        pm_ec_approvement = new javax.swing.JLabel();
+        pm_notification = new javax.swing.JLabel();
+        pm_profile = new javax.swing.JLabel();
+        pm_logout = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Project Manager CP2");
-        setMaximumSize(new java.awt.Dimension(1000, 700));
         setMinimumSize(new java.awt.Dimension(1000, 700));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setMaximumSize(new java.awt.Dimension(1000, 73));
-        jPanel1.setMinimumSize(new java.awt.Dimension(1000, 73));
-        jPanel1.setPreferredSize(new java.awt.Dimension(1000, 73));
-
-        pm_logo_sysco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Sysco_logo.png"))); // NOI18N
-
-        pm_ec_approvement.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        pm_ec_approvement.setText("EC Approvement");
-
-        pm_report_status.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        pm_report_status.setText("Report Status");
-
-        pm_notification.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        pm_notification.setText("Notification");
-
-        pm_profile.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        pm_profile.setText("Profile");
-
-        pm_logout.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        pm_logout.setText("Log out");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(pm_logo_sysco)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 213, Short.MAX_VALUE)
-                .addComponent(pm_ec_approvement)
-                .addGap(18, 18, 18)
-                .addComponent(pm_report_status)
-                .addGap(18, 18, 18)
-                .addComponent(pm_notification)
-                .addGap(18, 18, 18)
-                .addComponent(pm_profile)
-                .addGap(18, 18, 18)
-                .addComponent(pm_logout)
-                .addGap(48, 48, 48))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(pm_logout)
-                            .addComponent(pm_profile)
-                            .addComponent(pm_notification)
-                            .addComponent(pm_report_status)
-                            .addComponent(pm_ec_approvement)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(pm_logo_sysco)))
-                .addContainerGap(17, Short.MAX_VALUE))
-        );
-
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pm_cp2_report.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
         pm_cp2_report.setText("Capstone Project 2");
@@ -193,6 +132,67 @@ public class PM_cp2_page extends javax.swing.JFrame {
             }
         });
         getContentPane().add(pm_cp2_back_button2, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 140, -1, -1));
+
+        jPanel1.setBackground(new Color(255, 255, 255, 90));
+        jPanel1.setMaximumSize(new java.awt.Dimension(1000, 73));
+        jPanel1.setMinimumSize(new java.awt.Dimension(1000, 73));
+
+        pm_logo_sysco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Sysco_logo.png"))); // NOI18N
+
+        pm_ec_approvement.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
+        pm_ec_approvement.setForeground(new java.awt.Color(2, 50, 99));
+        pm_ec_approvement.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pm_ec_approvement.setText("EC Approvement");
+
+        pm_notification.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
+        pm_notification.setForeground(new java.awt.Color(2, 50, 99));
+        pm_notification.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pm_notification.setText("Notification");
+
+        pm_profile.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
+        pm_profile.setForeground(new java.awt.Color(2, 50, 99));
+        pm_profile.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pm_profile.setText("Profile");
+
+        pm_logout.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
+        pm_logout.setForeground(new java.awt.Color(2, 50, 99));
+        pm_logout.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pm_logout.setText("Log Out");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(pm_logo_sysco)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 356, Short.MAX_VALUE)
+                .addComponent(pm_ec_approvement)
+                .addGap(18, 18, 18)
+                .addComponent(pm_notification)
+                .addGap(18, 18, 18)
+                .addComponent(pm_profile)
+                .addGap(26, 26, 26)
+                .addComponent(pm_logout)
+                .addGap(40, 40, 40))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(pm_logout)
+                            .addComponent(pm_profile)
+                            .addComponent(pm_notification)
+                            .addComponent(pm_ec_approvement)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(pm_logo_sysco)))
+                .addContainerGap(17, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main_background.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -289,6 +289,5 @@ public class PM_cp2_page extends javax.swing.JFrame {
     private javax.swing.JLabel pm_logout;
     private javax.swing.JLabel pm_notification;
     private javax.swing.JLabel pm_profile;
-    private javax.swing.JLabel pm_report_status;
     // End of variables declaration//GEN-END:variables
 }
