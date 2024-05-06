@@ -141,13 +141,13 @@ public class LecturerIntakePage extends javax.swing.JFrame {
         jLabel26 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jPanel18 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -773,7 +773,14 @@ public class LecturerIntakePage extends javax.swing.JFrame {
         getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 920, 490));
         jTabbedPane1.getAccessibleContext().setAccessibleName("Peope");
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel7.setFont(new java.awt.Font("Bell MT", 1, 32)); // NOI18N
+        jLabel7.setText("Intake");
+        jLabel7.setMaximumSize(new java.awt.Dimension(275, 47));
+        jLabel7.setMinimumSize(new java.awt.Dimension(275, 47));
+        jLabel7.setPreferredSize(new java.awt.Dimension(275, 47));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 275, 47));
+
+        jPanel1.setBackground(new Color(255, 255, 255, 90));
         jPanel1.setMaximumSize(new java.awt.Dimension(1000, 73));
         jPanel1.setMinimumSize(new java.awt.Dimension(1000, 73));
 
@@ -784,14 +791,17 @@ public class LecturerIntakePage extends javax.swing.JFrame {
         jLabel2.setPreferredSize(new java.awt.Dimension(184, 42));
 
         jLabel3.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(2, 50, 99));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Log Out");
 
         jLabel4.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(2, 50, 99));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Profile");
 
         jLabel5.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(2, 50, 99));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Notification");
         jLabel5.setMaximumSize(new java.awt.Dimension(37, 21));
@@ -799,6 +809,7 @@ public class LecturerIntakePage extends javax.swing.JFrame {
         jLabel5.setPreferredSize(new java.awt.Dimension(37, 21));
 
         jLabel6.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(2, 50, 99));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Summary Report");
         jLabel6.setMaximumSize(new java.awt.Dimension(37, 21));
@@ -836,13 +847,6 @@ public class LecturerIntakePage extends javax.swing.JFrame {
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, -1));
-
-        jLabel7.setFont(new java.awt.Font("Bell MT", 1, 32)); // NOI18N
-        jLabel7.setText("Intake");
-        jLabel7.setMaximumSize(new java.awt.Dimension(275, 47));
-        jLabel7.setMinimumSize(new java.awt.Dimension(275, 47));
-        jLabel7.setPreferredSize(new java.awt.Dimension(275, 47));
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 275, 47));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main_background.png"))); // NOI18N
         jLabel1.setText("background");
