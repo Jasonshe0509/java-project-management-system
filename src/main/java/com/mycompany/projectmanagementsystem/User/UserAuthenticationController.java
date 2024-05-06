@@ -8,7 +8,7 @@ package com.mycompany.projectmanagementsystem.User;
  *
  * @author ASUS
  */
-public abstract class UserAuthentication {
+public abstract class UserAuthenticationController {
     public abstract boolean userForgetPassword(String[] userInput);
     public abstract String userLogin(String[] userInput);
     public abstract void userLogout();

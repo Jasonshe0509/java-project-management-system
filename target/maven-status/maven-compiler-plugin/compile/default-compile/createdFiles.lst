@@ -198,10 +198,10 @@ com\mycompany\projectmanagementsystem\PM_register_assessment_create$4.class
 com\mycompany\projectmanagementsystem\PM_RMCP_page$3.class
 com\mycompany\projectmanagementsystem\StudentAssessmentDetailPage$2.class
 com\mycompany\projectmanagementsystem\StudentCreateNewMessagePage.class
-com\mycompany\projectmanagementsystem\User\UserAuthentication.class
 com\mycompany\projectmanagementsystem\PM_cp1_page$1.class
 com\mycompany\projectmanagementsystem\PM_assessment_edit$2.class
 com\mycompany\projectmanagementsystem\LecturerProfile$1.class
+com\mycompany\projectmanagementsystem\User\UserAuthenticationController.class
 com\mycompany\projectmanagementsystem\PM_internship_page$4.class
 com\mycompany\projectmanagementsystem\ForgetPasswordPage$5.class
 com\mycompany\projectmanagementsystem\LecturerDashboardPage$3.class

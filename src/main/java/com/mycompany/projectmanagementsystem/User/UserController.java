@@ -18,7 +18,7 @@ import javax.swing.JOptionPane;
  *
  * @author ASUS
  */
-public class UserController extends UserAuthentication {
+public class UserController extends UserAuthenticationController {
 
     @Override
     public boolean userForgetPassword(String[] userInput) {
