@@ -91,7 +91,6 @@ com\mycompany\projectmanagementsystem\ForgetPasswordPage$3.class
 com\mycompany\projectmanagementsystem\PM_RMCP_page$1.class
 com\mycompany\projectmanagementsystem\lect_ReportPanelAction.class
 com\mycompany\projectmanagementsystem\PM_internship_page$2.class
-com\mycompany\projectmanagementsystem\User\User$Role.class
 com\mycompany\projectmanagementsystem\StudentDashboardPage$1.class
 com\mycompany\projectmanagementsystem\admin_view_studentrecord$9.class
 com\mycompany\projectmanagementsystem\admin_modify_lecturerrecord$8.class

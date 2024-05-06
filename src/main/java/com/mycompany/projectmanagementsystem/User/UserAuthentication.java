@@ -10,6 +10,6 @@ package com.mycompany.projectmanagementsystem.User;
  */
 public abstract class UserAuthentication {
     public abstract boolean userForgetPassword(String[] userInput);
-    public abstract void userLogin();
+    public abstract String userLogin(String[] userInput);
     public abstract void userLogout();
 }

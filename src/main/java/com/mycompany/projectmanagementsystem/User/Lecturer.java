@@ -12,7 +12,7 @@ import java.util.Date;
  */
 public class Lecturer extends User {
     private String schoolWise;
-    public Lecturer(String userID, String name, String gender, String phoneNumber, Date dateOfBirth, String address, String identityNumber, String email, String password, Role role, String schoolWise) {
+    public Lecturer(String userID, String name, String gender, String phoneNumber, Date dateOfBirth, String address, String identityNumber, String email, String password, String role, String schoolWise) {
         super(userID, name, gender, phoneNumber, dateOfBirth, address, identityNumber, email, password, role);
         this.schoolWise = schoolWise;
     }
