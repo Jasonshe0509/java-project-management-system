@@ -11,6 +11,7 @@ import java.util.Date;
  * @author ASUS
  */
 public class User {
+
     private String userID;
     private String name;
     private String gender;
@@ -20,15 +21,9 @@ public class User {
     private String identityNumber;
     private String email;
     private String password;
-    private Role role;
+    private String role;
 
-    public enum Role {
-        admin,
-        project_manager,
-        lecturer,
-        student
-    }
-    public User(String userID, String name, String gender, String phoneNumber, Date dateOfBirth, String address, String identityNumber, String email, String password, Role role) {
+    public User(String userID, String name, String gender, String phoneNumber, Date dateOfBirth, String address, String identityNumber, String email, String password, String role) {
         this.userID = userID;
         this.name = name;
         this.gender = gender;
@@ -113,11 +108,11 @@ public class User {
         this.password = password;
     }
 
-    public Role getRole() {
+    public String getRole() {
         return role;
     }
 
-    public void setRole(Role role) {
+    public void setRole(String role) {
         this.role = role;
     }
 }

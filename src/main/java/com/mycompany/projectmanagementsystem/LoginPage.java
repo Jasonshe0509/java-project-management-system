@@ -4,9 +4,10 @@
  */
 package com.mycompany.projectmanagementsystem;
 
+import com.mycompany.projectmanagementsystem.User.UserController;
 import java.awt.Toolkit;
 import java.awt.Color;
-
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -62,11 +63,6 @@ public class LoginPage extends javax.swing.JFrame {
         emailField.setMaximumSize(new java.awt.Dimension(335, 40));
         emailField.setMinimumSize(new java.awt.Dimension(335, 40));
         emailField.setPreferredSize(new java.awt.Dimension(335, 40));
-        emailField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                emailFieldActionPerformed(evt);
-            }
-        });
         jPanel1.add(emailField, new org.netbeans.lib.awtextra.AbsoluteConstraints(263, 47, -1, -1));
 
         email.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
@@ -103,11 +99,6 @@ public class LoginPage extends javax.swing.JFrame {
         passwordField.setMaximumSize(new java.awt.Dimension(335, 40));
         passwordField.setMinimumSize(new java.awt.Dimension(335, 40));
         passwordField.setPreferredSize(new java.awt.Dimension(335, 40));
-        passwordField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordFieldActionPerformed(evt);
-            }
-        });
         jPanel1.add(passwordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(263, 127, -1, -1));
 
         backButton.setBackground(new java.awt.Color(27, 61, 96));
@@ -117,6 +108,11 @@ public class LoginPage extends javax.swing.JFrame {
         backButton.setMaximumSize(new java.awt.Dimension(120, 45));
         backButton.setMinimumSize(new java.awt.Dimension(120, 45));
         backButton.setPreferredSize(new java.awt.Dimension(120, 45));
+        backButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButtonActionPerformed(evt);
+            }
+        });
         jPanel1.add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(191, 301, -1, -1));
 
         loginButton.setBackground(new java.awt.Color(27, 61, 96));
@@ -126,6 +122,11 @@ public class LoginPage extends javax.swing.JFrame {
         loginButton.setMaximumSize(new java.awt.Dimension(120, 45));
         loginButton.setMinimumSize(new java.awt.Dimension(120, 45));
         loginButton.setPreferredSize(new java.awt.Dimension(120, 45));
+        loginButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginButtonActionPerformed(evt);
+            }
+        });
         jPanel1.add(loginButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(401, 301, -1, -1));
 
         showPasswordTickBox.setBackground(new java.awt.Color(255, 255, 255));
@@ -192,16 +193,12 @@ public class LoginPage extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_passwordFieldActionPerformed
-
-    private void emailFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_emailFieldActionPerformed
-
     private void showPasswordTickBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showPasswordTickBoxActionPerformed
-        // TODO add your handling code here:
+        if (showPasswordTickBox.isSelected()) {
+            passwordField.setEchoChar((char) 0);
+        } else {
+            passwordField.setEchoChar(('*'));
+        }
     }//GEN-LAST:event_showPasswordTickBoxActionPerformed
 
     private void forgetPasswordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_forgetPasswordMouseClicked
@@ -209,6 +206,42 @@ public class LoginPage extends javax.swing.JFrame {
         forgetPassword.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_forgetPasswordMouseClicked
+
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        GeneralPage general = new GeneralPage();
+        general.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_backButtonActionPerformed
+
+    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
+        String[] userInput = new String[2];
+        userInput[0] = emailField.getText();
+        userInput[1] = passwordField.getText();
+        UserController action = new UserController();
+        String role = action.userLogin(userInput);
+        if (role != null) {
+            JOptionPane.showMessageDialog(null, "Successfully login to the system");
+            switch (role) {
+                case "student" -> {
+                    StudentDashboardPage dashboard = new StudentDashboardPage();
+                    dashboard.setVisible(true);
+                }
+                case "admin" -> {
+                    admin_mainpage dashboard = new admin_mainpage();
+                    dashboard.setVisible(true);
+                }
+                case "lecturer" -> {
+                    LecturerDashboardPage dashboard = new LecturerDashboardPage();
+                    dashboard.setVisible(true);
+                }
+                case "project manager" -> {
+                    ProjectManagerPage dashboard = new ProjectManagerPage();
+                    dashboard.setVisible(true);
+                }
+            }
+            this.setVisible(false);
+        }
+    }//GEN-LAST:event_loginButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -242,6 +275,7 @@ public class LoginPage extends javax.swing.JFrame {
             new LoginPage().setVisible(true);
         });
     }
+
     private void setIconImage() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Sysco_icon_with_background.png")));
     }

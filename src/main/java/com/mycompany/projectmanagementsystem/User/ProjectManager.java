@@ -12,7 +12,7 @@ import java.util.Date;
  */
 public class ProjectManager extends Lecturer {
     
-    public ProjectManager(String userID, String name, String gender, String phoneNumber, Date dateOfBirth, String address, String identityNumber, String email, String password, Role role, String schoolWise) {
+    public ProjectManager(String userID, String name, String gender, String phoneNumber, Date dateOfBirth, String address, String identityNumber, String email, String password, String role, String schoolWise) {
         super(userID, name, gender, phoneNumber, dateOfBirth, address, identityNumber, email, password, role, schoolWise);
     }
     

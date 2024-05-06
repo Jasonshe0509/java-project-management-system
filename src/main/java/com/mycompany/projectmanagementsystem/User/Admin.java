@@ -12,7 +12,7 @@ import java.util.Date;
  */
 public class Admin extends User {
     
-    public Admin(String userID, String name, String gender, String phoneNumber, Date dateOfBirth, String address, String identityNumber, String email, String password, Role role) {
+    public Admin(String userID, String name, String gender, String phoneNumber, Date dateOfBirth, String address, String identityNumber, String email, String password, String role) {
         super(userID, name, gender, phoneNumber, dateOfBirth, address, identityNumber, email, password, role);
     }
     
