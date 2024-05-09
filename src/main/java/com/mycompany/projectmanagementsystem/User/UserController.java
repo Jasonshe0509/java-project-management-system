@@ -5,6 +5,8 @@
 package com.mycompany.projectmanagementsystem.User;
 
 import com.mycompany.projectmanagementsystem.GeneralFunction.FileHandler;
+import com.mycompany.projectmanagementsystem.GeneralFunction.SessionManager;
+import com.mycompany.projectmanagementsystem.LoginPage;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -56,8 +58,8 @@ public class UserController extends UserAuthenticationController {
     }
 
     @Override
-    public String userLogin(String[] userInput) {
-        String role = null;
+    public User userLogin(String[] userInput) {
+        User user = null;
         int ind = -1;
         if (UserValidator.validateUserInput(userInput)) {
             List<String> data = FileHandler.readFile("user.txt");
@@ -74,19 +76,18 @@ public class UserController extends UserAuthenticationController {
                     }
                     switch (list[9]) {
                         case "student" -> {
-                            Student student = new Student(list[0], list[1], list[2], list[3], date, list[5], list[6], list[7], list[8], list[9], list[10]);
+                            user = new Student(list[0], list[1], list[2], list[3], date, list[5], list[6], list[7], list[8], list[9], list[10]);
                         }
                         case "lecturer" -> {
-                            Lecturer lecturer = new Lecturer(list[0], list[1], list[2], list[3], date, list[5], list[6], list[7], list[8], list[9], list[10]);
+                            user = new Lecturer(list[0], list[1], list[2], list[3], date, list[5], list[6], list[7], list[8], list[9], list[10]);
                         }
                         case "project manager" -> {
-                            ProjectManager manager = new ProjectManager(list[0], list[1], list[2], list[3], date, list[5], list[6], list[7], list[8], list[9], list[10]);
+                            user = new ProjectManager(list[0], list[1], list[2], list[3], date, list[5], list[6], list[7], list[8], list[9], list[10]);
                         }
                         case "admin" -> {
-                            Admin admin = new Admin(list[0], list[1], list[2], list[3], date, list[5], list[6], list[7], list[8], list[9]);
+                            user = new Admin(list[0], list[1], list[2], list[3], date, list[5], list[6], list[7], list[8], list[9]);
                         }
                     }
-                    role = list[9];
                     ind = 1;
                     break;
                 }
@@ -97,13 +98,15 @@ public class UserController extends UserAuthenticationController {
         } else {
             JOptionPane.showMessageDialog(null, "Email and password cannot be null", "Message", JOptionPane.ERROR_MESSAGE);
         }
-        return role;
+        return user;
 
     }
 
     @Override
     public void userLogout() {
-
+        SessionManager.getInstance().clearSession();
+        LoginPage login = new LoginPage();
+        login.setVisible(true);
     }
 
     public void userCreate() {
