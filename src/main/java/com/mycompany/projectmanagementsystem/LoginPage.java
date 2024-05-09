@@ -4,6 +4,8 @@
  */
 package com.mycompany.projectmanagementsystem;
 
+import com.mycompany.projectmanagementsystem.GeneralFunction.SessionManager;
+import com.mycompany.projectmanagementsystem.User.User;
 import com.mycompany.projectmanagementsystem.User.UserController;
 import java.awt.Toolkit;
 import java.awt.Color;
@@ -218,10 +220,11 @@ public class LoginPage extends javax.swing.JFrame {
         userInput[0] = emailField.getText();
         userInput[1] = passwordField.getText();
         UserController action = new UserController();
-        String role = action.userLogin(userInput);
-        if (role != null) {
+        User user = action.userLogin(userInput);
+        if (user != null) {
+            SessionManager.getInstance().setCurrentUser(user);
             JOptionPane.showMessageDialog(null, "Successfully login to the system");
-            switch (role) {
+            switch (user.getRole()) {
                 case "student" -> {
                     StudentDashboardPage dashboard = new StudentDashboardPage();
                     dashboard.setVisible(true);

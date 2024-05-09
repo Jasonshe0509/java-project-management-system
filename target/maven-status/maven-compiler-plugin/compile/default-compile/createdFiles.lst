@@ -204,6 +204,7 @@ com\mycompany\projectmanagementsystem\LecturerProfile$1.class
 com\mycompany\projectmanagementsystem\User\UserAuthenticationController.class
 com\mycompany\projectmanagementsystem\PM_internship_page$4.class
 com\mycompany\projectmanagementsystem\ForgetPasswordPage$5.class
+com\mycompany\projectmanagementsystem\GeneralFunction\SessionManager.class
 com\mycompany\projectmanagementsystem\LecturerDashboardPage$3.class
 com\mycompany\projectmanagementsystem\admin_view_lec_details$5.class
 com\mycompany\projectmanagementsystem\LecturerSummaryReport.class
