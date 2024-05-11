@@ -217,6 +217,11 @@ public class StudentDashboardPage extends javax.swing.JFrame {
         studentProfile.setMaximumSize(new java.awt.Dimension(96, 73));
         studentProfile.setMinimumSize(new java.awt.Dimension(96, 73));
         studentProfile.setPreferredSize(new java.awt.Dimension(96, 73));
+        studentProfile.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                studentProfileMouseClicked(evt);
+            }
+        });
 
         studentLogout.setBackground(new Color(255, 255, 255, 0));
         studentLogout.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
@@ -283,6 +288,12 @@ public class StudentDashboardPage extends javax.swing.JFrame {
         UserController action = new UserController();
         action.userLogout();
     }//GEN-LAST:event_studentLogoutMouseClicked
+
+    private void studentProfileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_studentProfileMouseClicked
+        StudentProfilePage profile = new StudentProfilePage();
+        profile.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_studentProfileMouseClicked
 
     /**
      * @param args the command line arguments
