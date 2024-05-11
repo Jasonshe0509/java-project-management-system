@@ -26,4 +26,15 @@ public class UserValidator {
         String pattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*()#])[A-Za-z\\d@$!%*()#]{8,}$";
         return Pattern.matches(pattern, password);
     }
+    
+    public static boolean validateEmail(String email){
+        String pattern ="^[A-Za-z0-9._%+-]+@mail.agh.edu.my$";
+        return Pattern.matches(pattern, email);
+    }
+    
+    public static boolean validateContact(String contact){
+        // the contact number pattern is start with 01, after 3number must have a -, and after - will only have 7 to 8 number
+        String pattern ="^01[0-46-9]-[0-9]{7,8}$";
+        return Pattern.matches(pattern, contact);
+    }
 }

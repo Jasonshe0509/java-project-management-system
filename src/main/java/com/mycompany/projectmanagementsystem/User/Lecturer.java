@@ -11,9 +11,11 @@ import java.util.Date;
  * @author ASUS
  */
 public class Lecturer extends User {
+
     private String schoolWise;
-    public Lecturer(String userID, String name, String gender, String phoneNumber, Date dateOfBirth, String address, String identityNumber, String email, String password, String role, String schoolWise) {
-        super(userID, name, gender, phoneNumber, dateOfBirth, address, identityNumber, email, password, role);
+
+    public Lecturer(String userID, String name, String gender, String phoneNumber, Date dateOfBirth, String address, String identityNumber, String nationality, String email, String password, String role, String schoolWise) {
+        super(userID, name, gender, phoneNumber, dateOfBirth, address, identityNumber, nationality, email, password, role);
         this.schoolWise = schoolWise;
     }
 
@@ -24,5 +26,5 @@ public class Lecturer extends User {
     public void setSchoolWise(String schoolWise) {
         this.schoolWise = schoolWise;
     }
-    
+
 }

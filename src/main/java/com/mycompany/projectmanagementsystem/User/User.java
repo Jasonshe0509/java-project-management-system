@@ -19,11 +19,12 @@ public class User {
     private Date dateOfBirth;
     private String address;
     private String identityNumber;
+    private String nationality;
     private String email;
     private String password;
     private String role;
 
-    public User(String userID, String name, String gender, String phoneNumber, Date dateOfBirth, String address, String identityNumber, String email, String password, String role) {
+    public User(String userID, String name, String gender, String phoneNumber, Date dateOfBirth, String address, String identityNumber, String nationality, String email, String password, String role) {
         this.userID = userID;
         this.name = name;
         this.gender = gender;
@@ -31,6 +32,7 @@ public class User {
         this.dateOfBirth = dateOfBirth;
         this.address = address;
         this.identityNumber = identityNumber;
+        this.nationality = nationality;
         this.email = email;
         this.password = password;
         this.role = role;
@@ -115,4 +117,13 @@ public class User {
     public void setRole(String role) {
         this.role = role;
     }
+
+    public String getNationality() {
+        return nationality;
+    }
+
+    public void setNationality(String nationality) {
+        this.nationality = nationality;
+    }
+    
 }
