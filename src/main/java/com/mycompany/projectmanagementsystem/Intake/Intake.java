@@ -11,16 +11,16 @@ package com.mycompany.projectmanagementsystem.Intake;
 public class Intake {
     private String intakeCode;
     private String schoolWiseName;
-    private String levelCode;
-    private String courseCode;
+    private String educationLevel;
+    private String courseName;
     private String enrollYear;
-    private String enrollMonth;
+    private int enrollMonth;
 
-    public Intake(String intakeCode, String schoolWiseName, String levelCode, String courseCode, String enrollYear, String enrollMonth) {
+    public Intake(String intakeCode, String schoolWiseName, String educationLevel, String courseName, String enrollYear, int enrollMonth) {
         this.intakeCode = intakeCode;
         this.schoolWiseName = schoolWiseName;
-        this.levelCode = levelCode;
-        this.courseCode = courseCode;
+        this.educationLevel = educationLevel;
+        this.courseName = courseName;
         this.enrollYear = enrollYear;
         this.enrollMonth = enrollMonth;
     }
@@ -41,20 +41,20 @@ public class Intake {
         this.schoolWiseName = schoolWiseName;
     }
 
-    public String getLevelCode() {
-        return levelCode;
+    public String getEducationLevel() {
+        return educationLevel;
     }
 
-    public void setLevelCode(String levelCode) {
-        this.levelCode = levelCode;
+    public void setEducationLevel(String educationLevel) {
+        this.educationLevel = educationLevel;
     }
 
-    public String getCourseCode() {
-        return courseCode;
+    public String getCourseName() {
+        return courseName;
     }
 
-    public void setCourseCode(String courseCode) {
-        this.courseCode = courseCode;
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
     }
 
     public String getEnrollYear() {
@@ -65,13 +65,13 @@ public class Intake {
         this.enrollYear = enrollYear;
     }
 
-    public String getEnrollMonth() {
+    public int getEnrollMonth() {
         return enrollMonth;
     }
 
-    public void setEnrollMonth(String enrollMonth) {
+    public void setEnrollMonth(int enrollMonth) {
         this.enrollMonth = enrollMonth;
     }
-    
+
     
 }
