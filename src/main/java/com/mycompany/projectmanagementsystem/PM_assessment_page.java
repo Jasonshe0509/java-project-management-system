@@ -4,20 +4,107 @@
  */
 package com.mycompany.projectmanagementsystem;
 
+import com.mycompany.projectmanagementsystem.GeneralFunction.FileHandler;
+import com.mycompany.projectmanagementsystem.GeneralFunction.SessionManager;
+import com.mycompany.projectmanagementsystem.User.User;
 import java.awt.Toolkit;
 import java.awt.Color;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
 /**
  *
  * @author shuhuilee
  */
-public class PM_cp2_page extends javax.swing.JFrame {
+public class PM_assessment_page extends javax.swing.JFrame {
 
-    public PM_cp2_page() {
+    private final String assessmentType;
+    private final SessionManager sessionManager = SessionManager.getInstance();
+    User user = sessionManager.getCurrentUser();
+
+
+    /**
+     * Creates new form Internship
+     */
+    public PM_assessment_page(String assessmentType) {
+        this.assessmentType = assessmentType;
         initComponents();
         setIconImage();
         jComboBox1ActionPerformed(null); // Call to populate the JComboBox
+        readAssessmentFromFile();
+        assessmentType();
+    }
+
+    private void assessmentType() {
+        if (assessmentType.equalsIgnoreCase("internship_report")) {
+            pm_assessment.setText("Internship Report");
+        } else if (assessmentType.equalsIgnoreCase("fyp")) {
+            pm_assessment.setText("Final Year Project");
+        } else if (assessmentType.equalsIgnoreCase("cp1")) {
+            pm_assessment.setText("Capstone Project 1");
+        } else if (assessmentType.equalsIgnoreCase("cp2")) {
+            pm_assessment.setText("Capstone Project 2");
+        } else if (assessmentType.equalsIgnoreCase("rmcp")) {
+            pm_assessment.setText("Research Methodology for Capstone Project");
+        } else if (assessmentType.equalsIgnoreCase("investigation")) {
+            pm_assessment.setText("Investigation Report");
+        } else {
+            pm_assessment.setText("Unknown");
+        }
+    }
+
+    private String[] getSupervisorAndSecondMarkerNames(String supervisorId, String secondMarkerId) {
+        String[] names = new String[2];
+        String fileName = "user.txt";
+        List<String> data = FileHandler.readFile(fileName);
+        for (String line : data) {
+            String[] list = line.split(";");
+            if (list.length >= 11) {
+                String id = list[0].trim();
+                if (id.equalsIgnoreCase(supervisorId)) {
+                    names[0] = list[1].trim(); // Supervisor name
+                } else if (id.equalsIgnoreCase(secondMarkerId)) {
+                    names[1] = list[1].trim(); // Second Marker name
+                }
+            }
+        }
+
+        return names;
+    }
+
+    private void readAssessmentFromFile() {
+        String fileName = "assessment.txt";
+        DefaultTableModel model = (DefaultTableModel) pm_assessment_table.getModel();
+        model.setRowCount(0); // Clear existing rows
+        List<String> data = FileHandler.readFile(fileName);
+        for (String line : data) {
+            String[] list = line.split(";");
+            if (list.length == 8 && list[1].equalsIgnoreCase(assessmentType) && list[6].equals(user.getUserID())) {
+                String supervisorId = list[4].trim(); // Supervisor ID
+                String secondMarkerId = list[5].trim(); // Second Marker ID
+                String[] names = getSupervisorAndSecondMarkerNames(supervisorId, secondMarkerId);
+
+                // Replace supervisor and second marker IDs with names
+                list[4] = names[0]; // Supervisor Name
+                list[5] = names[1]; // Second Marker Name
+
+                String[] reorderedData = {
+                    list[0], // Assessment ID
+                    list[1], // Assessment Type
+                    list[2], // Student Intake
+                    list[4], // Supervisor Name
+                    list[5], // Second Marker Name
+                    list[7], // Assessment Status
+                    list[3], // Due Date
+                };
+                model.addRow(reorderedData);
+            }
+        }
+        System.out.println("Table data has been loaded from " + fileName);
     }
 
     /**
@@ -29,13 +116,13 @@ public class PM_cp2_page extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pm_cp2_report = new javax.swing.JLabel();
-        pm_cp2_search = new javax.swing.JTextField();
+        pm_assessment = new javax.swing.JLabel();
+        pm_assessment_search = new javax.swing.JTextField();
         jComboBox1 = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        pm_cp2_table = new javax.swing.JTable();
-        pm_cp2_create_button1 = new javax.swing.JButton();
-        pm_cp2_back_button2 = new javax.swing.JButton();
+        pm_assessment_table = new javax.swing.JTable();
+        pm_assessment_create_button1 = new javax.swing.JButton();
+        pm_assessment_back_button2 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         pm_logo_sysco = new javax.swing.JLabel();
         pm_ec_approvement = new javax.swing.JLabel();
@@ -45,22 +132,22 @@ public class PM_cp2_page extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Project Manager CP2");
+        setTitle("Project Manager Internship ");
         setMinimumSize(new java.awt.Dimension(1000, 700));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        pm_cp2_report.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
-        pm_cp2_report.setText("Capstone Project 2");
-        getContentPane().add(pm_cp2_report, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, -1, 30));
+        pm_assessment.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
+        pm_assessment.setText("Report");
+        getContentPane().add(pm_assessment, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 670, 30));
 
-        pm_cp2_search.setText("search...");
-        pm_cp2_search.addActionListener(new java.awt.event.ActionListener() {
+        pm_assessment_search.setText("search...");
+        pm_assessment_search.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pm_cp2_searchActionPerformed(evt);
+                pm_assessment_searchActionPerformed(evt);
             }
         });
-        getContentPane().add(pm_cp2_search, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 170, -1));
+        getContentPane().add(pm_assessment_search, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 170, -1));
 
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -69,7 +156,7 @@ public class PM_cp2_page extends javax.swing.JFrame {
         });
         getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 140, 190, -1));
 
-        pm_cp2_table.setModel(new javax.swing.table.DefaultTableModel(
+        pm_assessment_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null},
@@ -104,34 +191,42 @@ public class PM_cp2_page extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Assessment ID", "Student Intake", "School", "Supervisor Name", "Second Marker Name", "Assessment Status ", "Duedate", "Action"
+                "Assessment ID", "Assessment Type", "Student Intake", "Supervisor Name", "Second Marker Name", "Assessment Status ", "Duedate", "Action"
             }
-        ));
-        jScrollPane1.setViewportView(pm_cp2_table);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(pm_assessment_table);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 970, 470));
 
-        pm_cp2_create_button1.setBackground(new java.awt.Color(76, 127, 174));
-        pm_cp2_create_button1.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        pm_cp2_create_button1.setForeground(new java.awt.Color(255, 255, 255));
-        pm_cp2_create_button1.setText("Create");
-        pm_cp2_create_button1.addActionListener(new java.awt.event.ActionListener() {
+        pm_assessment_create_button1.setBackground(new java.awt.Color(76, 127, 174));
+        pm_assessment_create_button1.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        pm_assessment_create_button1.setForeground(new java.awt.Color(255, 255, 255));
+        pm_assessment_create_button1.setText("Create");
+        pm_assessment_create_button1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pm_cp2_create_button1ActionPerformed(evt);
+                pm_assessment_create_button1ActionPerformed(evt);
             }
         });
-        getContentPane().add(pm_cp2_create_button1, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 140, -1, -1));
+        getContentPane().add(pm_assessment_create_button1, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 130, -1, -1));
 
-        pm_cp2_back_button2.setBackground(new java.awt.Color(76, 127, 174));
-        pm_cp2_back_button2.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        pm_cp2_back_button2.setForeground(new java.awt.Color(255, 255, 255));
-        pm_cp2_back_button2.setText("Back");
-        pm_cp2_back_button2.addActionListener(new java.awt.event.ActionListener() {
+        pm_assessment_back_button2.setBackground(new java.awt.Color(76, 127, 174));
+        pm_assessment_back_button2.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        pm_assessment_back_button2.setForeground(new java.awt.Color(255, 255, 255));
+        pm_assessment_back_button2.setText("Back");
+        pm_assessment_back_button2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pm_cp2_back_button2ActionPerformed(evt);
+                pm_assessment_back_button2ActionPerformed(evt);
             }
         });
-        getContentPane().add(pm_cp2_back_button2, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 140, -1, -1));
+        getContentPane().add(pm_assessment_back_button2, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 130, -1, -1));
 
         jPanel1.setBackground(new Color(255, 255, 255, 90));
         jPanel1.setMaximumSize(new java.awt.Dimension(1000, 73));
@@ -201,9 +296,9 @@ public class PM_cp2_page extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void pm_cp2_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pm_cp2_searchActionPerformed
+    private void pm_assessment_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pm_assessment_searchActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_pm_cp2_searchActionPerformed
+    }//GEN-LAST:event_pm_assessment_searchActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
@@ -214,27 +309,27 @@ public class PM_cp2_page extends javax.swing.JFrame {
             jComboBox1.removeAllItems();
 
             // Get the column model
-            TableColumnModel columnModel = pm_cp2_table.getColumnModel();
+            TableColumnModel columnModel = pm_assessment_table.getColumnModel();
             for (int i = 0; i < columnModel.getColumnCount(); i++) {
                 jComboBox1.addItem(columnModel.getColumn(i).getHeaderValue().toString());
-            } 
+            }
         }
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
-    private void pm_cp2_create_button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pm_cp2_create_button1ActionPerformed
+    private void pm_assessment_create_button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pm_assessment_create_button1ActionPerformed
         // TODO add your handling code here:
-
-//        PM_cp2_create_assessment assessment = new PM_cp2_create_assessment();
+        // Create an instance of PM_internship_create
+//        PM_register_assessment_create assessment = new PM_register_assessment_create(assessmentType);
 //        assessment.setVisible(true);
-//        this.dispose(); // Close the current frame
-    }//GEN-LAST:event_pm_cp2_create_button1ActionPerformed
+//        this.dispose(); 
+    }//GEN-LAST:event_pm_assessment_create_button1ActionPerformed
 
-    private void pm_cp2_back_button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pm_cp2_back_button2ActionPerformed
+    private void pm_assessment_back_button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pm_assessment_back_button2ActionPerformed
         // TODO add your handling code here:
-//        ProjectManagerPage pm = new ProjectManagerPage();
-//        pm.setVisible(true);
-//        this.dispose();
-    }//GEN-LAST:event_pm_cp2_back_button2ActionPerformed
+        ProjectManagerPage pm = new ProjectManagerPage();
+        pm.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_pm_assessment_back_button2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -253,23 +348,23 @@ public class PM_cp2_page extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PM_cp2_page.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PM_assessment_page.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PM_cp2_page.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PM_assessment_page.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PM_cp2_page.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PM_assessment_page.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PM_cp2_page.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PM_assessment_page.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PM_cp2_page().setVisible(true);
+                new PM_assessment_page("Assessment").setVisible(true);
             }
         });
     }
+
     private void setIconImage() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Sysco_icon_with_background.png")));
     }
@@ -279,11 +374,11 @@ public class PM_cp2_page extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton pm_cp2_back_button2;
-    private javax.swing.JButton pm_cp2_create_button1;
-    private javax.swing.JLabel pm_cp2_report;
-    private javax.swing.JTextField pm_cp2_search;
-    private javax.swing.JTable pm_cp2_table;
+    private javax.swing.JLabel pm_assessment;
+    private javax.swing.JButton pm_assessment_back_button2;
+    private javax.swing.JButton pm_assessment_create_button1;
+    private javax.swing.JTextField pm_assessment_search;
+    private javax.swing.JTable pm_assessment_table;
     private javax.swing.JLabel pm_ec_approvement;
     private javax.swing.JLabel pm_logo_sysco;
     private javax.swing.JLabel pm_logout;
