@@ -33,7 +33,10 @@
     <Component class="javax.swing.JLabel" name="welcome_project_manager">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Helvetica Neue" size="24" style="1"/>
+          <Font name="Bell MT" size="24" style="1"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="63" green="32" red="2" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Welcome:"/>
       </Properties>

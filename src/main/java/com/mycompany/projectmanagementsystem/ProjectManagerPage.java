@@ -8,11 +8,13 @@ import com.mycompany.projectmanagementsystem.GeneralFunction.SessionManager;
 import com.mycompany.projectmanagementsystem.User.User;
 import java.awt.Toolkit;
 import java.awt.Color;
+
 /**
  *
  * @author shuhuilee
  */
 public class ProjectManagerPage extends javax.swing.JFrame {
+
     private final SessionManager sessionManager = SessionManager.getInstance();
 
     /**
@@ -23,9 +25,9 @@ public class ProjectManagerPage extends javax.swing.JFrame {
         setIconImage();
         User user = sessionManager.getCurrentUser();
         if (user != null) {
-        welcome_pm_name.setText(((User)user).getName());
+            welcome_pm_name.setText(user.getName());
         }
-        
+
     }
 
     /**
@@ -77,7 +79,8 @@ public class ProjectManagerPage extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        welcome_project_manager.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
+        welcome_project_manager.setFont(new java.awt.Font("Bell MT", 1, 24)); // NOI18N
+        welcome_project_manager.setForeground(new java.awt.Color(2, 50, 99));
         welcome_project_manager.setText("Welcome:");
         getContentPane().add(welcome_project_manager, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
 
@@ -293,16 +296,16 @@ public class ProjectManagerPage extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-    
+
     private void viewAssessment(String assessmentType) {
         PM_assessment_page assessment = new PM_assessment_page(assessmentType);
         assessment.setVisible(true);
         this.dispose();
     }
-    
+
     private void pm_internship_viewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pm_internship_viewActionPerformed
         // TODO add your handling code here:
-        viewAssessment("internship");
+        viewAssessment("internship_report");
     }//GEN-LAST:event_pm_internship_viewActionPerformed
 
     private void pm_FYP_viewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pm_FYP_viewActionPerformed
@@ -355,7 +358,7 @@ public class ProjectManagerPage extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(ProjectManagerPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-    
+
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -364,6 +367,7 @@ public class ProjectManagerPage extends javax.swing.JFrame {
             }
         });
     }
+
     private void setIconImage() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Sysco_icon_with_background.png")));
     }

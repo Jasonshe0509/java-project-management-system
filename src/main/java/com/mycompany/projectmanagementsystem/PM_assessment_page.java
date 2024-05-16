@@ -4,11 +4,15 @@
  */
 package com.mycompany.projectmanagementsystem;
 
+import com.mycompany.projectmanagementsystem.GeneralFunction.FileHandler;
+import com.mycompany.projectmanagementsystem.GeneralFunction.SessionManager;
+import com.mycompany.projectmanagementsystem.User.User;
 import java.awt.Toolkit;
 import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
@@ -17,8 +21,11 @@ import javax.swing.table.TableColumnModel;
  * @author shuhuilee
  */
 public class PM_assessment_page extends javax.swing.JFrame {
+
     private final String assessmentType;
-    
+    private final SessionManager sessionManager = SessionManager.getInstance();
+    User user = sessionManager.getCurrentUser();
+
 
     /**
      * Creates new form Internship
@@ -32,7 +39,6 @@ public class PM_assessment_page extends javax.swing.JFrame {
         assessmentType();
     }
 
-    
     private void assessmentType() {
         if (assessmentType.equalsIgnoreCase("internship_report")) {
             pm_assessment.setText("Internship Report");
@@ -44,70 +50,61 @@ public class PM_assessment_page extends javax.swing.JFrame {
             pm_assessment.setText("Capstone Project 2");
         } else if (assessmentType.equalsIgnoreCase("rmcp")) {
             pm_assessment.setText("Research Methodology for Capstone Project");
-        } else if(assessmentType.equalsIgnoreCase("investigation")) {
+        } else if (assessmentType.equalsIgnoreCase("investigation")) {
             pm_assessment.setText("Investigation Report");
         } else {
             pm_assessment.setText("Unknown");
         }
     }
+
     private String[] getSupervisorAndSecondMarkerNames(String supervisorId, String secondMarkerId) {
         String[] names = new String[2];
         String fileName = "user.txt";
-
-        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                String[] data = line.split(";");
-                if (data.length >= 11) {
-                    String id = data[0].trim();
-                    if (id.equalsIgnoreCase(supervisorId)) {
-                        names[0] = data[1].trim(); // Supervisor name
-                    } else if (id.equalsIgnoreCase(secondMarkerId)) {
-                        names[1] = data[1].trim(); // Second Marker name
-                    }
+        List<String> data = FileHandler.readFile(fileName);
+        for (String line : data) {
+            String[] list = line.split(";");
+            if (list.length >= 11) {
+                String id = list[0].trim();
+                if (id.equalsIgnoreCase(supervisorId)) {
+                    names[0] = list[1].trim(); // Supervisor name
+                } else if (id.equalsIgnoreCase(secondMarkerId)) {
+                    names[1] = list[1].trim(); // Second Marker name
                 }
             }
-        } catch (IOException ex) {
-            System.err.println("Error reading file: " + ex.getMessage());
         }
 
         return names;
     }
-    
+
     private void readAssessmentFromFile() {
         String fileName = "assessment.txt";
         DefaultTableModel model = (DefaultTableModel) pm_assessment_table.getModel();
         model.setRowCount(0); // Clear existing rows
+        List<String> data = FileHandler.readFile(fileName);
+        for (String line : data) {
+            String[] list = line.split(";");
+            if (list.length == 8 && list[1].equalsIgnoreCase(assessmentType) && list[6].equals(user.getUserID())) {
+                String supervisorId = list[4].trim(); // Supervisor ID
+                String secondMarkerId = list[5].trim(); // Second Marker ID
+                String[] names = getSupervisorAndSecondMarkerNames(supervisorId, secondMarkerId);
 
-        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                String[] data = line.split(";");
-                if (data.length == 8 && data[1].equalsIgnoreCase(assessmentType)) {
-                    String supervisorId = data[4].trim(); // Supervisor ID
-                    String secondMarkerId = data[5].trim(); // Second Marker ID
-                    String[] names = getSupervisorAndSecondMarkerNames(supervisorId, secondMarkerId);
+                // Replace supervisor and second marker IDs with names
+                list[4] = names[0]; // Supervisor Name
+                list[5] = names[1]; // Second Marker Name
 
-                    // Replace supervisor and second marker IDs with names
-                    data[4] = names[0]; // Supervisor Name
-                    data[5] = names[1]; // Second Marker Name
-
-                    String[] reorderedData = {
-                        data[0], // Assessment ID
-                        data[1], // Assessment Type
-                        data[2], // Student Intake
-                        data[4], // Supervisor Name
-                        data[5], // Second Marker Name
-                        data[7], // Assessment Status
-                        data[3], // Due Date
-                    };
-                    model.addRow(reorderedData);
-                }
+                String[] reorderedData = {
+                    list[0], // Assessment ID
+                    list[1], // Assessment Type
+                    list[2], // Student Intake
+                    list[4], // Supervisor Name
+                    list[5], // Second Marker Name
+                    list[7], // Assessment Status
+                    list[3], // Due Date
+                };
+                model.addRow(reorderedData);
             }
-            System.out.println("Table data has been loaded from " + fileName);
-        } catch (IOException ex) {
-            System.err.println("Error reading file: " + ex.getMessage());
         }
+        System.out.println("Table data has been loaded from " + fileName);
     }
 
     /**
@@ -196,7 +193,15 @@ public class PM_assessment_page extends javax.swing.JFrame {
             new String [] {
                 "Assessment ID", "Assessment Type", "Student Intake", "Supervisor Name", "Second Marker Name", "Assessment Status ", "Duedate", "Action"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(pm_assessment_table);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 970, 470));
@@ -307,7 +312,7 @@ public class PM_assessment_page extends javax.swing.JFrame {
             TableColumnModel columnModel = pm_assessment_table.getColumnModel();
             for (int i = 0; i < columnModel.getColumnCount(); i++) {
                 jComboBox1.addItem(columnModel.getColumn(i).getHeaderValue().toString());
-            } 
+            }
         }
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
@@ -352,8 +357,6 @@ public class PM_assessment_page extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(PM_assessment_page.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
 
-
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -361,6 +364,7 @@ public class PM_assessment_page extends javax.swing.JFrame {
             }
         });
     }
+
     private void setIconImage() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Sysco_icon_with_background.png")));
     }
