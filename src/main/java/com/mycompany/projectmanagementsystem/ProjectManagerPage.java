@@ -4,6 +4,8 @@
  */
 package com.mycompany.projectmanagementsystem;
 
+import com.mycompany.projectmanagementsystem.GeneralFunction.SessionManager;
+import com.mycompany.projectmanagementsystem.User.User;
 import java.awt.Toolkit;
 import java.awt.Color;
 /**
@@ -11,6 +13,7 @@ import java.awt.Color;
  * @author shuhuilee
  */
 public class ProjectManagerPage extends javax.swing.JFrame {
+    private final SessionManager sessionManager = SessionManager.getInstance();
 
     /**
      * Creates new form ProjectManagerPages
@@ -18,6 +21,11 @@ public class ProjectManagerPage extends javax.swing.JFrame {
     public ProjectManagerPage() {
         initComponents();
         setIconImage();
+        User user = sessionManager.getCurrentUser();
+        if (user != null) {
+        welcome_pm_name.setText(((User)user).getName());
+        }
+        
     }
 
     /**
@@ -30,6 +38,7 @@ public class ProjectManagerPage extends javax.swing.JFrame {
     private void initComponents() {
 
         welcome_project_manager = new javax.swing.JLabel();
+        welcome_pm_name = new javax.swing.JLabel();
         pm_internship_report = new javax.swing.JPanel();
         pm_internship_view = new javax.swing.JButton();
         pm_internship_icon = new javax.swing.JLabel();
@@ -69,8 +78,13 @@ public class ProjectManagerPage extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         welcome_project_manager.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
-        welcome_project_manager.setText("Welcome：Project Manager()");
+        welcome_project_manager.setText("Welcome:");
         getContentPane().add(welcome_project_manager, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
+
+        welcome_pm_name.setFont(new java.awt.Font("Bell MT", 1, 24)); // NOI18N
+        welcome_pm_name.setForeground(new java.awt.Color(2, 50, 99));
+        welcome_pm_name.setText("Name");
+        getContentPane().add(welcome_pm_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 90, 310, 30));
 
         pm_internship_report.setBackground(new java.awt.Color(204, 204, 204));
         pm_internship_report.setMaximumSize(new java.awt.Dimension(300, 250));
@@ -279,47 +293,41 @@ public class ProjectManagerPage extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    private void viewAssessment(String assessmentType) {
+        PM_assessment_page assessment = new PM_assessment_page(assessmentType);
+        assessment.setVisible(true);
+        this.dispose();
+    }
+    
     private void pm_internship_viewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pm_internship_viewActionPerformed
         // TODO add your handling code here:
-//        PM_internship_page internship = new PM_internship_page();
-//        internship.setVisible(true);
-//        this.dispose();
+        viewAssessment("internship");
     }//GEN-LAST:event_pm_internship_viewActionPerformed
 
     private void pm_FYP_viewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pm_FYP_viewActionPerformed
         // TODO add your handling code here:
-//        PM_FYP_page fyp = new PM_FYP_page();
-//        fyp.setVisible(true);
-//        this.dispose();
+        viewAssessment("fyp");
     }//GEN-LAST:event_pm_FYP_viewActionPerformed
 
     private void pm_RMCP_viewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pm_RMCP_viewActionPerformed
         // TODO add your handling code here:
-//        PM_RMCP_page rmcp = new PM_RMCP_page();
-//        rmcp.setVisible(true);
-//        this.dispose();
+        viewAssessment("rmcp");
     }//GEN-LAST:event_pm_RMCP_viewActionPerformed
 
     private void pm_investigation_viewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pm_investigation_viewActionPerformed
         // TODO add your handling code here:
-//        PM_investigation_page investigation = new PM_investigation_page();
-//        investigation.setVisible(true);
-//        this.dispose();
+        viewAssessment("investigation");
     }//GEN-LAST:event_pm_investigation_viewActionPerformed
 
     private void pm_cp1_viewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pm_cp1_viewActionPerformed
         // TODO add your handling code here:
-//        PM_cp1_page cp1 = new PM_cp1_page();
-//        cp1.setVisible(true);
-//        this.dispose();
+        viewAssessment("cp1");
     }//GEN-LAST:event_pm_cp1_viewActionPerformed
 
     private void pm_cp2_viewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pm_cp2_viewActionPerformed
         // TODO add your handling code here:
-//        PM_cp2_page cp2 = new PM_cp2_page();
-//        cp2.setVisible(true);
-//        this.dispose();
+        viewAssessment("cp2");
     }//GEN-LAST:event_pm_cp2_viewActionPerformed
 
     /**
@@ -392,6 +400,7 @@ public class ProjectManagerPage extends javax.swing.JFrame {
     private javax.swing.JLabel pm_logout;
     private javax.swing.JLabel pm_notification;
     private javax.swing.JLabel pm_profile;
+    private javax.swing.JLabel welcome_pm_name;
     private javax.swing.JLabel welcome_project_manager;
     // End of variables declaration//GEN-END:variables
 }
