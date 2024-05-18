@@ -330,7 +330,7 @@ public class admin_student extends javax.swing.JFrame {
         });
     }
     private void setIconImage() {
-        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Sysco_icon_with_background.png")));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Sysco_icon.png")));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
