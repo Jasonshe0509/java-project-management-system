@@ -3,3 +3,5 @@ School of Computing
 School of Business
 School of Engineering
 School of General Studies
+School Of Innovation
+School Of Information Technology

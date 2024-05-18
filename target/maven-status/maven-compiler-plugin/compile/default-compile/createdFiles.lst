@@ -7,6 +7,7 @@ com\mycompany\projectmanagementsystem\PM_assessment_page$4.class
 com\mycompany\projectmanagementsystem\Intake\IntakeValidator.class
 com\mycompany\projectmanagementsystem\PM_assessment_page$5.class
 com\mycompany\projectmanagementsystem\StudentDashboardPage$4.class
+com\mycompany\projectmanagementsystem\admin_register_schoolwiselist$4.class
 com\mycompany\projectmanagementsystem\Assessment\StudentAssessmentController.class
 com\mycompany\projectmanagementsystem\SchoolWiseList\SchoolWiseValidator.class
 com\mycompany\projectmanagementsystem\StudentDashboardPage$2.class
@@ -15,6 +16,7 @@ com\mycompany\projectmanagementsystem\StudentDashboardPage$3.class
 com\mycompany\projectmanagementsystem\SchoolWiseList\SchoolWise.class
 com\mycompany\projectmanagementsystem\PM_assessment_page.class
 com\mycompany\projectmanagementsystem\Course\CourseController.class
+com\mycompany\projectmanagementsystem\admin_register_schoolwiselist$3.class
 com\mycompany\projectmanagementsystem\PM_assessment_page$1.class
 com\mycompany\projectmanagementsystem\Intake\IntakeController.class
 com\mycompany\projectmanagementsystem\NotificationPage$1.class

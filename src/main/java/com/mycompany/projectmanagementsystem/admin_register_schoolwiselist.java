@@ -1,6 +1,10 @@
 package com.mycompany.projectmanagementsystem;
 
+import com.mycompany.projectmanagementsystem.SchoolWiseList.SchoolWise;
+import com.mycompany.projectmanagementsystem.SchoolWiseList.SchoolWiseController;
+import com.mycompany.projectmanagementsystem.SchoolWiseList.SchoolWiseValidator;
 import java.awt.Toolkit;
+import javax.swing.JOptionPane;
 
 public class admin_register_schoolwiselist extends javax.swing.JFrame {
 
@@ -45,11 +49,21 @@ public class admin_register_schoolwiselist extends javax.swing.JFrame {
         submit.setBackground(new java.awt.Color(76, 127, 174));
         submit.setFont(new java.awt.Font("Bell MT", 1, 19)); // NOI18N
         submit.setText("SUBMIT");
+        submit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitActionPerformed(evt);
+            }
+        });
         getContentPane().add(submit, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 220, -1, -1));
 
         back.setBackground(new java.awt.Color(76, 127, 174));
         back.setFont(new java.awt.Font("Bell MT", 1, 19)); // NOI18N
         back.setText("BACK");
+        back.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                backMouseClicked(evt);
+            }
+        });
         back.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backActionPerformed(evt);
@@ -71,6 +85,17 @@ public class admin_register_schoolwiselist extends javax.swing.JFrame {
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_backActionPerformed
+
+    private void submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitActionPerformed
+        String userInput = school_wise.getText().trim().toLowerCase();
+        System.out.print(userInput);
+        SchoolWiseController.addSchoolWise(userInput);
+        
+    }//GEN-LAST:event_submitActionPerformed
+
+    private void backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseClicked
+        dispose();
+    }//GEN-LAST:event_backMouseClicked
 
     public static void main(String args[]) {
 
