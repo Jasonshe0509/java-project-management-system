@@ -285,36 +285,36 @@ public class admin_student extends javax.swing.JFrame {
 
     private void admin_reg_intakeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_admin_reg_intakeMouseClicked
         // TODO add your handling code here:
-        admin_register_intake admin_regintake = new admin_register_intake();
-        admin_regintake.show();
+        //admin_register_intake admin_regintake = new admin_register_intake();
+        //admin_regintake.show();
         
     }//GEN-LAST:event_admin_reg_intakeMouseClicked
 
     private void admin_reg_studentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_admin_reg_studentMouseClicked
         // TODO add your handling code here:
-        admin_register_student admin_regstu = new admin_register_student();
-        admin_regstu.show();
+        //admin_register_student admin_regstu = new admin_register_student();
+        //admin_regstu.show();
         
     }//GEN-LAST:event_admin_reg_studentMouseClicked
 
     private void admin_ec_managementMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_admin_ec_managementMouseClicked
         // TODO add your handling code here:
-        admin_ec_management admin_ec_manage = new admin_ec_management();
-        admin_ec_manage.show();
+        //admin_ec_management admin_ec_manage = new admin_ec_management();
+        //admin_ec_manage.show();
         dispose();
     }//GEN-LAST:event_admin_ec_managementMouseClicked
 
     private void admin_stu_managementMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_admin_stu_managementMouseClicked
         // TODO add your handling code here:
-        admin_student_management admin_stumanage = new admin_student_management();
-        admin_stumanage.show();
+        //admin_student_management admin_stumanage = new admin_student_management();
+        //admin_stumanage.show();
         dispose();
     }//GEN-LAST:event_admin_stu_managementMouseClicked
 
     private void admin_logoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_admin_logoMouseClicked
         // TODO add your handling code here:
-        admin_mainpage admin_main = new admin_mainpage();
-        admin_main.show();
+        //admin_mainpage admin_main = new admin_mainpage();
+        //admin_main.show();
         dispose();
     }//GEN-LAST:event_admin_logoMouseClicked
 
