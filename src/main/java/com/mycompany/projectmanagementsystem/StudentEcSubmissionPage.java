@@ -184,7 +184,8 @@ public class StudentEcSubmissionPage extends javax.swing.JFrame {
     }//GEN-LAST:event_studentLogoMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        StudentEcForm ecForm = new StudentEcForm();
+        ecForm.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
