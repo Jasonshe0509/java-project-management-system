@@ -4,8 +4,16 @@
  */
 package com.mycompany.projectmanagementsystem;
 
+import com.mycompany.projectmanagementsystem.EC.ECController;
+import com.mycompany.projectmanagementsystem.GeneralFunction.FileHandler;
+import com.mycompany.projectmanagementsystem.GeneralFunction.SessionManager;
+import com.mycompany.projectmanagementsystem.Notification.NotificationController;
+import com.mycompany.projectmanagementsystem.User.User;
 import java.awt.Color;
 import java.awt.Toolkit;
+import java.util.List;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -16,9 +24,14 @@ public class StudentEcForm extends javax.swing.JFrame {
     /**
      * Creates new form StudentEcForm
      */
+    private final SessionManager sessionManager = SessionManager.getInstance();
+    User user = sessionManager.getCurrentUser();
+
     public StudentEcForm() {
         initComponents();
         setIconImage();
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setAssessmentData();
     }
 
     /**
@@ -32,18 +45,17 @@ public class StudentEcForm extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         assessment = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        assessmentCB = new javax.swing.JComboBox<>();
         ecReason = new javax.swing.JLabel();
         ecReasonField = new javax.swing.JTextField();
         ecDocLink = new javax.swing.JLabel();
         ecDocLinkField = new javax.swing.JTextField();
-        changeButton = new javax.swing.JButton();
+        saveBtn = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Student EC Form");
-        setMaximumSize(new java.awt.Dimension(700, 500));
         setMinimumSize(new java.awt.Dimension(700, 500));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -57,10 +69,9 @@ public class StudentEcForm extends javax.swing.JFrame {
         assessment.setMinimumSize(new java.awt.Dimension(78, 36));
         assessment.setPreferredSize(new java.awt.Dimension(78, 36));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.setMaximumSize(new java.awt.Dimension(335, 40));
-        jComboBox1.setMinimumSize(new java.awt.Dimension(335, 40));
-        jComboBox1.setPreferredSize(new java.awt.Dimension(335, 40));
+        assessmentCB.setMaximumSize(new java.awt.Dimension(335, 40));
+        assessmentCB.setMinimumSize(new java.awt.Dimension(335, 40));
+        assessmentCB.setPreferredSize(new java.awt.Dimension(335, 40));
 
         ecReason.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
         ecReason.setForeground(new java.awt.Color(2, 50, 99));
@@ -72,11 +83,6 @@ public class StudentEcForm extends javax.swing.JFrame {
         ecReasonField.setMaximumSize(new java.awt.Dimension(335, 40));
         ecReasonField.setMinimumSize(new java.awt.Dimension(335, 40));
         ecReasonField.setPreferredSize(new java.awt.Dimension(335, 40));
-        ecReasonField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ecReasonFieldActionPerformed(evt);
-            }
-        });
 
         ecDocLink.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
         ecDocLink.setForeground(new java.awt.Color(2, 50, 99));
@@ -88,22 +94,17 @@ public class StudentEcForm extends javax.swing.JFrame {
         ecDocLinkField.setMaximumSize(new java.awt.Dimension(335, 40));
         ecDocLinkField.setMinimumSize(new java.awt.Dimension(335, 40));
         ecDocLinkField.setPreferredSize(new java.awt.Dimension(335, 40));
-        ecDocLinkField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ecDocLinkFieldActionPerformed(evt);
-            }
-        });
 
-        changeButton.setBackground(new java.awt.Color(27, 61, 96));
-        changeButton.setFont(new java.awt.Font("Bell MT", 1, 28)); // NOI18N
-        changeButton.setForeground(new java.awt.Color(255, 255, 255));
-        changeButton.setText("Save");
-        changeButton.setMaximumSize(new java.awt.Dimension(120, 45));
-        changeButton.setMinimumSize(new java.awt.Dimension(120, 45));
-        changeButton.setPreferredSize(new java.awt.Dimension(120, 45));
-        changeButton.addActionListener(new java.awt.event.ActionListener() {
+        saveBtn.setBackground(new java.awt.Color(27, 61, 96));
+        saveBtn.setFont(new java.awt.Font("Bell MT", 1, 28)); // NOI18N
+        saveBtn.setForeground(new java.awt.Color(255, 255, 255));
+        saveBtn.setText("Save");
+        saveBtn.setMaximumSize(new java.awt.Dimension(120, 45));
+        saveBtn.setMinimumSize(new java.awt.Dimension(120, 45));
+        saveBtn.setPreferredSize(new java.awt.Dimension(120, 45));
+        saveBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                changeButtonActionPerformed(evt);
+                saveBtnActionPerformed(evt);
             }
         });
 
@@ -121,7 +122,7 @@ public class StudentEcForm extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(assessmentCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(70, 70, 70))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(41, 41, 41)
@@ -131,7 +132,7 @@ public class StudentEcForm extends javax.swing.JFrame {
                         .addComponent(ecDocLink, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(26, 26, 26)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(changeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(ecDocLinkField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 68, Short.MAX_VALUE))))
         );
@@ -140,7 +141,7 @@ public class StudentEcForm extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(47, 47, 47)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(assessmentCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(assessment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(52, 52, 52)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -153,7 +154,7 @@ public class StudentEcForm extends javax.swing.JFrame {
                     .addComponent(ecDocLinkField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ecDocLink, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
-                .addComponent(changeButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(53, 53, 53))
         );
 
@@ -178,17 +179,22 @@ public class StudentEcForm extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ecReasonFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ecReasonFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ecReasonFieldActionPerformed
-
-    private void ecDocLinkFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ecDocLinkFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ecDocLinkFieldActionPerformed
-
-    private void changeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_changeButtonActionPerformed
+    private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
+        String[] ecInput = new String[4];
+        ecInput[0] = user.getUserID();
+        String assessment = (String)assessmentCB.getSelectedItem();
+        String assessmentID = getPrefix(assessment);
+        ecInput[1] = assessmentID;
+        ecInput[2] = ecReasonField.getText();
+        ecInput[3] = ecDocLinkField.getText();
+        ECController action = new ECController();
+        boolean result = action.ecApply(ecInput);
+        if (result){
+            JOptionPane.showMessageDialog(null, "Successfully apply for ec");
+            this.setVisible(false);
+            NotificationController.create(user.getUserID(), "New EC has been applied");
+        }
+    }//GEN-LAST:event_saveBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -224,20 +230,52 @@ public class StudentEcForm extends javax.swing.JFrame {
             }
         });
     }
+
     private void setIconImage() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Sysco_icon_with_background.png")));
+    }
+    
+    public static String getPrefix(String input) {
+        if (input == null || input.isEmpty()) {
+            return "";
+        }
+        
+        String[] parts = input.split("_");
+        if (parts.length > 0) {
+            return parts[0];
+        } else {
+            return "";
+        }
+    }
+
+    private void setAssessmentData() {
+        List<String> data = FileHandler.readFile("student_assessment.txt");
+        for (String line : data) {
+            String[] list = line.split(";");
+            if(list[1].equals(user.getUserID())){
+                String assessmentID = list[2];
+                List<String> Assessmentdata = FileHandler.readFile("assessment.txt");
+                for (String assessmentline : Assessmentdata) {
+                     String[] assessmentlist = assessmentline.split(";");
+                     if(assessmentlist[0].equals(assessmentID)){
+                         String assessmentName = assessmentID + "_" + assessmentlist[1];
+                         assessmentCB.addItem(assessmentName);
+                     }
+                }
+            }
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel assessment;
+    private javax.swing.JComboBox<String> assessmentCB;
     private javax.swing.JLabel background;
-    private javax.swing.JButton changeButton;
     private javax.swing.JLabel ecDocLink;
     private javax.swing.JTextField ecDocLinkField;
     private javax.swing.JLabel ecReason;
     private javax.swing.JTextField ecReasonField;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton saveBtn;
     // End of variables declaration//GEN-END:variables
 }

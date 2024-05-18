@@ -3,6 +3,7 @@ com\mycompany\projectmanagementsystem\PM_assessment_page$3.class
 com\mycompany\projectmanagementsystem\LevelOfEducation\LevelOfEducation.class
 com\mycompany\projectmanagementsystem\SchoolWiseList\SchoolWiseController.class
 com\mycompany\projectmanagementsystem\NotificationPage.class
+com\mycompany\projectmanagementsystem\EC\EC.class
 com\mycompany\projectmanagementsystem\PM_assessment_page$4.class
 com\mycompany\projectmanagementsystem\Intake\IntakeValidator.class
 com\mycompany\projectmanagementsystem\PM_assessment_page$5.class
@@ -15,7 +16,9 @@ com\mycompany\projectmanagementsystem\StudentDashboardPage$3.class
 com\mycompany\projectmanagementsystem\SchoolWiseList\SchoolWise.class
 com\mycompany\projectmanagementsystem\PM_assessment_page.class
 com\mycompany\projectmanagementsystem\Course\CourseController.class
+com\mycompany\projectmanagementsystem\EC\ECValidator.class
 com\mycompany\projectmanagementsystem\PM_assessment_page$1.class
+com\mycompany\projectmanagementsystem\StudentDashboardPage$5.class
 com\mycompany\projectmanagementsystem\Intake\IntakeController.class
 com\mycompany\projectmanagementsystem\NotificationPage$1.class
 com\mycompany\projectmanagementsystem\GeneralFunction\SessionManager.class
@@ -25,3 +28,4 @@ com\mycompany\projectmanagementsystem\PM_assessment_page$2.class
 com\mycompany\projectmanagementsystem\Course\Course.class
 com\mycompany\projectmanagementsystem\Intake\Intake.class
 com\mycompany\projectmanagementsystem\Assessment\StudentAssessment.class
+com\mycompany\projectmanagementsystem\EC\ECController.class
