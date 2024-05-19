@@ -6,6 +6,9 @@ package com.mycompany.projectmanagementsystem;
 
 import java.awt.Toolkit;
 import java.awt.Color;
+import com.mycompany.projectmanagementsystem.User.UserController;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author ASUS
@@ -37,6 +40,7 @@ public class ForgetPasswordPage extends javax.swing.JFrame {
         backButton = new javax.swing.JButton();
         showPasswordTickBox = new javax.swing.JCheckBox();
         newPasswordField = new javax.swing.JPasswordField();
+        password1 = new javax.swing.JLabel();
         slogan = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         logo = new javax.swing.JLabel();
@@ -100,12 +104,16 @@ public class ForgetPasswordPage extends javax.swing.JFrame {
         backButton.setMaximumSize(new java.awt.Dimension(120, 45));
         backButton.setMinimumSize(new java.awt.Dimension(120, 45));
         backButton.setPreferredSize(new java.awt.Dimension(120, 45));
+        backButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButtonActionPerformed(evt);
+            }
+        });
         jPanel1.add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(191, 310, -1, -1));
 
         showPasswordTickBox.setBackground(new Color(240,240,240,90));
         showPasswordTickBox.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         showPasswordTickBox.setForeground(new java.awt.Color(2, 50, 99));
-        showPasswordTickBox.setText("Show Password");
         showPasswordTickBox.setMaximumSize(new java.awt.Dimension(180, 22));
         showPasswordTickBox.setMinimumSize(new java.awt.Dimension(180, 22));
         showPasswordTickBox.setOpaque(false);
@@ -115,7 +123,7 @@ public class ForgetPasswordPage extends javax.swing.JFrame {
                 showPasswordTickBoxActionPerformed(evt);
             }
         });
-        jPanel1.add(showPasswordTickBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 197, -1, -1));
+        jPanel1.add(showPasswordTickBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 197, 20, -1));
 
         newPasswordField.setMaximumSize(new java.awt.Dimension(335, 40));
         newPasswordField.setMinimumSize(new java.awt.Dimension(335, 40));
@@ -126,6 +134,14 @@ public class ForgetPasswordPage extends javax.swing.JFrame {
             }
         });
         jPanel1.add(newPasswordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(263, 127, -1, -1));
+
+        password1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        password1.setForeground(new java.awt.Color(2, 50, 99));
+        password1.setText("Show Password");
+        password1.setMaximumSize(new java.awt.Dimension(78, 36));
+        password1.setMinimumSize(new java.awt.Dimension(78, 36));
+        password1.setPreferredSize(new java.awt.Dimension(78, 36));
+        jPanel1.add(password1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 190, 180, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 256, -1, -1));
 
@@ -169,16 +185,36 @@ public class ForgetPasswordPage extends javax.swing.JFrame {
     }//GEN-LAST:event_emailFieldActionPerformed
 
     private void showPasswordTickBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showPasswordTickBoxActionPerformed
-        // TODO add your handling code here:
+        if (showPasswordTickBox.isSelected()) {
+            newPasswordField.setEchoChar((char) 0);
+        } else {
+            newPasswordField.setEchoChar(('*'));
+        }
     }//GEN-LAST:event_showPasswordTickBoxActionPerformed
 
     private void changeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeButtonActionPerformed
-        // TODO add your handling code here:
+        String[] userInput = new String[2];
+        userInput[0] = emailField.getText();
+        userInput[1] = newPasswordField.getText();
+        UserController action = new UserController();
+        boolean result = action.userForgetPassword(userInput);
+        if (result) {
+            JOptionPane.showMessageDialog(null, "Password Succesfully Change");
+            LoginPage login = new LoginPage();
+            login.show();
+            dispose();
+        }
     }//GEN-LAST:event_changeButtonActionPerformed
 
     private void newPasswordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newPasswordFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_newPasswordFieldActionPerformed
+
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        LoginPage login = new LoginPage();
+        login.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_backButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -212,6 +248,7 @@ public class ForgetPasswordPage extends javax.swing.JFrame {
             new ForgetPasswordPage().setVisible(true);
         });
     }
+
     private void setIconImage() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Sysco_icon_with_background.png")));
     }
@@ -227,6 +264,7 @@ public class ForgetPasswordPage extends javax.swing.JFrame {
     private javax.swing.JLabel logo;
     private javax.swing.JPasswordField newPasswordField;
     private javax.swing.JLabel password;
+    private javax.swing.JLabel password1;
     private javax.swing.JCheckBox showPasswordTickBox;
     private javax.swing.JLabel slogan;
     // End of variables declaration//GEN-END:variables
