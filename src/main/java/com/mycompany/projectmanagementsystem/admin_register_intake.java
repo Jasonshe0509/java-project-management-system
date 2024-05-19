@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class admin_register_intake extends javax.swing.JFrame {
+
     List<String> schoolWiseList, levelOfEducation, course;
 
     public admin_register_intake() {
@@ -15,49 +16,50 @@ public class admin_register_intake extends javax.swing.JFrame {
         dropbox_SchoolWise(schoolWiseList);
         dropbox_LevelOfEducation(levelOfEducation);
         dropbox_Course(course);
-        
+
     }
-    public void dropbox_LevelOfEducation(List <String> levelOfEducation){
+
+    public void dropbox_LevelOfEducation(List<String> levelOfEducation) {
         levelOfEducation = FileHandler.readFile("level_of_education.txt");
         Object[] lines = levelOfEducation.toArray();
         education_level_dropbox.addItem("");
-        
-        for(int i = 0; i< lines.length; i++){
+
+        for (int i = 0; i < lines.length; i++) {
             String line = lines[i].toString();
             String[] results = line.split(";");
             String educationLevel = results[1];
             education_level_dropbox.addItem(educationLevel);
-            }
-        
+        }
+
     }
-    
-    public void dropbox_SchoolWise(List<String> schoolWiseList){
+
+    public void dropbox_SchoolWise(List<String> schoolWiseList) {
         schoolWiseList = FileHandler.readFile("school_wise.txt");
         Object[] lines = schoolWiseList.toArray();
         schoolwise_dropbox.addItem("");
-        
-        for(int i = 0; i< lines.length; i++){
+
+        for (int i = 0; i < lines.length; i++) {
             String schoolWise = lines[i].toString();
             schoolwise_dropbox.addItem(schoolWise);
         }
     }
-    
-    public void dropbox_Course(List <String> CourseList){
+
+    public void dropbox_Course(List<String> CourseList) {
         CourseList = FileHandler.readFile("course.txt");
         Object[] lines = CourseList.toArray();
         course_dropbox.addItem("");
-        
-        for(int i = 0; i< lines.length; i++){
+
+        for (int i = 0; i < lines.length; i++) {
             String line = lines[i].toString();
             String[] results = line.split(";");
             System.out.print(results.toString());
             String course = results[1];
             course_dropbox.addItem(course);
-            
+
         }
-        
+
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -156,7 +158,7 @@ public class admin_register_intake extends javax.swing.JFrame {
         userInput[0] = education_level_dropbox.getSelectedItem().toString();
         userInput[1] = schoolwise_dropbox.getSelectedItem().toString();
         userInput[2] = course_dropbox.getSelectedItem().toString();
-        
+
         //combine month and year as userInput[3]
         int inputMonth = enrolledmonth_chooser.getMonth();
         userInput[3] = String.valueOf(inputMonth);
@@ -175,6 +177,7 @@ public class admin_register_intake extends javax.swing.JFrame {
             }
         });
     }
+
     private void setIconImage() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Sysco_icon.png")));
     }
