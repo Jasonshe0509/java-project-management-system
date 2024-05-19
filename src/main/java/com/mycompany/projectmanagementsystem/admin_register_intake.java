@@ -1,14 +1,61 @@
 package com.mycompany.projectmanagementsystem;
 
+import com.mycompany.projectmanagementsystem.GeneralFunction.FileHandler;
 import java.awt.Toolkit;
+import java.util.List;
 
 public class admin_register_intake extends javax.swing.JFrame {
+    List<String> schoolWiseList, levelOfEducation, courseCode;
 
     public admin_register_intake() {
         initComponents();
         setIconImage();
+        dropbox_SchoolWise(schoolWiseList);
+        dropbox_LevelOfEducation(levelOfEducation);
+        dropbox_CourseCode(courseCode);
+        
     }
-
+    public void dropbox_LevelOfEducation(List <String> levelOfEducation){
+        levelOfEducation = FileHandler.readFile("level_of_education.txt");
+        Object[] lines = levelOfEducation.toArray();
+        education_level_dropbox.addItem("");
+        
+        for(int i = 0; i< lines.length; i++){
+            String line = lines[i].toString();
+            String[] results = line.split(";");
+            String educationLevel = results[1];
+            education_level_dropbox.addItem(educationLevel);
+            }
+        
+    }
+    
+    public void dropbox_SchoolWise(List<String> schoolWiseList){
+        schoolWiseList = FileHandler.readFile("school_wise.txt");
+        Object[] lines = schoolWiseList.toArray();
+        schoolwise_dropbox.addItem("");
+        
+        for(int i = 0; i< lines.length; i++){
+            String schoolWise = lines[i].toString();
+            schoolwise_dropbox.addItem(schoolWise);
+        }
+    }
+    
+    public void dropbox_CourseCode(List <String> CourseCodeList){
+        CourseCodeList = FileHandler.readFile("course.txt");
+        Object[] lines = CourseCodeList.toArray();
+        coursecode_dropbox.addItem("");
+        
+        for(int i = 0; i< lines.length; i++){
+            String line = lines[i].toString();
+            String[] results = line.split(";");
+            System.out.print(results.toString());
+            String courseCode = results[0];
+            coursecode_dropbox.addItem(courseCode);
+            
+        }
+        
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -21,6 +68,8 @@ public class admin_register_intake extends javax.swing.JFrame {
         schoolwise_title = new javax.swing.JLabel();
         enrolledmonth_chooser = new com.toedter.calendar.JMonthChooser();
         enrolledyear_chooser = new com.toedter.calendar.JYearChooser();
+        coursecode_title = new javax.swing.JLabel();
+        coursecode_dropbox = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
@@ -43,14 +92,12 @@ public class admin_register_intake extends javax.swing.JFrame {
         enrolleddate_title.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         enrolleddate_title.setForeground(new java.awt.Color(2, 50, 99));
         enrolleddate_title.setText("Enrolled Date");
-        getContentPane().add(enrolleddate_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, -1, -1));
+        getContentPane().add(enrolleddate_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, -1, -1));
 
         schoolwise_dropbox.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
-        schoolwise_dropbox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         getContentPane().add(schoolwise_dropbox, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 130, 290, 30));
 
         education_level_dropbox.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
-        education_level_dropbox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         education_level_dropbox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 education_level_dropboxActionPerformed(evt);
@@ -64,22 +111,35 @@ public class admin_register_intake extends javax.swing.JFrame {
         getContentPane().add(schoolwise_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, -1, -1));
 
         enrolledmonth_chooser.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
-        getContentPane().add(enrolledmonth_chooser, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 180, 190, 30));
+        getContentPane().add(enrolledmonth_chooser, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 230, 190, 30));
 
         enrolledyear_chooser.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
-        getContentPane().add(enrolledyear_chooser, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 180, 100, 30));
+        getContentPane().add(enrolledyear_chooser, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 230, 100, 30));
+
+        coursecode_title.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
+        coursecode_title.setForeground(new java.awt.Color(2, 50, 99));
+        coursecode_title.setText("Course Code");
+        getContentPane().add(coursecode_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, -1, -1));
+
+        coursecode_dropbox.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
+        getContentPane().add(coursecode_dropbox, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 180, 290, 30));
 
         jButton1.setBackground(new java.awt.Color(76, 127, 174));
         jButton1.setFont(new java.awt.Font("Bell MT", 1, 19)); // NOI18N
         jButton1.setText("SUBMIT");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 250, -1, -1));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 320, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main_background.png"))); // NOI18N
         jLabel1.setMaximumSize(new java.awt.Dimension(500, 300));
         jLabel1.setMinimumSize(new java.awt.Dimension(500, 300));
         jLabel1.setOpaque(true);
         jLabel1.setPreferredSize(new java.awt.Dimension(500, 300));
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 550, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 550, 370));
 
         pack();
         setLocationRelativeTo(null);
@@ -88,6 +148,10 @@ public class admin_register_intake extends javax.swing.JFrame {
     private void education_level_dropboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_education_level_dropboxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_education_level_dropboxActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     public static void main(String args[]) {
 
@@ -98,11 +162,13 @@ public class admin_register_intake extends javax.swing.JFrame {
         });
     }
     private void setIconImage() {
-        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Sysco_icon_with_background.png")));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Sysco_icon.png")));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel admin_register_intake_title;
+    private javax.swing.JComboBox<String> coursecode_dropbox;
+    private javax.swing.JLabel coursecode_title;
     private javax.swing.JComboBox<String> education_level_dropbox;
     private javax.swing.JLabel education_lvl_title;
     private javax.swing.JLabel enrolleddate_title;
