@@ -1,0 +1,6 @@
+CERT;Certificate
+FOUN;Foundation
+DIP;Diploma
+DEG;Degree
+MAS;Master
+PHD;Doctor of Philosophy
