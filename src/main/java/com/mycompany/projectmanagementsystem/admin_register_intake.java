@@ -1,18 +1,20 @@
 package com.mycompany.projectmanagementsystem;
 
 import com.mycompany.projectmanagementsystem.GeneralFunction.FileHandler;
+import com.mycompany.projectmanagementsystem.Intake.IntakeController;
 import java.awt.Toolkit;
+import java.util.Arrays;
 import java.util.List;
 
 public class admin_register_intake extends javax.swing.JFrame {
-    List<String> schoolWiseList, levelOfEducation, courseCode;
+    List<String> schoolWiseList, levelOfEducation, course;
 
     public admin_register_intake() {
         initComponents();
         setIconImage();
         dropbox_SchoolWise(schoolWiseList);
         dropbox_LevelOfEducation(levelOfEducation);
-        dropbox_CourseCode(courseCode);
+        dropbox_Course(course);
         
     }
     public void dropbox_LevelOfEducation(List <String> levelOfEducation){
@@ -40,17 +42,17 @@ public class admin_register_intake extends javax.swing.JFrame {
         }
     }
     
-    public void dropbox_CourseCode(List <String> CourseCodeList){
-        CourseCodeList = FileHandler.readFile("course.txt");
-        Object[] lines = CourseCodeList.toArray();
-        coursecode_dropbox.addItem("");
+    public void dropbox_Course(List <String> CourseList){
+        CourseList = FileHandler.readFile("course.txt");
+        Object[] lines = CourseList.toArray();
+        course_dropbox.addItem("");
         
         for(int i = 0; i< lines.length; i++){
             String line = lines[i].toString();
             String[] results = line.split(";");
             System.out.print(results.toString());
-            String courseCode = results[0];
-            coursecode_dropbox.addItem(courseCode);
+            String course = results[1];
+            course_dropbox.addItem(course);
             
         }
         
@@ -69,7 +71,7 @@ public class admin_register_intake extends javax.swing.JFrame {
         enrolledmonth_chooser = new com.toedter.calendar.JMonthChooser();
         enrolledyear_chooser = new com.toedter.calendar.JYearChooser();
         coursecode_title = new javax.swing.JLabel();
-        coursecode_dropbox = new javax.swing.JComboBox<>();
+        course_dropbox = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
@@ -118,11 +120,11 @@ public class admin_register_intake extends javax.swing.JFrame {
 
         coursecode_title.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         coursecode_title.setForeground(new java.awt.Color(2, 50, 99));
-        coursecode_title.setText("Course Code");
-        getContentPane().add(coursecode_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, -1, -1));
+        coursecode_title.setText("Course ");
+        getContentPane().add(coursecode_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, -1, -1));
 
-        coursecode_dropbox.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
-        getContentPane().add(coursecode_dropbox, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 180, 290, 30));
+        course_dropbox.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
+        getContentPane().add(course_dropbox, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 180, 290, 30));
 
         jButton1.setBackground(new java.awt.Color(76, 127, 174));
         jButton1.setFont(new java.awt.Font("Bell MT", 1, 19)); // NOI18N
@@ -150,7 +152,19 @@ public class admin_register_intake extends javax.swing.JFrame {
     }//GEN-LAST:event_education_level_dropboxActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        String[] userInput = new String[5];
+        userInput[0] = education_level_dropbox.getSelectedItem().toString();
+        userInput[1] = schoolwise_dropbox.getSelectedItem().toString();
+        userInput[2] = course_dropbox.getSelectedItem().toString();
+        
+        //combine month and year as userInput[3]
+        int inputMonth = enrolledmonth_chooser.getMonth();
+        userInput[3] = String.valueOf(inputMonth);
+        int inputYear = enrolledyear_chooser.getYear();
+        userInput[4] = String.valueOf(inputYear);
+        //String inputDate = String.format("%02d%02d", inputMonth, inputYear);
+        System.out.print(Arrays.toString(userInput));
+        IntakeController.addIntake(userInput);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public static void main(String args[]) {
@@ -167,7 +181,7 @@ public class admin_register_intake extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel admin_register_intake_title;
-    private javax.swing.JComboBox<String> coursecode_dropbox;
+    private javax.swing.JComboBox<String> course_dropbox;
     private javax.swing.JLabel coursecode_title;
     private javax.swing.JComboBox<String> education_level_dropbox;
     private javax.swing.JLabel education_lvl_title;
