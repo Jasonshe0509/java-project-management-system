@@ -1,8 +1,6 @@
 package com.mycompany.projectmanagementsystem;
 
-import com.mycompany.projectmanagementsystem.SchoolWiseList.SchoolWise;
 import com.mycompany.projectmanagementsystem.SchoolWiseList.SchoolWiseController;
-import com.mycompany.projectmanagementsystem.SchoolWiseList.SchoolWiseValidator;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 
@@ -26,7 +24,6 @@ public class admin_register_schoolwiselist extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Register School Wise ");
-        setMaximumSize(new java.awt.Dimension(500, 300));
         setMinimumSize(new java.awt.Dimension(500, 300));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -44,7 +41,7 @@ public class admin_register_schoolwiselist extends javax.swing.JFrame {
         school_wise.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         school_wise.setForeground(new java.awt.Color(2, 50, 99));
         school_wise.setToolTipText("e.g. APU2F2402CS");
-        getContentPane().add(school_wise, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 120, 150, -1));
+        getContentPane().add(school_wise, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, 230, -1));
 
         submit.setBackground(new java.awt.Color(76, 127, 174));
         submit.setFont(new java.awt.Font("Bell MT", 1, 19)); // NOI18N
@@ -90,7 +87,6 @@ public class admin_register_schoolwiselist extends javax.swing.JFrame {
         String userInput = school_wise.getText().trim().toLowerCase();
         System.out.print(userInput);
         SchoolWiseController.addSchoolWise(userInput);
-        
     }//GEN-LAST:event_submitActionPerformed
 
     private void backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseClicked
