@@ -25,6 +25,7 @@ C:\Users\ASUS\OneDrive\Documents\NetBeansProjects\java-project-management-system
 C:\Users\ASUS\OneDrive\Documents\NetBeansProjects\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\StudentDashboardPage.java
 C:\Users\ASUS\OneDrive\Documents\NetBeansProjects\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\LecturerCommunication.java
 C:\Users\ASUS\OneDrive\Documents\NetBeansProjects\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\Notification\Notification.java
+C:\Users\ASUS\OneDrive\Documents\NetBeansProjects\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\GeneralFunction\URLRenderer.java
 C:\Users\ASUS\OneDrive\Documents\NetBeansProjects\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\LevelOfEducation\LevelOfEducation.java
 C:\Users\ASUS\OneDrive\Documents\NetBeansProjects\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\NotificationPage.java
 C:\Users\ASUS\OneDrive\Documents\NetBeansProjects\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\PM_assessment_page.java
@@ -32,6 +33,7 @@ C:\Users\ASUS\OneDrive\Documents\NetBeansProjects\java-project-management-system
 C:\Users\ASUS\OneDrive\Documents\NetBeansProjects\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\LoginPage.java
 C:\Users\ASUS\OneDrive\Documents\NetBeansProjects\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\Assessment\Assessment.java
 C:\Users\ASUS\OneDrive\Documents\NetBeansProjects\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\lect_ReportPanelAction.java
+C:\Users\ASUS\OneDrive\Documents\NetBeansProjects\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\EC\ECTableActionEvent.java
 C:\Users\ASUS\OneDrive\Documents\NetBeansProjects\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\PM_ec_approvement.java
 C:\Users\ASUS\OneDrive\Documents\NetBeansProjects\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\Intake\IntakeValidator.java
 C:\Users\ASUS\OneDrive\Documents\NetBeansProjects\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\LecturerComm_CreateMessage.java
@@ -73,6 +75,7 @@ C:\Users\ASUS\OneDrive\Documents\NetBeansProjects\java-project-management-system
 C:\Users\ASUS\OneDrive\Documents\NetBeansProjects\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\LecturerReportGrading.java
 C:\Users\ASUS\OneDrive\Documents\NetBeansProjects\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\LecturerPeopleProfile.java
 C:\Users\ASUS\OneDrive\Documents\NetBeansProjects\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\PM_profile_page.java
+C:\Users\ASUS\OneDrive\Documents\NetBeansProjects\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\StudentECActionPanel.java
 C:\Users\ASUS\OneDrive\Documents\NetBeansProjects\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\StudentCreateNewDiscussionPage.java
 C:\Users\ASUS\OneDrive\Documents\NetBeansProjects\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\User\Lecturer.java
 C:\Users\ASUS\OneDrive\Documents\NetBeansProjects\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\admin_modify_studentrecord.java
