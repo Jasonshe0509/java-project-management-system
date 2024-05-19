@@ -5,7 +5,6 @@
 package com.mycompany.projectmanagementsystem.Intake;
 
 import com.mycompany.projectmanagementsystem.GeneralFunction.FileHandler;
-import java.util.Arrays;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -17,7 +16,7 @@ public class IntakeController {
     
     public static void addIntake(String[] userInput){
         boolean validateIntake = IntakeValidator.validateIntake(userInput);
-        if (validateIntake){
+        if (validateIntake == true){
                         
             String studyLevel = String.valueOf(userInput[0]);
             

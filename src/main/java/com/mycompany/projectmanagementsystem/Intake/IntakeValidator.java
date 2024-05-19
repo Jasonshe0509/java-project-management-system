@@ -12,7 +12,7 @@ public class IntakeValidator {
     
     public static boolean validateIntake(String[] userInput){
        for (String userInput1 : userInput) {
-            if (userInput1 == null || userInput1.startsWith("")) {
+            if (userInput1 == null || userInput1.equals("")) {
                 return false;
             } 
         }

@@ -1,4 +1,4 @@
 DEG2403CS(DA);School of Computing;Degree;Computer Science (Data Analyst);2024;03
 CERT2405CS(DA);School of Foundation;Certificate;Computer Science (Data Analyst);2024;05
 CERT2406CS(DA);School of Foundation;Certificate;Computer Science (Data Analyst);2024;06
-null2405null;;;;2024;05
+CERT2307CS(DA);School of Foundation;Certificate;Computer Science (Data Analyst);2023;07
