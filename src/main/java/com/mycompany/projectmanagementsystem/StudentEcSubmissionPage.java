@@ -4,8 +4,31 @@
  */
 package com.mycompany.projectmanagementsystem;
 
+import com.mycompany.projectmanagementsystem.EC.ECController;
+import com.mycompany.projectmanagementsystem.GeneralFunction.FileHandler;
+import com.mycompany.projectmanagementsystem.GeneralFunction.SessionManager;
+import com.mycompany.projectmanagementsystem.GeneralFunction.URLRenderer;
+import com.mycompany.projectmanagementsystem.StudentECActionPanel.rPanelActionRenderer;
+import com.mycompany.projectmanagementsystem.User.User;
+import com.mycompany.projectmanagementsystem.User.UserController;
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Desktop;
+import java.awt.Font;
 import java.awt.Toolkit;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.List;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import com.mycompany.projectmanagementsystem.EC.ECTableActionEvent;
 
 /**
  *
@@ -16,9 +39,54 @@ public class StudentEcSubmissionPage extends javax.swing.JFrame {
     /**
      * Creates new form StudentEcSubmissionPage
      */
+    private final SessionManager sessionManager = SessionManager.getInstance();
+    User user = sessionManager.getCurrentUser();
+
     public StudentEcSubmissionPage() {
         initComponents();
         setIconImage();
+        readECFromFile();
+        // Set the custom renderer for the column containing URLs
+        ecSubmissionTable.getColumnModel().getColumn(3).setCellRenderer(new URLRenderer());
+
+        // Add mouse listener to handle URL clicks
+        ecSubmissionTable.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int row = ecSubmissionTable.rowAtPoint(e.getPoint());
+                int col = ecSubmissionTable.columnAtPoint(e.getPoint());
+
+                if (col == 3) { // Column index for URL
+                    String url = (String) ecSubmissionTable.getValueAt(row, col);
+                    if (Desktop.isDesktopSupported()) {
+                        try {
+                            Desktop.getDesktop().browse(new URI(url));
+                        } catch (IOException | URISyntaxException ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+                }
+            }
+        });
+        StudentECActionPanel panel = new StudentECActionPanel();
+        ECTableActionEvent event = new ECTableActionEvent() {
+            @Override
+            public void ecDelete(int row, Object value) {
+                DefaultTableModel model = (DefaultTableModel) ecSubmissionTable.getModel();
+                int columnIndex = 0;
+                String ecID = (String) model.getValueAt(row, columnIndex);
+                ECController action = new ECController();
+                boolean result = action.ecDelete(ecID);
+                if (result) {
+                    JOptionPane.showMessageDialog(null, "Successfully delete the EC submission");
+                    StudentEcSubmissionPage page = new StudentEcSubmissionPage();
+                    page.dispose();
+                    page.setVisible(true);
+                }
+            }
+        };
+        ecSubmissionTable.getColumnModel().getColumn(5).setCellRenderer(panel.new rPanelActionRenderer());
+        ecSubmissionTable.getColumnModel().getColumn(5).setCellEditor(panel.new TableActionCellEditor(event));
     }
 
     /**
@@ -30,10 +98,10 @@ public class StudentEcSubmissionPage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        createBtn = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        ecSubmissionTable = new javax.swing.JTable();
         studentHeader = new javax.swing.JPanel();
         studentLogo = new javax.swing.JLabel();
         studentEcSubmission = new javax.swing.JLabel();
@@ -44,20 +112,19 @@ public class StudentEcSubmissionPage extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Student EC Submission");
-        setMaximumSize(new java.awt.Dimension(1000, 700));
         setMinimumSize(new java.awt.Dimension(1000, 700));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setBackground(new java.awt.Color(27, 61, 96));
-        jButton1.setFont(new java.awt.Font("Bell MT", 1, 24)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Create");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        createBtn.setBackground(new java.awt.Color(27, 61, 96));
+        createBtn.setFont(new java.awt.Font("Bell MT", 1, 24)); // NOI18N
+        createBtn.setForeground(new java.awt.Color(255, 255, 255));
+        createBtn.setText("Create");
+        createBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                createBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 90, 100, 40));
+        getContentPane().add(createBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 90, 100, 40));
 
         jLabel7.setFont(new java.awt.Font("Bell MT", 1, 28)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(2, 50, 99));
@@ -67,7 +134,7 @@ public class StudentEcSubmissionPage extends javax.swing.JFrame {
         jLabel7.setPreferredSize(new java.awt.Dimension(275, 47));
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 275, 40));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        ecSubmissionTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -77,11 +144,20 @@ public class StudentEcSubmissionPage extends javax.swing.JFrame {
             new String [] {
                 "EC ID", "EC Reason", "Assessment", "Submitted Link", "Status", "Action"
             }
-        ));
-        jTable1.setMaximumSize(new java.awt.Dimension(961, 532));
-        jTable1.setMinimumSize(new java.awt.Dimension(961, 532));
-        jTable1.setPreferredSize(new java.awt.Dimension(961, 532));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        ecSubmissionTable.setMaximumSize(new java.awt.Dimension(961, 532));
+        ecSubmissionTable.setMinimumSize(new java.awt.Dimension(961, 532));
+        ecSubmissionTable.setPreferredSize(new java.awt.Dimension(961, 532));
+        ecSubmissionTable.setRowHeight(30);
+        jScrollPane1.setViewportView(ecSubmissionTable);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 940, 530));
 
@@ -117,6 +193,11 @@ public class StudentEcSubmissionPage extends javax.swing.JFrame {
         studentNotification.setMaximumSize(new java.awt.Dimension(96, 73));
         studentNotification.setMinimumSize(new java.awt.Dimension(96, 73));
         studentNotification.setPreferredSize(new java.awt.Dimension(96, 73));
+        studentNotification.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                studentNotificationMouseClicked(evt);
+            }
+        });
 
         studentProfile.setBackground(new Color(255, 255, 255, 0));
         studentProfile.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
@@ -127,6 +208,11 @@ public class StudentEcSubmissionPage extends javax.swing.JFrame {
         studentProfile.setMaximumSize(new java.awt.Dimension(96, 73));
         studentProfile.setMinimumSize(new java.awt.Dimension(96, 73));
         studentProfile.setPreferredSize(new java.awt.Dimension(96, 73));
+        studentProfile.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                studentProfileMouseClicked(evt);
+            }
+        });
 
         studentLogout.setBackground(new Color(255, 255, 255, 0));
         studentLogout.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
@@ -137,6 +223,11 @@ public class StudentEcSubmissionPage extends javax.swing.JFrame {
         studentLogout.setMaximumSize(new java.awt.Dimension(96, 73));
         studentLogout.setMinimumSize(new java.awt.Dimension(96, 73));
         studentLogout.setPreferredSize(new java.awt.Dimension(96, 73));
+        studentLogout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                studentLogoutMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout studentHeaderLayout = new javax.swing.GroupLayout(studentHeader);
         studentHeader.setLayout(studentHeaderLayout);
@@ -180,12 +271,32 @@ public class StudentEcSubmissionPage extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void studentLogoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_studentLogoMouseClicked
-        // TODO add your handling code here:
+        StudentDashboardPage dashboard = new StudentDashboardPage();
+        dashboard.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_studentLogoMouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
+        StudentEcForm ecForm = new StudentEcForm();
+        ecForm.setVisible(true);
+    }//GEN-LAST:event_createBtnActionPerformed
+
+    private void studentLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_studentLogoutMouseClicked
+        this.setVisible(false);
+        UserController action = new UserController();
+        action.userLogout();
+    }//GEN-LAST:event_studentLogoutMouseClicked
+
+    private void studentProfileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_studentProfileMouseClicked
+        StudentProfilePage profile = new StudentProfilePage();
+        profile.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_studentProfileMouseClicked
+
+    private void studentNotificationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_studentNotificationMouseClicked
+        NotificationPage notification = new NotificationPage();
+        notification.setVisible(true);
+    }//GEN-LAST:event_studentNotificationMouseClicked
 
     /**
      * @param args the command line arguments
@@ -221,16 +332,73 @@ public class StudentEcSubmissionPage extends javax.swing.JFrame {
             }
         });
     }
+
     private void setIconImage() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Sysco_icon_with_background.png")));
     }
 
+    private String getAssessmentNames(String assessmentID) {
+        String fileName = "assessment.txt";
+        String assessmentName = null;
+        List<String> data = FileHandler.readFile(fileName);
+        for (String line : data) {
+            String[] list = line.split(";");
+            if (list[0].equals(assessmentID)) {
+                if (list[1].equalsIgnoreCase("internship_report")) {
+                    assessmentName = "Internship Report";
+                } else if (list[1].equalsIgnoreCase("fyp")) {
+                    assessmentName = "Final Year Project";
+                } else if (list[1].equalsIgnoreCase("cp1")) {
+                    assessmentName = "Capstone Project 1";
+                } else if (list[1].equalsIgnoreCase("cp2")) {
+                    assessmentName = "Capstone Project 2";
+                } else if (list[1].equalsIgnoreCase("rmcp")) {
+                    assessmentName = "Research Methodology for Capstone Project";
+                } else if (list[1].equalsIgnoreCase("investigation")) {
+                    assessmentName = "Investigation Report";
+                }
+            }
+        }
+
+        return assessmentName;
+    }
+
+    private void readECFromFile() {
+        String fileName = "ec.txt";
+        DefaultTableModel model = (DefaultTableModel) ecSubmissionTable.getModel();
+        model.setRowCount(0); // Clear existing rows
+        List<String> data = FileHandler.readFile(fileName);
+        for (String line : data) {
+            String[] list = line.split(";");
+            if (list[1].equals(user.getUserID())) {
+                String assessmentName = getAssessmentNames(list[2]);
+                String[] reorderedData = {
+                    list[0], // EC ID
+                    list[3], // EC Reason
+                    assessmentName, // assessmentName
+                    list[4], // Submitted Link
+                    list[5], // EC Status
+                };
+                model.addRow(reorderedData);
+            }
+        }
+    }
+
+    public static Object[] getRowData(TableModel model, int rowIndex) {
+        int columnCount = model.getColumnCount();
+        Object[] rowData = new Object[columnCount];
+        for (int columnIndex = 0; columnIndex < columnCount; columnIndex++) {
+            rowData[columnIndex] = model.getValueAt(rowIndex, columnIndex);
+        }
+        return rowData;
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel background;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton createBtn;
+    private javax.swing.JTable ecSubmissionTable;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel studentEcSubmission;
     private javax.swing.JPanel studentHeader;
     private javax.swing.JLabel studentLogo;

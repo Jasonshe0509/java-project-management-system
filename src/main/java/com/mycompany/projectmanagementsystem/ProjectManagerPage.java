@@ -4,17 +4,30 @@
  */
 package com.mycompany.projectmanagementsystem;
 
+import com.mycompany.projectmanagementsystem.GeneralFunction.SessionManager;
+import com.mycompany.projectmanagementsystem.User.User;
+import java.awt.Toolkit;
+import java.awt.Color;
+
 /**
  *
  * @author shuhuilee
  */
 public class ProjectManagerPage extends javax.swing.JFrame {
 
+    private final SessionManager sessionManager = SessionManager.getInstance();
+
     /**
      * Creates new form ProjectManagerPages
      */
     public ProjectManagerPage() {
         initComponents();
+        setIconImage();
+        User user = sessionManager.getCurrentUser();
+        if (user != null) {
+            welcome_pm_name.setText(user.getName());
+        }
+
     }
 
     /**
@@ -26,14 +39,8 @@ public class ProjectManagerPage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         welcome_project_manager = new javax.swing.JLabel();
+        welcome_pm_name = new javax.swing.JLabel();
         pm_internship_report = new javax.swing.JPanel();
         pm_internship_view = new javax.swing.JButton();
         pm_internship_icon = new javax.swing.JLabel();
@@ -58,78 +65,29 @@ public class ProjectManagerPage extends javax.swing.JFrame {
         pm_cp2_view = new javax.swing.JButton();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        pm_logo_sysco = new javax.swing.JLabel();
+        pm_ec_approvement = new javax.swing.JLabel();
+        pm_notification = new javax.swing.JLabel();
+        pm_profile = new javax.swing.JLabel();
+        pm_logout = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Project Manager Main Page");
-        setMaximumSize(new java.awt.Dimension(1000, 700));
         setMinimumSize(new java.awt.Dimension(1000, 700));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setMaximumSize(new java.awt.Dimension(1000, 73));
-        jPanel1.setMinimumSize(new java.awt.Dimension(1000, 73));
-        jPanel1.setPreferredSize(new java.awt.Dimension(1000, 73));
-        jPanel1.setRequestFocusEnabled(false);
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Sysco_logo.png"))); // NOI18N
-
-        jLabel3.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        jLabel3.setText("EC Approvement");
-
-        jLabel6.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        jLabel6.setText("Report Status");
-
-        jLabel4.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        jLabel4.setText("Notification");
-
-        jLabel5.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        jLabel5.setText("Profile");
-
-        jLabel7.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        jLabel7.setText("Log out");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 160, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel6)
-                .addGap(41, 41, 41)
-                .addComponent(jLabel4)
-                .addGap(36, 36, 36)
-                .addComponent(jLabel5)
-                .addGap(40, 40, 40)
-                .addComponent(jLabel7)
-                .addGap(38, 38, 38))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel4))))
-                .addContainerGap(14, Short.MAX_VALUE))
-        );
-
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
-
-        welcome_project_manager.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
-        welcome_project_manager.setText("Welcome：Project Manager()");
+        welcome_project_manager.setFont(new java.awt.Font("Bell MT", 1, 24)); // NOI18N
+        welcome_project_manager.setForeground(new java.awt.Color(2, 50, 99));
+        welcome_project_manager.setText("Welcome:");
         getContentPane().add(welcome_project_manager, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
+
+        welcome_pm_name.setFont(new java.awt.Font("Bell MT", 1, 24)); // NOI18N
+        welcome_pm_name.setForeground(new java.awt.Color(2, 50, 99));
+        welcome_pm_name.setText("Name");
+        getContentPane().add(welcome_pm_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 90, 310, 30));
 
         pm_internship_report.setBackground(new java.awt.Color(204, 204, 204));
         pm_internship_report.setMaximumSize(new java.awt.Dimension(300, 250));
@@ -147,9 +105,6 @@ public class ProjectManagerPage extends javax.swing.JFrame {
         pm_internship_report.add(pm_internship_view, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 220, -1, -1));
 
         pm_internship_icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/internship.png"))); // NOI18N
-        pm_internship_icon.setMaximumSize(new java.awt.Dimension(300, 150));
-        pm_internship_icon.setMinimumSize(new java.awt.Dimension(300, 150));
-        pm_internship_icon.setPreferredSize(new java.awt.Dimension(300, 150));
         pm_internship_report.add(pm_internship_icon, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         jLabel10.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
@@ -174,9 +129,6 @@ public class ProjectManagerPage extends javax.swing.JFrame {
         pm_FYP.add(pm_FYP_view, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 220, -1, -1));
 
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/final_year_project.png"))); // NOI18N
-        jLabel12.setMaximumSize(new java.awt.Dimension(300, 150));
-        jLabel12.setMinimumSize(new java.awt.Dimension(300, 150));
-        jLabel12.setPreferredSize(new java.awt.Dimension(300, 150));
         pm_FYP.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         jLabel14.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
@@ -200,9 +152,6 @@ public class ProjectManagerPage extends javax.swing.JFrame {
         pm_RMCP.add(pm_RMCP_view, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 220, -1, -1));
 
         jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/research_methodology.png"))); // NOI18N
-        jLabel19.setMaximumSize(new java.awt.Dimension(300, 150));
-        jLabel19.setMinimumSize(new java.awt.Dimension(300, 150));
-        jLabel19.setPreferredSize(new java.awt.Dimension(300, 150));
         pm_RMCP.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         jLabel20.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
@@ -226,9 +175,6 @@ public class ProjectManagerPage extends javax.swing.JFrame {
         pm_Investigation.add(pm_investigation_view, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 220, -1, -1));
 
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/investigation_report.png"))); // NOI18N
-        jLabel11.setMaximumSize(new java.awt.Dimension(300, 150));
-        jLabel11.setMinimumSize(new java.awt.Dimension(300, 150));
-        jLabel11.setPreferredSize(new java.awt.Dimension(300, 150));
         pm_Investigation.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 300, -1));
 
         jLabel13.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
@@ -252,9 +198,6 @@ public class ProjectManagerPage extends javax.swing.JFrame {
         pm_CP1.add(pm_cp1_view, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 220, -1, -1));
 
         jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/capstone_project.png"))); // NOI18N
-        jLabel15.setMaximumSize(new java.awt.Dimension(300, 150));
-        jLabel15.setMinimumSize(new java.awt.Dimension(300, 150));
-        jLabel15.setPreferredSize(new java.awt.Dimension(300, 150));
         pm_CP1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         jLabel16.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
@@ -278,9 +221,6 @@ public class ProjectManagerPage extends javax.swing.JFrame {
         pm_CP2.add(pm_cp2_view, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 220, -1, -1));
 
         jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/capstone_project.png"))); // NOI18N
-        jLabel17.setMaximumSize(new java.awt.Dimension(300, 150));
-        jLabel17.setMinimumSize(new java.awt.Dimension(300, 150));
-        jLabel17.setPreferredSize(new java.awt.Dimension(300, 150));
         pm_CP2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         jLabel18.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
@@ -289,6 +229,67 @@ public class ProjectManagerPage extends javax.swing.JFrame {
 
         getContentPane().add(pm_CP2, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 410, 300, 250));
 
+        jPanel1.setBackground(new Color(255, 255, 255, 90));
+        jPanel1.setMaximumSize(new java.awt.Dimension(1000, 73));
+        jPanel1.setMinimumSize(new java.awt.Dimension(1000, 73));
+
+        pm_logo_sysco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Sysco_logo.png"))); // NOI18N
+
+        pm_ec_approvement.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
+        pm_ec_approvement.setForeground(new java.awt.Color(2, 50, 99));
+        pm_ec_approvement.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pm_ec_approvement.setText("EC Approvement");
+
+        pm_notification.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
+        pm_notification.setForeground(new java.awt.Color(2, 50, 99));
+        pm_notification.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pm_notification.setText("Notification");
+
+        pm_profile.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
+        pm_profile.setForeground(new java.awt.Color(2, 50, 99));
+        pm_profile.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pm_profile.setText("Profile");
+
+        pm_logout.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
+        pm_logout.setForeground(new java.awt.Color(2, 50, 99));
+        pm_logout.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pm_logout.setText("Log Out");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(pm_logo_sysco)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 356, Short.MAX_VALUE)
+                .addComponent(pm_ec_approvement)
+                .addGap(18, 18, 18)
+                .addComponent(pm_notification)
+                .addGap(18, 18, 18)
+                .addComponent(pm_profile)
+                .addGap(26, 26, 26)
+                .addComponent(pm_logout)
+                .addGap(40, 40, 40))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(pm_logout)
+                            .addComponent(pm_profile)
+                            .addComponent(pm_notification)
+                            .addComponent(pm_ec_approvement)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(pm_logo_sysco)))
+                .addContainerGap(17, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main_background.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
@@ -296,46 +297,40 @@ public class ProjectManagerPage extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void viewAssessment(String assessmentType) {
+        PM_assessment_page assessment = new PM_assessment_page(assessmentType);
+        assessment.setVisible(true);
+        this.dispose();
+    }
+
     private void pm_internship_viewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pm_internship_viewActionPerformed
         // TODO add your handling code here:
-//        PM_internship_page internship = new PM_internship_page();
-//        internship.setVisible(true);
-//        this.dispose();
+        viewAssessment("internship_report");
     }//GEN-LAST:event_pm_internship_viewActionPerformed
 
     private void pm_FYP_viewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pm_FYP_viewActionPerformed
         // TODO add your handling code here:
-//        PM_FYP_page fyp = new PM_FYP_page();
-//        fyp.setVisible(true);
-//        this.dispose();
+        viewAssessment("fyp");
     }//GEN-LAST:event_pm_FYP_viewActionPerformed
 
     private void pm_RMCP_viewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pm_RMCP_viewActionPerformed
         // TODO add your handling code here:
-//        PM_RMCP_page rmcp = new PM_RMCP_page();
-//        rmcp.setVisible(true);
-//        this.dispose();
+        viewAssessment("rmcp");
     }//GEN-LAST:event_pm_RMCP_viewActionPerformed
 
     private void pm_investigation_viewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pm_investigation_viewActionPerformed
         // TODO add your handling code here:
-//        PM_investigation_page investigation = new PM_investigation_page();
-//        investigation.setVisible(true);
-//        this.dispose();
+        viewAssessment("investigation");
     }//GEN-LAST:event_pm_investigation_viewActionPerformed
 
     private void pm_cp1_viewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pm_cp1_viewActionPerformed
         // TODO add your handling code here:
-//        PM_cp1_page cp1 = new PM_cp1_page();
-//        cp1.setVisible(true);
-//        this.dispose();
+        viewAssessment("cp1");
     }//GEN-LAST:event_pm_cp1_viewActionPerformed
 
     private void pm_cp2_viewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pm_cp2_viewActionPerformed
         // TODO add your handling code here:
-//        PM_cp2_page cp2 = new PM_cp2_page();
-//        cp2.setVisible(true);
-//        this.dispose();
+        viewAssessment("cp2");
     }//GEN-LAST:event_pm_cp2_viewActionPerformed
 
     /**
@@ -363,7 +358,7 @@ public class ProjectManagerPage extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(ProjectManagerPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-    
+
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -371,6 +366,10 @@ public class ProjectManagerPage extends javax.swing.JFrame {
                 new ProjectManagerPage().setVisible(true);
             }
         });
+    }
+
+    private void setIconImage() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Sysco_icon_with_background.png")));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -385,13 +384,7 @@ public class ProjectManagerPage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel pm_CP1;
     private javax.swing.JPanel pm_CP2;
@@ -402,10 +395,16 @@ public class ProjectManagerPage extends javax.swing.JFrame {
     private javax.swing.JButton pm_RMCP_view;
     private javax.swing.JButton pm_cp1_view;
     private javax.swing.JButton pm_cp2_view;
+    private javax.swing.JLabel pm_ec_approvement;
     private javax.swing.JLabel pm_internship_icon;
     private javax.swing.JPanel pm_internship_report;
     private javax.swing.JButton pm_internship_view;
     private javax.swing.JButton pm_investigation_view;
+    private javax.swing.JLabel pm_logo_sysco;
+    private javax.swing.JLabel pm_logout;
+    private javax.swing.JLabel pm_notification;
+    private javax.swing.JLabel pm_profile;
+    private javax.swing.JLabel welcome_pm_name;
     private javax.swing.JLabel welcome_project_manager;
     // End of variables declaration//GEN-END:variables
 }

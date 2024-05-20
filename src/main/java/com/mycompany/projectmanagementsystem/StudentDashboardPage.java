@@ -4,6 +4,10 @@
  */
 package com.mycompany.projectmanagementsystem;
 
+import com.mycompany.projectmanagementsystem.GeneralFunction.SessionManager;
+import com.mycompany.projectmanagementsystem.User.Student;
+import com.mycompany.projectmanagementsystem.User.User;
+import com.mycompany.projectmanagementsystem.User.UserController;
 import java.awt.Color;
 import java.awt.Toolkit;
 
@@ -12,8 +16,14 @@ public class StudentDashboardPage extends javax.swing.JFrame {
     /**
      * Creates new form StudentDashboardPage
      */
+    private final SessionManager sessionManager = SessionManager.getInstance();
     public StudentDashboardPage() {
         initComponents();
+        setIconImage();
+        User user = sessionManager.getCurrentUser();
+        if (user != null) {
+            name.setText(((Student)user).getIntakeCode());
+        }
     }
 
     /**
@@ -32,7 +42,8 @@ public class StudentDashboardPage extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         dueDate = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        name = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
         upcomingEvent = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         studentHeader = new javax.swing.JPanel();
@@ -62,7 +73,7 @@ public class StudentDashboardPage extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 314, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -78,7 +89,7 @@ public class StudentDashboardPage extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 377, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -137,10 +148,15 @@ public class StudentDashboardPage extends javax.swing.JFrame {
 
         getContentPane().add(dueDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 120, -1, -1));
 
-        jLabel7.setFont(new java.awt.Font("Bell MT", 1, 20)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(2, 50, 99));
-        jLabel7.setText("Welcome: Student ()");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 200, 30));
+        name.setFont(new java.awt.Font("Bell MT", 1, 20)); // NOI18N
+        name.setForeground(new java.awt.Color(2, 50, 99));
+        name.setText("Name");
+        getContentPane().add(name, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 70, 280, 30));
+
+        jLabel8.setFont(new java.awt.Font("Bell MT", 1, 20)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(2, 50, 99));
+        jLabel8.setText("Welcome: ");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 100, 30));
 
         upcomingEvent.setBackground(new Color(217,217,217,40));
         upcomingEvent.setMaximumSize(new java.awt.Dimension(207, 332));
@@ -181,6 +197,11 @@ public class StudentDashboardPage extends javax.swing.JFrame {
         studentEcSubmission.setMaximumSize(new java.awt.Dimension(96, 73));
         studentEcSubmission.setMinimumSize(new java.awt.Dimension(96, 73));
         studentEcSubmission.setPreferredSize(new java.awt.Dimension(96, 73));
+        studentEcSubmission.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                studentEcSubmissionMouseClicked(evt);
+            }
+        });
 
         studentNotification.setBackground(new Color(255, 255, 255, 0));
         studentNotification.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
@@ -191,6 +212,11 @@ public class StudentDashboardPage extends javax.swing.JFrame {
         studentNotification.setMaximumSize(new java.awt.Dimension(96, 73));
         studentNotification.setMinimumSize(new java.awt.Dimension(96, 73));
         studentNotification.setPreferredSize(new java.awt.Dimension(96, 73));
+        studentNotification.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                studentNotificationMouseClicked(evt);
+            }
+        });
 
         studentProfile.setBackground(new Color(255, 255, 255, 0));
         studentProfile.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
@@ -201,6 +227,11 @@ public class StudentDashboardPage extends javax.swing.JFrame {
         studentProfile.setMaximumSize(new java.awt.Dimension(96, 73));
         studentProfile.setMinimumSize(new java.awt.Dimension(96, 73));
         studentProfile.setPreferredSize(new java.awt.Dimension(96, 73));
+        studentProfile.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                studentProfileMouseClicked(evt);
+            }
+        });
 
         studentLogout.setBackground(new Color(255, 255, 255, 0));
         studentLogout.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
@@ -211,6 +242,11 @@ public class StudentDashboardPage extends javax.swing.JFrame {
         studentLogout.setMaximumSize(new java.awt.Dimension(96, 73));
         studentLogout.setMinimumSize(new java.awt.Dimension(96, 73));
         studentLogout.setPreferredSize(new java.awt.Dimension(96, 73));
+        studentLogout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                studentLogoutMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout studentHeaderLayout = new javax.swing.GroupLayout(studentHeader);
         studentHeader.setLayout(studentHeaderLayout);
@@ -257,6 +293,29 @@ public class StudentDashboardPage extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_studentLogoMouseClicked
 
+    private void studentLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_studentLogoutMouseClicked
+        this.setVisible(false);
+        UserController action = new UserController();
+        action.userLogout();
+    }//GEN-LAST:event_studentLogoutMouseClicked
+
+    private void studentProfileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_studentProfileMouseClicked
+        StudentProfilePage profile = new StudentProfilePage();
+        profile.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_studentProfileMouseClicked
+
+    private void studentNotificationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_studentNotificationMouseClicked
+        NotificationPage notification = new NotificationPage();
+        notification.setVisible(true);
+    }//GEN-LAST:event_studentNotificationMouseClicked
+
+    private void studentEcSubmissionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_studentEcSubmissionMouseClicked
+        StudentEcSubmissionPage ecPage = new StudentEcSubmissionPage();
+        ecPage.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_studentEcSubmissionMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -299,11 +358,12 @@ public class StudentDashboardPage extends javax.swing.JFrame {
     private javax.swing.JPanel dueDate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JLabel name;
     private javax.swing.JLabel studentEcSubmission;
     private javax.swing.JPanel studentHeader;
     private javax.swing.JLabel studentLogo;

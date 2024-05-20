@@ -4,6 +4,8 @@
  */
 package com.mycompany.projectmanagementsystem;
 
+import java.awt.Toolkit;
+import java.awt.Color;
 /**
  *
  * @author user
@@ -15,6 +17,7 @@ public class LecturerDashboardPage extends javax.swing.JFrame {
      */
     public LecturerDashboardPage() {
         initComponents();
+        setIconImage();
     }
 
     /**
@@ -76,7 +79,7 @@ public class LecturerDashboardPage extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new Color(255, 255, 255, 90));
         jPanel1.setMaximumSize(new java.awt.Dimension(1000, 73));
         jPanel1.setMinimumSize(new java.awt.Dimension(1000, 73));
         jPanel1.setPreferredSize(new java.awt.Dimension(1000, 73));
@@ -88,14 +91,17 @@ public class LecturerDashboardPage extends javax.swing.JFrame {
         jLabel2.setPreferredSize(new java.awt.Dimension(184, 42));
 
         jLabel3.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(2, 50, 99));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Log Out");
 
         jLabel4.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(2, 50, 99));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Profile");
 
         jLabel5.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(2, 50, 99));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Notification");
         jLabel5.setMaximumSize(new java.awt.Dimension(37, 21));
@@ -103,6 +109,7 @@ public class LecturerDashboardPage extends javax.swing.JFrame {
         jLabel5.setPreferredSize(new java.awt.Dimension(37, 21));
 
         jLabel6.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(2, 50, 99));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Summary Report");
         jLabel6.setMaximumSize(new java.awt.Dimension(37, 21));
@@ -634,7 +641,7 @@ public class LecturerDashboardPage extends javax.swing.JFrame {
         jLabel1.setMaximumSize(new java.awt.Dimension(1000, 700));
         jLabel1.setMinimumSize(new java.awt.Dimension(1000, 700));
         jLabel1.setPreferredSize(new java.awt.Dimension(1000, 700));
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 1000, 700));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 710));
 
         pack();
         setLocationRelativeTo(null);
@@ -697,6 +704,9 @@ public class LecturerDashboardPage extends javax.swing.JFrame {
                 new LecturerDashboardPage().setVisible(true);
             }
         });
+    }
+    private void setIconImage() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Sysco_icon_with_background.png")));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
