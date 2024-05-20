@@ -23,8 +23,6 @@ com\mycompany\projectmanagementsystem\LecturerPeopleProfile$2.class
 com\mycompany\projectmanagementsystem\admin_register_lecturer$5.class
 com\mycompany\projectmanagementsystem\admin_lecturer$3.class
 com\mycompany\projectmanagementsystem\admin_student$4.class
-com\mycompany\projectmanagementsystem\PM_FYP_page$3.class
-com\mycompany\projectmanagementsystem\PM_cp1_page.class
 com\mycompany\projectmanagementsystem\PM_report_status.class
 com\mycompany\projectmanagementsystem\LecturerIntakePage$5.class
 com\mycompany\projectmanagementsystem\StudentEcSubmissionPage$5.class
