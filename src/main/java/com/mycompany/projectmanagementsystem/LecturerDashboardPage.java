@@ -38,6 +38,7 @@ public class LecturerDashboardPage extends javax.swing.JFrame {
     private JLabel bg;
     private JLabel AssessmentNameLabel;
     private JLabel IntakeCodeLabel;
+    private JPanel contentPanel;
     List<JPanel> assessments = new ArrayList<JPanel>();
     private JLabel lastClickedLabel = null;
     
@@ -69,6 +70,7 @@ public class LecturerDashboardPage extends javax.swing.JFrame {
         jSplitPane1 = new javax.swing.JSplitPane();
         supervisorLabel = new javax.swing.JLabel();
         secMarkerLabel = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -211,7 +213,17 @@ public class LecturerDashboardPage extends javax.swing.JFrame {
 
         getContentPane().add(jSplitPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 106, -1, -1));
 
+        jScrollPane2.setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane2.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        jScrollPane2.setMaximumSize(new java.awt.Dimension(950, 530));
+        jScrollPane2.setMinimumSize(new java.awt.Dimension(950, 530));
+        jScrollPane2.setPreferredSize(new java.awt.Dimension(950, 530));
+        jScrollPane2.getViewport().setBackground(Color.WHITE);
+        jScrollPane2.setBackground(Color.WHITE);
+
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel2.setMaximumSize(new java.awt.Dimension(950, 530));
         jPanel2.setMinimumSize(new java.awt.Dimension(950, 530));
         jPanel2.setPreferredSize(new java.awt.Dimension(950, 530));
@@ -227,7 +239,9 @@ public class LecturerDashboardPage extends javax.swing.JFrame {
             .addGap(0, 530, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 950, -1));
+        jScrollPane2.setViewportView(jPanel2);
+
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 950, 530));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main_background.png"))); // NOI18N
         jLabel1.setText("background");
@@ -241,7 +255,7 @@ public class LecturerDashboardPage extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     
     private void supervisorLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_supervisorLabelMouseClicked
-        if (jPanel2.getComponentCount() > 0) { // Check if jPanel2 has any components
+        if (jPanel2.getComponentCount() > 0) { // Check if panel has any components
             clearPanel(); // Clear the panel if there are components
         }
         onLabelClick(supervisorLabel);
@@ -361,8 +375,9 @@ public class LecturerDashboardPage extends javax.swing.JFrame {
         Collections.reverse(AssmntData);
         boolean AssessmentFound = false;
 
-        // Set null layout for absolute positioning
-        jPanel2.setLayout(null);
+        // Create a panel to hold all assessment panels
+        contentPanel = new JPanel();
+        contentPanel.setLayout(null); // Set null layout for absolute positioning
 
         // Constants for layout
         int panelWidth = 300;
@@ -379,58 +394,44 @@ public class LecturerDashboardPage extends javax.swing.JFrame {
             String[] AssmntList = line.split(";");
             if (user.getUserID().equals(AssmntList[4])) {
                 AssessmentPanel = new JPanel();
-                //AssessmentPanel.setPreferredSize(new java.awt.Dimension(300, 255));
+                AssessmentPanel.setBackground(Color.WHITE);
                 AssessmentPanel.setPreferredSize(new java.awt.Dimension(panelWidth, panelHeight));
                 AssessmentPanel.setBounds(x, y, panelWidth, panelHeight);
                 AssessmentPanel.setLayout(null);
+                
+                AssessmentBackgroundPanel = new JPanel();
+                bg = new JLabel();
+                AssessmentNameLabel = new javax.swing.JLabel();
 
                 switch (AssmntList[1]) {
                     case "internship_report" -> {
-                        AssessmentBackgroundPanel = new JPanel();
-                        bg = new JLabel();
                         bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/internship.png")));
-                        
-                        AssessmentNameLabel = new javax.swing.JLabel();
+                       
                         AssessmentNameLabel.setText("Internship Report");
                     }
                     case "fyp" -> {
-                        AssessmentBackgroundPanel = new JPanel();
-                        bg = new JLabel();
                         bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/final_year_project.png")));
                         
-                        AssessmentNameLabel = new javax.swing.JLabel();
                         AssessmentNameLabel.setText("Final Year Project");
                     }
                     case "investigation_report" -> {
-                        AssessmentBackgroundPanel = new JPanel();
-                        bg = new JLabel();
                         bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/investigation_report.png")));
 
-                        AssessmentNameLabel = new javax.swing.JLabel();
                         AssessmentNameLabel.setText("Investigation Report");
                     }
                     case "cp1" -> {
-                        AssessmentBackgroundPanel = new JPanel();
-                        bg = new JLabel();
                         bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/capstone_project.png")));
                         
-                        AssessmentNameLabel = new javax.swing.JLabel();
                         AssessmentNameLabel.setText("Capstone Project 1");
                     }
                     case "cp2" -> {
-                        AssessmentBackgroundPanel = new JPanel();
-                        bg = new JLabel();
                         bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/capstone_project.png")));
                         
-                        AssessmentNameLabel = new javax.swing.JLabel();
                         AssessmentNameLabel.setText("Capstone Project 2");
                     }
                     case "rmcp" -> {
-                        AssessmentBackgroundPanel = new JPanel();
-                        bg = new JLabel();
                         bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/research_methodology.png")));
                         
-                        AssessmentNameLabel = new javax.swing.JLabel();
                         AssessmentNameLabel.setText("<html>" + "Research Methodology for Capstone Project" + "</html>");
                     }
                 }
@@ -467,7 +468,8 @@ public class LecturerDashboardPage extends javax.swing.JFrame {
                 AssessmentPanel.add(IntakeCodeLabel);
                 AssessmentPanel.add(AssessmentViewBtn);
         
-                jPanel2.add(AssessmentPanel);
+                contentPanel.add(AssessmentPanel);
+                jPanel2.add(contentPanel);
                 assessments.add(AssessmentPanel);
                 AssessmentFound = true;
                 
@@ -487,13 +489,22 @@ public class LecturerDashboardPage extends javax.swing.JFrame {
             //set label to center
             int labelWidth = noAssmntLabel.getPreferredSize().width;
             int labelHeight = noAssmntLabel.getPreferredSize().height;
-            int a = (jPanel2.getWidth() - labelWidth) / 2;
-            int b = (jPanel2.getHeight() - labelHeight) / 2;
+            int a = (contentPanel.getWidth() - labelWidth) / 2;
+            int b = (contentPanel.getHeight() - labelHeight) / 2;
 
             noAssmntLabel.setBounds(a, b, labelWidth, labelHeight);
-            jPanel2.setLayout(null);
-            jPanel2.add(noAssmntLabel);
+            contentPanel.add(noAssmntLabel);
         }
+        
+        // Set preferred size for the content panel based on the number of items
+        int numRows = (count + panelsPerRow - 1) / panelsPerRow; // Calculate number of rows needed
+        int contentHeight = numRows * (panelHeight + yGap) + yGap; // Calculate content panel height
+        contentPanel.setPreferredSize(new java.awt.Dimension(
+            panelsPerRow * (panelWidth + xGap) + xGap, 
+            contentHeight
+        ));
+         // Add content panel to the scroll pane
+        jScrollPane2.setViewportView(contentPanel);
     }
     
     private void showSecMarkerAssessmentInfo() {
@@ -501,8 +512,9 @@ public class LecturerDashboardPage extends javax.swing.JFrame {
         Collections.reverse(AssmntData);
         boolean AssessmentFound = false;
 
-        // Set null layout for absolute positioning
-        jPanel2.setLayout(null);
+        // Create a panel to hold all assessment panels
+        contentPanel = new JPanel();
+        contentPanel.setLayout(null); // Set null layout for absolute positioning
 
         // Constants for layout
         int panelWidth = 300;
@@ -519,58 +531,44 @@ public class LecturerDashboardPage extends javax.swing.JFrame {
             String[] AssmntList = line.split(";");
             if (user.getUserID().equals(AssmntList[5])) {
                 AssessmentPanel = new JPanel();
-                //AssessmentPanel.setPreferredSize(new java.awt.Dimension(300, 255));
+                AssessmentPanel.setBackground(Color.WHITE);                
                 AssessmentPanel.setPreferredSize(new java.awt.Dimension(panelWidth, panelHeight));
                 AssessmentPanel.setBounds(x, y, panelWidth, panelHeight);
                 AssessmentPanel.setLayout(null);
+                
+                AssessmentBackgroundPanel = new JPanel();
+                bg = new JLabel();
+                AssessmentNameLabel = new javax.swing.JLabel();
 
                 switch (AssmntList[1]) {
                     case "internship_report" -> {
-                        AssessmentBackgroundPanel = new JPanel();
-                        bg = new JLabel();
                         bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/internship.png")));
-                        
-                        AssessmentNameLabel = new javax.swing.JLabel();
+                       
                         AssessmentNameLabel.setText("Internship Report");
                     }
                     case "fyp" -> {
-                        AssessmentBackgroundPanel = new JPanel();
-                        bg = new JLabel();
                         bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/final_year_project.png")));
                         
-                        AssessmentNameLabel = new javax.swing.JLabel();
                         AssessmentNameLabel.setText("Final Year Project");
                     }
                     case "investigation_report" -> {
-                        AssessmentBackgroundPanel = new JPanel();
-                        bg = new JLabel();
                         bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/investigation_report.png")));
 
-                        AssessmentNameLabel = new javax.swing.JLabel();
                         AssessmentNameLabel.setText("Investigation Report");
                     }
                     case "cp1" -> {
-                        AssessmentBackgroundPanel = new JPanel();
-                        bg = new JLabel();
                         bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/capstone_project.png")));
                         
-                        AssessmentNameLabel = new javax.swing.JLabel();
                         AssessmentNameLabel.setText("Capstone Project 1");
                     }
                     case "cp2" -> {
-                        AssessmentBackgroundPanel = new JPanel();
-                        bg = new JLabel();
                         bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/capstone_project.png")));
                         
-                        AssessmentNameLabel = new javax.swing.JLabel();
                         AssessmentNameLabel.setText("Capstone Project 2");
                     }
                     case "rmcp" -> {
-                        AssessmentBackgroundPanel = new JPanel();
-                        bg = new JLabel();
                         bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/research_methodology.png")));
                         
-                        AssessmentNameLabel = new javax.swing.JLabel();
                         AssessmentNameLabel.setText("<html>" + "Research Methodology for Capstone Project" + "</html>");
                     }
                 }
@@ -607,7 +605,8 @@ public class LecturerDashboardPage extends javax.swing.JFrame {
                 AssessmentPanel.add(IntakeCodeLabel);
                 AssessmentPanel.add(AssessmentViewBtn);
         
-                jPanel2.add(AssessmentPanel);
+                contentPanel.add(AssessmentPanel);
+                jPanel2.add(contentPanel);
                 assessments.add(AssessmentPanel);
                 AssessmentFound = true;
                 
@@ -627,13 +626,20 @@ public class LecturerDashboardPage extends javax.swing.JFrame {
             //set label to center
             int labelWidth = noAssmntLabel.getPreferredSize().width;
             int labelHeight = noAssmntLabel.getPreferredSize().height;
-            int a = (jPanel2.getWidth() - labelWidth) / 2;
-            int b = (jPanel2.getHeight() - labelHeight) / 2;
+            int a = (contentPanel.getWidth() - labelWidth) / 2;
+            int b = (contentPanel.getHeight() - labelHeight) / 2;
 
             noAssmntLabel.setBounds(a, b, labelWidth, labelHeight);
-            jPanel2.setLayout(null);
-            jPanel2.add(noAssmntLabel);
+            contentPanel.add(noAssmntLabel);
         }
+        
+        // Set preferred size for the content panel based on the number of items
+        contentPanel.setPreferredSize(new java.awt.Dimension(
+            panelsPerRow * (panelWidth + xGap) + xGap, 
+            (count / panelsPerRow + 1) * (panelHeight + yGap) + yGap
+        ));
+         // Add content panel to the scroll pane 
+        jScrollPane2.setViewportView(contentPanel);
     }
     
     private void clearPanel(){
@@ -658,6 +664,7 @@ public class LecturerDashboardPage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JLabel secMarkerLabel;
     private javax.swing.JLabel supervisorLabel;
