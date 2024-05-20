@@ -15,6 +15,9 @@ public class admin_register_lecturer extends javax.swing.JFrame {
     public admin_register_lecturer() {
         initComponents();
         setIconImage();
+        dropbox_Gender(gender);
+        dropbox_SchoolWise(schoolWiseList);
+        
     }
     public void dropbox_Gender(List<String> genderList) {
         lecturer_gender_selection.addItem("");
@@ -81,7 +84,6 @@ public class admin_register_lecturer extends javax.swing.JFrame {
         getContentPane().add(lecturer_gender, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 150, -1, -1));
 
         lecturer_gender_selection.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        lecturer_gender_selection.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Female", "Male"}));
         lecturer_gender_selection.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lecturer_gender_selectionActionPerformed(evt);
@@ -206,7 +208,6 @@ public class admin_register_lecturer extends javax.swing.JFrame {
         getContentPane().add(dob_chooser, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 210, 190, 50));
 
         schoolwise_dropbox.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        schoolwise_dropbox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Female", "Male"}));
         schoolwise_dropbox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 schoolwise_dropboxActionPerformed(evt);
@@ -219,7 +220,7 @@ public class admin_register_lecturer extends javax.swing.JFrame {
         background.setMaximumSize(new java.awt.Dimension(700, 580));
         background.setMinimumSize(new java.awt.Dimension(700, 580));
         background.setPreferredSize(new java.awt.Dimension(700, 580));
-        getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 520));
+        getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 530));
 
         pack();
         setLocationRelativeTo(null);
@@ -260,7 +261,7 @@ public class admin_register_lecturer extends javax.swing.JFrame {
                 userInput[6] = lecturer_nric.getText().trim();
                 userInput[7] = lecturer_nation.getText().toUpperCase().trim();
                 userInput[8] = lecturer_email.getText().toLowerCase().trim();
-                userInput[9] = "student";
+                userInput[9] = "lecturer";
                 userInput[10] = schoolwise_dropbox.getSelectedItem().toString();
                 UserController.userCreate(userInput);
                 break;
