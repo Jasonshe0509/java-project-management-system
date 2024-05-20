@@ -19,11 +19,8 @@ public class admin_register_lecturer extends javax.swing.JFrame {
         lecturer_gender = new javax.swing.JLabel();
         lecturer_gender_selection = new javax.swing.JComboBox<>();
         lecturer_dob_title = new javax.swing.JLabel();
-        lecturer_dob = new javax.swing.JTextField();
         lecturer_empno_title = new javax.swing.JLabel();
         student_tpno = new javax.swing.JTextField();
-        lecturer_password_title = new javax.swing.JLabel();
-        lecturer_password = new javax.swing.JTextField();
         lecturer_contact_title = new javax.swing.JLabel();
         student_contact = new javax.swing.JTextField();
         lecturer_address_title = new javax.swing.JLabel();
@@ -38,14 +35,14 @@ public class admin_register_lecturer extends javax.swing.JFrame {
         lecturer_nric_title = new javax.swing.JLabel();
         lecturer_nric = new javax.swing.JTextField();
         lecturer_schoolwise_title = new javax.swing.JLabel();
-        lecturer_schoolwise = new javax.swing.JTextField();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        schoolwise_selection = new javax.swing.JComboBox<>();
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Register Lecturer");
         setMaximumSize(new java.awt.Dimension(700, 580));
         setMinimumSize(new java.awt.Dimension(700, 580));
-        setPreferredSize(new java.awt.Dimension(700, 580));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -57,7 +54,7 @@ public class admin_register_lecturer extends javax.swing.JFrame {
         lecturer_gender.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         lecturer_gender.setForeground(new java.awt.Color(2, 50, 99));
         lecturer_gender.setText("Gender");
-        getContentPane().add(lecturer_gender, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 430, -1, -1));
+        getContentPane().add(lecturer_gender, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 150, -1, -1));
 
         lecturer_gender_selection.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         lecturer_gender_selection.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Female", "Male"}));
@@ -66,25 +63,17 @@ public class admin_register_lecturer extends javax.swing.JFrame {
                 lecturer_gender_selectionActionPerformed(evt);
             }
         });
-        getContentPane().add(lecturer_gender_selection, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 420, 190, 50));
+        getContentPane().add(lecturer_gender_selection, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 140, 190, 50));
 
         lecturer_dob_title.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         lecturer_dob_title.setForeground(new java.awt.Color(2, 50, 99));
         lecturer_dob_title.setText("Date Of Birth\n");
-        getContentPane().add(lecturer_dob_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 360, 110, 40));
-
-        lecturer_dob.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        lecturer_dob.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lecturer_dobActionPerformed(evt);
-            }
-        });
-        getContentPane().add(lecturer_dob, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 350, 190, 50));
+        getContentPane().add(lecturer_dob_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 110, 40));
 
         lecturer_empno_title.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         lecturer_empno_title.setForeground(new java.awt.Color(2, 50, 99));
-        lecturer_empno_title.setText("<html><div style = 'text-align: center; width:90px;'>EMP No</div></html>");
-        getContentPane().add(lecturer_empno_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 80, 110, -1));
+        lecturer_empno_title.setText("EMP ID");
+        getContentPane().add(lecturer_empno_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 80, -1));
 
         student_tpno.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         student_tpno.addActionListener(new java.awt.event.ActionListener() {
@@ -92,26 +81,13 @@ public class admin_register_lecturer extends javax.swing.JFrame {
                 student_tpnoActionPerformed(evt);
             }
         });
-        getContentPane().add(student_tpno, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 70, 190, 50));
-
-        lecturer_password_title.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        lecturer_password_title.setForeground(new java.awt.Color(2, 50, 99));
-        lecturer_password_title.setText("Password");
-        getContentPane().add(lecturer_password_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 360, -1, -1));
-
-        lecturer_password.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        lecturer_password.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lecturer_passwordActionPerformed(evt);
-            }
-        });
-        getContentPane().add(lecturer_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 350, 190, 50));
+        getContentPane().add(student_tpno, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, 190, 50));
 
         lecturer_contact_title.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         lecturer_contact_title.setForeground(new java.awt.Color(2, 50, 99));
         lecturer_contact_title.setText("<html><div style = 'text-align: center; width:90px;'>Phone Number </div></html>");
         lecturer_contact_title.setToolTipText("");
-        getContentPane().add(lecturer_contact_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 210, 90, -1));
+        getContentPane().add(lecturer_contact_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 210, 90, -1));
 
         student_contact.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         student_contact.addActionListener(new java.awt.event.ActionListener() {
@@ -124,7 +100,7 @@ public class admin_register_lecturer extends javax.swing.JFrame {
         lecturer_address_title.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         lecturer_address_title.setForeground(new java.awt.Color(2, 50, 99));
         lecturer_address_title.setText("Address");
-        getContentPane().add(lecturer_address_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 220, -1, -1));
+        getContentPane().add(lecturer_address_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 360, -1, -1));
 
         student_address.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         student_address.addActionListener(new java.awt.event.ActionListener() {
@@ -132,12 +108,12 @@ public class admin_register_lecturer extends javax.swing.JFrame {
                 student_addressActionPerformed(evt);
             }
         });
-        getContentPane().add(student_address, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 210, 190, 50));
+        getContentPane().add(student_address, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 350, 190, 50));
 
         lecturer_email_title.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         lecturer_email_title.setForeground(new java.awt.Color(2, 50, 99));
         lecturer_email_title.setText("<html><div style = 'text-align: center; width:90px;'>Email Address</div></html>");
-        getContentPane().add(lecturer_email_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 140, 120, 50));
+        getContentPane().add(lecturer_email_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, 120, 50));
 
         lecturer_email.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         lecturer_email.addActionListener(new java.awt.event.ActionListener() {
@@ -145,7 +121,7 @@ public class admin_register_lecturer extends javax.swing.JFrame {
                 lecturer_emailActionPerformed(evt);
             }
         });
-        getContentPane().add(lecturer_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 140, 190, 50));
+        getContentPane().add(lecturer_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 350, 190, 50));
 
         register_lecturer_submit.setBackground(new java.awt.Color(76, 127, 174));
         register_lecturer_submit.setFont(new java.awt.Font("Bell MT", 1, 19)); // NOI18N
@@ -155,7 +131,7 @@ public class admin_register_lecturer extends javax.swing.JFrame {
                 register_lecturer_submitActionPerformed(evt);
             }
         });
-        getContentPane().add(register_lecturer_submit, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 500, -1, -1));
+        getContentPane().add(register_lecturer_submit, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 450, -1, -1));
 
         lecturer_nation_title.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         lecturer_nation_title.setForeground(new java.awt.Color(2, 50, 99));
@@ -173,7 +149,7 @@ public class admin_register_lecturer extends javax.swing.JFrame {
         lecturer_name_title.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         lecturer_name_title.setForeground(new java.awt.Color(2, 50, 99));
         lecturer_name_title.setText("Full Name");
-        getContentPane().add(lecturer_name_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 90, -1));
+        getContentPane().add(lecturer_name_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 90, -1));
 
         lecturer_name.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         lecturer_name.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, java.awt.Color.lightGray, null, null));
@@ -182,7 +158,7 @@ public class admin_register_lecturer extends javax.swing.JFrame {
                 lecturer_nameActionPerformed(evt);
             }
         });
-        getContentPane().add(lecturer_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, 190, 50));
+        getContentPane().add(lecturer_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, 190, 50));
 
         lecturer_nric_title.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         lecturer_nric_title.setForeground(new java.awt.Color(2, 50, 99));
@@ -199,23 +175,27 @@ public class admin_register_lecturer extends javax.swing.JFrame {
 
         lecturer_schoolwise_title.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         lecturer_schoolwise_title.setForeground(new java.awt.Color(2, 50, 99));
-        lecturer_schoolwise_title.setText("School Wise");
-        getContentPane().add(lecturer_schoolwise_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, -1));
+        lecturer_schoolwise_title.setText("<html><div style= 'text-align: center; width: 50px;'>School Wise</div></html>");
+        getContentPane().add(lecturer_schoolwise_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 70, 80, -1));
 
-        lecturer_schoolwise.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        lecturer_schoolwise.addActionListener(new java.awt.event.ActionListener() {
+        jDateChooser1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        getContentPane().add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 210, 190, 50));
+
+        schoolwise_selection.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        schoolwise_selection.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Female", "Male"}));
+        schoolwise_selection.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lecturer_schoolwiseActionPerformed(evt);
+                schoolwise_selectionActionPerformed(evt);
             }
         });
-        getContentPane().add(lecturer_schoolwise, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, 190, 50));
+        getContentPane().add(schoolwise_selection, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 70, 190, 50));
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main_background.png"))); // NOI18N
         background.setToolTipText("");
         background.setMaximumSize(new java.awt.Dimension(700, 580));
         background.setMinimumSize(new java.awt.Dimension(700, 580));
         background.setPreferredSize(new java.awt.Dimension(700, 580));
-        getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, -1));
+        getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 520));
 
         pack();
         setLocationRelativeTo(null);
@@ -225,10 +205,6 @@ public class admin_register_lecturer extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_student_addressActionPerformed
 
-    private void lecturer_passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lecturer_passwordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lecturer_passwordActionPerformed
-
     private void student_tpnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_student_tpnoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_student_tpnoActionPerformed
@@ -236,10 +212,6 @@ public class admin_register_lecturer extends javax.swing.JFrame {
     private void lecturer_gender_selectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lecturer_gender_selectionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_lecturer_gender_selectionActionPerformed
-
-    private void lecturer_dobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lecturer_dobActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lecturer_dobActionPerformed
 
     private void lecturer_emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lecturer_emailActionPerformed
         // TODO add your handling code here:
@@ -265,9 +237,9 @@ public class admin_register_lecturer extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_lecturer_nricActionPerformed
 
-    private void lecturer_schoolwiseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lecturer_schoolwiseActionPerformed
+    private void schoolwise_selectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_schoolwise_selectionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_lecturer_schoolwiseActionPerformed
+    }//GEN-LAST:event_schoolwise_selectionActionPerformed
 
     
     public static void main(String args[]) {
@@ -284,9 +256,9 @@ public class admin_register_lecturer extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel background;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel lecturer_address_title;
     private javax.swing.JLabel lecturer_contact_title;
-    private javax.swing.JTextField lecturer_dob;
     private javax.swing.JLabel lecturer_dob_title;
     private javax.swing.JTextField lecturer_email;
     private javax.swing.JLabel lecturer_email_title;
@@ -299,12 +271,10 @@ public class admin_register_lecturer extends javax.swing.JFrame {
     private javax.swing.JLabel lecturer_nation_title;
     private javax.swing.JTextField lecturer_nric;
     private javax.swing.JLabel lecturer_nric_title;
-    private javax.swing.JTextField lecturer_password;
-    private javax.swing.JLabel lecturer_password_title;
-    private javax.swing.JTextField lecturer_schoolwise;
     private javax.swing.JLabel lecturer_schoolwise_title;
     private javax.swing.JLabel register_lecturer;
     private javax.swing.JButton register_lecturer_submit;
+    private javax.swing.JComboBox<String> schoolwise_selection;
     private javax.swing.JTextField student_address;
     private javax.swing.JTextField student_contact;
     private javax.swing.JTextField student_tpno;
