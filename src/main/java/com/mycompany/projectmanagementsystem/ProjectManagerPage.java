@@ -235,11 +235,13 @@ public class ProjectManagerPage extends javax.swing.JFrame {
         jPanel1.setMinimumSize(new java.awt.Dimension(1000, 73));
 
         pm_logo_sysco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Sysco_logo.png"))); // NOI18N
+        pm_logo_sysco.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         pm_ec_approvement.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
         pm_ec_approvement.setForeground(new java.awt.Color(2, 50, 99));
         pm_ec_approvement.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pm_ec_approvement.setText("EC Approvement");
+        pm_ec_approvement.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         pm_ec_approvement.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 pm_ec_approvementMouseClicked(evt);
@@ -250,6 +252,7 @@ public class ProjectManagerPage extends javax.swing.JFrame {
         pm_notification.setForeground(new java.awt.Color(2, 50, 99));
         pm_notification.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pm_notification.setText("Notification");
+        pm_notification.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         pm_notification.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 pm_notificationMouseClicked(evt);
@@ -260,6 +263,7 @@ public class ProjectManagerPage extends javax.swing.JFrame {
         pm_profile.setForeground(new java.awt.Color(2, 50, 99));
         pm_profile.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pm_profile.setText("Profile");
+        pm_profile.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         pm_profile.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 pm_profileMouseClicked(evt);
@@ -270,6 +274,7 @@ public class ProjectManagerPage extends javax.swing.JFrame {
         pm_logout.setForeground(new java.awt.Color(2, 50, 99));
         pm_logout.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pm_logout.setText("Log Out");
+        pm_logout.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         pm_logout.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 pm_logoutMouseClicked(evt);
@@ -365,7 +370,6 @@ public class ProjectManagerPage extends javax.swing.JFrame {
         // TODO add your handling code here:
         NotificationPage noti = new NotificationPage();
         noti.setVisible(true);
-        this.setVisible(false);
     }//GEN-LAST:event_pm_notificationMouseClicked
 
     private void pm_profileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pm_profileMouseClicked
