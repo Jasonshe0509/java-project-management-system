@@ -27,8 +27,8 @@ public class ProjectManagerPage extends javax.swing.JFrame {
         User user = sessionManager.getCurrentUser();
         if (user != null) {
             welcome_pm_name.setText(user.getName());
+            welcome_pm_id.setText("(" + user.getUserID() + ")"); 
         }
-
     }
 
     /**
@@ -42,6 +42,7 @@ public class ProjectManagerPage extends javax.swing.JFrame {
 
         welcome_project_manager = new javax.swing.JLabel();
         welcome_pm_name = new javax.swing.JLabel();
+        welcome_pm_id = new javax.swing.JLabel();
         pm_internship_report = new javax.swing.JPanel();
         pm_internship_view = new javax.swing.JButton();
         pm_internship_icon = new javax.swing.JLabel();
@@ -89,6 +90,11 @@ public class ProjectManagerPage extends javax.swing.JFrame {
         welcome_pm_name.setForeground(new java.awt.Color(2, 50, 99));
         welcome_pm_name.setText("Name");
         getContentPane().add(welcome_pm_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 90, 310, 30));
+
+        welcome_pm_id.setFont(new java.awt.Font("Bell MT", 1, 24)); // NOI18N
+        welcome_pm_id.setForeground(new java.awt.Color(2, 50, 99));
+        welcome_pm_id.setText("(pmID)");
+        getContentPane().add(welcome_pm_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 90, 250, 30));
 
         pm_internship_report.setBackground(new java.awt.Color(204, 204, 204));
         pm_internship_report.setMaximumSize(new java.awt.Dimension(300, 250));
@@ -457,6 +463,7 @@ public class ProjectManagerPage extends javax.swing.JFrame {
     private javax.swing.JLabel pm_logout;
     private javax.swing.JLabel pm_notification;
     private javax.swing.JLabel pm_profile;
+    private javax.swing.JLabel welcome_pm_id;
     private javax.swing.JLabel welcome_pm_name;
     private javax.swing.JLabel welcome_project_manager;
     // End of variables declaration//GEN-END:variables

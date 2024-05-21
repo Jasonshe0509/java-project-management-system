@@ -4,19 +4,175 @@
  */
 package com.mycompany.projectmanagementsystem;
 
+import com.mycompany.projectmanagementsystem.GeneralFunction.SessionManager;
+import com.mycompany.projectmanagementsystem.User.User;
 import java.awt.Toolkit;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author shuhuilee
  */
 public class PM_register_assessment_create extends javax.swing.JFrame {
+    private final SessionManager sessionManager = SessionManager.getInstance();
+    private boolean saved = false;
+    private String[] assessmentData;
+    private final String assessmentType;
+    private int currentId=1;
+    private JTable pm_assessment_table;
+    private static String getAssessmentType() {
+        return "internship"; 
+    }
 
 
-    public PM_register_assessment_create() {
+    public PM_register_assessment_create(String assessmentType) {
         initComponents();
         setIconImage();
+        this.assessmentType = assessmentType;
+        this.assessment_Type.setText(assessmentType);
+        assessment_Type();
+        assessment_Type.setEditable(false); 
+        pm_studentIntakeActionPerformed(null);
+        populateLecturers();
     }
+    
+    private String generateUniqueId() {
+            String fileName = "assessment.txt";
+            int maxId = 0;
+
+            try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+                String line;
+                while ((line = br.readLine()) != null) {
+                    String[] list = line.split(";");
+                    if (list.length > 0 && list[0].startsWith("A")) {
+                        int id = Integer.parseInt(list[0].substring(1));
+                        if (id > maxId) {
+                            maxId = id;
+                        }
+                    }
+                }
+            } catch (IOException ex) {
+                System.err.println("Error reading file: " + ex.getMessage());
+            }
+
+            return "A" + String.format("%04d", maxId + 1);
+        }
+    
+        private void saveAssessmentToFile(String uniqueId, String[] list) {
+            String fileName = "assessment.txt";
+            try (BufferedWriter bw = new BufferedWriter(new FileWriter(fileName, true))) {
+                String line = uniqueId + ";" + list[0] + ";" + list[1] + ";" + list[2] + ";" + list[3] + ";" + list[4] + ";" + list[5] + ";" + list[6] + "\n";
+                bw.write(line);
+            } catch (IOException ex) {
+                System.err.println("Error writing to file: " + ex.getMessage());
+            }
+        }
+        
+        private void readAssessmentFromFile() {
+            String fileName = "assessment.txt";
+            if (pm_assessment_table == null) {
+                System.err.println("pm_assessment_table is null!");
+                return;
+            }
+
+            DefaultTableModel model = (DefaultTableModel) pm_assessment_table.getModel();
+            if (model == null) {
+                System.err.println("Table model is null!");
+                return;
+            }
+
+            model.setRowCount(0); // Clear existing rows
+
+            try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+                String line;
+                while ((line = br.readLine()) != null) {
+                    String[] list = line.split(";");
+                    if (list.length == 8) {
+                        String[] reorderedData = {
+                            list[0], // Assessment ID
+                            list[1], // Assessment Type
+                            list[2], // Student Intake
+                            list[3], // Due Date
+                            getUserNameFromId(list[4]), // Supervisor Name
+                            getUserNameFromId(list[5]), // Second Marker Name
+                            getUserNameFromId(list[6]),  // Project Manager ID
+                            list[7]  // Assessment Status
+                        };
+                        model.addRow(reorderedData);
+                    }
+                }
+                System.out.println("Table data has been loaded from " + fileName);
+            } catch (IOException ex) {
+                System.err.println("Error reading file: " + ex.getMessage());
+            }
+        }
+        
+        private String getUserNameFromId(String userId) {
+            String fileName = "user.txt";
+            try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+                String line;
+                while ((line = br.readLine()) != null) {
+                    String[] list = line.split(";");
+                    if (list[0].trim().equals(userId)) {
+                        return list[1].trim();
+                    }
+                }
+            } catch (IOException ex) {
+                System.err.println("Error reading file: " + ex.getMessage());
+            }
+            return "Unknown";
+        }
+        
+        public boolean isSaved() {
+            return saved;
+        }
+
+        public String[] getAssessmentData() {
+            return assessmentData;
+        }
+        
+        private void assessment_Type() {
+            if (assessmentType.equalsIgnoreCase("internship_report")) {
+                assessment_Type.setText("internship_report");
+            } else if (assessmentType.equalsIgnoreCase("fyp")) {
+                assessment_Type.setText("fyp");
+            } else if (assessmentType.equalsIgnoreCase("cp1")) {
+                assessment_Type.setText("cp2");
+            } else if (assessmentType.equalsIgnoreCase("cp2")) {
+                assessment_Type.setText("cp2");
+            } else if (assessmentType.equalsIgnoreCase("rmcp")) {
+                assessment_Type.setText("rmcp");
+            } else if(assessmentType.equalsIgnoreCase("investigation")) {
+                assessment_Type.setText("investigation");
+            } else {
+                assessment_Type.setText("Unknown");
+            }
+        }
+    
+        private void populateLecturers() {
+            String fileName = "user.txt";
+            try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+                String line;
+                while ((line = br.readLine()) != null) {
+                    String[] list = line.split(";");
+                    if (list.length > 10 && list[10].equalsIgnoreCase("lecturer")) {
+                        String userIdAndName = list[0] + " - " + list[1]; // Concatenate user ID and name
+                        supervisor_name.addItem(userIdAndName);
+                        secondmarker_name.addItem(userIdAndName);
+                    }
+                }
+            } catch (IOException ex) {
+                System.out.println("Error reading file: " + ex.getMessage());
+            }
+        }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -27,31 +183,30 @@ public class PM_register_assessment_create extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        supervisor_name = new javax.swing.JLabel();
+        supervisorName = new javax.swing.JLabel();
         assessment_type = new javax.swing.JLabel();
         student_intake = new javax.swing.JLabel();
         second_maker_name = new javax.swing.JLabel();
         duedate = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jComboBox3 = new javax.swing.JComboBox<>();
-        jTextField5 = new javax.swing.JTextField();
+        assessment_Type = new javax.swing.JTextField();
+        pm_studentIntake = new javax.swing.JComboBox<>();
+        supervisor_name = new javax.swing.JComboBox<>();
+        secondmarker_name = new javax.swing.JComboBox<>();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
         back_jButton1 = new javax.swing.JButton();
         create_jButton2 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(700, 500));
         setMinimumSize(new java.awt.Dimension(700, 500));
         setResizable(false);
         setSize(new java.awt.Dimension(700, 500));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        supervisor_name.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        supervisor_name.setText("Supervisor Name：");
-        getContentPane().add(supervisor_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 230, -1, -1));
+        supervisorName.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        supervisorName.setText("Supervisor Name：");
+        getContentPane().add(supervisorName, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 230, -1, -1));
 
         assessment_type.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         assessment_type.setText("Assessment Type ：");
@@ -69,36 +224,33 @@ public class PM_register_assessment_create extends javax.swing.JFrame {
         duedate.setText("Duedate：");
         getContentPane().add(duedate, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 350, 90, -1));
 
-        jTextField1.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jTextField1.setMaximumSize(new java.awt.Dimension(64, 28));
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        assessment_Type.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        assessment_Type.setMaximumSize(new java.awt.Dimension(64, 28));
+        getContentPane().add(assessment_Type, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 110, 210, -1));
+
+        pm_studentIntake.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        pm_studentIntake.setMaximumSize(new java.awt.Dimension(64, 28));
+        pm_studentIntake.setMinimumSize(new java.awt.Dimension(64, 28));
+        pm_studentIntake.setPreferredSize(new java.awt.Dimension(64, 28));
+        pm_studentIntake.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                pm_studentIntakeActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 110, 210, -1));
+        getContentPane().add(pm_studentIntake, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 170, 210, -1));
 
-        jComboBox1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jComboBox1.setMaximumSize(new java.awt.Dimension(64, 28));
-        jComboBox1.setMinimumSize(new java.awt.Dimension(64, 28));
-        jComboBox1.setPreferredSize(new java.awt.Dimension(64, 28));
-        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 170, 210, -1));
+        supervisor_name.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        supervisor_name.setMaximumSize(new java.awt.Dimension(64, 28));
+        supervisor_name.setMinimumSize(new java.awt.Dimension(64, 28));
+        supervisor_name.setPreferredSize(new java.awt.Dimension(64, 28));
+        getContentPane().add(supervisor_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 230, 210, -1));
 
-        jComboBox2.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jComboBox2.setMaximumSize(new java.awt.Dimension(64, 28));
-        jComboBox2.setMinimumSize(new java.awt.Dimension(64, 28));
-        jComboBox2.setPreferredSize(new java.awt.Dimension(64, 28));
-        getContentPane().add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 230, 210, -1));
-
-        jComboBox3.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jComboBox3.setMaximumSize(new java.awt.Dimension(64, 28));
-        jComboBox3.setMinimumSize(new java.awt.Dimension(64, 28));
-        jComboBox3.setPreferredSize(new java.awt.Dimension(64, 28));
-        getContentPane().add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 290, 210, -1));
-
-        jTextField5.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jTextField5.setMaximumSize(new java.awt.Dimension(64, 28));
-        getContentPane().add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 350, 210, -1));
+        secondmarker_name.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        secondmarker_name.setMaximumSize(new java.awt.Dimension(64, 28));
+        secondmarker_name.setMinimumSize(new java.awt.Dimension(64, 28));
+        secondmarker_name.setPreferredSize(new java.awt.Dimension(64, 28));
+        getContentPane().add(secondmarker_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 290, 210, -1));
+        getContentPane().add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 350, 210, 30));
 
         back_jButton1.setBackground(new java.awt.Color(76, 127, 174));
         back_jButton1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
@@ -138,15 +290,64 @@ public class PM_register_assessment_create extends javax.swing.JFrame {
 
     private void back_jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_jButton1ActionPerformed
         // TODO add your handling code here:
+        PM_assessment_page assessment = new PM_assessment_page(assessmentType);
+        assessment.setVisible(true);
+        this.dispose(); 
     }//GEN-LAST:event_back_jButton1ActionPerformed
-
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void create_jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_create_jButton2ActionPerformed
         // TODO add your handling code here:
+        String assessmentType = assessment_Type.getText();
+        String studentIntake = (String) pm_studentIntake.getSelectedItem();
+        String dueDate = new SimpleDateFormat("yyyy-MM-dd").format(jDateChooser1.getDate());
+        String supervisor = (String) supervisor_name.getSelectedItem();
+        String secondMarker = (String) secondmarker_name.getSelectedItem();
+        User user = sessionManager.getCurrentUser(); // Get the current user ID
+        String userID = user != null ? user.getUserID() : ""; 
+        String assessmentStatus = "incomplete"; 
+        
+        if (assessmentType.isEmpty() || studentIntake.isEmpty() || dueDate.isEmpty() || supervisor.isEmpty() || secondMarker.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please fill in all the fields.", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        String[] assessmentData = {
+            assessmentType,
+            studentIntake,
+            dueDate,
+            supervisor.split(" - ")[0],  // Extract ID
+            secondMarker.split(" - ")[0], // Extract ID
+            userID,
+            assessmentStatus
+        };
+
+        String uniqueId = generateUniqueId();
+        saveAssessmentToFile(uniqueId, assessmentData);
+        JOptionPane.showMessageDialog(this, "Assessment has been created successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);
+        saved = true;
+
+        readAssessmentFromFile();
+        
+        // Navigate back to the assessment page
+        PM_assessment_page assessmentPage = new PM_assessment_page(assessmentType);
+        assessmentPage.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_create_jButton2ActionPerformed
+
+    private void pm_studentIntakeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pm_studentIntakeActionPerformed
+        // TODO add your handling code here:
+        if (pm_studentIntake.getItemCount() == 0) { // Check if the combo box is empty
+            try (BufferedReader br = new BufferedReader(new FileReader("intake.txt"))) {
+                String line;
+                while ((line = br.readLine()) != null) {
+                    String intakeCode = line.split(";")[0].trim(); 
+                    pm_studentIntake.addItem(intakeCode);
+                }
+            } catch (IOException ex) {
+                System.err.println("Error reading file: " + ex.getMessage());
+            }
+        }
+    }//GEN-LAST:event_pm_studentIntakeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -174,11 +375,12 @@ public class PM_register_assessment_create extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(PM_register_assessment_create.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         
-
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PM_register_assessment_create().setVisible(true);
+                String assessmentType = getAssessmentType();
+                new PM_register_assessment_create(assessmentType).setVisible(true);
             }
         });
     }
@@ -187,19 +389,19 @@ public class PM_register_assessment_create extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField assessment_Type;
     private javax.swing.JLabel assessment_type;
     private javax.swing.JButton back_jButton1;
     private javax.swing.JButton create_jButton2;
     private javax.swing.JLabel duedate;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField5;
+    private javax.swing.JComboBox<String> pm_studentIntake;
     private javax.swing.JLabel second_maker_name;
+    private javax.swing.JComboBox<String> secondmarker_name;
     private javax.swing.JLabel student_intake;
-    private javax.swing.JLabel supervisor_name;
+    private javax.swing.JLabel supervisorName;
+    private javax.swing.JComboBox<String> supervisor_name;
     // End of variables declaration//GEN-END:variables
 }

@@ -12,9 +12,13 @@ import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumnModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -25,6 +29,7 @@ public class PM_assessment_page extends javax.swing.JFrame {
     private final String assessmentType;
     private final SessionManager sessionManager = SessionManager.getInstance();
     User user = sessionManager.getCurrentUser();
+    private TableRowSorter<DefaultTableModel> rowSorter;
 
 
     /**
@@ -34,9 +39,12 @@ public class PM_assessment_page extends javax.swing.JFrame {
         this.assessmentType = assessmentType;
         initComponents();
         setIconImage();
-        jComboBox1ActionPerformed(null); // Call to populate the JComboBox
+        populateComboBox();
         readAssessmentFromFile();
         assessmentType();
+        DefaultTableModel model = (DefaultTableModel) pm_assessment_table.getModel();
+        rowSorter = new TableRowSorter<>(model);
+        pm_assessment_table.setRowSorter(rowSorter);
     }
 
     private void assessmentType() {
@@ -106,6 +114,27 @@ public class PM_assessment_page extends javax.swing.JFrame {
         }
         System.out.println("Table data has been loaded from " + fileName);
     }
+    
+    private void populateComboBox() {
+        String fileName = "assessment.txt";
+        Set<String> intakes = new HashSet<>();
+        intakes.add("All"); // Add default "All" option
+
+        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] list = line.split(";");
+                if (list.length == 8 && list[1].equalsIgnoreCase(assessmentType)) {
+                    intakes.add(list[2].trim()); // Add intake to the set
+                }
+            }
+        } catch (IOException ex) {
+            System.err.println("Error reading file: " + ex.getMessage());
+        }
+
+        DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>(intakes.toArray(new String[0]));
+        jComboBox1.setModel(model);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -141,10 +170,14 @@ public class PM_assessment_page extends javax.swing.JFrame {
         pm_assessment.setText("Report");
         getContentPane().add(pm_assessment, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 670, 30));
 
-        pm_assessment_search.setText("search...");
         pm_assessment_search.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pm_assessment_searchActionPerformed(evt);
+            }
+        });
+        pm_assessment_search.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                pm_assessment_searchKeyReleased(evt);
             }
         });
         getContentPane().add(pm_assessment_search, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 170, -1));
@@ -303,25 +336,28 @@ public class PM_assessment_page extends javax.swing.JFrame {
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
 
-        // Check if the combo box is empty
-        if (jComboBox1.getItemCount() == 0) {
-            // Clear the JComboBox
-            jComboBox1.removeAllItems();
-
-            // Get the column model
-            TableColumnModel columnModel = pm_assessment_table.getColumnModel();
-            for (int i = 0; i < columnModel.getColumnCount(); i++) {
-                jComboBox1.addItem(columnModel.getColumn(i).getHeaderValue().toString());
-            }
+            String selectedIntake = jComboBox1.getSelectedItem().toString();
+            DefaultTableModel model = (DefaultTableModel) pm_assessment_table.getModel();
+            TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(model);
+            pm_assessment_table.setRowSorter(sorter);
+            if ("All".equals(selectedIntake)) {
+                sorter.setRowFilter(null); // Show all rows
+            } else {
+                RowFilter<DefaultTableModel, Object> intakeFilter = new RowFilter<DefaultTableModel, Object>() {
+                public boolean include(RowFilter.Entry<? extends DefaultTableModel, ? extends Object> entry) {
+                    return entry.getStringValue(2).equals(selectedIntake); 
+                }
+            };
+            sorter.setRowFilter(intakeFilter);
         }
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void pm_assessment_create_button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pm_assessment_create_button1ActionPerformed
         // TODO add your handling code here:
         // Create an instance of PM_internship_create
-//        PM_register_assessment_create assessment = new PM_register_assessment_create(assessmentType);
-//        assessment.setVisible(true);
-//        this.dispose(); 
+        PM_register_assessment_create assessment = new PM_register_assessment_create(assessmentType);
+        assessment.setVisible(true);
+        this.dispose(); 
     }//GEN-LAST:event_pm_assessment_create_button1ActionPerformed
 
     private void pm_assessment_back_button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pm_assessment_back_button2ActionPerformed
@@ -330,6 +366,16 @@ public class PM_assessment_page extends javax.swing.JFrame {
         pm.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_pm_assessment_back_button2ActionPerformed
+
+    private void pm_assessment_searchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pm_assessment_searchKeyReleased
+        // TODO add your handling code here:
+        String searchText = pm_assessment_search.getText();
+        if (searchText.trim().length() == 0) {
+            rowSorter.setRowFilter(null);
+        } else {
+            rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + searchText));
+        }
+    }//GEN-LAST:event_pm_assessment_searchKeyReleased
 
     /**
      * @param args the command line arguments
