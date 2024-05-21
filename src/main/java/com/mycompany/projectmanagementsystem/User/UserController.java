@@ -113,6 +113,7 @@ public class UserController extends UserAuthenticationController {
     }
 
     public static void userCreate(String[] userInput) {
+
         boolean userExisted = false;
         if (UserValidator.validateUserInput(userInput)) {
             if (UserValidator.validateUserID(userInput[3])) {
@@ -126,45 +127,56 @@ public class UserController extends UserAuthenticationController {
                     }
                 }
                 if (!userExisted) {
-                    if (UserValidator.validateContact(userInput[5])) {
-                        if (UserValidator.validateNRICPassportInput(userInput[6])) {
-                            if (UserValidator.validateEmail(userInput[8])) {
-                                String userID = userInput[3];
-                                String digitInUserID = userID.substring(2);
-                                String initialPassword = "Tp" + digitInUserID + "@";      //create an initial password by default
+                    if (UserValidator.validateDateOfBirth(userInput[2])) {
+                        if (UserValidator.validateContact(userInput[5])) {
+                            if (UserValidator.validateNRICPassportInput(userInput[6])) {
+                                if (UserValidator.validateNationality(userInput[7])) {
+                                    if (UserValidator.validateEmail(userInput[8])) {
+                                        String userID = userInput[3];
+                                        String digitInUserID = userID.substring(2);
+                                        String initialPassword = "Tp" + digitInUserID + "@";      //create an initial password by default
 
-                                switch (userInput[9]) {
-                                    case "student" -> {
-                                        FileHandler.writeFile("user.txt", userInput[3] + ";" + userInput[0] + ";" + userInput[1] + ";"
-                                                + userInput[5] + ";" + userInput[2] + ";" + userInput[4] + ";" + userInput[6] + ";" + userInput[7]
-                                                + ";" + userInput[8] + ";" + initialPassword + ";" + userInput[9] + ";" + userInput[10]);
-                                        JOptionPane.showMessageDialog(null, "Student: " + userID + " has been added succefully!", "Successful Added", JOptionPane.INFORMATION_MESSAGE);
-                                    }
-                                    case "lecturer" -> {
-                                        FileHandler.writeFile("user.txt", userInput[3] + ";" + userInput[0] + ";" + userInput[1] + ";"
+                                        switch (userInput[9]) {
+                                            case "student" -> {
+                                                FileHandler.writeFile("user.txt", userInput[3] + ";" + userInput[0] + ";" + userInput[1] + ";"
+                                                        + userInput[5] + ";" + userInput[2] + ";" + userInput[4] + ";" + userInput[6] + ";" + userInput[7]
+                                                        + ";" + userInput[8] + ";" + initialPassword + ";" + userInput[9] + ";" + userInput[10]);
+                                                JOptionPane.showMessageDialog(null, "Student: " + userID + " has been added succefully!", "Successful Added", JOptionPane.INFORMATION_MESSAGE);
+                                            }
+                                            case "lecturer" -> {
+                                                FileHandler.writeFile("user.txt", userInput[3] + ";" + userInput[0] + ";" + userInput[1] + ";"
                                                 + userInput[5] + ";" + userInput[2] + ";" + userInput[4] + ";" + userInput[6] + ";" + userInput[7]
                                                 + ";" + userInput[8] + ";" + initialPassword + ";" + userInput[9] + ";" + userInput[10]);
                                         JOptionPane.showMessageDialog(null, "Lecturer: " + userID + " has been added succefully!", "Successful Added", JOptionPane.INFORMATION_MESSAGE);
+                                            }
+                                            case "project manager" -> {
+                                            }
+                                            case "admin" -> {
+                                            }
+                                        }
+
+                                    } else {
+                                        JOptionPane.showMessageDialog(null, "Please Enter Your School Email Address (eg: xxx@MAIL.agh.edu.my)", "Error: Invalid Email Address", JOptionPane.ERROR_MESSAGE);
                                     }
-                                    case "project manager" -> {
-                                    }
-                                    case "admin" -> {
-                                    }
+                                }else {
+                                    JOptionPane.showMessageDialog(null, "Please Enter Only Character For Nationality.", "Error: Invalid Nationality.", JOptionPane.ERROR_MESSAGE);
                                 }
 
                             } else {
-                                JOptionPane.showMessageDialog(null, "Please Enter Your School Email Address (eg: xxx@MAIL.agh.edu.my)", "Error: Invalid Email Address", JOptionPane.ERROR_MESSAGE);
+                                JOptionPane.showMessageDialog(null, "Please Enter Only Integer For NRIC/ Passport Number.", "Error: Invalid NRIC/ Passport No.", JOptionPane.ERROR_MESSAGE);
+
                             }
                         } else {
-                            JOptionPane.showMessageDialog(null, "Please Enter Only Integer For NRIC/ Passport Number.", "Error: Invalid NRIC/ Passport No.", JOptionPane.ERROR_MESSAGE);
-
+                            JOptionPane.showMessageDialog(null, "Contact Number Format: 01x-xxx xxxx/ 01x-xxx xxxxx", "Error: Invalid Contact Number", JOptionPane.ERROR_MESSAGE);
                         }
                     } else {
-                        JOptionPane.showMessageDialog(null, "Contact Number Format: 01x-xxx xxxx/ 01x-xxx xxxxx", "Error: Invalid Contact Number", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "The minimum age that can be registerd should be 15", "Error: Invalid Birth Date", JOptionPane.ERROR_MESSAGE);
+
                     }
+
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "User ID Format: TPxxxxx", "Error: Invalid UserID", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "User ID Format: TPxxxx", "Error: Invalid UserID", JOptionPane.ERROR_MESSAGE);
             }
         } else {
             JOptionPane.showMessageDialog(null, "Please Fill In All The Field!", "Error: Missing Value(s)", JOptionPane.ERROR_MESSAGE);
