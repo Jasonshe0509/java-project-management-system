@@ -144,6 +144,10 @@ public class UserController extends UserAuthenticationController {
                                                 JOptionPane.showMessageDialog(null, "Student: " + userID + " has been added succefully!", "Successful Added", JOptionPane.INFORMATION_MESSAGE);
                                             }
                                             case "lecturer" -> {
+                                                FileHandler.writeFile("user.txt", userInput[3] + ";" + userInput[0] + ";" + userInput[1] + ";"
+                                                        + userInput[5] + ";" + userInput[2] + ";" + userInput[4] + ";" + userInput[6] + ";" + userInput[7]
+                                                        + ";" + userInput[8] + ";" + initialPassword + ";" + userInput[9] + ";" + userInput[10]);
+                                                JOptionPane.showMessageDialog(null, "Lecturer: " + userID + " has been added succefully!", "Successful Added", JOptionPane.INFORMATION_MESSAGE);
                                             }
                                             case "project manager" -> {
                                             }
@@ -154,7 +158,7 @@ public class UserController extends UserAuthenticationController {
                                     } else {
                                         JOptionPane.showMessageDialog(null, "Please Enter Your School Email Address (eg: xxx@MAIL.agh.edu.my)", "Error: Invalid Email Address", JOptionPane.ERROR_MESSAGE);
                                     }
-                                }else {
+                                } else {
                                     JOptionPane.showMessageDialog(null, "Please Enter Only Character For Nationality.", "Error: Invalid Nationality.", JOptionPane.ERROR_MESSAGE);
                                 }
 
