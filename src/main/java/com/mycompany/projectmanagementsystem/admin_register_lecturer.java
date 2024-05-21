@@ -68,8 +68,8 @@ public class admin_register_lecturer extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Register Lecturer");
-        setMaximumSize(new java.awt.Dimension(700, 580));
-        setMinimumSize(new java.awt.Dimension(700, 580));
+        setMaximumSize(new java.awt.Dimension(700, 520));
+        setMinimumSize(new java.awt.Dimension(700, 520));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -217,10 +217,10 @@ public class admin_register_lecturer extends javax.swing.JFrame {
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main_background.png"))); // NOI18N
         background.setToolTipText("");
-        background.setMaximumSize(new java.awt.Dimension(700, 580));
-        background.setMinimumSize(new java.awt.Dimension(700, 580));
-        background.setPreferredSize(new java.awt.Dimension(700, 580));
-        getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 530));
+        background.setMaximumSize(new java.awt.Dimension(700, 520));
+        background.setMinimumSize(new java.awt.Dimension(700, 520));
+        background.setPreferredSize(new java.awt.Dimension(700, 520));
+        getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
         setLocationRelativeTo(null);
