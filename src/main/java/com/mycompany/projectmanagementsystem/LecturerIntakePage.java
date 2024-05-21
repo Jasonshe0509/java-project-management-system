@@ -4,12 +4,15 @@
  */
 package com.mycompany.projectmanagementsystem;
 
+import com.mycompany.projectmanagementsystem.GeneralFunction.SessionManager;
+import com.mycompany.projectmanagementsystem.User.User;
 import com.mycompany.projectmanagementsystem.lect_PresentationPanelAction.PanelActionRenderer;
 import java.awt.Toolkit;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumn;
@@ -23,7 +26,12 @@ public class LecturerIntakePage extends javax.swing.JFrame {
     /**
      * Creates new form LecturerIntakePage
      */
-    public LecturerIntakePage() {
+    private final SessionManager sessionManager = SessionManager.getInstance();
+    User user = sessionManager.getCurrentUser();
+    private final String intakeCode;
+    
+    public LecturerIntakePage(String intakeCode) {
+        this.intakeCode = intakeCode;
         initComponents();
         setIconImage();
         
@@ -895,7 +903,7 @@ public class LecturerIntakePage extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LecturerIntakePage().setVisible(true);
+                new LecturerIntakePage("intake").setVisible(true);
             }
         });
     }
