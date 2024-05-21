@@ -4,6 +4,10 @@
  */
 package com.mycompany.projectmanagementsystem.User;
 
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.regex.Pattern;
 
 /**
@@ -46,5 +50,27 @@ public class UserValidator {
     public static boolean validateNRICPassportInput(String userInput) {
         String pattern = "^(-)?[0-9]+(-[0-9]+)*$";
         return Pattern.matches(pattern, userInput);
+    }
+
+    public static boolean validateDateOfBirth(String birthDate) {
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+            LocalDate birthDateParsed = LocalDate.parse(birthDate, formatter);
+
+            LocalDate currentDate = LocalDate.now();
+            if (birthDateParsed.isAfter(currentDate)) {
+                return false;
+            }
+            int age = Period.between(birthDateParsed, currentDate).getYears();
+            return age >= 15;
+        } catch (DateTimeParseException e) {
+            return false;
+        }
+    }
+    
+    public static boolean validateNationality(String nationality) {
+        String pattern = "^[A-Z][A-Z]*(?:[\\s-][A-Z][A-Z]*)*$";
+        return Pattern.matches(pattern, nationality);
     }
 }
