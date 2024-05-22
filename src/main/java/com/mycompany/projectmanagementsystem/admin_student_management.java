@@ -1,14 +1,81 @@
 package com.mycompany.projectmanagementsystem;
 
+import com.mycompany.projectmanagementsystem.GeneralFunction.FileHandler;
+import com.mycompany.projectmanagementsystem.User.UserController;
+import com.mycompany.projectmanagementsystem.User.UserTableActionEvent;
 import java.awt.Color;
 import java.awt.Toolkit;
+import java.util.Arrays;
+import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableModel;
 
 public class admin_student_management extends javax.swing.JFrame {
+
+    admin_view_studentrecord studentRecordInstace;
 
     public admin_student_management() {
         initComponents();
         setIconImage();
+        printStudentTable();
+
+        UserTableActionPanel actionPanel = new UserTableActionPanel();
+        UserTableActionEvent event;
+        event = new UserTableActionEvent() {
+
+            @Override
+            public void userView(int row, Object value) {
+
+                DefaultTableModel model = (DefaultTableModel) student_table.getModel();
+                int columnIndex = 0;
+                String userID = (String) model.getValueAt(row, columnIndex);
+                UserController action = new UserController();
+                action.viewUser(userID);
+                //System.out.print(Arrays.toString(userDetails));
+                //admin_view_studentrecord studentDetails = new admin_view_studentrecord();
+                //admin_view_studentrecord.displayStudentDetails(userDetails);
+                //studentDetails.show();
+            }
+
+            @Override
+            public void userDelete(int row, Object value) {
+                DefaultTableModel model = (DefaultTableModel) student_table.getModel();
+                int columnIndex = 0;
+                String userID = (String) model.getValueAt(row, columnIndex);
+                UserController action = new UserController();
+                boolean result = action.userDelete(userID);
+                if (result) {
+                    JOptionPane.showMessageDialog(null, "Successfully delete the Student: " + userID);
+                    DefaultTableModel umodel = (DefaultTableModel) student_table.getModel();
+                    model.setNumRows(0);
+                    printStudentTable();
+                }
+            }
+        };
+        student_table.getColumnModel().getColumn(5).setCellRenderer(actionPanel.new rPanelActionRenderer());
+        student_table.getColumnModel().getColumn(5).setCellEditor(actionPanel.new UserTableActionCellEditor(event));
+    }
+
+    private void printStudentTable() {
+
+        DefaultTableModel model = (DefaultTableModel) student_table.getModel();
+        model.setRowCount(0);
+        List<String> data = FileHandler.readFile("user.txt");
+        Object[] records = data.toArray();
+
+        for (int i = 0; i < records.length; i++) {
+            String record = records[i].toString();
+            String[] userData = record.split(";");
+
+            System.out.println("Number of elements: " + userData.length);
+            String user = userData[10];
+            if (user.equals("student")) {
+                String[] studentRow = {userData[0], userData[1], userData[11], userData[8], userData[3]};
+                model.addRow(studentRow);
+            }
+
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -31,7 +98,7 @@ public class admin_student_management extends javax.swing.JFrame {
         javax.swing.JScrollPane ec_approved_record = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
         ec_rejeceted_record = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
+        student_table = new javax.swing.JTable();
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -195,6 +262,7 @@ public class admin_student_management extends javax.swing.JFrame {
         student_record.setOpaque(true);
 
         jTable2.setBackground(new java.awt.Color(192, 192, 192));
+        jTable2.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -210,19 +278,26 @@ public class admin_student_management extends javax.swing.JFrame {
 
         student_record.addTab("Intake", ec_approved_record);
 
-        jTable3.setBackground(new java.awt.Color(192, 192, 192));
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        student_table.setBackground(new java.awt.Color(192, 192, 192));
+        student_table.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
+        student_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Student ID", "Name", "Intake Code", "Email Address", "Contact Number", "Action"
             }
-        ));
-        ec_rejeceted_record.setViewportView(jTable3);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        student_table.setRowHeight(30);
+        ec_rejeceted_record.setViewportView(student_table);
 
         student_record.addTab("Student", ec_rejeceted_record);
 
@@ -252,13 +327,14 @@ public class admin_student_management extends javax.swing.JFrame {
     }//GEN-LAST:event_admin_logoMouseClicked
 
     public static void main(String args[]) {
-       
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new admin_student_management().setVisible(true);
             }
         });
     }
+
     private void setIconImage() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Sysco_icon_with_background.png")));
     }
@@ -275,8 +351,8 @@ public class admin_student_management extends javax.swing.JFrame {
     private javax.swing.JScrollPane ec_rejeceted_record;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTable3;
     private javax.swing.JTabbedPane student_record;
+    private javax.swing.JTable student_table;
     private javax.swing.JLabel totalintake_background;
     private javax.swing.JLabel totalintake_border;
     private javax.swing.JLabel totalstudent_background;
