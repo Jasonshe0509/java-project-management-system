@@ -6,6 +6,9 @@ package com.mycompany.projectmanagementsystem;
 
 import java.awt.Toolkit;
 import java.awt.Color;
+import com.mycompany.projectmanagementsystem.User.UserController;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author ASUS
@@ -101,6 +104,11 @@ public class ForgetPasswordPage extends javax.swing.JFrame {
         backButton.setMaximumSize(new java.awt.Dimension(120, 45));
         backButton.setMinimumSize(new java.awt.Dimension(120, 45));
         backButton.setPreferredSize(new java.awt.Dimension(120, 45));
+        backButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButtonActionPerformed(evt);
+            }
+        });
         jPanel1.add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(191, 310, -1, -1));
 
         showPasswordTickBox.setBackground(new Color(240,240,240,90));
@@ -177,16 +185,36 @@ public class ForgetPasswordPage extends javax.swing.JFrame {
     }//GEN-LAST:event_emailFieldActionPerformed
 
     private void showPasswordTickBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showPasswordTickBoxActionPerformed
-        // TODO add your handling code here:
+        if (showPasswordTickBox.isSelected()) {
+            newPasswordField.setEchoChar((char) 0);
+        } else {
+            newPasswordField.setEchoChar(('*'));
+        }
     }//GEN-LAST:event_showPasswordTickBoxActionPerformed
 
     private void changeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeButtonActionPerformed
-        // TODO add your handling code here:
+        String[] userInput = new String[2];
+        userInput[0] = emailField.getText();
+        userInput[1] = newPasswordField.getText();
+        UserController action = new UserController();
+        boolean result = action.userForgetPassword(userInput);
+        if (result) {
+            JOptionPane.showMessageDialog(null, "Password Succesfully Change");
+            LoginPage login = new LoginPage();
+            login.show();
+            dispose();
+        }
     }//GEN-LAST:event_changeButtonActionPerformed
 
     private void newPasswordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newPasswordFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_newPasswordFieldActionPerformed
+
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        LoginPage login = new LoginPage();
+        login.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_backButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -220,6 +248,7 @@ public class ForgetPasswordPage extends javax.swing.JFrame {
             new ForgetPasswordPage().setVisible(true);
         });
     }
+
     private void setIconImage() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Sysco_icon_with_background.png")));
     }
