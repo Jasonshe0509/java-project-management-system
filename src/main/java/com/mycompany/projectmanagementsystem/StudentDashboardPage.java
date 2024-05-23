@@ -4,6 +4,7 @@
  */
 package com.mycompany.projectmanagementsystem;
 
+import com.mycompany.projectmanagementsystem.Assessment.AssessmentController;
 import com.mycompany.projectmanagementsystem.GeneralFunction.FileHandler;
 import com.mycompany.projectmanagementsystem.GeneralFunction.SessionManager;
 import com.mycompany.projectmanagementsystem.User.Student;
@@ -335,26 +336,6 @@ public final class StudentDashboardPage extends javax.swing.JFrame {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Sysco_icon_with_background.png")));
     }
 
-    private String assessmentType(String assessmentType) {
-        String assessmentName;
-        if (assessmentType.equalsIgnoreCase("internship_report")) {
-            assessmentName = "Internship Report";
-        } else if (assessmentType.equalsIgnoreCase("fyp")) {
-            assessmentName = "Final Year Project";
-        } else if (assessmentType.equalsIgnoreCase("cp1")) {
-            assessmentName = "Capstone Project 1";
-        } else if (assessmentType.equalsIgnoreCase("cp2")) {
-            assessmentName = "Capstone Project 2";
-        } else if (assessmentType.equalsIgnoreCase("rmcp")) {
-            assessmentName = "Research Methodology for Capstone Project";
-        } else if (assessmentType.equalsIgnoreCase("investigation")) {
-            assessmentName = "Investigation Report";
-        } else {
-            assessmentName = "Unknown";
-        }
-        return assessmentName;
-    }
-
     public List<String> setAssessmentData() {
         List<String> data = FileHandler.readFile("student_assessment.txt");
         List<String> assessment = new ArrayList<>();
@@ -492,7 +473,7 @@ public final class StudentDashboardPage extends javax.swing.JFrame {
                         AssessmentViewBtn.addActionListener(new java.awt.event.ActionListener() {
                             @Override
                             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                redirectAssessmentPage();
+                                redirectAssessmentPage(AssmntList[0],AssmntList[1]);
                             }
                         });
 
@@ -542,6 +523,7 @@ public final class StudentDashboardPage extends javax.swing.JFrame {
 
         List<String> AssmntData = FileHandler.readFile("assessment.txt");
         List<String> assmnt = setAssessmentData();
+        AssessmentController action = new AssessmentController();
         LocalDate today = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
@@ -571,7 +553,7 @@ public final class StudentDashboardPage extends javax.swing.JFrame {
                             dueDateAssessment = new JLabel(); // Initialize dueDateAssessment
                             dueDateAssessment.setFont(new java.awt.Font("SansSerif", Font.BOLD, 12));
                             dueDateAssessment.setForeground(new java.awt.Color(2, 50, 99));
-                            dueDateAssessment.setText(assessmentType(AssmntList[1]));
+                            dueDateAssessment.setText(action.assessmentType(AssmntList[1]));
                             dueDatePanel.add(dueDateAssessment, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 10, 130, -1));
 
                             dateLabel = new JLabel(); // Initialize dateLabel
@@ -604,6 +586,7 @@ public final class StudentDashboardPage extends javax.swing.JFrame {
 
         List<String> AssmntData = FileHandler.readFile("assessment.txt");
         List<String> assmnt = setAssessmentData();
+         AssessmentController action = new AssessmentController();
         LocalDate today = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
@@ -632,7 +615,7 @@ public final class StudentDashboardPage extends javax.swing.JFrame {
                             dueDateAssessment = new JLabel(); // Initialize dueDateAssessment
                             dueDateAssessment.setFont(new java.awt.Font("SansSerif", Font.BOLD, 12));
                             dueDateAssessment.setForeground(new java.awt.Color(2, 50, 99));
-                            dueDateAssessment.setText(assessmentType(AssmntList[1]));
+                            dueDateAssessment.setText(action.assessmentType(AssmntList[1]));
                             upcomingEventPanel.add(dueDateAssessment, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 10, 130, -1));
 
                             dateLabel = new JLabel(); // Initialize dateLabel
@@ -650,8 +633,8 @@ public final class StudentDashboardPage extends javax.swing.JFrame {
         }
     }
 
-    private void redirectAssessmentPage() {
-        StudentAssessmentDetailPage details = new StudentAssessmentDetailPage();
+    private void redirectAssessmentPage(String assessmentID,String assessmentType) {
+        StudentAssessmentDetailPage details = new StudentAssessmentDetailPage(assessmentID,assessmentType);
         details.setVisible(true);
         this.setVisible(false);
     }

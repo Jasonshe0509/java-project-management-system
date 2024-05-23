@@ -79,8 +79,8 @@ public class StudentEcSubmissionPage extends javax.swing.JFrame {
                 boolean result = action.ecDelete(ecID);
                 if (result) {
                     JOptionPane.showMessageDialog(null, "Successfully delete the EC submission");
+                    dispose();
                     StudentEcSubmissionPage page = new StudentEcSubmissionPage();
-                    page.dispose();
                     page.setVisible(true);
                 }
             }
@@ -277,7 +277,7 @@ public class StudentEcSubmissionPage extends javax.swing.JFrame {
     }//GEN-LAST:event_studentLogoMouseClicked
 
     private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
-        StudentEcForm ecForm = new StudentEcForm();
+        StudentEcForm ecForm = new StudentEcForm(this);
         ecForm.setVisible(true);
     }//GEN-LAST:event_createBtnActionPerformed
 
