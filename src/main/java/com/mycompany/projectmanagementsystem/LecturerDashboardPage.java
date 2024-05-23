@@ -87,27 +87,55 @@ public class LecturerDashboardPage extends javax.swing.JFrame {
         jLabel2.setMinimumSize(new java.awt.Dimension(184, 42));
         jLabel2.setPreferredSize(new java.awt.Dimension(184, 42));
 
-        jLabel3.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Log Out");
+        LecLogOutLabel.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
+        LecLogOutLabel.setForeground(new java.awt.Color(2, 50, 99));
+        LecLogOutLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        LecLogOutLabel.setText("Log Out");
+        LecLogOutLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        LecLogOutLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                LecLogOutLabelMouseClicked(evt);
+            }
+        });
 
-        jLabel4.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Profile");
+        ProfileLabel.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
+        ProfileLabel.setForeground(new java.awt.Color(2, 50, 99));
+        ProfileLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ProfileLabel.setText("Profile");
+        ProfileLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ProfileLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ProfileLabelMouseClicked(evt);
+            }
+        });
 
-        jLabel5.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Notification");
-        jLabel5.setMaximumSize(new java.awt.Dimension(37, 21));
-        jLabel5.setMinimumSize(new java.awt.Dimension(37, 21));
-        jLabel5.setPreferredSize(new java.awt.Dimension(37, 21));
+        NotiLabel.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
+        NotiLabel.setForeground(new java.awt.Color(2, 50, 99));
+        NotiLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        NotiLabel.setText("Notification");
+        NotiLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        NotiLabel.setMaximumSize(new java.awt.Dimension(37, 21));
+        NotiLabel.setMinimumSize(new java.awt.Dimension(37, 21));
+        NotiLabel.setPreferredSize(new java.awt.Dimension(37, 21));
+        NotiLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                NotiLabelMouseClicked(evt);
+            }
+        });
 
-        jLabel6.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Summary Report");
-        jLabel6.setMaximumSize(new java.awt.Dimension(37, 21));
-        jLabel6.setMinimumSize(new java.awt.Dimension(37, 21));
-        jLabel6.setPreferredSize(new java.awt.Dimension(37, 21));
+        SumRptLabel.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
+        SumRptLabel.setForeground(new java.awt.Color(2, 50, 99));
+        SumRptLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        SumRptLabel.setText("Summary Report");
+        SumRptLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        SumRptLabel.setMaximumSize(new java.awt.Dimension(37, 21));
+        SumRptLabel.setMinimumSize(new java.awt.Dimension(37, 21));
+        SumRptLabel.setPreferredSize(new java.awt.Dimension(37, 21));
+        SumRptLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                SumRptLabelMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -152,22 +180,37 @@ public class LecturerDashboardPage extends javax.swing.JFrame {
         jSplitPane1.setMinimumSize(new java.awt.Dimension(294, 34));
         jSplitPane1.setPreferredSize(new java.awt.Dimension(294, 34));
 
-        jLabel8.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("Supervisor");
-        jLabel8.setMaximumSize(new java.awt.Dimension(147, 34));
-        jLabel8.setMinimumSize(new java.awt.Dimension(147, 34));
-        jLabel8.setOpaque(true);
-        jLabel8.setPreferredSize(new java.awt.Dimension(149, 34));
-        jSplitPane1.setLeftComponent(jLabel8);
+        supervisorLabel.setBackground(new java.awt.Color(255, 255, 255));
+        supervisorLabel.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
+        supervisorLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        supervisorLabel.setText("Supervisor");
+        supervisorLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        supervisorLabel.setMaximumSize(new java.awt.Dimension(147, 34));
+        supervisorLabel.setMinimumSize(new java.awt.Dimension(147, 34));
+        supervisorLabel.setOpaque(true);
+        supervisorLabel.setPreferredSize(new java.awt.Dimension(149, 34));
+        supervisorLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                supervisorLabelMouseClicked(evt);
+            }
+        });
+        jSplitPane1.setLeftComponent(supervisorLabel);
 
-        jLabel9.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setText("Second Marker");
-        jLabel9.setMaximumSize(new java.awt.Dimension(147, 34));
-        jLabel9.setMinimumSize(new java.awt.Dimension(147, 34));
-        jLabel9.setPreferredSize(new java.awt.Dimension(148, 34));
-        jSplitPane1.setRightComponent(jLabel9);
+        secMarkerLabel.setBackground(new java.awt.Color(255, 255, 255));
+        secMarkerLabel.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
+        secMarkerLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        secMarkerLabel.setText("Second Marker");
+        secMarkerLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        secMarkerLabel.setMaximumSize(new java.awt.Dimension(147, 34));
+        secMarkerLabel.setMinimumSize(new java.awt.Dimension(147, 34));
+        secMarkerLabel.setOpaque(true);
+        secMarkerLabel.setPreferredSize(new java.awt.Dimension(148, 34));
+        secMarkerLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                secMarkerLabelMouseClicked(evt);
+            }
+        });
+        jSplitPane1.setRightComponent(secMarkerLabel);
 
         getContentPane().add(jSplitPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 90, -1, -1));
 
@@ -699,6 +742,287 @@ public class LecturerDashboardPage extends javax.swing.JFrame {
         });
     }
 
+        // Create a panel to hold all assessment panels
+        contentPanel = new JPanel();
+        contentPanel.setLayout(null); // Set null layout for absolute positioning
+
+        // Constants for layout
+        int panelWidth = 300;
+        int panelHeight = 255;
+        int xGap = 8;
+        int yGap = 8;
+        int panelsPerRow = 3;
+
+        int x = xGap;
+        int y = yGap;
+        int count = 0;
+        
+        for (String line : AssmntData) {
+            String[] AssmntList = line.split(";");
+            if (user.getUserID().equals(AssmntList[4])) {
+                AssessmentPanel = new JPanel();
+                AssessmentPanel.setBackground(Color.WHITE);
+                AssessmentPanel.setPreferredSize(new java.awt.Dimension(panelWidth, panelHeight));
+                AssessmentPanel.setBounds(x, y, panelWidth, panelHeight);
+                AssessmentPanel.setLayout(null);
+                
+                AssessmentBackgroundPanel = new JPanel();
+                bg = new JLabel();
+                AssessmentNameLabel = new javax.swing.JLabel();
+
+                switch (AssmntList[1]) {
+                    case "internship_report" -> {
+                        bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/internship.png")));
+                       
+                        AssessmentNameLabel.setText("Internship Report");
+                    }
+                    case "fyp" -> {
+                        bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/final_year_project.png")));
+                        
+                        AssessmentNameLabel.setText("Final Year Project");
+                    }
+                    case "investigation" -> {
+                        bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/investigation_report.png")));
+
+                        AssessmentNameLabel.setText("Investigation Report");
+                    }
+                    case "cp1" -> {
+                        bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/capstone_project.png")));
+                        
+                        AssessmentNameLabel.setText("Capstone Project 1");
+                    }
+                    case "cp2" -> {
+                        bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/capstone_project.png")));
+                        
+                        AssessmentNameLabel.setText("Capstone Project 2");
+                    }
+                    case "rmcp" -> {
+                        bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/research_methodology.png")));
+                        
+                        AssessmentNameLabel.setText("<html>" + "Research Methodology for Capstone Project" + "</html>");
+                    }
+                }
+                
+                AssessmentBackgroundPanel.setBounds(0, 0, panelWidth, 150);
+                bg.setBounds(0, 0, panelWidth, 150);
+                AssessmentBackgroundPanel.add(bg);
+                AssessmentBackgroundPanel.setLayout(null);
+                
+                AssessmentNameLabel.setFont(new java.awt.Font("Bell MT", 1, 18));
+                AssessmentNameLabel.setForeground(new java.awt.Color(2, 50, 99));
+                AssessmentNameLabel.setBounds(10, 160, 250, 35);
+                        
+                IntakeCodeLabel = new javax.swing.JLabel();
+                IntakeCodeLabel.setFont(new java.awt.Font("Bell MT", 1, 14)); 
+                IntakeCodeLabel.setForeground(new java.awt.Color(2, 50, 99));
+                IntakeCodeLabel.setBounds(10, 200, 182, 20);
+                IntakeCodeLabel.setText(AssmntList[2]);
+
+                AssessmentViewBtn = new javax.swing.JButton();
+                AssessmentViewBtn.setBackground(new java.awt.Color(76, 127, 174));
+                AssessmentViewBtn.setFont(new java.awt.Font("Bell MT", 1, 12)); 
+                AssessmentViewBtn.setForeground(new java.awt.Color(255, 255, 255));
+                AssessmentViewBtn.setText("View");
+                AssessmentViewBtn.setBounds(230, 220, 60, 25);
+                AssessmentViewBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+                AssessmentViewBtn.addActionListener(new java.awt.event.ActionListener() {
+                    public void actionPerformed(java.awt.event.ActionEvent evt) {
+                        redirectIntakePage(AssmntList[0], AssmntList[2]);
+                    }
+                });
+                
+                AssessmentPanel.add(AssessmentBackgroundPanel);
+                AssessmentPanel.add(AssessmentNameLabel);
+                AssessmentPanel.add(IntakeCodeLabel);
+                AssessmentPanel.add(AssessmentViewBtn);
+        
+                contentPanel.add(AssessmentPanel);
+                jPanel2.add(contentPanel);
+                assessments.add(AssessmentPanel);
+                AssessmentFound = true;
+                
+                count++;
+                if (count % panelsPerRow == 0) {
+                    x = xGap;
+                    y += panelHeight + yGap;
+                } else {
+                    x += panelWidth + xGap;
+                }
+            }
+        }
+        if (!AssessmentFound) {
+            JLabel noAssmntLabel = new JLabel("No Assessment Assigned");
+            noAssmntLabel.setFont(new java.awt.Font("SansSerif", 1, 16));
+            noAssmntLabel.setForeground(new java.awt.Color(2, 50, 99));
+            //set label to center
+            int labelWidth = noAssmntLabel.getPreferredSize().width;
+            int labelHeight = noAssmntLabel.getPreferredSize().height;
+            int a = (contentPanel.getWidth() - labelWidth) / 2;
+            int b = (contentPanel.getHeight() - labelHeight) / 2;
+
+            noAssmntLabel.setBounds(a, b, labelWidth, labelHeight);
+            contentPanel.add(noAssmntLabel);
+        }
+        
+        // Set preferred size for the content panel based on the number of items
+        int numRows = (count + panelsPerRow - 1) / panelsPerRow; // Calculate number of rows needed
+        int contentHeight = numRows * (panelHeight + yGap) + yGap; // Calculate content panel height
+        contentPanel.setPreferredSize(new java.awt.Dimension(
+            panelsPerRow * (panelWidth + xGap) + xGap, 
+            contentHeight
+        ));
+         // Add content panel to the scroll pane
+        jScrollPane2.setViewportView(contentPanel);
+    }
+    
+    private void showSecMarkerAssessmentInfo() {
+        List<String> AssmntData = FileHandler.readFile("assessment.txt");
+        Collections.reverse(AssmntData);
+        boolean AssessmentFound = false;
+
+        // Create a panel to hold all assessment panels
+        contentPanel = new JPanel();
+        contentPanel.setLayout(null); // Set null layout for absolute positioning
+
+        // Constants for layout
+        int panelWidth = 300;
+        int panelHeight = 255;
+        int xGap = 8;
+        int yGap = 8;
+        int panelsPerRow = 3;
+
+        int x = xGap;
+        int y = yGap;
+        int count = 0;
+        
+        for (String line : AssmntData) {
+            String[] AssmntList = line.split(";");
+            if (user.getUserID().equals(AssmntList[5])) {
+                AssessmentPanel = new JPanel();
+                AssessmentPanel.setBackground(Color.WHITE);                
+                AssessmentPanel.setPreferredSize(new java.awt.Dimension(panelWidth, panelHeight));
+                AssessmentPanel.setBounds(x, y, panelWidth, panelHeight);
+                AssessmentPanel.setLayout(null);
+                
+                AssessmentBackgroundPanel = new JPanel();
+                bg = new JLabel();
+                AssessmentNameLabel = new javax.swing.JLabel();
+
+                switch (AssmntList[1]) {
+                    case "internship_report" -> {
+                        bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/internship.png")));
+                       
+                        AssessmentNameLabel.setText("Internship Report");
+                    }
+                    case "fyp" -> {
+                        bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/final_year_project.png")));
+                        
+                        AssessmentNameLabel.setText("Final Year Project");
+                    }
+                    case "investigation" -> {
+                        bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/investigation_report.png")));
+
+                        AssessmentNameLabel.setText("Investigation Report");
+                    }
+                    case "cp1" -> {
+                        bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/capstone_project.png")));
+                        
+                        AssessmentNameLabel.setText("Capstone Project 1");
+                    }
+                    case "cp2" -> {
+                        bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/capstone_project.png")));
+                        
+                        AssessmentNameLabel.setText("Capstone Project 2");
+                    }
+                    case "rmcp" -> {
+                        bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/research_methodology.png")));
+                        
+                        AssessmentNameLabel.setText("<html>" + "Research Methodology for Capstone Project" + "</html>");
+                    }
+                }
+                
+                AssessmentBackgroundPanel.setBounds(0, 0, panelWidth, 150);
+                bg.setBounds(0, 0, panelWidth, 150);
+                AssessmentBackgroundPanel.add(bg);
+                AssessmentBackgroundPanel.setLayout(null);
+                
+                AssessmentNameLabel.setFont(new java.awt.Font("Bell MT", 1, 18));
+                AssessmentNameLabel.setForeground(new java.awt.Color(2, 50, 99));
+                AssessmentNameLabel.setBounds(10, 160, 250, 35);
+                        
+                IntakeCodeLabel = new javax.swing.JLabel();
+                IntakeCodeLabel.setFont(new java.awt.Font("Bell MT", 1, 14)); 
+                IntakeCodeLabel.setForeground(new java.awt.Color(2, 50, 99));
+                IntakeCodeLabel.setBounds(10, 200, 182, 20);
+                IntakeCodeLabel.setText(AssmntList[2]);
+
+                AssessmentViewBtn = new javax.swing.JButton();
+                AssessmentViewBtn.setBackground(new java.awt.Color(76, 127, 174));
+                AssessmentViewBtn.setFont(new java.awt.Font("Bell MT", 1, 12)); 
+                AssessmentViewBtn.setForeground(new java.awt.Color(255, 255, 255));
+                AssessmentViewBtn.setText("View");
+                AssessmentViewBtn.setBounds(230, 220, 60, 25);
+                AssessmentViewBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+                AssessmentViewBtn.addActionListener(new java.awt.event.ActionListener() {
+                    public void actionPerformed(java.awt.event.ActionEvent evt) {
+                        redirectIntakePage(AssmntList[0], AssmntList[2]);
+                    }
+                });
+                
+                AssessmentPanel.add(AssessmentBackgroundPanel);
+                AssessmentPanel.add(AssessmentNameLabel);
+                AssessmentPanel.add(IntakeCodeLabel);
+                AssessmentPanel.add(AssessmentViewBtn);
+        
+                contentPanel.add(AssessmentPanel);
+                jPanel2.add(contentPanel);
+                assessments.add(AssessmentPanel);
+                AssessmentFound = true;
+                
+                count++;
+                if (count % panelsPerRow == 0) {
+                    x = xGap;
+                    y += panelHeight + yGap;
+                } else {
+                    x += panelWidth + xGap;
+                }
+            }
+        }
+        if (!AssessmentFound) {
+            JLabel noAssmntLabel = new JLabel("No Assessment Assigned");
+            noAssmntLabel.setFont(new java.awt.Font("SansSerif", 1, 16));
+            noAssmntLabel.setForeground(new java.awt.Color(2, 50, 99));
+            //set label to center
+            int labelWidth = noAssmntLabel.getPreferredSize().width;
+            int labelHeight = noAssmntLabel.getPreferredSize().height;
+            int a = (contentPanel.getWidth() - labelWidth) / 2;
+            int b = (contentPanel.getHeight() - labelHeight) / 2;
+
+            noAssmntLabel.setBounds(a, b, labelWidth, labelHeight);
+            contentPanel.add(noAssmntLabel);
+        }
+        
+        // Set preferred size for the content panel based on the number of items
+        contentPanel.setPreferredSize(new java.awt.Dimension(
+            panelsPerRow * (panelWidth + xGap) + xGap, 
+            (count / panelsPerRow + 1) * (panelHeight + yGap) + yGap
+        ));
+         // Add content panel to the scroll pane 
+        jScrollPane2.setViewportView(contentPanel);
+    }
+    
+    private void clearPanel(){
+        jPanel2.removeAll();
+        jPanel2.revalidate(); // Revalidate to refresh the layout
+        jPanel2.repaint();    // Repaint to update the UI
+    }
+    
+    private void redirectIntakePage(String AssmntID, String intakeCode){
+        LecturerIntakePage intake = new LecturerIntakePage(AssmntID, intakeCode);
+        intake.setVisible(true);
+        this.setVisible(false);
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
