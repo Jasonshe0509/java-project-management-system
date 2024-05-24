@@ -21,8 +21,10 @@ public class StudentAssessment {
     private String submissionStatus;
     private String feedback;
     private String grade;
+    private int mark;
+    private int assessmentSubmissionCount;
 
-    public StudentAssessment(String studentAssessmentID, String studentID, String assessmentID, String studentAssessmentDueDate, URL submissionLink, LocalDateTime submissionDateTime, String submissionStatus, String feedback, String grade) {
+    public StudentAssessment(String studentAssessmentID, String studentID, String assessmentID, String studentAssessmentDueDate, URL submissionLink, LocalDateTime submissionDateTime, String submissionStatus, String feedback, String grade, int mark, int assessmentSubmissionCount) {
         this.studentAssessmentID = studentAssessmentID;
         this.studentID = studentID;
         this.assessmentID = assessmentID;
@@ -32,6 +34,8 @@ public class StudentAssessment {
         this.submissionStatus = submissionStatus;
         this.feedback = feedback;
         this.grade = grade;
+        this.mark = mark;
+        this.assessmentSubmissionCount = assessmentSubmissionCount;
     }
 
     public String getStudentAssessmentID() {
@@ -104,6 +108,22 @@ public class StudentAssessment {
 
     public void setGrade(String grade) {
         this.grade = grade;
+    }
+
+    public int getMark() {
+        return mark;
+    }
+
+    public void setMark(int mark) {
+        this.mark = mark;
+    }
+
+    public int getAssessmentSubmissionCount() {
+        return assessmentSubmissionCount;
+    }
+
+    public void setAssessmentSubmissionCount(int assessmentSubmissionCount) {
+        this.assessmentSubmissionCount = assessmentSubmissionCount;
     }
     
     
