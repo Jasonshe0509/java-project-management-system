@@ -10,6 +10,7 @@ com\mycompany\projectmanagementsystem\StudentAssessmentDetailPage$15.class
 com\mycompany\projectmanagementsystem\ProjectManagerPage$8.class
 com\mycompany\projectmanagementsystem\Assessment\Assessment.class
 com\mycompany\projectmanagementsystem\StudentEcSubmissionPage$6.class
+com\mycompany\projectmanagementsystem\LoginPage$5.class
 com\mycompany\projectmanagementsystem\PM_assessment_page$3.class
 com\mycompany\projectmanagementsystem\LevelOfEducation\LevelOfEducation.class
 com\mycompany\projectmanagementsystem\SchoolWiseList\SchoolWiseController.class
@@ -27,6 +28,7 @@ com\mycompany\projectmanagementsystem\StudentEcSubmissionPage$4.class
 com\mycompany\projectmanagementsystem\LecturerDashboardPage$5.class
 com\mycompany\projectmanagementsystem\admin_mainpage.class
 com\mycompany\projectmanagementsystem\admin_ec_record$2.class
+com\mycompany\projectmanagementsystem\LecturerProfile$8.class
 com\mycompany\projectmanagementsystem\LecturerDashboardPage$8.class
 com\mycompany\projectmanagementsystem\ForgetPasswordPage$3.class
 com\mycompany\projectmanagementsystem\StudentAssessmentDetailPage$11.class
@@ -64,6 +66,7 @@ com\mycompany\projectmanagementsystem\StudentDashboardPage$5.class
 com\mycompany\projectmanagementsystem\StudentEcSubmissionPage$8.class
 com\mycompany\projectmanagementsystem\Intake\IntakeController.class
 com\mycompany\projectmanagementsystem\StudentECActionPanel.class
+com\mycompany\projectmanagementsystem\LecturerProfile$7.class
 com\mycompany\projectmanagementsystem\StudentECActionPanel$1.class
 com\mycompany\projectmanagementsystem\admin_register_intake.class
 com\mycompany\projectmanagementsystem\NotificationPage$1.class
