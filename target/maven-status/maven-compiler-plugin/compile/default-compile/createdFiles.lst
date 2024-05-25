@@ -70,6 +70,7 @@ com\mycompany\projectmanagementsystem\EC\ECTableActionEvent.class
 com\mycompany\projectmanagementsystem\PM_assessment_page$4.class
 com\mycompany\projectmanagementsystem\admin_student$3.class
 com\mycompany\projectmanagementsystem\Intake\IntakeValidator.class
+com\mycompany\projectmanagementsystem\StudentDashboardPage$4.class
 com\mycompany\projectmanagementsystem\admin_student$5.class
 com\mycompany\projectmanagementsystem\StudentEcSubmissionPage$4.class
 com\mycompany\projectmanagementsystem\admin_mainpage.class
