@@ -47,6 +47,7 @@ com\mycompany\projectmanagementsystem\StudentEcSubmissionPage$7.class
 com\mycompany\projectmanagementsystem\admin_student_management$3.class
 com\mycompany\projectmanagementsystem\PM_profile_page$7.class
 com\mycompany\projectmanagementsystem\PM_assessment_page$2.class
+com\mycompany\projectmanagementsystem\admin_modify_studentrecord$13.class
 com\mycompany\projectmanagementsystem\StudentEcSubmissionPage$9.class
 com\mycompany\projectmanagementsystem\LecturerProfile$3.class
 com\mycompany\projectmanagementsystem\admin_modify_lecturerrecord$4.class
@@ -70,6 +71,7 @@ com\mycompany\projectmanagementsystem\EC\ECTableActionEvent.class
 com\mycompany\projectmanagementsystem\PM_assessment_page$4.class
 com\mycompany\projectmanagementsystem\admin_student$3.class
 com\mycompany\projectmanagementsystem\Intake\IntakeValidator.class
+com\mycompany\projectmanagementsystem\StudentDashboardPage$4.class
 com\mycompany\projectmanagementsystem\admin_student$5.class
 com\mycompany\projectmanagementsystem\StudentEcSubmissionPage$4.class
 com\mycompany\projectmanagementsystem\admin_mainpage.class

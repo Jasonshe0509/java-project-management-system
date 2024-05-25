@@ -216,6 +216,12 @@ public class UserController extends UserAuthenticationController {
         studentDetails.show();
         
     }
+    
+    public static void modifyUser(String[] userInput) {
+
+        
+
+    }
 
     public boolean userProfileUpdate(String[] userInput) {
         if (UserValidator.validateUserInput(userInput)) {

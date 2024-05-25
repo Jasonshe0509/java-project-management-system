@@ -13,6 +13,7 @@ import javax.swing.border.LineBorder;
 
 public class admin_view_studentrecord extends javax.swing.JFrame {
 String[] studentDetails;
+ArrayList<String> list;
 admin_view_studentrecord studentRecordInstace;
     public admin_view_studentrecord() {
         initComponents();
@@ -21,14 +22,13 @@ admin_view_studentrecord studentRecordInstace;
         
     }
     
-    public void displayStudentDetails(String[] studentDetails){
+    public ArrayList<String> displayStudentDetails(String[] studentDetails){
         
         System.out.print(Arrays.toString(studentDetails));
-        ArrayList<String> list = new ArrayList();
+        list = new ArrayList();
         for (String detail : studentDetails) {
         list.add(detail);
     }
-        student_tpno.setText(studentDetails[0]);
         student_tpno.setText(list.get(0));
         student_name.setText(list.get(1));
         student_gender.setText(list.get(2));
@@ -38,9 +38,9 @@ admin_view_studentrecord studentRecordInstace;
         student_nric.setText(list.get(6));
         student_nation.setText(list.get(7));
         student_email.setText(list.get(8));
-        student_password.setText("**********");
-        //studentRecordInstace.student_intake.setText(list.get(11));
-        
+        //student_intake.setText("**********");
+        student_intake.setText(list.get(11));
+        return list;
 }
     
     @SuppressWarnings("unchecked")
@@ -60,7 +60,7 @@ admin_view_studentrecord studentRecordInstace;
         student_nation = new javax.swing.JTextField();
         student_nation_title = new javax.swing.JLabel();
         student_password_title = new javax.swing.JLabel();
-        student_password = new javax.swing.JTextField();
+        student_intake = new javax.swing.JTextField();
         student_nric = new javax.swing.JTextField();
         student_email = new javax.swing.JTextField();
         student_email_title = new javax.swing.JLabel();
@@ -169,17 +169,17 @@ admin_view_studentrecord studentRecordInstace;
 
         student_password_title.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         student_password_title.setForeground(new java.awt.Color(2, 50, 99));
-        student_password_title.setText("Password");
-        getContentPane().add(student_password_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 350, -1, -1));
+        student_password_title.setText("Intake Code");
+        getContentPane().add(student_password_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 350, -1, -1));
 
-        student_password.setEditable(false);
-        student_password.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        student_password.addActionListener(new java.awt.event.ActionListener() {
+        student_intake.setEditable(false);
+        student_intake.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        student_intake.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                student_passwordActionPerformed(evt);
+                student_intakeActionPerformed(evt);
             }
         });
-        getContentPane().add(student_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 340, 190, 50));
+        getContentPane().add(student_intake, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 340, 190, 50));
 
         student_nric.setEditable(false);
         student_nric.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
@@ -300,9 +300,9 @@ admin_view_studentrecord studentRecordInstace;
         // TODO add your handling code here:
     }//GEN-LAST:event_student_nationActionPerformed
 
-    private void student_passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_student_passwordActionPerformed
+    private void student_intakeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_student_intakeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_student_passwordActionPerformed
+    }//GEN-LAST:event_student_intakeActionPerformed
 
     private void student_nricActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_student_nricActionPerformed
         // TODO add your handling code here:
@@ -317,7 +317,10 @@ admin_view_studentrecord studentRecordInstace;
     }//GEN-LAST:event_admin_viewstudent_backActionPerformed
 
     private void admin_viewstudent_back1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_admin_viewstudent_back1ActionPerformed
-        // TODO add your handling code here:
+        admin_modify_studentrecord modifyStudentDetails = new admin_modify_studentrecord();
+        modifyStudentDetails.displayStudentDetails(list);
+        modifyStudentDetails.show();
+        hide();
     }//GEN-LAST:event_admin_viewstudent_back1ActionPerformed
 
     private void student_genderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_student_genderActionPerformed
@@ -351,13 +354,13 @@ admin_view_studentrecord studentRecordInstace;
     private javax.swing.JTextField student_gender;
     private javax.swing.JLabel student_gender_title;
     private javax.swing.JLabel student_image;
+    private javax.swing.JTextField student_intake;
     private javax.swing.JTextField student_name;
     private javax.swing.JLabel student_name_title;
     private javax.swing.JTextField student_nation;
     private javax.swing.JLabel student_nation_title;
     private javax.swing.JTextField student_nric;
     private javax.swing.JLabel student_nric_title;
-    private javax.swing.JTextField student_password;
     private javax.swing.JLabel student_password_title;
     private javax.swing.JTextField student_tpno;
     private javax.swing.JLabel student_tpno_title;
