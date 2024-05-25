@@ -96,6 +96,7 @@ public class LecturerDashboardPage extends javax.swing.JFrame {
         LecLogOutLabel.setForeground(new java.awt.Color(2, 50, 99));
         LecLogOutLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LecLogOutLabel.setText("Log Out");
+        LecLogOutLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         LecLogOutLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 LecLogOutLabelMouseClicked(evt);
@@ -106,6 +107,7 @@ public class LecturerDashboardPage extends javax.swing.JFrame {
         ProfileLabel.setForeground(new java.awt.Color(2, 50, 99));
         ProfileLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         ProfileLabel.setText("Profile");
+        ProfileLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         ProfileLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 ProfileLabelMouseClicked(evt);
@@ -116,6 +118,7 @@ public class LecturerDashboardPage extends javax.swing.JFrame {
         NotiLabel.setForeground(new java.awt.Color(2, 50, 99));
         NotiLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         NotiLabel.setText("Notification");
+        NotiLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         NotiLabel.setMaximumSize(new java.awt.Dimension(37, 21));
         NotiLabel.setMinimumSize(new java.awt.Dimension(37, 21));
         NotiLabel.setPreferredSize(new java.awt.Dimension(37, 21));
@@ -129,6 +132,7 @@ public class LecturerDashboardPage extends javax.swing.JFrame {
         SumRptLabel.setForeground(new java.awt.Color(2, 50, 99));
         SumRptLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         SumRptLabel.setText("Summary Report");
+        SumRptLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         SumRptLabel.setMaximumSize(new java.awt.Dimension(37, 21));
         SumRptLabel.setMinimumSize(new java.awt.Dimension(37, 21));
         SumRptLabel.setPreferredSize(new java.awt.Dimension(37, 21));
@@ -185,6 +189,7 @@ public class LecturerDashboardPage extends javax.swing.JFrame {
         supervisorLabel.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
         supervisorLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         supervisorLabel.setText("Supervisor");
+        supervisorLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         supervisorLabel.setMaximumSize(new java.awt.Dimension(147, 34));
         supervisorLabel.setMinimumSize(new java.awt.Dimension(147, 34));
         supervisorLabel.setOpaque(true);
@@ -200,6 +205,7 @@ public class LecturerDashboardPage extends javax.swing.JFrame {
         secMarkerLabel.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
         secMarkerLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         secMarkerLabel.setText("Second Marker");
+        secMarkerLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         secMarkerLabel.setMaximumSize(new java.awt.Dimension(147, 34));
         secMarkerLabel.setMinimumSize(new java.awt.Dimension(147, 34));
         secMarkerLabel.setOpaque(true);
@@ -457,6 +463,7 @@ public class LecturerDashboardPage extends javax.swing.JFrame {
                 AssessmentViewBtn.setForeground(new java.awt.Color(255, 255, 255));
                 AssessmentViewBtn.setText("View");
                 AssessmentViewBtn.setBounds(230, 220, 60, 25);
+                AssessmentViewBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
                 AssessmentViewBtn.addActionListener(new java.awt.event.ActionListener() {
                     public void actionPerformed(java.awt.event.ActionEvent evt) {
                         redirectIntakePage(AssmntList[2]);
