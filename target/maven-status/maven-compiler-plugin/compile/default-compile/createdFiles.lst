@@ -11,6 +11,7 @@ com\mycompany\projectmanagementsystem\StudentAssessmentDetailPage$15.class
 com\mycompany\projectmanagementsystem\ProjectManagerPage$8.class
 com\mycompany\projectmanagementsystem\PM_assessment_page$3.class
 com\mycompany\projectmanagementsystem\SchoolWiseList\SchoolWiseController.class
+com\mycompany\projectmanagementsystem\StudentPresentationActionPanel$1.class
 com\mycompany\projectmanagementsystem\EC\EC.class
 com\mycompany\projectmanagementsystem\StudentAssessmentDetailPage$10.class
 com\mycompany\projectmanagementsystem\PM_assessment_page$5.class
@@ -33,6 +34,7 @@ com\mycompany\projectmanagementsystem\PM_assessment_page$1.class
 com\mycompany\projectmanagementsystem\StudentDashboardPage$5.class
 com\mycompany\projectmanagementsystem\LecturerIntakePage$8.class
 com\mycompany\projectmanagementsystem\StudentEcSubmissionPage$8.class
+com\mycompany\projectmanagementsystem\Presentation\StudentPresentationTableActionEvent.class
 com\mycompany\projectmanagementsystem\Intake\IntakeController.class
 com\mycompany\projectmanagementsystem\LecturerDashboardPage.class
 com\mycompany\projectmanagementsystem\StudentECActionPanel$1.class
@@ -40,6 +42,7 @@ com\mycompany\projectmanagementsystem\LecturerDashboardPage$3.class
 com\mycompany\projectmanagementsystem\StudentDashboardPage$6.class
 com\mycompany\projectmanagementsystem\Presentation\PresentationTableActionEvent.class
 com\mycompany\projectmanagementsystem\Assessment\AssessmentController.class
+com\mycompany\projectmanagementsystem\StudentPresentationActionPanel$2.class
 com\mycompany\projectmanagementsystem\StudentEcSubmissionPage$7.class
 com\mycompany\projectmanagementsystem\admin_student_management$3.class
 com\mycompany\projectmanagementsystem\PM_profile_page$7.class
@@ -94,11 +97,13 @@ com\mycompany\projectmanagementsystem\ProjectManagerPage$11.class
 com\mycompany\projectmanagementsystem\admin_student_management.class
 com\mycompany\projectmanagementsystem\LoginPage$1.class
 com\mycompany\projectmanagementsystem\admin_student$1.class
+com\mycompany\projectmanagementsystem\StudentPresentationActionPanel$TableActionCellEditor.class
 com\mycompany\projectmanagementsystem\StudentECActionPanel.class
 com\mycompany\projectmanagementsystem\admin_ec_details$3.class
 com\mycompany\projectmanagementsystem\LecturerIntakePage$12.class
 com\mycompany\projectmanagementsystem\admin_register_intake.class
 com\mycompany\projectmanagementsystem\NotificationPage$1.class
+com\mycompany\projectmanagementsystem\StudentPresentationActionPanel$rPanelActionRenderer.class
 com\mycompany\projectmanagementsystem\GeneralFunction\SessionManager.class
 com\mycompany\projectmanagementsystem\Course\CourseValidator.class
 com\mycompany\projectmanagementsystem\ProjectManagerPage$10.class
@@ -112,6 +117,7 @@ com\mycompany\projectmanagementsystem\admin_lecturer_record$2.class
 com\mycompany\projectmanagementsystem\lect_PresentationPanelAction$4.class
 com\mycompany\projectmanagementsystem\Course\Course.class
 com\mycompany\projectmanagementsystem\Intake\Intake.class
+com\mycompany\projectmanagementsystem\StudentPresentationActionPanel.class
 com\mycompany\projectmanagementsystem\admin_register_intake$3.class
 com\mycompany\projectmanagementsystem\Assessment\StudentAssessment.class
 com\mycompany\projectmanagementsystem\LecturerPresentationFeedback$3.class
