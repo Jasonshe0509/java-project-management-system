@@ -6,6 +6,10 @@ package com.mycompany.projectmanagementsystem;
 
 import com.mycompany.projectmanagementsystem.Assessment.AssessmentController;
 import com.mycompany.projectmanagementsystem.GeneralFunction.FileHandler;
+import com.mycompany.projectmanagementsystem.GeneralFunction.SessionManager;
+import com.mycompany.projectmanagementsystem.Presentation.PresentationController;
+import com.mycompany.projectmanagementsystem.Presentation.StudentPresentationTableActionEvent;
+import com.mycompany.projectmanagementsystem.User.User;
 import com.mycompany.projectmanagementsystem.User.UserController;
 import java.awt.Toolkit;
 import java.awt.Color;
@@ -19,7 +23,9 @@ import java.net.URISyntaxException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -32,6 +38,8 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
      */
     private String assessmentType;
     private String assessmentID;
+    private final SessionManager sessionManager = SessionManager.getInstance();
+    User user = sessionManager.getCurrentUser();
     AssessmentController action = new AssessmentController();
 
     public StudentAssessmentDetailPage(String assessmentID, String assessmentType) {
@@ -42,14 +50,9 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
         assessment.setText(action.assessmentType(assessmentType));
         setAssessmentDetailsData();
         detailButtonSelection();
-        int x = 1;
-        if (x == 2) {
-            int index = jTabbedPane1.indexOfComponent(jPanel11);
-            jTabbedPane1.removeTabAt(index);
-        } else {
-            int index = jTabbedPane1.indexOfComponent(jPanel7);
-            jTabbedPane1.removeTabAt(index);
-        }
+        showPresentationPage();
+        readPresentationRequestFromFile();
+        showPresentationRequestButton();
         int index1 = jTabbedPane1.indexOfComponent(jScrollPane2);
         jTabbedPane1.removeTabAt(index1);
     }
@@ -88,13 +91,13 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
         submitBtn = new javax.swing.JButton();
         modifyBtn = new javax.swing.JButton();
         resubmitBtn = new javax.swing.JButton();
-        jPanel7 = new javax.swing.JPanel();
+        presentationPanel = new javax.swing.JPanel();
         jPanel14 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        presentationRequestTable = new javax.swing.JTable();
         jLabel20 = new javax.swing.JLabel();
-        submitButton1 = new javax.swing.JButton();
-        jPanel11 = new javax.swing.JPanel();
+        requestButton = new javax.swing.JButton();
+        confirmPresentationPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
@@ -451,42 +454,33 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
 
         jPanel14.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTable1.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
-        jTable1.setForeground(new java.awt.Color(2, 50, 99));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        presentationRequestTable.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
+        presentationRequestTable.setForeground(new java.awt.Color(2, 50, 99));
+        presentationRequestTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"ID001", "Chan", "Ali", "25th May, 17:50", null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
-                "Supervisee ID", "Name", "Second Marker", "Presentation Slot", "Action"
+                "Request ID", "Presentation Slot", "Supervisor Status", "Second Marker Status", "Request Status", "Action"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jTable1.setGridColor(new java.awt.Color(0, 0, 0));
-        jTable1.setRowHeight(30);
-        jTable1.setSelectionBackground(new java.awt.Color(204, 204, 204));
-        jTable1.setSelectionForeground(new java.awt.Color(2, 50, 99));
-        jTable1.setShowGrid(false);
-        jTable1.setShowHorizontalLines(true);
-        jTable1.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(jTable1);
+        presentationRequestTable.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        presentationRequestTable.setGridColor(new java.awt.Color(0, 0, 0));
+        presentationRequestTable.setRowHeight(30);
+        presentationRequestTable.setSelectionBackground(new java.awt.Color(204, 204, 204));
+        presentationRequestTable.setSelectionForeground(new java.awt.Color(2, 50, 99));
+        presentationRequestTable.setShowGrid(false);
+        presentationRequestTable.setShowHorizontalLines(true);
+        presentationRequestTable.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(presentationRequestTable);
 
         javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
         jPanel14.setLayout(jPanel14Layout);
@@ -504,43 +498,43 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
         jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel20.setText("Presentation Request");
 
-        submitButton1.setBackground(new java.awt.Color(27, 61, 96));
-        submitButton1.setFont(new java.awt.Font("Bell MT", 1, 28)); // NOI18N
-        submitButton1.setForeground(new java.awt.Color(255, 255, 255));
-        submitButton1.setText("Request");
-        submitButton1.setMaximumSize(new java.awt.Dimension(120, 45));
-        submitButton1.setMinimumSize(new java.awt.Dimension(120, 45));
-        submitButton1.setPreferredSize(new java.awt.Dimension(120, 45));
-        submitButton1.addActionListener(new java.awt.event.ActionListener() {
+        requestButton.setBackground(new java.awt.Color(27, 61, 96));
+        requestButton.setFont(new java.awt.Font("Bell MT", 1, 28)); // NOI18N
+        requestButton.setForeground(new java.awt.Color(255, 255, 255));
+        requestButton.setText("Request");
+        requestButton.setMaximumSize(new java.awt.Dimension(120, 45));
+        requestButton.setMinimumSize(new java.awt.Dimension(120, 45));
+        requestButton.setPreferredSize(new java.awt.Dimension(120, 45));
+        requestButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                submitButton1ActionPerformed(evt);
+                requestButtonActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout presentationPanelLayout = new javax.swing.GroupLayout(presentationPanel);
+        presentationPanel.setLayout(presentationPanelLayout);
+        presentationPanelLayout.setHorizontalGroup(
+            presentationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, presentationPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(submitButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(requestButton, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(378, 378, 378))
         );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
+        presentationPanelLayout.setVerticalGroup(
+            presentationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(presentationPanelLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jLabel20)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(submitButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(requestButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Presentation", jPanel7);
+        jTabbedPane1.addTab("Presentation", presentationPanel);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation_background.png"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -583,34 +577,34 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
         jLabel27.setMinimumSize(new java.awt.Dimension(275, 47));
         jLabel27.setPreferredSize(new java.awt.Dimension(275, 47));
 
-        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
-        jPanel11.setLayout(jPanel11Layout);
-        jPanel11Layout.setHorizontalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel11Layout.createSequentialGroup()
+        javax.swing.GroupLayout confirmPresentationPanelLayout = new javax.swing.GroupLayout(confirmPresentationPanel);
+        confirmPresentationPanel.setLayout(confirmPresentationPanelLayout);
+        confirmPresentationPanelLayout.setHorizontalGroup(
+            confirmPresentationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(confirmPresentationPanelLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(confirmPresentationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(425, Short.MAX_VALUE))
-            .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel11Layout.createSequentialGroup()
+            .addGroup(confirmPresentationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(confirmPresentationPanelLayout.createSequentialGroup()
                     .addGap(307, 307, 307)
                     .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(426, Short.MAX_VALUE)))
         );
-        jPanel11Layout.setVerticalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel11Layout.createSequentialGroup()
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel11Layout.createSequentialGroup()
+        confirmPresentationPanelLayout.setVerticalGroup(
+            confirmPresentationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(confirmPresentationPanelLayout.createSequentialGroup()
+                .addGroup(confirmPresentationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(confirmPresentationPanelLayout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel11Layout.createSequentialGroup()
+                    .addGroup(confirmPresentationPanelLayout.createSequentialGroup()
                         .addGap(97, 97, 97)
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -620,14 +614,14 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(13, Short.MAX_VALUE))
-            .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel11Layout.createSequentialGroup()
+            .addGroup(confirmPresentationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(confirmPresentationPanelLayout.createSequentialGroup()
                     .addGap(42, 42, 42)
                     .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(433, Short.MAX_VALUE)))
         );
 
-        jTabbedPane1.addTab("Presentation", jPanel11);
+        jTabbedPane1.addTab("Presentation", confirmPresentationPanel);
 
         jScrollPane3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
@@ -1104,9 +1098,10 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
         submission.setVisible(true);
     }//GEN-LAST:event_submitBtnActionPerformed
 
-    private void submitButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_submitButton1ActionPerformed
+    private void requestButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestButtonActionPerformed
+        StudentPresentationRequestPage requestPage = new StudentPresentationRequestPage(assessmentID, assessmentType, this);
+        requestPage.setVisible(true);
+    }//GEN-LAST:event_requestButtonActionPerformed
 
     private void ecReasonField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ecReasonField1ActionPerformed
         // TODO add your handling code here:
@@ -1286,7 +1281,7 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
                     submitBtn.setVisible(true);
                     modifyBtn.setVisible(false);
                     resubmitBtn.setVisible(false);
-                } else if (list[6].equals("submitted") && !currentDate.isAfter(dueDate)&& submissionCount == 0) {
+                } else if (list[6].equals("submitted") && !currentDate.isAfter(dueDate) && submissionCount == 0) {
                     submitBtn.setVisible(false);
                     modifyBtn.setVisible(true);
                     resubmitBtn.setVisible(false);
@@ -1302,11 +1297,83 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
             }
         }
     }
+
+    public void selectPresentationPanel() {
+        jTabbedPane1.setSelectedIndex(1);
+    }
+
+    private void showPresentationPage() {
+        int x = 0;
+//        List<String> data = FileHandler.readFile("presentation_confirmation.txt");
+//        for (String line : data) {
+//            String[] list = line.split(";");
+//            if(list[1].equals(user.getUserID())){
+//                x = 1;
+//            }
+//        }
+        if (x == 0) {
+            int index = jTabbedPane1.indexOfComponent(confirmPresentationPanel);
+            jTabbedPane1.removeTabAt(index);
+        } else {
+            int index = jTabbedPane1.indexOfComponent(presentationPanel);
+            jTabbedPane1.removeTabAt(index);
+        }
+    }
+
+    private void readPresentationRequestFromFile() {
+        String fileName = "presentation_request.txt";
+        DefaultTableModel model = (DefaultTableModel) presentationRequestTable.getModel();
+        model.setRowCount(0); // Clear existing rows
+        List<String> data = FileHandler.readFile(fileName);
+        for (String line : data) {
+            String[] list = line.split(";");
+            if (list[1].equals(user.getUserID())) {
+                String[] reorderedData = {
+                    list[0],
+                    list[3],
+                    list[4],
+                    list[5],
+                    list[6]
+                };
+                model.addRow(reorderedData);
+            }
+        }
+    }
+
+    private void showPresentationRequestButton() {
+        StudentPresentationActionPanel panel = new StudentPresentationActionPanel();
+        StudentPresentationTableActionEvent event = (int row, Object value) -> {
+            DefaultTableModel model = (DefaultTableModel) presentationRequestTable.getModel();
+            int columnIndex = 0;
+            String requestID = (String) model.getValueAt(row, columnIndex);
+            int response = JOptionPane.showConfirmDialog(
+                    null,
+                    "Are you sure you want to delete " + requestID + " presentation request",
+                    "Confirm Delete",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.WARNING_MESSAGE
+            );
+            if (response == JOptionPane.YES_OPTION) {
+                PresentationController action1 = new PresentationController();
+                boolean result = action1.studentDeleteRequestPresentation(requestID);
+                if (result) {
+                    JOptionPane.showMessageDialog(null, "Successfully delete the presentation request");
+                    dispose();
+                    StudentAssessmentDetailPage page = new StudentAssessmentDetailPage(assessmentID, assessmentType);
+                    page.setVisible(true);
+                    page.selectPresentationPanel();
+                }
+            }
+        };
+        presentationRequestTable.getColumnModel().getColumn(5).setCellRenderer(panel.new rPanelActionRenderer());
+        presentationRequestTable.getColumnModel().getColumn(5).setCellEditor(panel.new TableActionCellEditor(event));
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel assessment;
     private javax.swing.JLabel assessmentStatus;
     private javax.swing.JLabel backIcon;
     private javax.swing.JLabel background;
+    private javax.swing.JPanel confirmPresentationPanel;
     private javax.swing.JLabel dueDate;
     private javax.swing.JTextField ecReasonField1;
     private javax.swing.JTextArea feedback;
@@ -1341,7 +1408,6 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
@@ -1354,7 +1420,6 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
@@ -1363,11 +1428,13 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable3;
     private javax.swing.JLabel lastModified;
     private javax.swing.JButton modifyBtn;
     private javax.swing.JButton openBtn;
+    private javax.swing.JPanel presentationPanel;
+    private javax.swing.JTable presentationRequestTable;
+    private javax.swing.JButton requestButton;
     private javax.swing.JButton resubmitBtn;
     private javax.swing.JLabel studentEcSubmission;
     private javax.swing.JPanel studentHeader;
@@ -1377,6 +1444,5 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
     private javax.swing.JLabel studentProfile;
     private javax.swing.JLabel submissionLink;
     private javax.swing.JButton submitBtn;
-    private javax.swing.JButton submitButton1;
     // End of variables declaration//GEN-END:variables
 }
