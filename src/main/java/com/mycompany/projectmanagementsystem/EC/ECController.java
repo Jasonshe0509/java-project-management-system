@@ -34,6 +34,8 @@ public class ECController {
             } else {
                 JOptionPane.showMessageDialog(null, "Wrong url format", "Message", JOptionPane.ERROR_MESSAGE);
             }
+        } else {
+            JOptionPane.showMessageDialog(null, "All input cannot be null", "Message", JOptionPane.ERROR_MESSAGE);
         }
         return false;
     }
@@ -46,8 +48,8 @@ public class ECController {
             if (!list[0].equals(ecID)) {
                 line = String.join(";", list);
                 array_list.add(line);
-            }else{
-                if(list[5].equals("approve")){
+            } else {
+                if (list[5].equals("approve")) {
                     JOptionPane.showMessageDialog(null, "The ec cannot be remove once approved", "Message", JOptionPane.ERROR_MESSAGE);
                     return false;
                 }

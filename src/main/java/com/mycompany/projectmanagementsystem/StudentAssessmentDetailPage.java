@@ -4,25 +4,49 @@
  */
 package com.mycompany.projectmanagementsystem;
 
+import com.mycompany.projectmanagementsystem.Assessment.AssessmentController;
+import com.mycompany.projectmanagementsystem.GeneralFunction.FileHandler;
+import com.mycompany.projectmanagementsystem.User.UserController;
 import java.awt.Toolkit;
 import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Desktop;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+import javax.swing.SwingConstants;
+
 /**
  *
  * @author ASUS
  */
 public class StudentAssessmentDetailPage extends javax.swing.JFrame {
-    
+
     /**
      * Creates new form StudentAssessmentDetailPage
      */
-    public StudentAssessmentDetailPage() {
+    private String assessmentType;
+    private String assessmentID;
+    AssessmentController action = new AssessmentController();
+
+    public StudentAssessmentDetailPage(String assessmentID, String assessmentType) {
         initComponents();
         setIconImage();
+        this.assessmentType = assessmentType;
+        this.assessmentID = assessmentID;
+        assessment.setText(action.assessmentType(assessmentType));
+        setAssessmentDetailsData();
+        detailButtonSelection();
         int x = 1;
-        if(x == 2){
+        if (x == 2) {
             int index = jTabbedPane1.indexOfComponent(jPanel11);
             jTabbedPane1.removeTabAt(index);
-        }else{
+        } else {
             int index = jTabbedPane1.indexOfComponent(jPanel7);
             jTabbedPane1.removeTabAt(index);
         }
@@ -44,23 +68,26 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
+        assessmentStatus = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
+        dueDate = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
+        submissionLink = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
+        lastModified = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
+        gradeStatus = new javax.swing.JLabel();
         jPanel10 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
-        submitButton = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        feedback = new javax.swing.JTextArea();
+        submitBtn = new javax.swing.JButton();
+        modifyBtn = new javax.swing.JButton();
+        resubmitBtn = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jPanel14 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -109,8 +136,8 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
         studentNotification = new javax.swing.JLabel();
         studentProfile = new javax.swing.JLabel();
         studentLogout = new javax.swing.JLabel();
+        assessment = new javax.swing.JLabel();
         background = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Student Assessment Details");
@@ -138,13 +165,15 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
 
         jLabel8.setFont(new java.awt.Font("SansSerif", 1, 20)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(2, 50, 99));
-        jLabel8.setText("EC Reason");
+        jLabel8.setText("Assessment Status");
 
-        jLabel14.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(2, 50, 99));
-        jLabel14.setMaximumSize(new java.awt.Dimension(330, 26));
-        jLabel14.setMinimumSize(new java.awt.Dimension(330, 26));
-        jLabel14.setPreferredSize(new java.awt.Dimension(330, 26));
+        assessmentStatus.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        assessmentStatus.setForeground(new java.awt.Color(255, 255, 255));
+        assessmentStatus.setText("Status");
+        assessmentStatus.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        assessmentStatus.setMaximumSize(new java.awt.Dimension(87, 26));
+        assessmentStatus.setMinimumSize(new java.awt.Dimension(87, 26));
+        assessmentStatus.setPreferredSize(new java.awt.Dimension(87, 26));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -154,16 +183,16 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
                 .addGap(43, 43, 43)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(63, 63, 63))
+                .addComponent(assessmentStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(399, 399, 399))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(16, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(assessmentStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(14, 14, 14))
         );
 
@@ -175,11 +204,11 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
         jLabel9.setForeground(new java.awt.Color(2, 50, 99));
         jLabel9.setText("Due Date");
 
-        jLabel15.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(2, 50, 99));
-        jLabel15.setMaximumSize(new java.awt.Dimension(330, 26));
-        jLabel15.setMinimumSize(new java.awt.Dimension(330, 26));
-        jLabel15.setPreferredSize(new java.awt.Dimension(330, 26));
+        dueDate.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
+        dueDate.setForeground(new java.awt.Color(2, 50, 99));
+        dueDate.setMaximumSize(new java.awt.Dimension(330, 26));
+        dueDate.setMinimumSize(new java.awt.Dimension(330, 26));
+        dueDate.setPreferredSize(new java.awt.Dimension(330, 26));
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -188,8 +217,8 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(43, 43, 43)
                 .addComponent(jLabel9)
-                .addGap(209, 209, 209)
-                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(218, 218, 218)
+                .addComponent(dueDate, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
@@ -198,7 +227,7 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
                 .addContainerGap(16, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dueDate, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(14, 14, 14))
         );
 
@@ -210,11 +239,11 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
         jLabel10.setForeground(new java.awt.Color(2, 50, 99));
         jLabel10.setText("Submission Link");
 
-        jLabel16.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(2, 50, 99));
-        jLabel16.setMaximumSize(new java.awt.Dimension(330, 26));
-        jLabel16.setMinimumSize(new java.awt.Dimension(330, 26));
-        jLabel16.setPreferredSize(new java.awt.Dimension(330, 26));
+        submissionLink.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
+        submissionLink.setForeground(new java.awt.Color(2, 50, 99));
+        submissionLink.setMaximumSize(new java.awt.Dimension(330, 26));
+        submissionLink.setMinimumSize(new java.awt.Dimension(330, 26));
+        submissionLink.setPreferredSize(new java.awt.Dimension(330, 26));
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -223,17 +252,17 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(43, 43, 43)
                 .addComponent(jLabel10)
-                .addGap(191, 191, 191)
-                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(submissionLink, javax.swing.GroupLayout.PREFERRED_SIZE, 462, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(submissionLink, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
@@ -245,11 +274,11 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
         jLabel11.setForeground(new java.awt.Color(2, 50, 99));
         jLabel11.setText("Last Modified");
 
-        jLabel17.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(2, 50, 99));
-        jLabel17.setMaximumSize(new java.awt.Dimension(330, 26));
-        jLabel17.setMinimumSize(new java.awt.Dimension(330, 26));
-        jLabel17.setPreferredSize(new java.awt.Dimension(330, 26));
+        lastModified.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
+        lastModified.setForeground(new java.awt.Color(2, 50, 99));
+        lastModified.setMaximumSize(new java.awt.Dimension(330, 26));
+        lastModified.setMinimumSize(new java.awt.Dimension(330, 26));
+        lastModified.setPreferredSize(new java.awt.Dimension(330, 26));
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -258,17 +287,17 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addGap(42, 42, 42)
                 .addComponent(jLabel11)
-                .addGap(234, 234, 234)
-                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lastModified, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(157, 157, 157))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addGap(17, 17, 17)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lastModified, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11))
                 .addContainerGap(13, Short.MAX_VALUE))
         );
 
@@ -280,11 +309,12 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
         jLabel12.setForeground(new java.awt.Color(2, 50, 99));
         jLabel12.setText("Grade Status");
 
-        jLabel19.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
-        jLabel19.setForeground(new java.awt.Color(2, 50, 99));
-        jLabel19.setMaximumSize(new java.awt.Dimension(330, 26));
-        jLabel19.setMinimumSize(new java.awt.Dimension(330, 26));
-        jLabel19.setPreferredSize(new java.awt.Dimension(330, 26));
+        gradeStatus.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        gradeStatus.setForeground(new java.awt.Color(255, 255, 255));
+        gradeStatus.setText("Status");
+        gradeStatus.setMaximumSize(new java.awt.Dimension(87, 26));
+        gradeStatus.setMinimumSize(new java.awt.Dimension(87, 26));
+        gradeStatus.setPreferredSize(new java.awt.Dimension(87, 26));
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -293,17 +323,17 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addGap(41, 41, 41)
                 .addComponent(jLabel12)
-                .addGap(173, 173, 173)
-                .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(180, 180, 180)
+                .addComponent(gradeStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12)
-                    .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(gradeStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel12))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
@@ -315,11 +345,12 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
         jLabel13.setForeground(new java.awt.Color(2, 50, 99));
         jLabel13.setText("Feedback");
 
-        jLabel18.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
-        jLabel18.setForeground(new java.awt.Color(2, 50, 99));
-        jLabel18.setMaximumSize(new java.awt.Dimension(330, 26));
-        jLabel18.setMinimumSize(new java.awt.Dimension(330, 26));
-        jLabel18.setPreferredSize(new java.awt.Dimension(330, 26));
+        feedback.setEditable(false);
+        feedback.setColumns(20);
+        feedback.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
+        feedback.setForeground(new java.awt.Color(2, 50, 99));
+        feedback.setRows(5);
+        jScrollPane4.setViewportView(feedback);
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -328,18 +359,20 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addGap(41, 41, 41)
                 .addComponent(jLabel13)
-                .addGap(171, 171, 171)
-                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(206, 206, 206)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 475, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel13)
-                    .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addComponent(jLabel13)
+                .addContainerGap(25, Short.MAX_VALUE))
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -372,19 +405,47 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
 
         jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 33, -1, -1));
 
-        submitButton.setBackground(new java.awt.Color(27, 61, 96));
-        submitButton.setFont(new java.awt.Font("Bell MT", 1, 28)); // NOI18N
-        submitButton.setForeground(new java.awt.Color(255, 255, 255));
-        submitButton.setText("Submit");
-        submitButton.setMaximumSize(new java.awt.Dimension(120, 45));
-        submitButton.setMinimumSize(new java.awt.Dimension(120, 45));
-        submitButton.setPreferredSize(new java.awt.Dimension(120, 45));
-        submitButton.addActionListener(new java.awt.event.ActionListener() {
+        submitBtn.setBackground(new java.awt.Color(27, 61, 96));
+        submitBtn.setFont(new java.awt.Font("Bell MT", 1, 28)); // NOI18N
+        submitBtn.setForeground(new java.awt.Color(255, 255, 255));
+        submitBtn.setText("Submit");
+        submitBtn.setMaximumSize(new java.awt.Dimension(120, 45));
+        submitBtn.setMinimumSize(new java.awt.Dimension(120, 45));
+        submitBtn.setPreferredSize(new java.awt.Dimension(120, 45));
+        submitBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                submitButtonActionPerformed(evt);
+                submitBtnActionPerformed(evt);
             }
         });
-        jPanel2.add(submitButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 450, -1, -1));
+        jPanel2.add(submitBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 450, -1, -1));
+
+        modifyBtn.setBackground(new java.awt.Color(27, 61, 96));
+        modifyBtn.setFont(new java.awt.Font("Bell MT", 1, 28)); // NOI18N
+        modifyBtn.setForeground(new java.awt.Color(255, 255, 255));
+        modifyBtn.setText("Modify");
+        modifyBtn.setMaximumSize(new java.awt.Dimension(120, 45));
+        modifyBtn.setMinimumSize(new java.awt.Dimension(120, 45));
+        modifyBtn.setPreferredSize(new java.awt.Dimension(120, 45));
+        modifyBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modifyBtnActionPerformed(evt);
+            }
+        });
+        jPanel2.add(modifyBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 450, -1, -1));
+
+        resubmitBtn.setBackground(new java.awt.Color(27, 61, 96));
+        resubmitBtn.setFont(new java.awt.Font("Bell MT", 1, 20)); // NOI18N
+        resubmitBtn.setForeground(new java.awt.Color(255, 255, 255));
+        resubmitBtn.setText("Resubmit");
+        resubmitBtn.setMaximumSize(new java.awt.Dimension(120, 45));
+        resubmitBtn.setMinimumSize(new java.awt.Dimension(120, 45));
+        resubmitBtn.setPreferredSize(new java.awt.Dimension(120, 45));
+        resubmitBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                resubmitBtnActionPerformed(evt);
+            }
+        });
+        jPanel2.add(resubmitBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 450, -1, -1));
 
         jTabbedPane1.addTab("Details", jPanel2);
 
@@ -927,6 +988,11 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
         studentEcSubmission.setMaximumSize(new java.awt.Dimension(96, 73));
         studentEcSubmission.setMinimumSize(new java.awt.Dimension(96, 73));
         studentEcSubmission.setPreferredSize(new java.awt.Dimension(96, 73));
+        studentEcSubmission.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                studentEcSubmissionMouseClicked(evt);
+            }
+        });
 
         studentNotification.setBackground(new Color(255, 255, 255, 0));
         studentNotification.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
@@ -937,6 +1003,11 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
         studentNotification.setMaximumSize(new java.awt.Dimension(96, 73));
         studentNotification.setMinimumSize(new java.awt.Dimension(96, 73));
         studentNotification.setPreferredSize(new java.awt.Dimension(96, 73));
+        studentNotification.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                studentNotificationMouseClicked(evt);
+            }
+        });
 
         studentProfile.setBackground(new Color(255, 255, 255, 0));
         studentProfile.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
@@ -947,6 +1018,11 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
         studentProfile.setMaximumSize(new java.awt.Dimension(96, 73));
         studentProfile.setMinimumSize(new java.awt.Dimension(96, 73));
         studentProfile.setPreferredSize(new java.awt.Dimension(96, 73));
+        studentProfile.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                studentProfileMouseClicked(evt);
+            }
+        });
 
         studentLogout.setBackground(new Color(255, 255, 255, 0));
         studentLogout.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
@@ -957,6 +1033,11 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
         studentLogout.setMaximumSize(new java.awt.Dimension(96, 73));
         studentLogout.setMinimumSize(new java.awt.Dimension(96, 73));
         studentLogout.setPreferredSize(new java.awt.Dimension(96, 73));
+        studentLogout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                studentLogoutMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout studentHeaderLayout = new javax.swing.GroupLayout(studentHeader);
         studentHeader.setLayout(studentHeaderLayout);
@@ -992,23 +1073,22 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
 
         getContentPane().add(studentHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
+        assessment.setFont(new java.awt.Font("Bell MT", 1, 24)); // NOI18N
+        assessment.setForeground(new java.awt.Color(2, 50, 99));
+        assessment.setText("Report");
+        getContentPane().add(assessment, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 670, 30));
+
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main_background.png"))); // NOI18N
         getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
-
-        jLabel21.setFont(new java.awt.Font("Bell MT", 1, 28)); // NOI18N
-        jLabel21.setForeground(new java.awt.Color(2, 50, 99));
-        jLabel21.setText("Internship Report");
-        jLabel21.setMaximumSize(new java.awt.Dimension(275, 47));
-        jLabel21.setMinimumSize(new java.awt.Dimension(275, 47));
-        jLabel21.setPreferredSize(new java.awt.Dimension(275, 47));
-        getContentPane().add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 275, 40));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void studentLogoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_studentLogoMouseClicked
-        // TODO add your handling code here:
+        StudentDashboardPage dashboard = new StudentDashboardPage();
+        dashboard.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_studentLogoMouseClicked
 
     private void openBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openBtnActionPerformed
@@ -1019,9 +1099,10 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
         jTabbedPane1.setSelectedComponent(jScrollPane2);
     }//GEN-LAST:event_openBtnActionPerformed
 
-    private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_submitButtonActionPerformed
+    private void submitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitBtnActionPerformed
+        StudentSubmissionPage submission = new StudentSubmissionPage("submit", assessmentID, assessmentType, this);
+        submission.setVisible(true);
+    }//GEN-LAST:event_submitBtnActionPerformed
 
     private void submitButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButton1ActionPerformed
         // TODO add your handling code here:
@@ -1038,6 +1119,39 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
         jTabbedPane1.insertTab("Communication", null, jScrollPane3, null, index);
         jTabbedPane1.setSelectedComponent(jScrollPane3);
     }//GEN-LAST:event_backIconMouseClicked
+
+    private void studentEcSubmissionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_studentEcSubmissionMouseClicked
+        StudentEcSubmissionPage ecPage = new StudentEcSubmissionPage();
+        ecPage.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_studentEcSubmissionMouseClicked
+
+    private void studentNotificationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_studentNotificationMouseClicked
+        NotificationPage notification = new NotificationPage();
+        notification.setVisible(true);
+    }//GEN-LAST:event_studentNotificationMouseClicked
+
+    private void studentProfileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_studentProfileMouseClicked
+        StudentProfilePage profile = new StudentProfilePage();
+        profile.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_studentProfileMouseClicked
+
+    private void studentLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_studentLogoutMouseClicked
+        this.setVisible(false);
+        UserController userAction = new UserController();
+        userAction.userLogout();
+    }//GEN-LAST:event_studentLogoutMouseClicked
+
+    private void modifyBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyBtnActionPerformed
+        StudentSubmissionPage submission = new StudentSubmissionPage("modify", assessmentID, assessmentType, this);
+        submission.setVisible(true);
+    }//GEN-LAST:event_modifyBtnActionPerformed
+
+    private void resubmitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resubmitBtnActionPerformed
+        StudentSubmissionPage submission = new StudentSubmissionPage("resubmit", assessmentID, assessmentType, this);
+        submission.setVisible(true);
+    }//GEN-LAST:event_resubmitBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1069,18 +1183,134 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new StudentAssessmentDetailPage().setVisible(true);
+                new StudentAssessmentDetailPage("A0001", "internship_report").setVisible(true);
             }
         });
     }
+
     private void setIconImage() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Sysco_icon_with_background.png")));
     }
 
+    private void setAssessmentDetailsData() {
+        List<String> data = FileHandler.readFile("student_assessment.txt");
+        assessmentStatus.setOpaque(true); // Make the label opaque
+        assessmentStatus.setHorizontalAlignment(SwingConstants.CENTER); // Center the text
+        gradeStatus.setOpaque(true); // Make the label opaque
+        gradeStatus.setHorizontalAlignment(SwingConstants.CENTER); // Center the text
+        for (String line : data) {
+            String[] list = line.split(";");
+            if (list[2].equals(assessmentID)) {
+                switch (list[6]) {
+                    case "pending" -> {
+                        assessmentStatus.setText("Pending");
+                        assessmentStatus.setBackground(new Color(0xE3AC41)); // Set the background color
+                    }
+                    case "submitted" -> {
+                        assessmentStatus.setText("Submitted");
+                        assessmentStatus.setBackground(new Color(0x1B3D60)); // Set the background color
+                    }
+                    case "marked" -> {
+                        assessmentStatus.setText("Marked");
+                        assessmentStatus.setBackground(new Color(0x1B6047)); // Set the background color
+                    }
+                }
+                dueDate.setText(list[3]);
+                if (list[4] == null || list[4].trim().isEmpty()) {
+                    submissionLink.setText("-");
+                } else {
+                    submissionLink.setText("<html><a href=''>" + list[4] + "</a></html>"); // Display as a hyperlink
+                    submissionLink.setForeground(Color.BLUE); // Optional: Set link color
+                    submissionLink.setCursor(new Cursor(Cursor.HAND_CURSOR)); // Change cursor to hand
+
+                    submissionLink.addMouseListener(new MouseAdapter() {
+                        @Override
+                        public void mouseClicked(MouseEvent e) {
+                            if (Desktop.isDesktopSupported()) {
+                                try {
+                                    Desktop.getDesktop().browse(new URI(list[4]));
+                                } catch (IOException | URISyntaxException ex) {
+                                    ex.printStackTrace();
+                                }
+                            }
+                        }
+                    });
+                }
+                if (list[5] == null || list[4].trim().isEmpty()) {
+                    lastModified.setText("-");
+                } else {
+                    lastModified.setText(list[5]);
+                }
+
+                switch (list[8]) {
+                    case "pass" -> {
+                        gradeStatus.setText("Pass");
+                        gradeStatus.setBackground(new Color(0x1B6047)); // Set the background color
+                    }
+                    case "pass_with_changes" -> {
+                        gradeStatus.setText("Pass With Changes");
+                        gradeStatus.setBackground(new Color(0xE3AC41)); // Set the background color
+                    }
+                    case "fail" -> {
+                        gradeStatus.setText("Marked");
+                        gradeStatus.setBackground(new Color(0xE34141)); // Set the background color
+                    }
+                    default -> {
+                        gradeStatus.setVisible(false);
+                    }
+                }
+
+                if (list[7] == null || list[4].trim().isEmpty()) {
+                    feedback.setText("-");
+                } else {
+                    feedback.setText(list[7]);
+                }
+            }
+
+        }
+    }
+
+    private void detailButtonSelection() {
+        List<String> data = FileHandler.readFile("student_assessment.txt");
+        for (String line : data) {
+            String[] list = line.split(";");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            // Parse the due date from list[3]
+            LocalDate dueDate = LocalDate.parse(list[3], formatter);
+            int submissionCount = Integer.parseInt(list[10]);
+
+            // Get the current local date
+            LocalDate currentDate = LocalDate.now();
+            if (list[2].equals(assessmentID)) {
+                if (list[6].equals("pending") && !currentDate.isAfter(dueDate)) {
+                    submitBtn.setVisible(true);
+                    modifyBtn.setVisible(false);
+                    resubmitBtn.setVisible(false);
+                } else if (list[6].equals("submitted") && !currentDate.isAfter(dueDate)&& submissionCount == 0) {
+                    submitBtn.setVisible(false);
+                    modifyBtn.setVisible(true);
+                    resubmitBtn.setVisible(false);
+                } else if (list[8].equals("pass_with_changes") && !currentDate.isAfter(dueDate) && submissionCount == 0) {
+                    submitBtn.setVisible(false);
+                    modifyBtn.setVisible(false);
+                    resubmitBtn.setVisible(true);
+                } else if (currentDate.isAfter(dueDate)) {
+                    submitBtn.setVisible(false);
+                    modifyBtn.setVisible(false);
+                    resubmitBtn.setVisible(false);
+                }
+            }
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel assessment;
+    private javax.swing.JLabel assessmentStatus;
     private javax.swing.JLabel backIcon;
     private javax.swing.JLabel background;
+    private javax.swing.JLabel dueDate;
     private javax.swing.JTextField ecReasonField1;
+    private javax.swing.JTextArea feedback;
+    private javax.swing.JLabel gradeStatus;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
@@ -1088,15 +1318,8 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
@@ -1137,18 +1360,23 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable3;
+    private javax.swing.JLabel lastModified;
+    private javax.swing.JButton modifyBtn;
     private javax.swing.JButton openBtn;
+    private javax.swing.JButton resubmitBtn;
     private javax.swing.JLabel studentEcSubmission;
     private javax.swing.JPanel studentHeader;
     private javax.swing.JLabel studentLogo;
     private javax.swing.JLabel studentLogout;
     private javax.swing.JLabel studentNotification;
     private javax.swing.JLabel studentProfile;
-    private javax.swing.JButton submitButton;
+    private javax.swing.JLabel submissionLink;
+    private javax.swing.JButton submitBtn;
     private javax.swing.JButton submitButton1;
     // End of variables declaration//GEN-END:variables
 }
