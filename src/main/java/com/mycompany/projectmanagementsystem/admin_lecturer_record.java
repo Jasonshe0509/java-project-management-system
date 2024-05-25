@@ -1,14 +1,87 @@
 package com.mycompany.projectmanagementsystem;
 
+import com.mycompany.projectmanagementsystem.GeneralFunction.FileHandler;
 import java.awt.Color;
 import java.awt.Toolkit;
+import java.util.List;
 import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableModel;
 
 public class admin_lecturer_record extends javax.swing.JFrame {
+
+    int numOfSchoolWise, numOfLecturer, numOfProjectManager;
 
     public admin_lecturer_record() {
         initComponents();
         setIconImage();
+        readNumOfSchoolWise();
+        readNumOfLecturer();
+        printSchoolWiseTable();
+        printLecturerTable();
+    }
+
+    private void readNumOfSchoolWise() {
+        List<String> data = FileHandler.readFile("school_wise.txt");
+        Object[] lines = data.toArray();
+        numOfSchoolWise = lines.length;
+        numSchoolWise.setText(String.valueOf(numOfSchoolWise));
+    }
+
+    private void readNumOfLecturer() {
+        List<String> data = FileHandler.readFile("user.txt");
+        Object[] lines = data.toArray();
+        int countLecturer = 0;
+        int countProjectManager = 0;
+        for (int i = 0; i < lines.length; i++) {
+            String record = lines[i].toString();
+            String[] userData = record.split(";");
+
+            String user = userData[10];
+            if (user.equals("lecturer") || user.equals("project manager")) {
+                countLecturer++;
+                if (user.equals("project manager")) {
+                    countProjectManager++;
+                }
+            }
+        }
+        numOfLecturer = countLecturer;
+        numOfProjectManager = countProjectManager;
+        numlecturer.setText(String.valueOf(numOfLecturer));
+        numprojectmanager.setText(String.valueOf(numOfProjectManager));
+    }
+
+    public void printSchoolWiseTable() {
+        DefaultTableModel model = (DefaultTableModel) school_wise_table.getModel();
+        List<String> data = FileHandler.readFile("school_wise.txt");
+        Object[] records = data.toArray();
+        for(int i = 0; i<records.length; i++){
+            String record = records[i].toString();
+            String[] schoolWiseRow = {record};
+            model.addRow(schoolWiseRow);
+        }
+        
+    }
+    
+    public void printLecturerTable(){
+        DefaultTableModel model = (DefaultTableModel) lecturer_table.getModel();
+        DefaultTableModel model1 = (DefaultTableModel) projectmanager_table.getModel();
+        List<String> data = FileHandler.readFile("user.txt");
+        Object[] records = data.toArray();
+        
+        for(int i = 0; i<records.length; i++){
+            String record = records[i].toString();
+            String[] userData = record.split(";");
+            String user = userData[10];
+            if(user.equals("lecturer") || user.equals("project manager")){
+                String[] lecturerRow = {userData[0], userData[1], userData[11], userData[8], userData[3]};
+                model.addRow(lecturerRow);
+                if(user.equals("project manager")){
+                    String[] projectManagerRow = {userData[0], userData[1], userData[11], userData[8], userData[3]};
+                    model1.addRow(projectManagerRow);
+                    
+                }
+            }
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -23,17 +96,20 @@ public class admin_lecturer_record extends javax.swing.JFrame {
         admin_profile = new javax.swing.JLabel();
         admin_logout = new javax.swing.JLabel();
         admin_logo = new javax.swing.JLabel();
+        numprojectmanager = new javax.swing.JLabel();
+        numlecturer = new javax.swing.JLabel();
+        numSchoolWise = new javax.swing.JLabel();
         totallec_border = new javax.swing.JLabel();
         totallec_background = new javax.swing.JLabel();
         totalschool_background = new javax.swing.JLabel();
         totalschool_border = new javax.swing.JLabel();
-        student_record = new javax.swing.JTabbedPane();
-        javax.swing.JScrollPane ec_approved_record = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
-        ec_rejeceted_record = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
+        lecturer_record = new javax.swing.JTabbedPane();
+        javax.swing.JScrollPane lectuter_record = new javax.swing.JScrollPane();
+        lecturer_table = new javax.swing.JTable();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        projectmanager_table = new javax.swing.JTable();
+        javax.swing.JScrollPane schoolwise_record = new javax.swing.JScrollPane();
+        school_wise_table = new javax.swing.JTable();
         totalpm_background = new javax.swing.JLabel();
         totalpm_border = new javax.swing.JLabel();
         background = new javax.swing.JLabel();
@@ -158,6 +234,21 @@ public class admin_lecturer_record extends javax.swing.JFrame {
 
         getContentPane().add(admin_header, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
+        numprojectmanager.setFont(new java.awt.Font("Bell MT", 1, 48)); // NOI18N
+        numprojectmanager.setForeground(new java.awt.Color(2, 50, 99));
+        numprojectmanager.setText("jLabel2");
+        getContentPane().add(numprojectmanager, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 130, 80, 50));
+
+        numlecturer.setFont(new java.awt.Font("Bell MT", 1, 48)); // NOI18N
+        numlecturer.setForeground(new java.awt.Color(2, 50, 99));
+        numlecturer.setText("jLabel2");
+        getContentPane().add(numlecturer, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 130, 80, 40));
+
+        numSchoolWise.setFont(new java.awt.Font("Bell MT", 1, 48)); // NOI18N
+        numSchoolWise.setForeground(new java.awt.Color(2, 50, 99));
+        numSchoolWise.setText("jLabel2");
+        getContentPane().add(numSchoolWise, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 130, 80, 40));
+
         totallec_border.setBackground(new Color(2, 50, 99, 0));
         totallec_border.setBorder(new LineBorder(new Color(192, 192, 192, 90), 15, true));
         totallec_border.setMaximumSize(new java.awt.Dimension(440, 125));
@@ -196,64 +287,86 @@ public class admin_lecturer_record extends javax.swing.JFrame {
         totalschool_border.setPreferredSize(new java.awt.Dimension(440, 125));
         getContentPane().add(totalschool_border, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, 300, 90));
 
-        student_record.setOpaque(true);
+        lecturer_record.setOpaque(true);
 
-        jTable2.setBackground(new java.awt.Color(192, 192, 192));
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        lecturer_table.setBackground(new java.awt.Color(192, 192, 192));
+        lecturer_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4", "null"
+                "Employee ID", "Name", "School Wise", "Email", "Contact Number", "Assign Project Manager", "Action"
             }
-        ));
-        ec_approved_record.setViewportView(jTable2);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, true
+            };
 
-        student_record.addTab("School Wise List", ec_approved_record);
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        lectuter_record.setViewportView(lecturer_table);
 
-        jTable3.setBackground(new java.awt.Color(192, 192, 192));
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        lecturer_record.addTab("Lecturer", lectuter_record);
+
+        projectmanager_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Employee ID", "Name", "School Wise", "Email", "Contact Number", "Action"
             }
-        ));
-        ec_rejeceted_record.setViewportView(jTable3);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
 
-        student_record.addTab("Lecturer", ec_rejeceted_record);
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(projectmanager_table);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        lecturer_record.addTab("Project Manager", jScrollPane1);
+
+        school_wise_table.setBackground(new java.awt.Color(192, 192, 192));
+        school_wise_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "School Wise", "Number Of Lecturer", "Action"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true, true
+            };
 
-        student_record.addTab("Project Manager", jScrollPane1);
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        school_wise_table.setRowHeight(30);
+        schoolwise_record.setViewportView(school_wise_table);
 
-        getContentPane().add(student_record, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, 920, 370));
-        student_record.getAccessibleContext().setAccessibleName("\"student_record\"");
-        student_record.getAccessibleContext().setAccessibleDescription("");
+        lecturer_record.addTab("School Wise List", schoolwise_record);
+
+        getContentPane().add(lecturer_record, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, 920, 370));
+        lecturer_record.getAccessibleContext().setAccessibleName("\"student_record\"");
+        lecturer_record.getAccessibleContext().setAccessibleDescription("");
 
         totalpm_background.setBackground(new Color(192, 192, 192, 90));
         totalpm_background.setFont(new java.awt.Font("Bell MT", 1, 20)); // NOI18N
         totalpm_background.setForeground(new java.awt.Color(2, 50, 99));
         totalpm_background.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        totalpm_background.setText("Total Project Manager");
+        totalpm_background.setText("<html><div style= 'text-align: center; width: 100px;'>Total Project Manager</div></html>");
         totalpm_background.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         totalpm_background.setMaximumSize(new java.awt.Dimension(418, 123));
         totalpm_background.setMinimumSize(new java.awt.Dimension(418, 123));
@@ -277,22 +390,23 @@ public class admin_lecturer_record extends javax.swing.JFrame {
 
     private void admin_studentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_admin_studentMouseClicked
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_admin_studentMouseClicked
 
     private void admin_logoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_admin_logoMouseClicked
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_admin_logoMouseClicked
 
     public static void main(String args[]) {
-       
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new admin_lecturer_record().setVisible(true);
             }
         });
     }
+
     private void setIconImage() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Sysco_icon_with_background.png")));
     }
@@ -306,13 +420,15 @@ public class admin_lecturer_record extends javax.swing.JFrame {
     private javax.swing.JLabel admin_report;
     private javax.swing.JLabel admin_student;
     private javax.swing.JLabel background;
-    private javax.swing.JScrollPane ec_rejeceted_record;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTable3;
-    private javax.swing.JTabbedPane student_record;
+    private javax.swing.JTabbedPane lecturer_record;
+    private javax.swing.JTable lecturer_table;
+    private javax.swing.JLabel numSchoolWise;
+    private javax.swing.JLabel numlecturer;
+    private javax.swing.JLabel numprojectmanager;
+    private javax.swing.JTable projectmanager_table;
+    private javax.swing.JTable school_wise_table;
     private javax.swing.JLabel totallec_background;
     private javax.swing.JLabel totallec_border;
     private javax.swing.JLabel totalpm_background;
