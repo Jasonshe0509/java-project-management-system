@@ -5,6 +5,7 @@
 package com.mycompany.projectmanagementsystem.Intake;
 
 import com.mycompany.projectmanagementsystem.GeneralFunction.FileHandler;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -80,4 +81,21 @@ public class IntakeController {
         }
     }
 
+    public boolean intakeDelete(String intakeID) {
+        List<String> data = FileHandler.readFile("intake.txt");
+        ArrayList<String> updatedData = new ArrayList<>();
+        int confirm = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete " + intakeID + "?", "Confirmation", JOptionPane.YES_NO_OPTION);
+        if (confirm == JOptionPane.YES_OPTION) {
+            for (String line : data) {
+                if (!line.startsWith(intakeID)) {
+                    updatedData.add(line);
+                }
+            }
+        } else if (confirm == JOptionPane.NO_OPTION) {
+            JOptionPane.showMessageDialog(null, "Action Cancelled!");
+            return false;
+        }
+        FileHandler.modifyFileData("intake.txt", updatedData);
+        return true;
+    }
 }

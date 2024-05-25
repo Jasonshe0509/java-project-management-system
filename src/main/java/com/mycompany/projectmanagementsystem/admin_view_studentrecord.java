@@ -38,7 +38,7 @@ admin_view_studentrecord studentRecordInstace;
         student_nric.setText(list.get(6));
         student_nation.setText(list.get(7));
         student_email.setText(list.get(8));
-        student_password.setText(list.get(9));
+        student_password.setText("**********");
         //studentRecordInstace.student_intake.setText(list.get(11));
         
 }
