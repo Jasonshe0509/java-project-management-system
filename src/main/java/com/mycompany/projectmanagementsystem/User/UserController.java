@@ -7,13 +7,13 @@ package com.mycompany.projectmanagementsystem.User;
 import com.mycompany.projectmanagementsystem.GeneralFunction.FileHandler;
 import com.mycompany.projectmanagementsystem.GeneralFunction.SessionManager;
 import com.mycompany.projectmanagementsystem.LoginPage;
+import com.mycompany.projectmanagementsystem.admin_view_studentrecord;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -182,6 +182,39 @@ public class UserController extends UserAuthenticationController {
             JOptionPane.showMessageDialog(null, "Please Fill In All The Field!", "Error: Missing Value(s)", JOptionPane.ERROR_MESSAGE);
         }
 
+    }
+    
+    public boolean userDelete(String userID){
+        List<String> data = FileHandler.readFile("user.txt");
+        ArrayList<String> updatedData = new ArrayList<>();
+        int confirm =  JOptionPane.showConfirmDialog(null, "Are you sure you want to delete " + userID + "?", "Confirmation", JOptionPane.YES_NO_OPTION);
+        if(confirm == JOptionPane.YES_OPTION){
+            for(String line: data){
+                if(!line.startsWith(userID)){
+                    updatedData.add(line);
+                }
+            }
+            
+        }else {
+            JOptionPane.showMessageDialog(null, "Action Cancelled!");
+            return false;
+        }
+        FileHandler.modifyFileData("user.txt", updatedData);
+        return true;
+    }
+    
+    public void viewUser(String userID){
+        List<String> data = FileHandler.readFile("user.txt");
+        String[] userDetails = null;
+        for(String line: data){
+                if(line.startsWith(userID)){
+                    userDetails = line.split(";");
+                }
+            }
+        admin_view_studentrecord studentDetails = new admin_view_studentrecord();
+        studentDetails.displayStudentDetails(userDetails);
+        studentDetails.show();
+        
     }
 
     public boolean userProfileUpdate(String[] userInput) {
