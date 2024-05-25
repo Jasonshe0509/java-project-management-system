@@ -23,7 +23,7 @@ public class LecturerPresentationRequest extends javax.swing.JFrame {
     /**
      * Creates new form LecturerPresentationRequest
      */
-    public LecturerPresentationRequest() {
+    public LecturerPresentationRequest(String id) {
         initComponents();
         setIconImage();
        
@@ -217,7 +217,7 @@ public class LecturerPresentationRequest extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LecturerPresentationRequest().setVisible(true);
+                new LecturerPresentationRequest("id").setVisible(true);
             }
         });
     }

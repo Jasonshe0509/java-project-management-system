@@ -15,7 +15,7 @@ public class LecturerPresentationFeedback extends javax.swing.JFrame {
     /**
      * Creates new form LecturerPresentationFeedback
      */
-    public LecturerPresentationFeedback() {
+    public LecturerPresentationFeedback(String AssmntID, String stdID, String name, String marker, String presentSlot) {
         initComponents();
         setIconImage();
     }
@@ -327,7 +327,7 @@ public class LecturerPresentationFeedback extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LecturerPresentationFeedback().setVisible(true);
+                new LecturerPresentationFeedback("AssmntID", "stdID", "name", "marker", "presentSlot").setVisible(true);
             }
         });
     }

@@ -10,6 +10,7 @@ C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ
 C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\admin_register_lecturer.java
 C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\StudentEcSubmissionPage.java
 C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\PM_register_assessment_create.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\Presentation\PresentationTableActionEvent.java
 C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\admin_student.java
 C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\Notification\Notification.java
 C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\Notification\NotificationController.java
@@ -31,6 +32,7 @@ C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ
 C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\admin_lecturer.java
 C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\SchoolWiseList\SchoolWiseValidator.java
 C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\LecturerDashboardPage.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\Presentation\PresentationController.java
 C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\SchoolWiseList\SchoolWiseController.java
 C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\admin_ec_details.java
 C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\User\ProjectManager.java
@@ -51,7 +53,9 @@ C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ
 C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\admin_lecturer_record.java
 C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\lect_PresentationPanelAction.java
 C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\GeneralFunction\IDGenerator.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\Presentation\PresentationRequest.java
 C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\EC\ECValidator.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\Presentation\Presentation.java
 C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\LecturerComm_CreateMessage.java
 C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\GeneralFunction\SessionManager.java
 C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\NotificationPage.java
@@ -83,3 +87,4 @@ C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ
 C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\Course\CourseController.java
 C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\StudentPresentationRequestPage.java
 C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\LecturerProfile.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\Presentation\PresentationValidator.java
