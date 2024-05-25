@@ -75,7 +75,7 @@ public class admin_student_management extends javax.swing.JFrame {
                 if (result) {
                     JOptionPane.showMessageDialog(null, "Successfully delete the Student: " + userID);
                     DefaultTableModel umodel = (DefaultTableModel) student_table.getModel();
-                    model.setNumRows(0);
+                    umodel.setNumRows(0);
                     printStudentTable();
                     readNumOfStudent();
                 }

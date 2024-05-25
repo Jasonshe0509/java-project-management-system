@@ -195,7 +195,7 @@ public class UserController extends UserAuthenticationController {
                 }
             }
             
-        }else if (confirm == JOptionPane.NO_OPTION) {
+        }else {
             JOptionPane.showMessageDialog(null, "Action Cancelled!");
             return false;
         }

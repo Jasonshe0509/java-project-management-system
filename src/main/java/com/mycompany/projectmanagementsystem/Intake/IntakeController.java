@@ -86,12 +86,25 @@ public class IntakeController {
         ArrayList<String> updatedData = new ArrayList<>();
         int confirm = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete " + intakeID + "?", "Confirmation", JOptionPane.YES_NO_OPTION);
         if (confirm == JOptionPane.YES_OPTION) {
+            List<String> data1 = FileHandler.readFile("user.txt");
+            for (String userLine : data1) {
+                String[] userRecord = userLine.split(";");
+                String user = userRecord[10];
+                if (user.equals("student")) {
+                    if (userRecord[11].equals(intakeID)) {
+                        JOptionPane.showMessageDialog(null, intakeID + " cannot be deleted!\n There's student enrolled under this intake.", "Fail To Delete", JOptionPane.ERROR_MESSAGE);
+                        return false;
+                    }
+                }
+
+            }
             for (String line : data) {
                 if (!line.startsWith(intakeID)) {
                     updatedData.add(line);
                 }
             }
-        } else if (confirm == JOptionPane.NO_OPTION) {
+
+        } else {
             JOptionPane.showMessageDialog(null, "Action Cancelled!");
             return false;
         }
