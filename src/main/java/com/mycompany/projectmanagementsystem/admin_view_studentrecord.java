@@ -13,6 +13,8 @@ import javax.swing.border.LineBorder;
 
 public class admin_view_studentrecord extends javax.swing.JFrame {
 String[] studentDetails;
+ArrayList<String> list;
+
 admin_view_studentrecord studentRecordInstace;
     public admin_view_studentrecord() {
         initComponents();
@@ -21,10 +23,10 @@ admin_view_studentrecord studentRecordInstace;
         
     }
     
-    public void displayStudentDetails(String[] studentDetails){
+    public ArrayList<String> displayStudentDetails(String[] studentDetails){
         
         System.out.print(Arrays.toString(studentDetails));
-        ArrayList<String> list = new ArrayList();
+        list = new ArrayList();
         for (String detail : studentDetails) {
         list.add(detail);
     }
@@ -40,7 +42,7 @@ admin_view_studentrecord studentRecordInstace;
         student_email.setText(list.get(8));
         student_password.setText("**********");
         //studentRecordInstace.student_intake.setText(list.get(11));
-        
+        return list;
 }
     
     @SuppressWarnings("unchecked")
@@ -313,11 +315,16 @@ admin_view_studentrecord studentRecordInstace;
     }//GEN-LAST:event_student_emailActionPerformed
 
     private void admin_viewstudent_backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_admin_viewstudent_backActionPerformed
+        admin_student_management studentmanagement = new admin_student_management();
+        studentmanagement.show();
         dispose();
     }//GEN-LAST:event_admin_viewstudent_backActionPerformed
 
     private void admin_viewstudent_back1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_admin_viewstudent_back1ActionPerformed
-        // TODO add your handling code here:
+        admin_modify_studentrecord modifystudentDetails = new admin_modify_studentrecord();
+        modifystudentDetails.displayStudentDetails(list);
+        modifystudentDetails.show();
+        dispose();
     }//GEN-LAST:event_admin_viewstudent_back1ActionPerformed
 
     private void student_genderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_student_genderActionPerformed

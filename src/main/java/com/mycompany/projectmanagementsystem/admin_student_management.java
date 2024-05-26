@@ -15,6 +15,8 @@ import javax.swing.table.DefaultTableModel;
 
 public class admin_student_management extends javax.swing.JFrame {
 
+    private static admin_student_management instance;
+    
     admin_view_studentrecord studentRecordInstace;
     int numOfIntake, numOfStudent;
 
@@ -58,7 +60,9 @@ public class admin_student_management extends javax.swing.JFrame {
                 int columnIndex = 0;
                 String userID = (String) model.getValueAt(row, columnIndex);
                 UserController action = new UserController();
+                
                 action.viewUser(userID);
+                dispose();
                 //System.out.print(Arrays.toString(userDetails));
                 //admin_view_studentrecord studentDetails = new admin_view_studentrecord();
                 //admin_view_studentrecord.displayStudentDetails(userDetails);
@@ -114,7 +118,7 @@ public class admin_student_management extends javax.swing.JFrame {
         label_num_student.setText(String.valueOf(numOfStudent));
     }
 
-    private void printIntakeTable() {
+    public void printIntakeTable() {
 
         DefaultTableModel model = (DefaultTableModel) intake_table.getModel();
         model.setRowCount(0);
@@ -131,7 +135,7 @@ public class admin_student_management extends javax.swing.JFrame {
         }
     }
 
-    private void printStudentTable() {
+    public void printStudentTable() {
 
         DefaultTableModel model = (DefaultTableModel) student_table.getModel();
         model.setRowCount(0);
@@ -150,7 +154,9 @@ public class admin_student_management extends javax.swing.JFrame {
 
         }
     }
-
+    
+    
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

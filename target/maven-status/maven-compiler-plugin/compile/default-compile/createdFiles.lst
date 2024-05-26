@@ -22,6 +22,7 @@ com\mycompany\projectmanagementsystem\lect_PresentationRqtActionPanel.class
 com\mycompany\projectmanagementsystem\Presentation\PresentationRqtTableActionEvent.class
 com\mycompany\projectmanagementsystem\StudentAssessmentDetailPage$10.class
 com\mycompany\projectmanagementsystem\admin_edit_intake$1.class
+com\mycompany\projectmanagementsystem\Presentation\Presentation.class
 com\mycompany\projectmanagementsystem\PM_assessment_page$5.class
 com\mycompany\projectmanagementsystem\lect_PresentationRqtActionPanel$3.class
 com\mycompany\projectmanagementsystem\User\UserTableActionEvent.class
@@ -54,6 +55,7 @@ com\mycompany\projectmanagementsystem\Intake\IntakeController.class
 com\mycompany\projectmanagementsystem\LecturerDashboardPage.class
 com\mycompany\projectmanagementsystem\StudentECActionPanel$1.class
 com\mycompany\projectmanagementsystem\admin_student_management$6.class
+com\mycompany\projectmanagementsystem\Presentation\PresentationRequest.class
 com\mycompany\projectmanagementsystem\LecturerDashboardPage$3.class
 com\mycompany\projectmanagementsystem\StudentDashboardPage$6.class
 com\mycompany\projectmanagementsystem\UserTableActionPanel$2.class
@@ -84,6 +86,7 @@ com\mycompany\projectmanagementsystem\admin_student_management$4.class
 com\mycompany\projectmanagementsystem\PM_profile_page$6.class
 com\mycompany\projectmanagementsystem\lect_PresentationRqtActionPanel$4.class
 com\mycompany\projectmanagementsystem\StudentAssessmentDetailPage$9.class
+com\mycompany\projectmanagementsystem\Presentation\PresentationValidator.class
 com\mycompany\projectmanagementsystem\Assessment\Assessment.class
 com\mycompany\projectmanagementsystem\StudentEcSubmissionPage$6.class
 com\mycompany\projectmanagementsystem\LevelOfEducation\LevelOfEducation.class
@@ -139,6 +142,7 @@ com\mycompany\projectmanagementsystem\Course\CourseValidator.class
 com\mycompany\projectmanagementsystem\ProjectManagerPage$10.class
 com\mycompany\projectmanagementsystem\UserTableActionPanel$rPanelActionRenderer.class
 com\mycompany\projectmanagementsystem\admin_mainpage$1.class
+com\mycompany\projectmanagementsystem\Presentation\PresentationController.class
 com\mycompany\projectmanagementsystem\LoginPage$3.class
 com\mycompany\projectmanagementsystem\ProjectManagerPage$9.class
 com\mycompany\projectmanagementsystem\admin_register_intake$1.class
