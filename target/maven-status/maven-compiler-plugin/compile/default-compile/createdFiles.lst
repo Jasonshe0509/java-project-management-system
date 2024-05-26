@@ -1,5 +1,6 @@
 com\mycompany\projectmanagementsystem\LecturerIntakePage$14.class
 com\mycompany\projectmanagementsystem\LoginPage.class
+com\mycompany\projectmanagementsystem\lect_ReportPanelAction$3.class
 com\mycompany\projectmanagementsystem\ForgetPasswordPage.class
 com\mycompany\projectmanagementsystem\ForgetPasswordPage$1.class
 com\mycompany\projectmanagementsystem\lect_PresentationPanelAction$3.class
@@ -33,6 +34,8 @@ com\mycompany\projectmanagementsystem\StudentECActionPanel$2.class
 com\mycompany\projectmanagementsystem\admin_register_schoolwiselist$4.class
 com\mycompany\projectmanagementsystem\admin_student.class
 com\mycompany\projectmanagementsystem\IntakeTableActionPanel$1.class
+com\mycompany\projectmanagementsystem\lect_ReportPanelAction$TableActionCellEditor.class
+com\mycompany\projectmanagementsystem\Assessment\LecReportTableActionEvent.class
 com\mycompany\projectmanagementsystem\admin_student$6.class
 com\mycompany\projectmanagementsystem\StudentAssessmentDetailPage$13.class
 com\mycompany\projectmanagementsystem\UserTableAction.class
@@ -65,6 +68,7 @@ com\mycompany\projectmanagementsystem\admin_student_management$3.class
 com\mycompany\projectmanagementsystem\LecturerPresentationReject$1.class
 com\mycompany\projectmanagementsystem\PM_profile_page$7.class
 com\mycompany\projectmanagementsystem\lect_PresentationPanelAction$TableActionCellEditor.class
+com\mycompany\projectmanagementsystem\lect_ReportPanelAction$4.class
 com\mycompany\projectmanagementsystem\PM_assessment_page$2.class
 com\mycompany\projectmanagementsystem\LecturerPresentationReject$4.class
 com\mycompany\projectmanagementsystem\StudentEcSubmissionPage$9.class
@@ -149,6 +153,7 @@ com\mycompany\projectmanagementsystem\StudentPresentationActionPanel.class
 com\mycompany\projectmanagementsystem\IntakeTableActionPanel.class
 com\mycompany\projectmanagementsystem\admin_register_intake$3.class
 com\mycompany\projectmanagementsystem\Assessment\StudentAssessment.class
+com\mycompany\projectmanagementsystem\LecturerIntakePage$16.class
 com\mycompany\projectmanagementsystem\LecturerPresentationFeedback$3.class
 com\mycompany\projectmanagementsystem\admin_register_lecturer$3.class
 com\mycompany\projectmanagementsystem\admin_register_student$11.class
