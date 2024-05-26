@@ -1,93 +1,98 @@
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\Presentation\PresentationController.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\LecturerCommunication.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\lect_PresentationRqtActionPanel.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\admin_register_intake.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\StudentProfilePage.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\admin_view_lec_details.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\EC\EC.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\StudentAssessmentDetailPage.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\LevelOfEducation\LevelOfEducation.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\admin_register_schoolwiselist.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\PM_duedate_edit.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\LecturerPeopleProfile.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\admin_mainpage.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\StudentEcSubmissionPage.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\Course\CourseController.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\EC\ECTableActionEvent.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\LecturerIntakePage.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\Assessment\AssessmentController.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\GeneralFunction\IDGenerator.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\lect_ReportPanelAction.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\User\UserController.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\User\ProjectManager.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\SchoolWiseList\SchoolWise.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\Presentation\PresentationRqtTableActionEvent.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\User\UserAuthenticationController.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\Assessment\StudentAssessmentController.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\admin_lecturer_record.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\ForgetPasswordPage.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\GeneralFunction\FileHandler.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\GeneralFunction\SessionManager.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\StudentPresentationRequestPage.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\StudentEcForm.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\LecturerPresentationRequest.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\Notification\NotificationController.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\admin_register_lecturer.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\LecturerProfile.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\admin_modify_studentrecord.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\PM_assessment_page.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\StudentCreateNewMessagePage.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\SchoolWiseList\SchoolWiseValidator.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\User\Lecturer.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\lect_PresentationPanelAction.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\LecturerSummaryReport.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\Assessment\AssessmentValidator.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\StudentDashboardPage.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\Assessment\Assessment.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\SchoolWiseList\SchoolWiseController.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\Intake\IntakeValidator.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\User\User.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\admin_modify_lecturerrecord.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\PM_assessment_edit.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\PM_register_assessment_create.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\admin_ec_details.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\LecturerPresentationReject.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\LecturerReportGrading.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\Presentation\PresentationValidator.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\PM_report_status.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\ProjectManagerPage.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\StudentECActionPanel.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\GeneralPage.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\admin_student_management.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\Course\CourseValidator.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\PM_ec_approvement.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\User\Student.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\Presentation\PresentationTableActionEvent.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\StudentCreateNewDiscussionPage.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\User\UserValidator.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\admin_student.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\LoginPage.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\admin_view_studentrecord.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\User\Admin.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\admin_lecturer.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\admin_register_student.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\Assessment\StudentAssessment.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\Notification\Notification.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\NotificationPage.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\Presentation\PresentationRequest.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\PM_profile_page.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\EC\ECValidator.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\LecturerPresentationFeedback.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\Presentation\Presentation.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\GeneralFunction\URLRenderer.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\StudentSubmissionPage.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\admin_ec_record.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\Intake\IntakeController.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\LecturerReportConfirm.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\Course\Course.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\EC\ECController.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\LecturerComm_CreateMessage.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\LecturerComm_CreateDiscussion.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\admin_register_course.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\LecturerDashboardPage.java
-C:\Users\user\OneDrive\Documents\NetBeansProjects\GitHub\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\Intake\Intake.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\LecturerSummaryReport.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\GeneralFunction\FileHandler.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\StudentEcSubmissionPage.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\PM_register_assessment_create.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\Presentation\PresentationTableActionEvent.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\admin_student.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\Notification\NotificationController.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\User\Admin.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\Assessment\Assessment.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\StudentEcForm.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\User\Student.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\StudentSubmissionPage.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\ForgetPasswordPage.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\StudentDashboardPage.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\admin_student_management.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\LecturerReportConfirm.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\SchoolWiseList\SchoolWiseValidator.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\LecturerDashboardPage.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\admin_ec_details.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\User\ProjectManager.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\lect_ReportPanelAction.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\EC\EC.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\User\User.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\Intake\IntakeValidator.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\admin_register_course.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\admin_ec_record.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\PM_assessment_edit.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\PM_ec_approvement.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\PM_report_status.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\User\UserValidator.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\Presentation\PresentationRequest.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\Presentation\Presentation.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\LecturerComm_CreateMessage.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\GeneralFunction\SessionManager.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\NotificationPage.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\SchoolWiseList\SchoolWise.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\GeneralPage.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\LecturerComm_CreateDiscussion.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\Course\Course.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\LecturerReportGrading.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\admin_register_student.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\admin_modify_lecturerrecord.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\LecturerPeopleProfile.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\admin_edit_intake.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\Course\CourseValidator.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\LecturerProfile.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\Presentation\PresentationValidator.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\LecturerIntakePage.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\admin_modify_studentrecord.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\EC\ECController.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\LecturerPresentationRequest.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\StudentProfilePage.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\LevelOfEducation\LevelOfEducation.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\StudentPresentationActionPanel.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\User\UserController.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\IntakeTableActionPanel.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\admin_register_lecturer.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\User\UserTableActionEvent.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\Notification\Notification.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\Assessment\AssessmentValidator.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\GeneralFunction\URLRenderer.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\Intake\IntakeController.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\UserTableActionPanel.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\Assessment\StudentAssessmentController.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\EC\ECTableActionEvent.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\PM_assessment_page.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\admin_lecturer.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\Presentation\PresentationController.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\SchoolWiseList\SchoolWiseController.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\admin_register_schoolwiselist.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\LecturerPresentationFeedback.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\StudentECActionPanel.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\StudentCreateNewDiscussionPage.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\admin_lecturer_record.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\lect_PresentationPanelAction.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\GeneralFunction\IDGenerator.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\EC\ECValidator.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\Intake\IntakeTableActionEvent.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\UserTableAction.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\admin_mainpage.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\PM_profile_page.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\StudentAssessmentDetailPage.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\Intake\Intake.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\Assessment\StudentAssessment.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\User\UserAuthenticationController.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\LecturerCommunication.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\User\Lecturer.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\ProjectManagerPage.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\LoginPage.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\Presentation\StudentPresentationTableActionEvent.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\admin_register_intake.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\admin_view_studentrecord.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\StudentCreateNewMessagePage.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\Assessment\AssessmentController.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\admin_view_lec_details.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\PM_duedate_edit.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\Course\CourseController.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\StudentPresentationRequestPage.java
