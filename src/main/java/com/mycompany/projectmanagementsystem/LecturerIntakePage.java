@@ -1114,7 +1114,7 @@ public class LecturerIntakePage extends javax.swing.JFrame {
             if (studentName != null) {
                 for (String liney : datay) {
                     String[] listy = liney.split(";");
-                    String currentAssessmentID = listy[0]; // Assuming listy[2] contains the assessmentID
+                    String currentAssessmentID = listy[0];
                     if (currentAssessmentID.equals(assessmentID) && currentAssessmentID.equals(AssmntID)) {
                         String spv = listy[4];
                         String secMarker = listy[5];
