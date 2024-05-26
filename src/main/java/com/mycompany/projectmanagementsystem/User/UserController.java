@@ -7,11 +7,11 @@ package com.mycompany.projectmanagementsystem.User;
 import com.mycompany.projectmanagementsystem.GeneralFunction.FileHandler;
 import com.mycompany.projectmanagementsystem.GeneralFunction.SessionManager;
 import com.mycompany.projectmanagementsystem.LoginPage;
+import com.mycompany.projectmanagementsystem.admin_view_lec_details;
 import com.mycompany.projectmanagementsystem.admin_view_studentrecord;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -183,38 +183,58 @@ public class UserController extends UserAuthenticationController {
         }
 
     }
-    
-    public boolean userDelete(String userID){
+
+    public boolean userDelete(String userID) {
         List<String> data = FileHandler.readFile("user.txt");
         ArrayList<String> updatedData = new ArrayList<>();
-        int confirm =  JOptionPane.showConfirmDialog(null, "Are you sure you want to delete " + userID + "?", "Confirmation", JOptionPane.YES_NO_OPTION);
-        if(confirm == JOptionPane.YES_OPTION){
-            for(String line: data){
-                if(!line.startsWith(userID)){
+        int confirm = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete " + userID + "?", "Confirmation", JOptionPane.YES_NO_OPTION);
+        if (confirm == JOptionPane.YES_OPTION) {
+            for (String line : data) {
+                if (!line.startsWith(userID)) {
                     updatedData.add(line);
                 }
             }
-            
-        }else {
+
+        } else {
             JOptionPane.showMessageDialog(null, "Action Cancelled!");
             return false;
         }
         FileHandler.modifyFileData("user.txt", updatedData);
         return true;
     }
-    
-    public void viewUser(String userID){
+
+    public void viewUser(String userID) {
         List<String> data = FileHandler.readFile("user.txt");
         String[] userDetails = null;
-        for(String line: data){
-                if(line.startsWith(userID)){
-                    userDetails = line.split(";");
-                }
+        String user = null;
+        for (String line : data) {
+            if (line.startsWith(userID)) {
+                userDetails = line.split(";");
+                user = userDetails[10];
+                System.out.println(user);
+                System.out.println(line);
+                 switch (user) {
+            case "student" -> {
+                admin_view_studentrecord studentDetails = new admin_view_studentrecord();
+                studentDetails.displayStudentDetails(userDetails);
+                studentDetails.show();
             }
-        admin_view_studentrecord studentDetails = new admin_view_studentrecord();
-        studentDetails.displayStudentDetails(userDetails);
-        studentDetails.show();
-        
+            case "lecturer" -> {
+                admin_view_lec_details lecturerDetails = new admin_view_lec_details();
+                lecturerDetails.displayLecturerDetails(userDetails);
+                lecturerDetails.show();
+            }
+            case "project manager" -> {
+                admin_view_lec_details lecturerDetails = new admin_view_lec_details();
+                lecturerDetails.displayLecturerDetails(userDetails);
+                lecturerDetails.show();
+            }
+            
+        }
+            }
+        }
+       
+
     }
 
     public boolean userProfileUpdate(String[] userInput) {

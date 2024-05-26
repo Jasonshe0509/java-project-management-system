@@ -1,9 +1,12 @@
 package com.mycompany.projectmanagementsystem;
 
 import com.mycompany.projectmanagementsystem.GeneralFunction.FileHandler;
+import com.mycompany.projectmanagementsystem.User.UserController;
+import com.mycompany.projectmanagementsystem.User.UserTableActionEvent;
 import java.awt.Color;
 import java.awt.Toolkit;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
@@ -18,6 +21,44 @@ public class admin_lecturer_record extends javax.swing.JFrame {
         readNumOfLecturer();
         printSchoolWiseTable();
         printLecturerTable();
+        
+        UserTableActionPanel actionPanel = new UserTableActionPanel();
+        UserTableActionEvent event;
+        event = new UserTableActionEvent() {
+            @Override
+            public void userView(int row, Object value) {
+
+                DefaultTableModel model = (DefaultTableModel) lecturer_table.getModel();
+                int columnIndex = 0;
+                String userID = (String) model.getValueAt(row, columnIndex);
+                UserController action = new UserController();
+                action.viewUser(userID);
+                System.out.print(userID);
+                //System.out.print(Arrays.toString(userDetails));
+                //admin_view_studentrecord studentDetails = new admin_view_studentrecord();
+                //admin_view_studentrecord.displayStudentDetails(userDetails);
+                //studentDetails.show();
+            }
+            
+            @Override
+            public void userDelete(int row, Object value) {
+                DefaultTableModel model = (DefaultTableModel) lecturer_table.getModel();
+                int columnIndex = 0;
+                String userID = (String) model.getValueAt(row, columnIndex);
+                UserController action = new UserController();
+                boolean result = action.userDelete(userID);
+                if (result) {
+                    JOptionPane.showMessageDialog(null, "Successfully delete the Lecturer: " + userID);
+                    DefaultTableModel umodel = (DefaultTableModel) lecturer_table.getModel();
+                    umodel.setNumRows(0);
+                    printLecturerTable();
+                    readNumOfLecturer();
+                    
+                }
+            }
+        };
+        lecturer_table.getColumnModel().getColumn(6).setCellRenderer(actionPanel.new rPanelActionRenderer());
+        lecturer_table.getColumnModel().getColumn(6).setCellEditor(actionPanel.new UserTableActionCellEditor(event));
     }
 
     private void readNumOfSchoolWise() {
@@ -292,10 +333,7 @@ public class admin_lecturer_record extends javax.swing.JFrame {
         lecturer_table.setBackground(new java.awt.Color(192, 192, 192));
         lecturer_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "Employee ID", "Name", "School Wise", "Email", "Contact Number", "Assign Project Manager", "Action"
@@ -309,16 +347,14 @@ public class admin_lecturer_record extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        lecturer_table.setRowHeight(30);
         lectuter_record.setViewportView(lecturer_table);
 
         lecturer_record.addTab("Lecturer", lectuter_record);
 
         projectmanager_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
                 "Employee ID", "Name", "School Wise", "Email", "Contact Number", "Action"
@@ -332,6 +368,7 @@ public class admin_lecturer_record extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        projectmanager_table.setRowHeight(30);
         jScrollPane1.setViewportView(projectmanager_table);
 
         lecturer_record.addTab("Project Manager", jScrollPane1);

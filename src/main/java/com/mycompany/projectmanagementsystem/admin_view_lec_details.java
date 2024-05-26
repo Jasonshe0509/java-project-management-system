@@ -2,6 +2,8 @@ package com.mycompany.projectmanagementsystem;
 
 import java.awt.Color;
 import java.awt.Toolkit;
+import java.util.ArrayList;
+import java.util.Arrays;
 import javax.swing.border.LineBorder;
 
 public class admin_view_lec_details extends javax.swing.JFrame {
@@ -11,13 +13,32 @@ public class admin_view_lec_details extends javax.swing.JFrame {
         setIconImage();
     }
     
+    public void displayLecturerDetails(String[] lecturerDetails){
+        
+        ArrayList<String> list = new ArrayList();
+        for (String detail : lecturerDetails) {
+        list.add(detail);
+    }
+        lec_empno.setText(list.get(0));
+        lec_name.setText(list.get(1));
+        lec_gender.setText(list.get(2));
+        lec_contact.setText(list.get(3));
+        lec_dob.setText(list.get(4));
+        lec_address.setText(list.get(5));
+        lec_nric.setText(list.get(6));
+        lec_nation.setText(list.get(7));
+        lec_email.setText(list.get(8));
+        //lec_password.setText("**********");
+        lec_schoolwise.setText(list.get(11));
+        
+}
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         lec_name_title = new javax.swing.JLabel();
         lec_name = new javax.swing.JTextField();
-        lec_gender_selection = new javax.swing.JComboBox<>();
         lec_empno = new javax.swing.JTextField();
         lec_empno_title = new javax.swing.JLabel();
         lec_dob = new javax.swing.JTextField();
@@ -25,18 +46,17 @@ public class admin_view_lec_details extends javax.swing.JFrame {
         lec_address_title = new javax.swing.JLabel();
         lec_address = new javax.swing.JTextField();
         lec_contact_title = new javax.swing.JLabel();
+        lec_gender = new javax.swing.JTextField();
+        lec_schoolwise = new javax.swing.JTextField();
         lec_contact = new javax.swing.JTextField();
         lec_nation = new javax.swing.JTextField();
         lec_nation_title = new javax.swing.JLabel();
-        lec_password_title = new javax.swing.JLabel();
-        lec_password = new javax.swing.JTextField();
         lec_nric = new javax.swing.JTextField();
         lec_email = new javax.swing.JTextField();
         lec_email_title = new javax.swing.JLabel();
         lec_nric_title = new javax.swing.JLabel();
-        lec_gender = new javax.swing.JLabel();
+        lec_gender_title = new javax.swing.JLabel();
         lec_schoolwise_title = new javax.swing.JLabel();
-        lec_school_wise = new javax.swing.JComboBox<>();
         lec_details_background = new javax.swing.JLabel();
         lec_details_border = new javax.swing.JLabel();
         admin_viewstudent_back = new javax.swing.JButton();
@@ -52,8 +72,9 @@ public class admin_view_lec_details extends javax.swing.JFrame {
         lec_name_title.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         lec_name_title.setForeground(new java.awt.Color(2, 50, 99));
         lec_name_title.setText("Full Name");
-        getContentPane().add(lec_name_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, 90, -1));
+        getContentPane().add(lec_name_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 120, 90, -1));
 
+        lec_name.setEditable(false);
         lec_name.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         lec_name.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, java.awt.Color.lightGray, null, null));
         lec_name.addActionListener(new java.awt.event.ActionListener() {
@@ -61,70 +82,84 @@ public class admin_view_lec_details extends javax.swing.JFrame {
                 lec_nameActionPerformed(evt);
             }
         });
-        getContentPane().add(lec_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 40, 190, 50));
+        getContentPane().add(lec_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 110, 190, 50));
 
-        lec_gender_selection.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        lec_gender_selection.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Female", "Male"}));
-        lec_gender_selection.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lec_gender_selectionActionPerformed(evt);
-            }
-        });
-        getContentPane().add(lec_gender_selection, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 180, 190, 50));
-
+        lec_empno.setEditable(false);
         lec_empno.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         lec_empno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lec_empnoActionPerformed(evt);
             }
         });
-        getContentPane().add(lec_empno, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 40, 190, 50));
+        getContentPane().add(lec_empno, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 40, 190, 50));
 
         lec_empno_title.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         lec_empno_title.setForeground(new java.awt.Color(2, 50, 99));
         lec_empno_title.setText("<html><div style = \"text-align: center; width: 50px;\">EMP Number</div></html>");
-        getContentPane().add(lec_empno_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 40, 70, -1));
+        getContentPane().add(lec_empno_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, 70, -1));
 
+        lec_dob.setEditable(false);
         lec_dob.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         lec_dob.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lec_dobActionPerformed(evt);
             }
         });
-        getContentPane().add(lec_dob, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 320, 190, 50));
+        getContentPane().add(lec_dob, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 180, 190, 50));
 
         lec_dob_title.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         lec_dob_title.setForeground(new java.awt.Color(2, 50, 99));
         lec_dob_title.setText("Date Of Birth");
-        getContentPane().add(lec_dob_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 320, 110, 40));
+        getContentPane().add(lec_dob_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, 110, 40));
 
         lec_address_title.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         lec_address_title.setForeground(new java.awt.Color(2, 50, 99));
         lec_address_title.setText("Address");
-        getContentPane().add(lec_address_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 400, -1, -1));
+        getContentPane().add(lec_address_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 330, -1, -1));
 
+        lec_address.setEditable(false);
         lec_address.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         lec_address.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lec_addressActionPerformed(evt);
             }
         });
-        getContentPane().add(lec_address, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 390, 190, 50));
+        getContentPane().add(lec_address, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 320, 190, 50));
 
         lec_contact_title.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         lec_contact_title.setForeground(new java.awt.Color(2, 50, 99));
         lec_contact_title.setText("<html><div style = 'text-align: center; width:90px;'>Phone Number </div></html>");
         lec_contact_title.setToolTipText("");
-        getContentPane().add(lec_contact_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 110, 90, -1));
+        getContentPane().add(lec_contact_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 180, 90, -1));
 
+        lec_gender.setEditable(false);
+        lec_gender.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        lec_gender.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lec_genderActionPerformed(evt);
+            }
+        });
+        getContentPane().add(lec_gender, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 110, 190, 50));
+
+        lec_schoolwise.setEditable(false);
+        lec_schoolwise.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        lec_schoolwise.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lec_schoolwiseActionPerformed(evt);
+            }
+        });
+        getContentPane().add(lec_schoolwise, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 40, 190, 50));
+
+        lec_contact.setEditable(false);
         lec_contact.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         lec_contact.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lec_contactActionPerformed(evt);
             }
         });
-        getContentPane().add(lec_contact, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 110, 190, 50));
+        getContentPane().add(lec_contact, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 180, 190, 50));
 
+        lec_nation.setEditable(false);
         lec_nation.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         lec_nation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -136,21 +171,9 @@ public class admin_view_lec_details extends javax.swing.JFrame {
         lec_nation_title.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         lec_nation_title.setForeground(new java.awt.Color(2, 50, 99));
         lec_nation_title.setText("Nationality");
-        getContentPane().add(lec_nation_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 260, -1, -1));
+        getContentPane().add(lec_nation_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 260, -1, -1));
 
-        lec_password_title.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        lec_password_title.setForeground(new java.awt.Color(2, 50, 99));
-        lec_password_title.setText("Password");
-        getContentPane().add(lec_password_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 330, -1, -1));
-
-        lec_password.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        lec_password.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lec_passwordActionPerformed(evt);
-            }
-        });
-        getContentPane().add(lec_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 320, 190, 50));
-
+        lec_nric.setEditable(false);
         lec_nric.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         lec_nric.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -159,37 +182,34 @@ public class admin_view_lec_details extends javax.swing.JFrame {
         });
         getContentPane().add(lec_nric, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 250, 190, 50));
 
+        lec_email.setEditable(false);
         lec_email.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         lec_email.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lec_emailActionPerformed(evt);
             }
         });
-        getContentPane().add(lec_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 180, 190, 50));
+        getContentPane().add(lec_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 320, 190, 50));
 
         lec_email_title.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         lec_email_title.setForeground(new java.awt.Color(2, 50, 99));
         lec_email_title.setText("<html><div style = \"text-align: center; width: 50px;\">Email Address</div></html>");
-        getContentPane().add(lec_email_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 180, -1, -1));
+        getContentPane().add(lec_email_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 320, -1, -1));
 
         lec_nric_title.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         lec_nric_title.setForeground(new java.awt.Color(2, 50, 99));
         lec_nric_title.setText("<html><div style= 'text-align: center; width: 90px;'>NRIC/ Passoport No</div></html>");
         getContentPane().add(lec_nric_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 120, -1));
 
-        lec_gender.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        lec_gender.setForeground(new java.awt.Color(2, 50, 99));
-        lec_gender.setText("Gender");
-        getContentPane().add(lec_gender, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, -1, -1));
+        lec_gender_title.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        lec_gender_title.setForeground(new java.awt.Color(2, 50, 99));
+        lec_gender_title.setText("Gender");
+        getContentPane().add(lec_gender_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 130, -1, -1));
 
         lec_schoolwise_title.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         lec_schoolwise_title.setForeground(new java.awt.Color(2, 50, 99));
-        lec_schoolwise_title.setText("School Wise");
-        getContentPane().add(lec_schoolwise_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, -1, -1));
-
-        lec_school_wise.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        lec_school_wise.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(lec_school_wise, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 110, 190, 50));
+        lec_schoolwise_title.setText("<html><div style = 'text-align: center; width:50px;'>School Wise</div></html>");
+        getContentPane().add(lec_schoolwise_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 40, 60, -1));
 
         lec_details_background.setBackground(new Color(192, 192, 192, 90));
         lec_details_background.setMaximumSize(new java.awt.Dimension(550, 350));
@@ -238,10 +258,6 @@ public class admin_view_lec_details extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_lec_nameActionPerformed
 
-    private void lec_gender_selectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lec_gender_selectionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lec_gender_selectionActionPerformed
-
     private void lec_empnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lec_empnoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_lec_empnoActionPerformed
@@ -262,10 +278,6 @@ public class admin_view_lec_details extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_lec_nationActionPerformed
 
-    private void lec_passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lec_passwordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lec_passwordActionPerformed
-
     private void lec_nricActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lec_nricActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_lec_nricActionPerformed
@@ -273,6 +285,14 @@ public class admin_view_lec_details extends javax.swing.JFrame {
     private void lec_emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lec_emailActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_lec_emailActionPerformed
+
+    private void lec_genderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lec_genderActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lec_genderActionPerformed
+
+    private void lec_schoolwiseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lec_schoolwiseActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lec_schoolwiseActionPerformed
     
     public static void main(String args[]) {
 
@@ -301,17 +321,15 @@ public class admin_view_lec_details extends javax.swing.JFrame {
     private javax.swing.JLabel lec_email_title;
     private javax.swing.JTextField lec_empno;
     private javax.swing.JLabel lec_empno_title;
-    private javax.swing.JLabel lec_gender;
-    private javax.swing.JComboBox<String> lec_gender_selection;
+    private javax.swing.JTextField lec_gender;
+    private javax.swing.JLabel lec_gender_title;
     private javax.swing.JTextField lec_name;
     private javax.swing.JLabel lec_name_title;
     private javax.swing.JTextField lec_nation;
     private javax.swing.JLabel lec_nation_title;
     private javax.swing.JTextField lec_nric;
     private javax.swing.JLabel lec_nric_title;
-    private javax.swing.JTextField lec_password;
-    private javax.swing.JLabel lec_password_title;
-    private javax.swing.JComboBox<String> lec_school_wise;
+    private javax.swing.JTextField lec_schoolwise;
     private javax.swing.JLabel lec_schoolwise_title;
     // End of variables declaration//GEN-END:variables
 }
