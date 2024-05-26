@@ -53,6 +53,7 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
         showPresentationPage();
         readPresentationRequestFromFile();
         showPresentationRequestButton();
+        showPresentationConfirmationDetails();
         int index1 = jTabbedPane1.indexOfComponent(jScrollPane2);
         jTabbedPane1.removeTabAt(index1);
     }
@@ -104,6 +105,11 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
         jLabel25 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
+        persentationDate = new javax.swing.JLabel();
+        supervisorName = new javax.swing.JLabel();
+        presentationFeedback = new javax.swing.JLabel();
+        secondMarkerName = new javax.swing.JLabel();
+        presentationStatus = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jPanel12 = new javax.swing.JPanel();
         jPanel16 = new javax.swing.JPanel();
@@ -577,6 +583,41 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
         jLabel27.setMinimumSize(new java.awt.Dimension(275, 47));
         jLabel27.setPreferredSize(new java.awt.Dimension(275, 47));
 
+        persentationDate.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        persentationDate.setForeground(new java.awt.Color(2, 50, 99));
+        persentationDate.setText("jLabel4");
+        persentationDate.setMaximumSize(new java.awt.Dimension(187, 40));
+        persentationDate.setMinimumSize(new java.awt.Dimension(187, 40));
+        persentationDate.setPreferredSize(new java.awt.Dimension(187, 40));
+
+        supervisorName.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        supervisorName.setForeground(new java.awt.Color(2, 50, 99));
+        supervisorName.setText("jLabel4");
+        supervisorName.setMaximumSize(new java.awt.Dimension(187, 40));
+        supervisorName.setMinimumSize(new java.awt.Dimension(187, 40));
+        supervisorName.setPreferredSize(new java.awt.Dimension(187, 40));
+
+        presentationFeedback.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        presentationFeedback.setForeground(new java.awt.Color(2, 50, 99));
+        presentationFeedback.setText("jLabel4");
+        presentationFeedback.setMaximumSize(new java.awt.Dimension(187, 40));
+        presentationFeedback.setMinimumSize(new java.awt.Dimension(187, 40));
+        presentationFeedback.setPreferredSize(new java.awt.Dimension(187, 40));
+
+        secondMarkerName.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        secondMarkerName.setForeground(new java.awt.Color(2, 50, 99));
+        secondMarkerName.setText("jLabel4");
+        secondMarkerName.setMaximumSize(new java.awt.Dimension(187, 40));
+        secondMarkerName.setMinimumSize(new java.awt.Dimension(187, 40));
+        secondMarkerName.setPreferredSize(new java.awt.Dimension(187, 40));
+
+        presentationStatus.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        presentationStatus.setForeground(new java.awt.Color(255, 255, 255));
+        presentationStatus.setText("jLabel4");
+        presentationStatus.setMaximumSize(new java.awt.Dimension(187, 40));
+        presentationStatus.setMinimumSize(new java.awt.Dimension(187, 40));
+        presentationStatus.setPreferredSize(new java.awt.Dimension(187, 40));
+
         javax.swing.GroupLayout confirmPresentationPanelLayout = new javax.swing.GroupLayout(confirmPresentationPanel);
         confirmPresentationPanel.setLayout(confirmPresentationPanelLayout);
         confirmPresentationPanelLayout.setHorizontalGroup(
@@ -590,7 +631,26 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
                     .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(425, Short.MAX_VALUE))
+                .addGroup(confirmPresentationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(confirmPresentationPanelLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(presentationFeedback, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(confirmPresentationPanelLayout.createSequentialGroup()
+                        .addGroup(confirmPresentationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(confirmPresentationPanelLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(persentationDate, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(confirmPresentationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, confirmPresentationPanelLayout.createSequentialGroup()
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(secondMarkerName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(confirmPresentationPanelLayout.createSequentialGroup()
+                                    .addGap(14, 14, 14)
+                                    .addGroup(confirmPresentationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(presentationStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(supervisorName, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(0, 48, Short.MAX_VALUE)))
+                .addContainerGap())
             .addGroup(confirmPresentationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(confirmPresentationPanelLayout.createSequentialGroup()
                     .addGap(307, 307, 307)
@@ -605,14 +665,24 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
                         .addGap(22, 22, 22)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(confirmPresentationPanelLayout.createSequentialGroup()
-                        .addGap(97, 97, 97)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(45, 45, 45)
+                        .addComponent(supervisorName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(confirmPresentationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(secondMarkerName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(confirmPresentationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(persentationDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(confirmPresentationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(presentationStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(confirmPresentationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(presentationFeedback, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(13, Short.MAX_VALUE))
             .addGroup(confirmPresentationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(confirmPresentationPanelLayout.createSequentialGroup()
@@ -1304,13 +1374,13 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
 
     private void showPresentationPage() {
         int x = 0;
-//        List<String> data = FileHandler.readFile("presentation_confirmation.txt");
-//        for (String line : data) {
-//            String[] list = line.split(";");
-//            if(list[1].equals(user.getUserID())){
-//                x = 1;
-//            }
-//        }
+        List<String> data = FileHandler.readFile("presentation_confirmation.txt");
+        for (String line : data) {
+            String[] list = line.split(";");
+            if(list[1].equals(user.getUserID())){
+                x = 1;
+            }
+        }
         if (x == 0) {
             int index = jTabbedPane1.indexOfComponent(confirmPresentationPanel);
             jTabbedPane1.removeTabAt(index);
@@ -1368,6 +1438,64 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
         presentationRequestTable.getColumnModel().getColumn(5).setCellRenderer(panel.new rPanelActionRenderer());
         presentationRequestTable.getColumnModel().getColumn(5).setCellEditor(panel.new TableActionCellEditor(event));
     }
+    
+    private String[] getSupervisorAndSecondMarkerNames(String supervisorId, String secondMarkerId) {
+        String[] names = new String[2];
+        String fileName = "user.txt";
+        List<String> data = FileHandler.readFile(fileName);
+        for (String line : data) {
+            String[] list = line.split(";");
+            if (list.length >= 11) {
+                String id = list[0].trim();
+                if (id.equalsIgnoreCase(supervisorId)) {
+                    names[0] = list[1].trim(); // Supervisor name
+                } else if (id.equalsIgnoreCase(secondMarkerId)) {
+                    names[1] = list[1].trim(); // Second Marker name
+                }
+            }
+        }
+
+        return names;
+    }
+    
+    private void showPresentationConfirmationDetails(){
+        List<String> data = FileHandler.readFile("presentation_confirmation.txt");
+        List<String> assessmentDate = FileHandler.readFile("assessment.txt");
+        presentationStatus.setOpaque(true); // Make the label opaque
+        presentationStatus.setHorizontalAlignment(SwingConstants.CENTER); // Center the text
+        for (String line: data){
+            String[]list = line.split(";");
+            if(list[1].equals(user.getUserID())){
+                persentationDate.setText(list[3]);
+                switch (list[5]) {
+                    case "scheduled" -> {
+                        presentationStatus.setText("Scheduled");
+                        presentationStatus.setBackground(new Color(0x1B3D60));
+                    }
+                    case "completed" -> {
+                        presentationStatus.setText("Completed");
+                        presentationStatus.setBackground(new Color(0x1B6047));
+                    }
+                }
+                if(list[4].trim().isEmpty()){
+                    presentationFeedback.setText("-");
+                }else{
+                    presentationFeedback.setText("<html>" + list[4] + "</html>");
+                }
+            }
+        }
+        for (String assessmentLine: assessmentDate){
+            String[]assessmentList = assessmentLine.split(";");
+            if(assessmentList[0].equals(assessmentID)){
+                String supervisorId = assessmentList[4].trim(); // Supervisor ID
+                String secondMarkerId = assessmentList[5].trim(); // Second Marker ID
+                String[] names = getSupervisorAndSecondMarkerNames(supervisorId, secondMarkerId);
+                supervisorName.setText(names[0]);
+                secondMarkerName.setText(names[1]);
+            }
+        }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel assessment;
     private javax.swing.JLabel assessmentStatus;
@@ -1432,10 +1560,14 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
     private javax.swing.JLabel lastModified;
     private javax.swing.JButton modifyBtn;
     private javax.swing.JButton openBtn;
+    private javax.swing.JLabel persentationDate;
+    private javax.swing.JLabel presentationFeedback;
     private javax.swing.JPanel presentationPanel;
     private javax.swing.JTable presentationRequestTable;
+    private javax.swing.JLabel presentationStatus;
     private javax.swing.JButton requestButton;
     private javax.swing.JButton resubmitBtn;
+    private javax.swing.JLabel secondMarkerName;
     private javax.swing.JLabel studentEcSubmission;
     private javax.swing.JPanel studentHeader;
     private javax.swing.JLabel studentLogo;
@@ -1444,5 +1576,6 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
     private javax.swing.JLabel studentProfile;
     private javax.swing.JLabel submissionLink;
     private javax.swing.JButton submitBtn;
+    private javax.swing.JLabel supervisorName;
     // End of variables declaration//GEN-END:variables
 }
