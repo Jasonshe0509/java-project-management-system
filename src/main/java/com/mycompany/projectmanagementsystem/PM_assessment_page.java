@@ -4,6 +4,8 @@
  */
 package com.mycompany.projectmanagementsystem;
 
+import com.mycompany.projectmanagementsystem.Assessment.AssessmentController;
+import com.mycompany.projectmanagementsystem.Assessment.AssessmentTableActionEvent;
 import com.mycompany.projectmanagementsystem.GeneralFunction.FileHandler;
 import com.mycompany.projectmanagementsystem.GeneralFunction.SessionManager;
 import com.mycompany.projectmanagementsystem.User.User;
@@ -16,6 +18,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
@@ -42,9 +45,54 @@ public class PM_assessment_page extends javax.swing.JFrame {
         populateComboBox();
         readAssessmentFromFile();
         assessmentType();
+        
         DefaultTableModel model = (DefaultTableModel) pm_assessment_table.getModel();
         rowSorter = new TableRowSorter<>(model);
         pm_assessment_table.setRowSorter(rowSorter);
+        setupTable();
+    }
+    
+    private void setupTable() {
+        PM_assessment_ActionPanel action = new PM_assessment_ActionPanel();
+        AssessmentTableActionEvent event = new AssessmentTableActionEvent() {
+            @Override
+            public void assessment_Delete(int row, Object value) {
+                DefaultTableModel model = (DefaultTableModel) pm_assessment_table.getModel();
+                int columnIndex = 0;
+                String assessmentID = (String) model.getValueAt(row, columnIndex);
+                AssessmentController action = new AssessmentController();
+                boolean result = action.assessment_Delete(assessmentID);
+                if (result) {
+                    JOptionPane.showMessageDialog(null, "Assessment successfully deleted");
+                    PM_assessment_page assessmentPage = new PM_assessment_page(assessmentType);
+                    assessmentPage.setVisible(true);
+                    assessmentPage.dispose();
+                }
+            }
+        
+            @Override
+            public void assessment_Edit(int row, Object value) {
+                DefaultTableModel model = (DefaultTableModel) pm_assessment_table.getModel();
+               
+                    if (row >= 0 && row < model.getRowCount()) {
+                        String assessmentID = (String) model.getValueAt(row, 0); 
+
+                        PM_assessment_edit edit = new PM_assessment_edit(assessmentType, assessmentID);
+                        edit.setVisible(true); 
+                        PM_assessment_page.this.dispose(); 
+                    }
+
+            }
+            
+
+            @Override
+            public void assessment_Report(int row, Object value) {
+            }
+        };
+        
+
+        pm_assessment_table.getColumnModel().getColumn(7).setCellRenderer(action.new rPanelActionRenderer());
+        pm_assessment_table.getColumnModel().getColumn(7).setCellEditor(action.new TableActionCellEditor(event));
     }
 
     private void assessmentType() {
@@ -205,22 +253,6 @@ public class PM_assessment_page extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null}
             },
             new String [] {
@@ -228,14 +260,20 @@ public class PM_assessment_page extends javax.swing.JFrame {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
+        pm_assessment_table.setRowHeight(40);
         jScrollPane1.setViewportView(pm_assessment_table);
+        if (pm_assessment_table.getColumnModel().getColumnCount() > 0) {
+            pm_assessment_table.getColumnModel().getColumn(7).setMinWidth(170);
+            pm_assessment_table.getColumnModel().getColumn(7).setPreferredWidth(170);
+            pm_assessment_table.getColumnModel().getColumn(7).setMaxWidth(170);
+        }
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 970, 470));
 

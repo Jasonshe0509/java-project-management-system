@@ -329,8 +329,8 @@ public class PM_register_assessment_create extends javax.swing.JFrame {
         readAssessmentFromFile();
         
         // Navigate back to the assessment page
-        PM_assessment_page assessmentPage = new PM_assessment_page(assessmentType);
-        assessmentPage.setVisible(true);
+        PM_assessment_page assessment = new PM_assessment_page(assessmentType);
+        assessment.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_create_jButton2ActionPerformed
 

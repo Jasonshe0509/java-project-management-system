@@ -4,18 +4,49 @@
  */
 package com.mycompany.projectmanagementsystem;
 
+import com.mycompany.projectmanagementsystem.Assessment.AssessmentController;
 import java.awt.Toolkit;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author shuhuilee
  */
 public class PM_assessment_edit extends javax.swing.JFrame {
+    private final String assessmentType;
+    private final String assessmentID;
 
-    public PM_assessment_edit() {
+    public PM_assessment_edit(String assessmentType, String assessmentID) {
         initComponents();
         setIconImage();
+        populateLecturers();
+        this.assessmentType = assessmentType;
+        this.assessmentID = assessmentID;
+        
     }
+    private void populateLecturers() {
+            String fileName = "user.txt";
+            try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+                String line;
+                while ((line = br.readLine()) != null) {
+                    String[] list = line.split(";");
+                    if (list.length > 10 && list[10].equalsIgnoreCase("lecturer")) {
+                        String userIdAndName = list[0] + " - " + list[1]; // Concatenate user ID and name
+                        supervisorName.addItem(userIdAndName);
+                        secondmarker_name.addItem(userIdAndName);
+                    }
+                }
+            } catch (IOException ex) {
+                System.out.println("Error reading file: " + ex.getMessage());
+            }
+        }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -30,16 +61,15 @@ public class PM_assessment_edit extends javax.swing.JFrame {
         supervisor_name = new javax.swing.JLabel();
         second_maker_name = new javax.swing.JLabel();
         duedate = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jComboBox3 = new javax.swing.JComboBox<>();
-        jTextField5 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        supervisorName = new javax.swing.JComboBox<>();
+        secondmarker_name = new javax.swing.JComboBox<>();
+        sava_button = new javax.swing.JButton();
+        back_button = new javax.swing.JButton();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Edit assessment");
-        setMaximumSize(new java.awt.Dimension(500, 300));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -60,43 +90,40 @@ public class PM_assessment_edit extends javax.swing.JFrame {
         duedate.setText("Duedate：");
         getContentPane().add(duedate, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 90, -1));
 
-        jComboBox2.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jComboBox2.setMaximumSize(new java.awt.Dimension(64, 28));
-        jComboBox2.setMinimumSize(new java.awt.Dimension(64, 28));
-        jComboBox2.setPreferredSize(new java.awt.Dimension(64, 28));
-        getContentPane().add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 60, 210, -1));
+        supervisorName.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        supervisorName.setMaximumSize(new java.awt.Dimension(64, 28));
+        supervisorName.setMinimumSize(new java.awt.Dimension(64, 28));
+        supervisorName.setPreferredSize(new java.awt.Dimension(64, 28));
+        getContentPane().add(supervisorName, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 60, 210, -1));
 
-        jComboBox3.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jComboBox3.setMaximumSize(new java.awt.Dimension(64, 28));
-        jComboBox3.setMinimumSize(new java.awt.Dimension(64, 28));
-        jComboBox3.setPreferredSize(new java.awt.Dimension(64, 28));
-        getContentPane().add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 120, 210, -1));
+        secondmarker_name.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        secondmarker_name.setMaximumSize(new java.awt.Dimension(64, 28));
+        secondmarker_name.setMinimumSize(new java.awt.Dimension(64, 28));
+        secondmarker_name.setPreferredSize(new java.awt.Dimension(64, 28));
+        getContentPane().add(secondmarker_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 120, 210, -1));
 
-        jTextField5.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jTextField5.setMaximumSize(new java.awt.Dimension(64, 28));
-        getContentPane().add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 180, 210, -1));
-
-        jButton2.setBackground(new java.awt.Color(76, 127, 174));
-        jButton2.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Save");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        sava_button.setBackground(new java.awt.Color(76, 127, 174));
+        sava_button.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        sava_button.setForeground(new java.awt.Color(255, 255, 255));
+        sava_button.setText("Save");
+        sava_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                sava_buttonActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 250, -1, -1));
+        getContentPane().add(sava_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 250, -1, -1));
 
-        jButton3.setBackground(new java.awt.Color(76, 127, 174));
-        jButton3.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Back");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        back_button.setBackground(new java.awt.Color(76, 127, 174));
+        back_button.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        back_button.setForeground(new java.awt.Color(255, 255, 255));
+        back_button.setText("Back");
+        back_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                back_buttonActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 250, -1, -1));
+        getContentPane().add(back_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 250, -1, -1));
+        getContentPane().add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 180, 210, 30));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main_background.png"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -109,13 +136,52 @@ public class PM_assessment_edit extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void sava_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sava_buttonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+        String supervisor = (String) supervisorName.getSelectedItem();
+        String secondMarker = (String) secondmarker_name.getSelectedItem();
+        Date dueDate = jDateChooser1.getDate();
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String formattedDueDate = dateFormat.format(dueDate);
+        
+        // Extract only the ID
+        String supervisorID = supervisor.split(" - ")[0]; // Extract supervisor ID
+        String secondMarkerID = secondMarker.split(" - ")[0]; // Extract second marker ID
+        
+        // Check if the due date is later than the current date
+        Calendar currentDate = Calendar.getInstance();
+        currentDate.add(Calendar.DAY_OF_MONTH, 5); // Add 5 days
+        Date minDueDate = currentDate.getTime();
+
+        if (dueDate.before(minDueDate)) {
+            JOptionPane.showMessageDialog(null, "Due date must be at least 5 days later than today.", "Error", JOptionPane.ERROR_MESSAGE);
+            return; 
+        }
+        
+        AssessmentController controller = new AssessmentController();
+        boolean updateSuccessful = controller.assessment_Edit(assessmentID,supervisorID,secondMarkerID,formattedDueDate);
+        
+        
+        if (updateSuccessful) {
+            JOptionPane.showMessageDialog(null, "Assessment details saved successfully");
+        } else {
+            JOptionPane.showMessageDialog(null, "Failed to save assessment details. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
+            return; // Stop further execution if the update failed
+        }
+        
+        PM_assessment_page assessmentPage = new PM_assessment_page(assessmentType);
+        assessmentPage.setVisible(true);
+        dispose();
+      
+    }//GEN-LAST:event_sava_buttonActionPerformed
+
+    private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_buttonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+        PM_assessment_page assessment = new PM_assessment_page(assessmentType);
+        assessment.setVisible(true);
+        this.dispose(); 
+    }//GEN-LAST:event_back_buttonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -148,7 +214,9 @@ public class PM_assessment_edit extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PM_assessment_edit().setVisible(true);
+                String assessmentType = "type"; 
+                String assessmentID = "ID"; 
+                new PM_assessment_edit(assessmentType, assessmentID).setVisible(true);
             }
         });
     }
@@ -157,15 +225,15 @@ public class PM_assessment_edit extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton back_button;
     private javax.swing.JLabel duedate;
     private javax.swing.JLabel ec_edit_assessment;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField jTextField5;
+    private javax.swing.JButton sava_button;
     private javax.swing.JLabel second_maker_name;
+    private javax.swing.JComboBox<String> secondmarker_name;
+    private javax.swing.JComboBox<String> supervisorName;
     private javax.swing.JLabel supervisor_name;
     // End of variables declaration//GEN-END:variables
 }
