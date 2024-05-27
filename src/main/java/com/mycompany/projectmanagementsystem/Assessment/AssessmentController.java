@@ -82,4 +82,101 @@ public class AssessmentController implements StudentAssessmentController {
         }
         return false;
     }
+    
+    public boolean spvReportDone(String stdID, String newStatus) {
+        List<String> data = FileHandler.readFile("student_assessment.txt");
+        ArrayList<String> updatedData = new ArrayList<>();
+        boolean updateStatus = false; // Flag to determine if the status can be updated
+        int spvMark;
+        int secMarkerMark;
+        int resubmissionCount;
+
+        for (String line : data) {
+            String[] list = line.split(";");
+            if (list[1].equals(stdID)) {
+                if (!list[9].isEmpty() && !list[10].isEmpty()) { // Validate if both marks are given
+                    // Take the higher mark to assign grade
+                    spvMark = Integer.parseInt(list[9]);
+                    secMarkerMark = Integer.parseInt(list[10]);
+                    resubmissionCount = Integer.parseInt(list[11]);
+                    int higherMark = Math.max(spvMark, secMarkerMark);
+                    String grade = assignGrade(stdID, higherMark, resubmissionCount);
+                    list[8] = grade;
+                    // Mark status as 'marked'
+                    list[6] = newStatus;
+                    line = String.join(";", list);
+                    updateStatus = true;
+                } else if (!list[9].isEmpty() && list[10].isEmpty()) {
+                    JOptionPane.showMessageDialog(null,
+                            "Successfully marked as done. Pending supervisor's grading.");
+                    return true;
+                } else {
+                    JOptionPane.showMessageDialog(null,
+                            "Supervisee (" + stdID + ") cannot be marked as done because both markers have not submitted their marks.", "Message", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+            updatedData.add(line);
+        }
+
+        if (updateStatus) {
+            FileHandler.modifyFileData("student_assessment.txt", updatedData);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean secMarkReportDone(String stdID, String newStatus) {
+        List<String> data = FileHandler.readFile("student_assessment.txt");
+        ArrayList<String> updatedData = new ArrayList<>();
+        boolean updateStatus = false; // Flag to determine if the status can be updated
+        int spvMark;
+        int secMarkerMark;
+        int resubmissionCount;
+
+        for (String line : data) {
+            String[] list = line.split(";");
+            
+            if (list[1].equals(stdID)) {
+                if (!list[9].isEmpty() && !list[10].isEmpty()) { // Validate if both marks are given
+                    // Take the higher mark to assign grade
+                    spvMark = Integer.parseInt(list[9]);
+                    secMarkerMark = Integer.parseInt(list[10]);
+                    resubmissionCount = Integer.parseInt(list[11]);
+                    int higherMark = Math.max(spvMark, secMarkerMark);
+                    String grade = assignGrade(stdID, higherMark, resubmissionCount);
+                    list[8] = grade;
+                    // Mark status as 'marked'
+                    list[6] = newStatus;
+                    line = String.join(";", list);
+                    updateStatus = true;
+                } else if (!list[10].isEmpty() && list[9].isEmpty()) {
+                    JOptionPane.showMessageDialog(null,
+                            "Successfully marked as done. Pending supervisor's grading.");
+                    return true;
+                } else {
+                    JOptionPane.showMessageDialog(null,
+                            "Supervisee (" + stdID + ") cannot be marked as done because both markers have not submitted their marks.", "Message", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+            updatedData.add(line);
+        }
+
+        if (updateStatus) {
+            FileHandler.modifyFileData("student_assessment.txt", updatedData);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private String assignGrade(String stdID, int mark, int count) {
+        if (count >= 2) {
+            if (mark >= 50) return "Pass with Small Changes";
+            return null;
+        } else {
+            if (mark >= 50) return "Pass";
+            return "Fail";
+        }
+        }
 }
