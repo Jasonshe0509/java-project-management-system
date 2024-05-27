@@ -40,6 +40,7 @@ com\mycompany\projectmanagementsystem\StudentPresentationActionPanel$1.class
 com\mycompany\projectmanagementsystem\LecturerComm_CreateMessage.class
 com\mycompany\projectmanagementsystem\ProjectManagerPage$1.class
 com\mycompany\projectmanagementsystem\admin_view_lec_details$10.class
+com\mycompany\projectmanagementsystem\StudentAssessmentDetailPage$21.class
 com\mycompany\projectmanagementsystem\admin_student_management$5.class
 com\mycompany\projectmanagementsystem\User\UserController.class
 com\mycompany\projectmanagementsystem\PM_register_assessment_create$3.class

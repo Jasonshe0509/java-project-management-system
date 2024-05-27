@@ -27,6 +27,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -37,10 +38,14 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.LayoutStyle;
+import javax.swing.RowFilter;
 import javax.swing.SwingConstants;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -84,6 +89,8 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
         showPresentationConfirmationDetails();
         showCreateDiscussionBtn();
         readFromCommunicationChannel();
+        readUserFromFile();
+        liveSearch();
         int index1 = jTabbedPane1.indexOfComponent(replyCommunicationScrollPanel);
         jTabbedPane1.removeTabAt(index1);
     }
@@ -156,10 +163,10 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
         selectedSubject = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jPanel15 = new javax.swing.JPanel();
-        ecReasonField1 = new javax.swing.JTextField();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        search = new javax.swing.JTextField();
+        roleComboBox = new javax.swing.JComboBox<>();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
+        peopleTable = new javax.swing.JTable();
         studentHeader = new javax.swing.JPanel();
         studentLogo = new javax.swing.JLabel();
         studentEcSubmission = new javax.swing.JLabel();
@@ -869,22 +876,27 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Communication", replyCommunicationScrollPanel);
 
-        ecReasonField1.setText("Search.....");
-        ecReasonField1.setMaximumSize(new java.awt.Dimension(335, 40));
-        ecReasonField1.setMinimumSize(new java.awt.Dimension(335, 40));
-        ecReasonField1.setPreferredSize(new java.awt.Dimension(335, 40));
-        ecReasonField1.addActionListener(new java.awt.event.ActionListener() {
+        search.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        search.setForeground(new java.awt.Color(2, 50, 99));
+        search.setMaximumSize(new java.awt.Dimension(335, 40));
+        search.setMinimumSize(new java.awt.Dimension(335, 40));
+        search.setPreferredSize(new java.awt.Dimension(335, 40));
+        search.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ecReasonField1ActionPerformed(evt);
+                searchActionPerformed(evt);
             }
         });
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox2.setMaximumSize(new java.awt.Dimension(335, 40));
-        jComboBox2.setMinimumSize(new java.awt.Dimension(335, 40));
-        jComboBox2.setPreferredSize(new java.awt.Dimension(335, 40));
+        roleComboBox.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        roleComboBox.setForeground(new java.awt.Color(2, 50, 99));
+        roleComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "none", "student", "supervisor", "second marker" }));
+        roleComboBox.setMaximumSize(new java.awt.Dimension(335, 40));
+        roleComboBox.setMinimumSize(new java.awt.Dimension(335, 40));
+        roleComboBox.setPreferredSize(new java.awt.Dimension(335, 40));
 
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        peopleTable.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
+        peopleTable.setForeground(new java.awt.Color(2, 50, 99));
+        peopleTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -895,7 +907,8 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
                 "ID", "Name", "Role"
             }
         ));
-        jScrollPane5.setViewportView(jTable3);
+        peopleTable.setRowHeight(30);
+        jScrollPane5.setViewportView(peopleTable);
 
         javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
         jPanel15.setLayout(jPanel15Layout);
@@ -906,9 +919,9 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
                 .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 894, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel15Layout.createSequentialGroup()
-                        .addComponent(ecReasonField1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(search, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(roleComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
         jPanel15Layout.setVerticalGroup(
@@ -916,8 +929,8 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
             .addGroup(jPanel15Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ecReasonField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(search, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(roleComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(85, Short.MAX_VALUE))
@@ -936,7 +949,7 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 578, Short.MAX_VALUE)
+            .addGap(0, 579, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -1094,9 +1107,9 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
         requestPage.setVisible(true);
     }//GEN-LAST:event_requestButtonActionPerformed
 
-    private void ecReasonField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ecReasonField1ActionPerformed
+    private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_ecReasonField1ActionPerformed
+    }//GEN-LAST:event_searchActionPerformed
 
     private void studentEcSubmissionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_studentEcSubmissionMouseClicked
         StudentEcSubmissionPage ecPage = new StudentEcSubmissionPage();
@@ -1616,7 +1629,7 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
 
             }
         }
-        
+
         // Ensure jPanel13 uses GridBagLayout
         jPanel13.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -1769,6 +1782,101 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
         details.selectCommunicationPanel(number, ID);
         this.setVisible(false);
     }
+
+    private void readUserFromFile() {
+        DefaultTableModel model = (DefaultTableModel) peopleTable.getModel();
+        model.setRowCount(0); // Clear existing rows
+        List<String> data = FileHandler.readFile("assessment.txt");
+        for (String line : data) {
+            String[] list = line.split(";");
+            if (list[0].equals(assessmentID)) {
+                String[] names = getSupervisorAndSecondMarkerNames(list[4], list[5]);
+                String[] supevisorRecord = {
+                    list[4],
+                    names[0],
+                    "supervisor"
+                };
+                String[] secondMarkerRecord = {
+                    list[5],
+                    names[1],
+                    "second marker"
+                };
+                model.addRow(supevisorRecord);
+                model.addRow(secondMarkerRecord);
+                break;
+            }
+        }
+        List<String> studentAssessmentData = FileHandler.readFile("student_assessment.txt");
+        for (String studentAssessmentline : studentAssessmentData) {
+            String[] studentAssessmentList = studentAssessmentline.split(";");
+            if (studentAssessmentList[2].equals(assessmentID)) {
+                List<String> userData = FileHandler.readFile("user.txt");
+                for (String userLine : userData) {
+                    String[] userList = userLine.split(";");
+                    if (userList[0].equals(studentAssessmentList[1])) {
+                        String[] studentRecord = {
+                            userList[0],
+                            userList[1],
+                            "student"
+                        };
+                        model.addRow(studentRecord);
+                    }
+                }
+            }
+        }
+    }
+
+    private void liveSearch() {
+        // Add ActionListener to the roleComboBox for filtering when the selection changes
+        roleComboBox.addActionListener(e -> filterTable());
+
+        // Add DocumentListener to the search JTextField for live search as the user types
+        search.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                filterTable();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                filterTable();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                filterTable();
+            }
+        });
+    }
+
+    // Method to filter the table based on search text and selected role
+    private void filterTable() {
+        String searchText = search.getText().toLowerCase();
+        String selectedRole = roleComboBox.getSelectedItem().toString().toLowerCase();
+        DefaultTableModel model = (DefaultTableModel) peopleTable.getModel();
+        TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(model);
+        peopleTable.setRowSorter(sorter);
+
+        List<RowFilter<Object, Object>> filters = new ArrayList<>(2);
+
+        // Add filter for search text if it is not empty
+        if (searchText.trim().length() > 0) {
+            filters.add(RowFilter.regexFilter("(?i)" + searchText, 1));
+        }
+
+        // Add filter for selected role if it is not "None"
+        if (!selectedRole.equals("none")) {
+            filters.add(RowFilter.regexFilter("(?i)" + selectedRole, 2));
+        }
+
+        // Apply the filters
+        if (filters.isEmpty()) {
+            sorter.setRowFilter(null);
+        } else {
+            sorter.setRowFilter(RowFilter.andFilter(filters));
+        }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel assessment;
     private javax.swing.JLabel assessmentStatus;
@@ -1781,10 +1889,8 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
     private javax.swing.JLabel createdMessage;
     private javax.swing.JLabel createdName;
     private javax.swing.JLabel dueDate;
-    private javax.swing.JTextField ecReasonField1;
     private javax.swing.JTextArea feedback;
     private javax.swing.JLabel gradeStatus;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1819,9 +1925,9 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable3;
     private javax.swing.JLabel lastModified;
     private javax.swing.JButton modifyBtn;
+    private javax.swing.JTable peopleTable;
     private javax.swing.JLabel persentationDate;
     private javax.swing.JLabel presentationFeedback;
     private javax.swing.JPanel presentationPanel;
@@ -1831,6 +1937,8 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
     private javax.swing.JScrollPane replyCommunicationScrollPanel;
     private javax.swing.JButton requestButton;
     private javax.swing.JButton resubmitBtn;
+    private javax.swing.JComboBox<String> roleComboBox;
+    private javax.swing.JTextField search;
     private javax.swing.JLabel secondMarkerName;
     private javax.swing.JLabel selectedSubject;
     private javax.swing.JLabel studentEcSubmission;
