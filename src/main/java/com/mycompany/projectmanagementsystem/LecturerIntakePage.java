@@ -4,19 +4,21 @@
  */
 package com.mycompany.projectmanagementsystem;
 
+import com.mycompany.projectmanagementsystem.Assessment.AssessmentController;
 import com.mycompany.projectmanagementsystem.GeneralFunction.FileHandler;
 import com.mycompany.projectmanagementsystem.GeneralFunction.SessionManager;
+import com.mycompany.projectmanagementsystem.Assessment.LecReportTableActionEvent;
 import com.mycompany.projectmanagementsystem.Presentation.PresentationController;
 import com.mycompany.projectmanagementsystem.Presentation.PresentationTableActionEvent;
 import com.mycompany.projectmanagementsystem.User.User;
 import com.mycompany.projectmanagementsystem.User.UserController;
 import com.mycompany.projectmanagementsystem.lect_PresentationPanelAction.PanelActionRenderer;
+import com.mycompany.projectmanagementsystem.lect_PresentationPanelAction.TableActionCellEditor;
 import com.mycompany.projectmanagementsystem.lect_ReportPanelAction.rPanelActionRenderer;
 import java.awt.Toolkit;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -69,6 +71,7 @@ public class LecturerIntakePage extends javax.swing.JFrame {
         showPeopleInfo();
         showPresentation();
         readPresentationFromFile();
+        showReport();
         
         // Set preferred width for each column in presentation tab
         int[] columnWidths1 = {100, 170, 170, 200, 170}; 
@@ -80,9 +83,9 @@ public class LecturerIntakePage extends javax.swing.JFrame {
         
         // Set preferred width for each column in report tab
         int[] columnWidths2 = {110, 160, 190, 150, 110, 170}; 
-        int numColumns2 = jTable2.getColumnCount();
+        int numColumns2 = reportTable.getColumnCount();
         for (int i = 0; i < numColumns2; i++) {
-            TableColumn column = jTable2.getColumnModel().getColumn(i);
+            TableColumn column = reportTable.getColumnModel().getColumn(i);
             column.setPreferredWidth(columnWidths2[i]);
         }
         
@@ -107,19 +110,17 @@ public class LecturerIntakePage extends javax.swing.JFrame {
             SchdPresentationTable.getColumnModel().getColumn(i).setCellRenderer(new WhiteBackgroundRenderer());            
         }
         
-        for (int i = 0; i < jTable2.getColumnCount(); i++) {
-            jTable2.getColumnModel().getColumn(i).setCellRenderer(new WhiteBackgroundRenderer());           
+        for (int i = 0; i < reportTable.getColumnCount(); i++) {
+            reportTable.getColumnModel().getColumn(i).setCellRenderer(new WhiteBackgroundRenderer());           
         }
         
         SchdPresentationTable.getTableHeader().setFont(new Font("SansSerif", Font.BOLD, 16));
         SchdPresentationTable.getTableHeader().setForeground(new Color(2, 50, 99));
         ((DefaultTableCellRenderer)SchdPresentationTable.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
         
-        lect_ReportPanelAction rpanel = new lect_ReportPanelAction();
-        jTable2.getColumnModel().getColumn(5).setCellRenderer(rpanel.new rPanelActionRenderer());
-        jTable2.getTableHeader().setFont(new Font("SansSerif", Font.BOLD, 14));
-        jTable2.getTableHeader().setForeground(new Color(2, 50, 99));
-        ((DefaultTableCellRenderer)jTable2.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
+        reportTable.getTableHeader().setFont(new Font("SansSerif", Font.BOLD, 14));
+        reportTable.getTableHeader().setForeground(new Color(2, 50, 99));
+        ((DefaultTableCellRenderer)reportTable.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
         //end of table properties codes
         
         lect_PresentationPanelAction ppanel = new lect_PresentationPanelAction();
@@ -172,11 +173,87 @@ public class LecturerIntakePage extends javax.swing.JFrame {
         };
         SchdPresentationTable.getColumnModel().getColumn(4).setCellRenderer(ppanel.new PanelActionRenderer());
         SchdPresentationTable.getColumnModel().getColumn(4).setCellEditor(ppanel.new TableActionCellEditor(event));
-
-    }
-    
         
+        lect_ReportPanelAction rpanel = new lect_ReportPanelAction();
+        LecReportTableActionEvent rptevent = new LecReportTableActionEvent() {
+            @Override
+            public void reportGrading(int row, Object value) {
+                List<String> data = FileHandler.readFile("student_assessment.txt");
 
+                DefaultTableModel model = (DefaultTableModel) reportTable.getModel();
+                String stdID = (String) model.getValueAt(row, 0);
+                String name = (String) model.getValueAt(row, 1);
+                String subLink = null;
+
+                for (String line : data) {
+                    String[] list = line.split(";");
+                    if (list[1].equals(stdID)) {
+                        subLink = list[4]; 
+                        break;
+                    }
+                }
+
+                if (subLink != null) {
+                    LecturerReportGrading markReport = new LecturerReportGrading(AssmntID, stdID, name, subLink);
+                    markReport.setVisible(true);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Submission link not found for student ID: " + stdID);
+                }
+            }
+            
+            @Override
+            public void reportDone(int row, Object value) {
+                List<String> data = FileHandler.readFile("assessment.txt");
+                List<String> assmntdata = FileHandler.readFile("student_assessment.txt");
+
+                DefaultTableModel model = (DefaultTableModel) reportTable.getModel();
+                int columnIndex = 0;
+                String stdID = (String) model.getValueAt(row, columnIndex);
+                AssessmentController action = new AssessmentController();
+                boolean found = false;
+
+                for (String line : data) {
+                    String[] list = line.split(";");
+                    if (AssmntID.equals(list[0])) {
+                        if (user.getUserID().equals(list[4])) { // Supervisor
+                            for (String assmntline : assmntdata) {
+                                String[] assmntlist = assmntline.split(";");
+                                if (stdID.equals(assmntlist[1])) {
+                                    boolean result = action.spvReportDone(stdID, "marked");
+                                    if (result && !assmntlist[9].isEmpty()) {
+                                        model.removeRow(row);
+                                    }
+                                    found = true;
+                                    break;
+                                }
+                            }
+                            break;
+                        } else if (user.getUserID().equals(list[5])) { // Second Marker
+                            for (String assmntline : assmntdata) {
+                                String[] assmntlist = assmntline.split(";");
+                                if (stdID.equals(assmntlist[1])) {
+                                    boolean result = action.secMarkReportDone(stdID, "marked");
+                                    if (result && !assmntlist[10].isEmpty()) {
+                                        model.removeRow(row);
+                                    }
+                                    found = true;
+                                    break;
+                                }
+                            }
+                            break;
+                        }
+                    }
+                }
+
+                if (!found) {
+                    JOptionPane.showMessageDialog(null, "No matching record found for the given assessment ID and user ID", "Message", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+        };
+            reportTable.getColumnModel().getColumn(5).setCellRenderer(rpanel.new rPanelActionRenderer());
+            reportTable.getColumnModel().getColumn(5).setCellEditor(rpanel.new TableActionCellEditor(rptevent));
+    }
+         
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -217,7 +294,7 @@ public class LecturerIntakePage extends javax.swing.JFrame {
         jLabel22 = new javax.swing.JLabel();
         jPanel15 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        reportTable = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
         jPanel12 = new javax.swing.JPanel();
         commChannelPanel = new javax.swing.JPanel();
@@ -543,12 +620,10 @@ public class LecturerIntakePage extends javax.swing.JFrame {
             }
         });
         SchdPresentationTable.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        SchdPresentationTable.setGridColor(new java.awt.Color(0, 0, 0));
         SchdPresentationTable.setRowHeight(30);
         SchdPresentationTable.setSelectionBackground(new java.awt.Color(204, 204, 204));
         SchdPresentationTable.setSelectionForeground(new java.awt.Color(2, 50, 99));
         SchdPresentationTable.setShowGrid(false);
-        SchdPresentationTable.setShowHorizontalLines(true);
         SchdPresentationTable.getTableHeader().setResizingAllowed(false);
         SchdPresentationTable.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(SchdPresentationTable);
@@ -611,41 +686,31 @@ public class LecturerIntakePage extends javax.swing.JFrame {
 
         jPanel15.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTable2.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
-        jTable2.setForeground(new java.awt.Color(2, 50, 99));
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        reportTable.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
+        reportTable.setForeground(new java.awt.Color(2, 50, 99));
+        reportTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
-                "Supervisee ID", "Name", "Submission Date", "EC Status", "Resubmission", "Action"
+                "Supervisee ID", "Name", "Submission Datetime", "EC Status", "Resubmission", "Action"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jTable2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jTable2.setGridColor(new java.awt.Color(0, 0, 0));
-        jTable2.setRowHeight(30);
-        jTable2.setSelectionBackground(new java.awt.Color(204, 204, 204));
-        jTable2.setSelectionForeground(new java.awt.Color(2, 50, 99));
-        jTable2.setShowGrid(false);
-        jTable2.setShowHorizontalLines(true);
-        jTable2.getTableHeader().setReorderingAllowed(false);
-        jScrollPane2.setViewportView(jTable2);
+        reportTable.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        reportTable.setRowHeight(30);
+        reportTable.setSelectionBackground(new java.awt.Color(204, 204, 204));
+        reportTable.setSelectionForeground(new java.awt.Color(2, 50, 99));
+        reportTable.setShowGrid(false);
+        reportTable.getTableHeader().setReorderingAllowed(false);
+        jScrollPane2.setViewportView(reportTable);
 
         javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
         jPanel15.setLayout(jPanel15Layout);
@@ -1160,6 +1225,107 @@ public class LecturerIntakePage extends javax.swing.JFrame {
         request.setVisible(true);
         this.setVisible(false);
     }
+    
+    private void showReport(){
+        String fileNamex = "student_assessment.txt";
+        String fileNamey = "assessment.txt";
+        String fileNamez = "user.txt";
+        String fileNamea = "ec.txt";
+
+        DefaultTableModel model = (DefaultTableModel) reportTable.getModel();
+        model.setRowCount(0); // Clear existing rows
+
+        List<String> datax = FileHandler.readFile(fileNamex);
+        List<String> datay = FileHandler.readFile(fileNamey);
+        List<String> dataz = FileHandler.readFile(fileNamez);
+        List<String> dataa = FileHandler.readFile(fileNamea);
+        
+        // Map to store studentID to studentName
+        Map<String, String> studentNames = new HashMap<>();
+        for (String linez : dataz) {
+            String[] listz = linez.split(";");
+            String studentID = listz[0];
+            String studentName = listz[1];
+            studentNames.put(studentID, studentName);
+        }
+        
+        // Map to store studentID to EC status
+        Map<String, String> ecStatus = new HashMap<>();
+        for (String linea : dataa) {
+            String[] lista = linea.split(";");
+            String studentID = lista[0];
+            boolean hasEC = Boolean.parseBoolean(lista[1]);
+            String ecStatusString = hasEC ? "Approved" : "None";
+            ecStatus.put(studentID, ecStatusString);
+        }
+        
+        // Set to track added rows to avoid duplication
+        Set<String> addedRows = new HashSet<>();
+        
+        for (String linex : datax) {
+            String[] listx = linex.split(";");
+            String studentID = listx[1];
+            String assessmentID = listx[2];
+            String submissionDate = listx[5];
+            String resubmissionCount = listx[11];
+
+            if (studentID != null) {
+                String studentName = studentNames.get(studentID);
+                 String ecStatusString = ecStatus.getOrDefault(studentID, "None");
+                if (studentName != null) {
+                    for (String liney : datay) {
+                        String[] listy = liney.split(";");
+                        String currentAssessmentID = listy[0]; 
+                        if (currentAssessmentID.equals(assessmentID) && currentAssessmentID.equals(AssmntID)) {
+                            String spv = listy[4];
+                            String secMarker = listy[5];
+                            
+                            // Validate and adjust resubmissionCount
+                            int resubCount;
+                            try {
+                                resubCount = Integer.parseInt(resubmissionCount);
+                            } catch (NumberFormatException e) {
+                                resubCount = 0; // Default to 0 if parsing fails
+                            }
+
+                            if (resubCount < 2) {
+                                resubCount = 0;
+                            } else {
+                                resubCount -= 1;
+                            }
+                            String finalResubmissionCount = String.valueOf(resubCount);
+
+                            String rowIdentifier = studentID + "-" + assessmentID;
+                            if (!addedRows.contains(rowIdentifier)) {
+                                if (spv.equals(user.getUserID()) && !listx[4].isEmpty() && !"marked".equals(listx[6])) { // supervisor
+                                    String[] reorderedData = {
+                                        studentID,         // Supervisee ID
+                                        studentName,       // Supervisee Name
+                                        submissionDate,    // Submission Date
+                                        ecStatusString,   // EC Status                                        
+                                        finalResubmissionCount // Resubmission Count
+                                    };
+                                    model.addRow(reorderedData);
+                                    addedRows.add(rowIdentifier);
+                                } else if (secMarker.equals(user.getUserID()) && !listx[4].isEmpty() && !"marked".equals(listx[6])) { //second marker
+                                    String[] reorderedData = {
+                                        studentID,         // second marker ID
+                                        studentName,       // second marker Name
+                                        submissionDate,    // Submission Date
+                                        ecStatusString,   // EC Status                                        
+                                        finalResubmissionCount // Resubmission Count
+                                    };
+                                    model.addRow(reorderedData);
+                                    addedRows.add(rowIdentifier);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
     private void showCommChannel(){
         List<String> CommChannelData = FileHandler.readFile("communication_channel.txt");
         Collections.reverse(CommChannelData);
@@ -1270,25 +1436,28 @@ public class LecturerIntakePage extends javax.swing.JFrame {
                     
                     StatusLabel = new JLabel();
                     StatusLabel.setOpaque(true);
-                    StatusLabel.setText(AssmntList[6]);
                     StatusLabel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
                     StatusLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
                     switch (AssmntList[6]) {
                         case "pending" -> {
+                            StatusLabel.setText("in progress");
                             StatusLabel.setBackground(new java.awt.Color(255, 255, 0));                            
                         }
                         case "submitted" -> {
-                            StatusLabel.setBackground(new java.awt.Color(102, 255, 102));                            
+                            StatusLabel.setText("in progress");
+                            StatusLabel.setBackground(new java.awt.Color(255, 255, 0));                            
                         }
                         case "marked" -> {
-                            StatusLabel.setBackground(new java.awt.Color(0, 204, 0));                            
+                            StatusLabel.setText("completed");
+                            StatusLabel.setBackground(new java.awt.Color(102, 255, 102));                            
                         }
                     } 
                     
                     StdIDLabel = new JLabel();
                     StdIDLabel.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
                     StdIDLabel.setForeground(new java.awt.Color(2, 50, 99));
-                    StdIDLabel.setText(AssmntList[1]);
+                    String stdID = AssmntList[1];
+                    StdIDLabel.setText(stdID);
                     
                     StdNameLabel = new JLabel();
                     StdNameLabel.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
@@ -1302,7 +1471,8 @@ public class LecturerIntakePage extends javax.swing.JFrame {
                     PeopleViewBtn.setText("View");
                     PeopleViewBtn.addActionListener(new java.awt.event.ActionListener() {
                         public void actionPerformed(java.awt.event.ActionEvent evt) {
-                            
+                            LecturerPeopleProfile profile = new LecturerPeopleProfile(stdID);
+                            profile.setVisible(true);
                         }
                     });
 
@@ -1405,7 +1575,7 @@ public class LecturerIntakePage extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JTable reportTable;
     private javax.swing.JLabel syscoLogo;
     private javax.swing.JLabel viewPresentRqtLabel;
     // End of variables declaration//GEN-END:variables
