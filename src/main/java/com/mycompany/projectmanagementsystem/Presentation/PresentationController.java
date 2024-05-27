@@ -232,4 +232,28 @@ public class PresentationController {
         FileHandler.modifyFileData("presentation_request.txt", array_list);
         return true;
     }
+    
+    public boolean updateStudentPresentationIndex(String stdID, String feedback) {
+        List<String> data = FileHandler.readFile("presentation_confirmation.txt");
+        ArrayList<String> updatedData = new ArrayList<>();
+        boolean isUpdated = false;
+
+        for (String line : data) {
+            String[] list = line.split(";");
+            if (list[1].equals(stdID)) {
+                list[4] = feedback; // Update the feedback at index 5
+                line = String.join(";", list);
+                isUpdated = true;
+            }
+            updatedData.add(line);
+        }
+
+        if (isUpdated) {
+            FileHandler.modifyFileData("presentation_confirmation.txt", updatedData);
+            return true;
+        } else {
+            JOptionPane.showMessageDialog(null, "Student ID not found.", "Message", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+    }
 }

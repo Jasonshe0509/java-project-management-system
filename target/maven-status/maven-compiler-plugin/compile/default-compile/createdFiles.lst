@@ -149,7 +149,6 @@ com\mycompany\projectmanagementsystem\StudentPresentationActionPanel.class
 com\mycompany\projectmanagementsystem\IntakeTableActionPanel.class
 com\mycompany\projectmanagementsystem\admin_register_intake$3.class
 com\mycompany\projectmanagementsystem\Assessment\StudentAssessment.class
-com\mycompany\projectmanagementsystem\LecturerPresentationFeedback$3.class
 com\mycompany\projectmanagementsystem\admin_register_lecturer$3.class
 com\mycompany\projectmanagementsystem\admin_register_student$11.class
 com\mycompany\projectmanagementsystem\admin_view_studentrecord$1.class
