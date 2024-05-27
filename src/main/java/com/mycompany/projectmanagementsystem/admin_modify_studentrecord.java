@@ -16,6 +16,7 @@ public class admin_modify_studentrecord extends javax.swing.JFrame {
 
     String userID;
     List<String> genderList, intakeRecord;
+    
 
     public admin_modify_studentrecord() {
         initComponents();
@@ -66,6 +67,8 @@ public class admin_modify_studentrecord extends javax.swing.JFrame {
 
         return userID;
     }
+    
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -102,16 +105,14 @@ public class admin_modify_studentrecord extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("View Student Record");
-        setMaximumSize(new java.awt.Dimension(700, 550));
         setMinimumSize(new java.awt.Dimension(700, 550));
-        setPreferredSize(new java.awt.Dimension(700, 550));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         student_name_title.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         student_name_title.setForeground(new java.awt.Color(2, 50, 99));
         student_name_title.setText("Full Name");
-        getContentPane().add(student_name_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 140, 90, -1));
+        getContentPane().add(student_name_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, 90, -1));
 
         student_name.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         student_name.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, java.awt.Color.lightGray, null, null));
@@ -120,7 +121,7 @@ public class admin_modify_studentrecord extends javax.swing.JFrame {
                 student_nameActionPerformed(evt);
             }
         });
-        getContentPane().add(student_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, 190, 50));
+        getContentPane().add(student_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, 190, 50));
 
         student_gender_selection.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         student_gender_selection.addActionListener(new java.awt.event.ActionListener() {
@@ -150,12 +151,12 @@ public class admin_modify_studentrecord extends javax.swing.JFrame {
                 student_tpnoActionPerformed(evt);
             }
         });
-        getContentPane().add(student_tpno, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 70, 190, 50));
+        getContentPane().add(student_tpno, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 80, 190, 50));
 
         student_tpno_title.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         student_tpno_title.setForeground(new java.awt.Color(2, 50, 99));
         student_tpno_title.setText("TP Number");
-        getContentPane().add(student_tpno_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, -1, -1));
+        getContentPane().add(student_tpno_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, -1, -1));
 
         student_dob_title.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         student_dob_title.setForeground(new java.awt.Color(2, 50, 99));
@@ -165,7 +166,7 @@ public class admin_modify_studentrecord extends javax.swing.JFrame {
         student_address_title.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         student_address_title.setForeground(new java.awt.Color(2, 50, 99));
         student_address_title.setText("Address");
-        getContentPane().add(student_address_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 350, -1, -1));
+        getContentPane().add(student_address_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 330, -1, -1));
 
         student_address.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         student_address.addActionListener(new java.awt.event.ActionListener() {
@@ -173,7 +174,7 @@ public class admin_modify_studentrecord extends javax.swing.JFrame {
                 student_addressActionPerformed(evt);
             }
         });
-        getContentPane().add(student_address, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 340, 190, 50));
+        getContentPane().add(student_address, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 320, 190, 50));
 
         student_contact_title.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         student_contact_title.setForeground(new java.awt.Color(2, 50, 99));
@@ -195,20 +196,20 @@ public class admin_modify_studentrecord extends javax.swing.JFrame {
                 student_nationActionPerformed(evt);
             }
         });
-        getContentPane().add(student_nation, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 270, 190, 50));
+        getContentPane().add(student_nation, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 260, 190, 50));
 
         student_nation_title.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         student_nation_title.setForeground(new java.awt.Color(2, 50, 99));
         student_nation_title.setText("Nationality");
-        getContentPane().add(student_nation_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 280, -1, -1));
+        getContentPane().add(student_nation_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 270, -1, -1));
 
         student_password_title.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         student_password_title.setForeground(new java.awt.Color(2, 50, 99));
         student_password_title.setText("Password");
-        getContentPane().add(student_password_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 420, -1, -1));
+        getContentPane().add(student_password_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 390, -1, -1));
 
         student_password.setText("jPasswordField1");
-        getContentPane().add(student_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 410, 190, 50));
+        getContentPane().add(student_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 380, 190, 50));
 
         student_nric.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         student_nric.addActionListener(new java.awt.event.ActionListener() {
@@ -216,7 +217,7 @@ public class admin_modify_studentrecord extends javax.swing.JFrame {
                 student_nricActionPerformed(evt);
             }
         });
-        getContentPane().add(student_nric, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 270, 190, 50));
+        getContentPane().add(student_nric, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, 190, 50));
 
         student_email.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         student_email.addActionListener(new java.awt.event.ActionListener() {
@@ -224,17 +225,17 @@ public class admin_modify_studentrecord extends javax.swing.JFrame {
                 student_emailActionPerformed(evt);
             }
         });
-        getContentPane().add(student_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 340, 190, 50));
+        getContentPane().add(student_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 320, 190, 50));
 
         student_email_title.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         student_email_title.setForeground(new java.awt.Color(2, 50, 99));
         student_email_title.setText("Email Address");
-        getContentPane().add(student_email_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, -1, -1));
+        getContentPane().add(student_email_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, -1, -1));
 
         student_nric_title.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         student_nric_title.setForeground(new java.awt.Color(2, 50, 99));
         student_nric_title.setText("<html><div style= 'text-align: center; width: 90px;'>NRIC/ Passoport No</div></html>");
-        getContentPane().add(student_nric_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 270, 120, -1));
+        getContentPane().add(student_nric_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, 120, -1));
         getContentPane().add(student_dob, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 200, 190, 50));
 
         student_gender.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
@@ -366,6 +367,8 @@ public class admin_modify_studentrecord extends javax.swing.JFrame {
                 userInput[10] = student_intake_selection.getSelectedItem().toString();
                 userInput[11] = student_password.getText().trim();
                 UserController.modifyUser(userInput);
+                
+                
                 break;
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "NULL!", "Error: Missing Value(s)", JOptionPane.ERROR_MESSAGE);

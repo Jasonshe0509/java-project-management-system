@@ -62,6 +62,7 @@ public class admin_student_management extends javax.swing.JFrame {
                 UserController action = new UserController();
                 
                 action.viewUser(userID);
+                
                 dispose();
                 //System.out.print(Arrays.toString(userDetails));
                 //admin_view_studentrecord studentDetails = new admin_view_studentrecord();

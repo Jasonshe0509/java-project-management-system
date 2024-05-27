@@ -267,14 +267,12 @@ public class UserController extends UserAuthenticationController {
 
                     } else {
                         JOptionPane.showMessageDialog(null, "Please Enter Only Integer For NRIC/ Passport Number.", "Error: Invalid NRIC/ Passport No.", JOptionPane.ERROR_MESSAGE);
-
                     }
                 } else {
                     JOptionPane.showMessageDialog(null, "Contact Number Format: 01x-xxx xxxx/ 01x-xxx xxxxx", "Error: Invalid Contact Number", JOptionPane.ERROR_MESSAGE);
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "The minimum age that can be registerd should be 15", "Error: Invalid Birth Date", JOptionPane.ERROR_MESSAGE);
-
             }
 
         } else {
