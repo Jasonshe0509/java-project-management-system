@@ -167,7 +167,7 @@ public class NotificationPage extends javax.swing.JFrame {
                 message.setMaximumSize(new java.awt.Dimension(280, 41));
                 message.setMinimumSize(new java.awt.Dimension(280, 41));
                 message.setPreferredSize(new java.awt.Dimension(280, 41));
-                message.setText(list[2]);
+                message.setText("<html>"+list[2]+"</html>");
 
                 date = new JLabel();
                 date.setFont(new java.awt.Font("SansSerif", 0, 12));
