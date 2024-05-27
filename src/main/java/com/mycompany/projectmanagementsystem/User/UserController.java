@@ -8,6 +8,7 @@ import com.mycompany.projectmanagementsystem.GeneralFunction.FileHandler;
 import com.mycompany.projectmanagementsystem.GeneralFunction.SessionManager;
 import com.mycompany.projectmanagementsystem.LoginPage;
 import com.mycompany.projectmanagementsystem.admin_view_lec_details;
+import com.mycompany.projectmanagementsystem.admin_student_management;
 import com.mycompany.projectmanagementsystem.admin_view_studentrecord;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -262,6 +263,73 @@ public class UserController extends UserAuthenticationController {
         }
        
 
+        
+        admin_view_studentrecord studentDetails = new admin_view_studentrecord();
+        studentDetails.displayStudentDetails(userDetails);
+        studentDetails.show();
+        
+    }
+    
+    public static void modifyUser(String[] userInput) {
+
+        if (UserValidator.validateUserInput(userInput)) {
+            if (UserValidator.validateDateOfBirth(userInput[2])) {
+                if (UserValidator.validateContact(userInput[5])) {
+                    if (UserValidator.validateNRICPassportInput(userInput[6])) {
+                        if (UserValidator.validateNationality(userInput[7])) {
+                            if (UserValidator.validateEmail(userInput[8])) {
+                                if (UserValidator.validatePassword(userInput[11])) {
+                                    List<String> data = FileHandler.readFile("user.txt");
+                                    ArrayList<String> array_list = new ArrayList<>();
+                                    for (String line : data) {
+                                        String[] list = line.split(";");
+                                        if (userInput[3].equals(list[0])) {
+                                            list[0] = userInput[3];  //id
+                                            list[1] = userInput[0];  //name
+                                            list[2] = userInput[1]; //gender
+                                            list[3] = userInput[5]; //contact
+                                            list[4] = userInput[2];  //dob
+                                            list[5] = userInput[4]; //address
+                                            list[6] = userInput[6]; //nric
+                                            list[7] = userInput[7]; //nation
+                                            list[8] = userInput[8]; //email
+                                            list[9] = userInput[11]; //password
+                                            list[10] = userInput[9]; //"student"
+                                            list[11] = userInput[10]; //intake
+
+                                            line = String.join(";", list);
+                                            array_list.add(line);
+                                        } else {
+                                            array_list.add(line);
+                                        }
+                                    }
+                                    FileHandler.modifyFileData("user.txt", array_list);
+                                    JOptionPane.showMessageDialog(null, "Student: " + userInput[3] + " has been Updated succefully!", "Successful Updated", JOptionPane.INFORMATION_MESSAGE);
+
+                                } else {
+                                    JOptionPane.showMessageDialog(null, "Invalid Password,The password should contain\n \"At least 8 characters\",\"at "
+                                            + "least one uppercase letter, one lowercase letter, one digit and one special character[!@#$%^&*()]\"", "Message", JOptionPane.ERROR_MESSAGE);
+                                }
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Please Enter Your School Email Address (eg: xxx@MAIL.agh.edu.my)", "Error: Invalid Email Address", JOptionPane.ERROR_MESSAGE);
+                            }
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Please Enter Only Character For Nationality.", "Error: Invalid Nationality.", JOptionPane.ERROR_MESSAGE);
+                        }
+
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Please Enter Only Integer For NRIC/ Passport Number.", "Error: Invalid NRIC/ Passport No.", JOptionPane.ERROR_MESSAGE);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Contact Number Format: 01x-xxx xxxx/ 01x-xxx xxxxx", "Error: Invalid Contact Number", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "The minimum age that can be registerd should be 15", "Error: Invalid Birth Date", JOptionPane.ERROR_MESSAGE);
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Please Fill In All The Field!", "Error: Missing Value(s)", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     public boolean userProfileUpdate(String[] userInput) {
