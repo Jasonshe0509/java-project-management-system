@@ -4,7 +4,13 @@
  */
 package com.mycompany.projectmanagementsystem;
 
+import com.mycompany.projectmanagementsystem.Assessment.LecReportTableActionEvent;
+import java.awt.Color;
 import java.awt.Component;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.DefaultCellEditor;
+import javax.swing.JCheckBox;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
@@ -20,14 +26,48 @@ public class lect_ReportPanelAction extends javax.swing.JPanel {
         @Override
         public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
             Component com = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-                
-            lect_ReportPanelAction rpanel = new lect_ReportPanelAction();
-            if(isSelected){
-                rpanel.setBackground(com.getBackground());
+            lect_ReportPanelAction action = new lect_ReportPanelAction();
+            if (isSelected == false && row % 2 == 0) {
+                action.setBackground(Color.WHITE);
+            } else {
+                action.setBackground(com.getBackground());
             }
-            return rpanel;
-                
+            return action;
+
         }
+    }
+        
+    public class TableActionCellEditor extends DefaultCellEditor {
+        private LecReportTableActionEvent event;
+        public TableActionCellEditor(LecReportTableActionEvent event) {
+            super(new JCheckBox());
+            this.event = event;
+        }
+
+        @Override
+        public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
+            lect_ReportPanelAction action = new lect_ReportPanelAction();
+            action.initEvent(event, row, value);
+            action.setBackground(table.getSelectionBackground());
+            if (isSelected == true){
+                System.out.println(row);
+            }
+            return action;
+        }
+    }
+        public void initEvent(LecReportTableActionEvent event, int row , Object value) {
+            gradeBtn.addActionListener(new ActionListener(){
+                @Override
+                public void actionPerformed(ActionEvent ae) {
+                    event.reportGrading(row, value);
+                }
+            });
+            doneBtn.addActionListener(new ActionListener(){
+                @Override
+                public void actionPerformed(ActionEvent ae) {
+                    event.reportDone(row, value);
+                }
+        });
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -38,31 +78,31 @@ public class lect_ReportPanelAction extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        gradeBtn = new javax.swing.JButton();
+        doneBtn = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        jButton1.setBackground(new java.awt.Color(76, 127, 174));
-        jButton1.setFont(new java.awt.Font("Bell MT", 1, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Grade");
-        jButton1.setBorder(javax.swing.BorderFactory.createEmptyBorder(3, 3, 3, 3));
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        gradeBtn.setBackground(new java.awt.Color(76, 127, 174));
+        gradeBtn.setFont(new java.awt.Font("Bell MT", 1, 12)); // NOI18N
+        gradeBtn.setForeground(new java.awt.Color(255, 255, 255));
+        gradeBtn.setText("Grade");
+        gradeBtn.setBorder(javax.swing.BorderFactory.createEmptyBorder(3, 3, 3, 3));
+        gradeBtn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        gradeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                gradeBtnActionPerformed(evt);
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(51, 199, 146));
-        jButton2.setFont(new java.awt.Font("Bell MT", 1, 12)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Done");
-        jButton2.setBorder(javax.swing.BorderFactory.createEmptyBorder(3, 3, 3, 3));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        doneBtn.setBackground(new java.awt.Color(51, 199, 146));
+        doneBtn.setFont(new java.awt.Font("Bell MT", 1, 12)); // NOI18N
+        doneBtn.setForeground(new java.awt.Color(255, 255, 255));
+        doneBtn.setText("Done");
+        doneBtn.setBorder(javax.swing.BorderFactory.createEmptyBorder(3, 3, 3, 3));
+        doneBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                doneBtnActionPerformed(evt);
             }
         });
 
@@ -72,9 +112,9 @@ public class lect_ReportPanelAction extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(gradeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(doneBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(17, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -82,23 +122,23 @@ public class lect_ReportPanelAction extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(gradeBtn)
+                    .addComponent(doneBtn))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void gradeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gradeBtnActionPerformed
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_gradeBtnActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void doneBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doneBtnActionPerformed
 
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_doneBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton doneBtn;
+    private javax.swing.JButton gradeBtn;
     // End of variables declaration//GEN-END:variables
 }
