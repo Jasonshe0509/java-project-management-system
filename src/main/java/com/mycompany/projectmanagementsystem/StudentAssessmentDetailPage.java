@@ -31,10 +31,12 @@ import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.LayoutStyle;
 import javax.swing.SwingConstants;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -1522,7 +1524,7 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
                             boolean result = delete.deleteDiscussionChannel(list[0]);
                             if (result) {
                                 JOptionPane.showMessageDialog(null, "Successfully delete the discussion channel");
-                                redirectAssessmentPage(assessmentID, assessmentType,1,null);
+                                redirectAssessmentPage(assessmentID, assessmentType, 1, null);
                             }
                         }
                     }
@@ -1584,16 +1586,18 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
         List<String> messageData = FileHandler.readFile("communication_message.txt");
         List<String> userData = FileHandler.readFile("user.txt");
         String channelSubject = null;
+        StudentAssessmentDetailPage page = this;
         for (String line : data) {
             String[] list = line.split(";");
             if (list[0].equals(channelID)) {
                 channelSubject = list[3];
                 selectedSubject.setText("<html>" + list[3] + "</html>");
                 createdDate.setText("<html>" + list[4] + "</html>");
-                for (String messageLine : messageData) {
-                    String[] messageList = messageLine.split(";");
-                    if (messageList[1].equals(channelID)) {
-                        createdMessage.setText("<html>" + messageList[4] + "</html>");
+                for (String FirstmessageLine : messageData) {
+                    String[] FirstmessageList = FirstmessageLine.split(";");
+                    if (FirstmessageList[1].equals(channelID)) {
+                        createdMessage.setText("<html>" + FirstmessageList[3] + "</html>");
+                        break;
                     }
                 }
                 for (String userLine : userData) {
@@ -1605,7 +1609,6 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
                 reply.addMouseListener(new java.awt.event.MouseAdapter() {
                     @Override
                     public void mouseClicked(java.awt.event.MouseEvent evt) {
-                        StudentAssessmentDetailPage page = new StudentAssessmentDetailPage(assessmentID, assessmentType);
                         CreateNewMessagePage messagePage = new CreateNewMessagePage(assessmentID, assessmentType, list[3], list[0], page);
                         messagePage.setVisible(true);
                     }
@@ -1613,7 +1616,31 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
 
             }
         }
+        
+        // Ensure jPanel13 uses GridBagLayout
+        jPanel13.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.anchor = GridBagConstraints.NORTHWEST;
+        gbc.insets = new Insets(5, 5, 5, 5);
+
+        // Remove all components from jPanel13 first, if necessary
+        jPanel13.removeAll();
+
+        // Add jPanel7 first (fixed at the top)
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.weightx = 1.0;
+        gbc.weighty = 0;
+        jPanel13.add(jPanel7, gbc);
+
+        // Add jPanel17 right below jPanel7
+        gbc.gridy++;
+        jPanel13.add(jPanel17, gbc);
+
         boolean firstMatchFound = false;
+        int replyPanelY = gbc.gridy + 1; // Start placing reply panels below jPanel17
+
         for (String messageLine : messageData) {
             String[] messageList = messageLine.split(";");
             if (messageList[1].equals(channelID)) {
@@ -1626,8 +1653,7 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
                     deleteReply = new JLabel();
 
                     communicationReplyPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-                    communicationReplyPanel.setMaximumSize(new java.awt.Dimension(766, 95));
-                    communicationReplyPanel.setMinimumSize(new java.awt.Dimension(766, 95));
+                    communicationReplyPanel.setPreferredSize(new java.awt.Dimension(766, 95));
 
                     resubjectLabel.setFont(new java.awt.Font("Bell MT", 0, 14)); // NOI18N
                     resubjectLabel.setForeground(new java.awt.Color(2, 50, 99));
@@ -1636,8 +1662,6 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
                     replyMessage.setFont(new java.awt.Font("Bell MT", 0, 14)); // NOI18N
                     replyMessage.setForeground(new java.awt.Color(2, 50, 99));
                     replyMessage.setText("<html>" + messageList[3] + "</html>");
-                    replyMessage.setMaximumSize(new java.awt.Dimension(563, 57));
-                    replyMessage.setMinimumSize(new java.awt.Dimension(563, 57));
                     replyMessage.setPreferredSize(new java.awt.Dimension(563, 57));
 
                     for (String userLine : userData) {
@@ -1674,59 +1698,69 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
                                 boolean result = delete.deleteMessage(messageList[0]);
                                 if (result) {
                                     JOptionPane.showMessageDialog(null, "Successfully delete the message");
-                                    redirectAssessmentPage(assessmentID, assessmentType,2,messageList[1]);
+                                    redirectAssessmentPage(assessmentID, assessmentType, 2, messageList[1]);
                                 }
                             }
                         }
                     });
 
-                    javax.swing.GroupLayout communicationReplyPanelLayout = new javax.swing.GroupLayout(communicationReplyPanel);
+                    // Set layout for communicationReplyPanel
+                    GroupLayout communicationReplyPanelLayout = new GroupLayout(communicationReplyPanel);
                     communicationReplyPanel.setLayout(communicationReplyPanelLayout);
                     communicationReplyPanelLayout.setHorizontalGroup(
-                            communicationReplyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            communicationReplyPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                     .addGroup(communicationReplyPanelLayout.createSequentialGroup()
                                             .addContainerGap()
-                                            .addComponent(resubjectLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(replyDate, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(communicationReplyPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                                    .addGroup(communicationReplyPanelLayout.createSequentialGroup()
+                                                            .addComponent(resubjectLabel)
+                                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                            .addComponent(replyDate, GroupLayout.PREFERRED_SIZE, 155, GroupLayout.PREFERRED_SIZE))
+                                                    .addGroup(communicationReplyPanelLayout.createSequentialGroup()
+                                                            .addGroup(communicationReplyPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                                                    .addComponent(replyMessage, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                                    .addComponent(replyName, GroupLayout.PREFERRED_SIZE, 399, GroupLayout.PREFERRED_SIZE))
+                                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                            .addComponent(deleteReply, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE)))
                                             .addContainerGap())
-                                    .addGroup(communicationReplyPanelLayout.createSequentialGroup()
-                                            .addGroup(communicationReplyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addGroup(communicationReplyPanelLayout.createSequentialGroup()
-                                                            .addContainerGap(114, Short.MAX_VALUE)
-                                                            .addComponent(replyMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 563, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
-                                                    .addGroup(communicationReplyPanelLayout.createSequentialGroup()
-                                                            .addGap(12, 12, 12)
-                                                            .addComponent(replyName, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                            .addComponent(deleteReply, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
                     );
                     communicationReplyPanelLayout.setVerticalGroup(
-                            communicationReplyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            communicationReplyPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                     .addGroup(communicationReplyPanelLayout.createSequentialGroup()
                                             .addContainerGap()
-                                            .addGroup(communicationReplyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addGroup(communicationReplyPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                                     .addComponent(resubjectLabel)
                                                     .addComponent(replyDate))
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                             .addComponent(replyName)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addGroup(communicationReplyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(deleteReply, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, communicationReplyPanelLayout.createSequentialGroup()
-                                                            .addComponent(replyMessage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                            .addGap(24, 24, 24))))
+                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                            .addGroup(communicationReplyPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                                    .addComponent(deleteReply, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(replyMessage, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                            .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     );
-                    // Add each communicationReplyPanel to jPanel13 with a vertical gap
-                    jPanel13.setLayout(new BoxLayout(jPanel13, BoxLayout.Y_AXIS));
-                    jPanel13.add(communicationReplyPanel); // Add communicationReplyPanel
+
+                    // Add communicationReplyPanel to jPanel13
+                    gbc.gridy = replyPanelY++;
+                    jPanel13.add(communicationReplyPanel, gbc);
                 } else {
                     firstMatchFound = true;
                 }
-                replyCommunicationScrollPanel.setViewportView(jPanel13);
             }
         }
+
+        // Finalize layout by adding vertical space and stretching the last component
+        gbc.gridy = replyPanelY;
+        gbc.weighty = 1.0;
+        jPanel13.add(Box.createVerticalGlue(), gbc);
+
+        // Revalidate and repaint jPanel13 to refresh the UI
+        jPanel13.revalidate();
+        jPanel13.repaint();
+
+        // Update the scroll pane with the new content
+        replyCommunicationScrollPanel.setViewportView(jPanel13);
+
     }
 
     private void redirectAssessmentPage(String assessmentID, String assessmentType, int number, String ID) {
