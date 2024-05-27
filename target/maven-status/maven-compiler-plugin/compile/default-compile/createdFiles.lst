@@ -1,4 +1,5 @@
 com\mycompany\projectmanagementsystem\LoginPage.class
+com\mycompany\projectmanagementsystem\admin_lecturer_record$9.class
 com\mycompany\projectmanagementsystem\admin_lecturer$3.class
 com\mycompany\projectmanagementsystem\admin_student$4.class
 com\mycompany\projectmanagementsystem\UserTableActionPanel$1.class
@@ -8,6 +9,7 @@ com\mycompany\projectmanagementsystem\ProjectManagerPage$8.class
 com\mycompany\projectmanagementsystem\PM_assessment_page$3.class
 com\mycompany\projectmanagementsystem\LecturerPresentationReject.class
 com\mycompany\projectmanagementsystem\SchoolWiseList\SchoolWiseController.class
+com\mycompany\projectmanagementsystem\AdminDeleteActionPanel$rPanelActionRenderer.class
 com\mycompany\projectmanagementsystem\StudentPresentationActionPanel$1.class
 com\mycompany\projectmanagementsystem\admin_student_management$5.class
 com\mycompany\projectmanagementsystem\EC\EC.class
@@ -20,6 +22,7 @@ com\mycompany\projectmanagementsystem\StudentAssessmentDetailPage$10.class
 com\mycompany\projectmanagementsystem\admin_edit_intake$1.class
 com\mycompany\projectmanagementsystem\Presentation\Presentation.class
 com\mycompany\projectmanagementsystem\PM_assessment_page$5.class
+com\mycompany\projectmanagementsystem\AdminDeleteActionPanel$AdminDeleteActionCellEditor.class
 com\mycompany\projectmanagementsystem\lect_PresentationRqtActionPanel$3.class
 com\mycompany\projectmanagementsystem\User\UserTableActionEvent.class
 com\mycompany\projectmanagementsystem\LecturerDashboardPage$8.class
@@ -35,6 +38,7 @@ com\mycompany\projectmanagementsystem\StudentAssessmentDetailPage$13.class
 com\mycompany\projectmanagementsystem\UserTableAction.class
 com\mycompany\projectmanagementsystem\GeneralPage$1.class
 com\mycompany\projectmanagementsystem\StudentDashboardPage$3.class
+com\mycompany\projectmanagementsystem\admin_view_lec_details$13.class
 com\mycompany\projectmanagementsystem\admin_lecturer_record$7.class
 com\mycompany\projectmanagementsystem\PM_assessment_page.class
 com\mycompany\projectmanagementsystem\ForgetPasswordPage$4.class
@@ -65,6 +69,7 @@ com\mycompany\projectmanagementsystem\PM_profile_page$7.class
 com\mycompany\projectmanagementsystem\lect_PresentationPanelAction$TableActionCellEditor.class
 com\mycompany\projectmanagementsystem\PM_assessment_page$2.class
 com\mycompany\projectmanagementsystem\LecturerPresentationReject$4.class
+com\mycompany\projectmanagementsystem\admin_modify_studentrecord$13.class
 com\mycompany\projectmanagementsystem\StudentEcSubmissionPage$9.class
 com\mycompany\projectmanagementsystem\LecturerProfile$3.class
 com\mycompany\projectmanagementsystem\LecturerPresentationReject$3.class
@@ -79,6 +84,7 @@ com\mycompany\projectmanagementsystem\GeneralPage.class
 com\mycompany\projectmanagementsystem\admin_student_management$4.class
 com\mycompany\projectmanagementsystem\PM_profile_page$6.class
 com\mycompany\projectmanagementsystem\lect_PresentationRqtActionPanel$4.class
+com\mycompany\projectmanagementsystem\User\AdminDeleteActionEvent.class
 com\mycompany\projectmanagementsystem\StudentAssessmentDetailPage$9.class
 com\mycompany\projectmanagementsystem\Presentation\PresentationValidator.class
 com\mycompany\projectmanagementsystem\Assessment\Assessment.class
@@ -93,12 +99,15 @@ com\mycompany\projectmanagementsystem\admin_student$5.class
 com\mycompany\projectmanagementsystem\StudentEcSubmissionPage$4.class
 com\mycompany\projectmanagementsystem\admin_mainpage.class
 com\mycompany\projectmanagementsystem\admin_ec_record$2.class
+com\mycompany\projectmanagementsystem\admin_view_lec_details$14.class
 com\mycompany\projectmanagementsystem\Assessment\StudentAssessmentController.class
 com\mycompany\projectmanagementsystem\StudentECActionPanel$TableActionCellEditor.class
 com\mycompany\projectmanagementsystem\admin_view_studentrecord$12.class
 com\mycompany\projectmanagementsystem\SchoolWiseList\SchoolWiseValidator.class
 com\mycompany\projectmanagementsystem\lect_PresentationRqtActionPanel$2.class
+com\mycompany\projectmanagementsystem\admin_lecturer_record$8.class
 com\mycompany\projectmanagementsystem\StudentAssessmentDetailPage$14.class
+com\mycompany\projectmanagementsystem\AdminDeleteActionPanel.class
 com\mycompany\projectmanagementsystem\LecturerDashboardPage$7.class
 com\mycompany\projectmanagementsystem\StudentDashboardPage$2.class
 com\mycompany\projectmanagementsystem\PM_assessment_page$6.class
@@ -122,6 +131,7 @@ com\mycompany\projectmanagementsystem\StudentPresentationActionPanel$TableAction
 com\mycompany\projectmanagementsystem\StudentECActionPanel.class
 com\mycompany\projectmanagementsystem\admin_ec_details$3.class
 com\mycompany\projectmanagementsystem\admin_lecturer_record$5.class
+com\mycompany\projectmanagementsystem\AdminDeleteActionPanel$1.class
 com\mycompany\projectmanagementsystem\admin_register_intake.class
 com\mycompany\projectmanagementsystem\NotificationPage$1.class
 com\mycompany\projectmanagementsystem\Intake\IntakeTableActionEvent.class

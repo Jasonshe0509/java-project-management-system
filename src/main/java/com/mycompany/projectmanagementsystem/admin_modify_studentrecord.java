@@ -216,6 +216,11 @@ public class admin_modify_studentrecord extends javax.swing.JFrame {
         admin_modify_student_save.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
         admin_modify_student_save.setForeground(new java.awt.Color(2, 50, 99));
         admin_modify_student_save.setText("SAVE CHANGES");
+        admin_modify_student_save.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                admin_modify_student_saveActionPerformed(evt);
+            }
+        });
         getContentPane().add(admin_modify_student_save, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 440, -1, -1));
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main_background.png"))); // NOI18N
@@ -275,6 +280,10 @@ public class admin_modify_studentrecord extends javax.swing.JFrame {
     private void student_emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_student_emailActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_student_emailActionPerformed
+
+    private void admin_modify_student_saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_admin_modify_student_saveActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_admin_modify_student_saveActionPerformed
     
     public static void main(String args[]) {
 

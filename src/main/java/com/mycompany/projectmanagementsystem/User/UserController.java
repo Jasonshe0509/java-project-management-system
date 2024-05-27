@@ -184,6 +184,33 @@ public class UserController extends UserAuthenticationController {
 
     }
 
+    public boolean projectmanagerDelete(String userID){
+        System.out.println(userID);
+        int confirm = JOptionPane.showConfirmDialog(null, "Remove " +userID+ " as Project Manager?", "Confirmation", JOptionPane.YES_NO_OPTION);
+        if(confirm == JOptionPane.YES_OPTION){
+            List<String> data = FileHandler.readFile("user.txt");
+            ArrayList<String> updatedData = new ArrayList<>();
+
+            for(String line: data){
+                if(line.startsWith(userID)){
+                    String[] record = line.split(";");
+                    record[10] = "lecturer";
+                    String updatedLine = String.join(";", record);
+                    System.out.println(updatedLine);
+                    updatedData.add(updatedLine);
+                }else{
+                    updatedData.add(line);
+                }
+            }
+            JOptionPane.showMessageDialog(null, "Successfully Removed " +userID+ " from project manager list.");
+            FileHandler.modifyFileData("user.txt", updatedData);
+            return true;
+        }else{
+            JOptionPane.showMessageDialog(null, "Action Cancelled!");
+            return false;
+        }
+    }
+    
     public boolean userDelete(String userID) {
         List<String> data = FileHandler.readFile("user.txt");
         ArrayList<String> updatedData = new ArrayList<>();

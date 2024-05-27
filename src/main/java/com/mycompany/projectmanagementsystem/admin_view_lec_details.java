@@ -1,20 +1,29 @@
 package com.mycompany.projectmanagementsystem;
 
+import com.mycompany.projectmanagementsystem.GeneralFunction.FileHandler;
+import com.mycompany.projectmanagementsystem.User.UserController;
 import java.awt.Color;
 import java.awt.Toolkit;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.border.LineBorder;
 
 public class admin_view_lec_details extends javax.swing.JFrame {
 
+    String[] lecturerRecord;
+    
     public admin_view_lec_details() {
         initComponents();
         setIconImage();
     }
     
-    public void displayLecturerDetails(String[] lecturerDetails){
+    public String[] displayLecturerDetails(String[] lecturerDetails){
         
+        lecturerRecord = lecturerDetails;
         ArrayList<String> list = new ArrayList();
         for (String detail : lecturerDetails) {
         list.add(detail);
@@ -30,6 +39,8 @@ public class admin_view_lec_details extends javax.swing.JFrame {
         lec_email.setText(list.get(8));
         //lec_password.setText("**********");
         lec_schoolwise.setText(list.get(11));
+        
+        return lecturerRecord;
         
 }
     
@@ -59,6 +70,8 @@ public class admin_view_lec_details extends javax.swing.JFrame {
         lec_schoolwise_title = new javax.swing.JLabel();
         lec_details_background = new javax.swing.JLabel();
         lec_details_border = new javax.swing.JLabel();
+        modify_lecturer = new javax.swing.JButton();
+        assign_projectmanager = new javax.swing.JButton();
         admin_viewstudent_back = new javax.swing.JButton();
         background = new javax.swing.JLabel();
 
@@ -217,7 +230,7 @@ public class admin_view_lec_details extends javax.swing.JFrame {
         lec_details_background.setName(""); // NOI18N
         lec_details_background.setOpaque(true);
         lec_details_background.setPreferredSize(new java.awt.Dimension(550, 350));
-        getContentPane().add(lec_details_background, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 630, 420));
+        getContentPane().add(lec_details_background, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 630, 360));
 
         lec_details_border.setBackground(new Color(255, 255, 255, 0));
         lec_details_border.setBorder(new LineBorder(new Color(192, 192, 192, 90), 15, true));
@@ -225,7 +238,29 @@ public class admin_view_lec_details extends javax.swing.JFrame {
         lec_details_border.setMinimumSize(new java.awt.Dimension(600, 400));
         lec_details_border.setOpaque(true);
         lec_details_border.setPreferredSize(new java.awt.Dimension(600, 400));
-        getContentPane().add(lec_details_border, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 650, 440));
+        getContentPane().add(lec_details_border, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 650, 380));
+
+        modify_lecturer.setBackground(new java.awt.Color(76, 127, 174));
+        modify_lecturer.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
+        modify_lecturer.setForeground(new java.awt.Color(2, 50, 99));
+        modify_lecturer.setText("MODIFY");
+        modify_lecturer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modify_lecturerActionPerformed(evt);
+            }
+        });
+        getContentPane().add(modify_lecturer, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 460, 110, -1));
+
+        assign_projectmanager.setBackground(new java.awt.Color(76, 127, 174));
+        assign_projectmanager.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
+        assign_projectmanager.setForeground(new java.awt.Color(2, 50, 99));
+        assign_projectmanager.setText("<html><div style = 'text-align: center; width: 100px;'>Assign Project Manager</div></html>");
+        assign_projectmanager.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                assign_projectmanagerActionPerformed(evt);
+            }
+        });
+        getContentPane().add(assign_projectmanager, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 450, 150, -1));
 
         admin_viewstudent_back.setBackground(new java.awt.Color(76, 127, 174));
         admin_viewstudent_back.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
@@ -236,13 +271,13 @@ public class admin_view_lec_details extends javax.swing.JFrame {
                 admin_viewstudent_backActionPerformed(evt);
             }
         });
-        getContentPane().add(admin_viewstudent_back, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 490, -1, -1));
+        getContentPane().add(admin_viewstudent_back, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 460, -1, -1));
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main_background.png"))); // NOI18N
         background.setMaximumSize(new java.awt.Dimension(700, 580));
         background.setMinimumSize(new java.awt.Dimension(700, 580));
         background.setPreferredSize(new java.awt.Dimension(700, 580));
-        getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 540));
         background.getAccessibleContext().setAccessibleName("background");
 
         pack();
@@ -293,6 +328,35 @@ public class admin_view_lec_details extends javax.swing.JFrame {
     private void lec_schoolwiseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lec_schoolwiseActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_lec_schoolwiseActionPerformed
+
+    private void assign_projectmanagerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assign_projectmanagerActionPerformed
+        String userID = lecturerRecord[0];
+        int confirm = JOptionPane.showConfirmDialog(null, "Assign " +userID+ " as Project Manager?", "Confirmation", JOptionPane.YES_NO_OPTION);
+        if(confirm == JOptionPane.YES_OPTION){
+            lecturerRecord[10] = "project manager";
+            
+            List<String> data = FileHandler.readFile("user.txt");
+            ArrayList<String> updatedData = new ArrayList<>();
+
+            for(String line: data){
+                if(line.startsWith(userID)){
+                    String updatedLine = String.join(";", lecturerRecord);
+                    updatedData.add(updatedLine);
+                }else{
+                    updatedData.add(line);
+                }
+            }
+            JOptionPane.showMessageDialog(null, "Successfully Assigned!");
+            FileHandler.modifyFileData("user.txt", updatedData);
+        }else{
+            JOptionPane.showMessageDialog(null, "Action Cancelled!");
+        }
+
+    }//GEN-LAST:event_assign_projectmanagerActionPerformed
+
+    private void modify_lecturerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modify_lecturerActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_modify_lecturerActionPerformed
     
     public static void main(String args[]) {
 
@@ -308,6 +372,7 @@ public class admin_view_lec_details extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton admin_viewstudent_back;
+    private javax.swing.JButton assign_projectmanager;
     private javax.swing.JLabel background;
     private javax.swing.JTextField lec_address;
     private javax.swing.JLabel lec_address_title;
@@ -331,5 +396,6 @@ public class admin_view_lec_details extends javax.swing.JFrame {
     private javax.swing.JLabel lec_nric_title;
     private javax.swing.JTextField lec_schoolwise;
     private javax.swing.JLabel lec_schoolwise_title;
+    private javax.swing.JButton modify_lecturer;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,6 +1,8 @@
 package com.mycompany.projectmanagementsystem;
 
 import com.mycompany.projectmanagementsystem.GeneralFunction.FileHandler;
+import com.mycompany.projectmanagementsystem.SchoolWiseList.SchoolWiseController;
+import com.mycompany.projectmanagementsystem.User.AdminDeleteActionEvent;
 import com.mycompany.projectmanagementsystem.User.UserController;
 import com.mycompany.projectmanagementsystem.User.UserTableActionEvent;
 import java.awt.Color;
@@ -21,7 +23,7 @@ public class admin_lecturer_record extends javax.swing.JFrame {
         readNumOfLecturer();
         printSchoolWiseTable();
         printLecturerTable();
-        
+
         UserTableActionPanel actionPanel = new UserTableActionPanel();
         UserTableActionEvent event;
         event = new UserTableActionEvent() {
@@ -34,12 +36,9 @@ public class admin_lecturer_record extends javax.swing.JFrame {
                 UserController action = new UserController();
                 action.viewUser(userID);
                 System.out.print(userID);
-                //System.out.print(Arrays.toString(userDetails));
-                //admin_view_studentrecord studentDetails = new admin_view_studentrecord();
-                //admin_view_studentrecord.displayStudentDetails(userDetails);
-                //studentDetails.show();
+                
             }
-            
+
             @Override
             public void userDelete(int row, Object value) {
                 DefaultTableModel model = (DefaultTableModel) lecturer_table.getModel();
@@ -49,16 +48,71 @@ public class admin_lecturer_record extends javax.swing.JFrame {
                 boolean result = action.userDelete(userID);
                 if (result) {
                     JOptionPane.showMessageDialog(null, "Successfully delete the Lecturer: " + userID);
-                    DefaultTableModel umodel = (DefaultTableModel) lecturer_table.getModel();
-                    umodel.setNumRows(0);
+                    DefaultTableModel lecturermodel = (DefaultTableModel) lecturer_table.getModel();
+                    DefaultTableModel projectmanagermodel = (DefaultTableModel) projectmanager_table.getModel();
+                    lecturermodel.setNumRows(0);
+                    projectmanagermodel.setNumRows(0);
                     printLecturerTable();
                     readNumOfLecturer();
-                    
+
                 }
             }
         };
-        lecturer_table.getColumnModel().getColumn(6).setCellRenderer(actionPanel.new rPanelActionRenderer());
-        lecturer_table.getColumnModel().getColumn(6).setCellEditor(actionPanel.new UserTableActionCellEditor(event));
+
+        AdminDeleteActionPanel removePMPanel = new AdminDeleteActionPanel();
+        AdminDeleteActionEvent deletePMEvent;
+        deletePMEvent = new AdminDeleteActionEvent() {
+            
+            @Override
+            public void adminDelete(int row, Object value){
+                DefaultTableModel model = (DefaultTableModel) projectmanager_table.getModel();
+                int columnIndex = 0;
+                String userID = (String) model.getValueAt(row, columnIndex);
+                UserController action = new UserController();
+                boolean result = action.projectmanagerDelete(userID);
+                if (result) {
+                    DefaultTableModel lecturermodel = (DefaultTableModel) lecturer_table.getModel();
+                    DefaultTableModel projectmanagermodel = (DefaultTableModel) projectmanager_table.getModel();
+                    lecturermodel.setNumRows(0);
+                    projectmanagermodel.setNumRows(0);
+                    printLecturerTable();
+                    readNumOfLecturer();
+
+                }
+            }
+            
+        };
+        
+        AdminDeleteActionPanel removeSWPanel = new AdminDeleteActionPanel();
+        AdminDeleteActionEvent deleteSWEvent;
+        deleteSWEvent = new AdminDeleteActionEvent() {
+            
+            @Override
+            public void adminDelete(int row, Object value){
+                DefaultTableModel model = (DefaultTableModel) school_wise_table.getModel();
+                int columnIndex = 0;
+                String schoolWise = (String) model.getValueAt(row, columnIndex);
+                SchoolWiseController action = new SchoolWiseController();
+                boolean result = action.deleteSchoolWise(schoolWise);
+                if (result) {
+                    DefaultTableModel schoolWisemodel = (DefaultTableModel) school_wise_table.getModel();
+                    schoolWisemodel.setNumRows(0);
+                    printSchoolWiseTable();
+                    readNumOfSchoolWise();
+
+                }
+            }
+            
+        };
+
+        lecturer_table.getColumnModel().getColumn(5).setCellRenderer(actionPanel.new rPanelActionRenderer());
+        lecturer_table.getColumnModel().getColumn(5).setCellEditor(actionPanel.new UserTableActionCellEditor(event));
+        
+        projectmanager_table.getColumnModel().getColumn(5).setCellRenderer(removePMPanel.new rPanelActionRenderer());
+        projectmanager_table.getColumnModel().getColumn(5).setCellEditor(removePMPanel.new AdminDeleteActionCellEditor(deletePMEvent));
+        
+        school_wise_table.getColumnModel().getColumn(2).setCellRenderer(removeSWPanel.new rPanelActionRenderer());
+        school_wise_table.getColumnModel().getColumn(2).setCellEditor(removeSWPanel.new AdminDeleteActionCellEditor(deleteSWEvent));
     }
 
     private void readNumOfSchoolWise() {
@@ -95,31 +149,43 @@ public class admin_lecturer_record extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) school_wise_table.getModel();
         List<String> data = FileHandler.readFile("school_wise.txt");
         Object[] records = data.toArray();
-        for(int i = 0; i<records.length; i++){
+        
+        for (int i = 0; i < records.length; i++) {
             String record = records[i].toString();
-            String[] schoolWiseRow = {record};
+            
+            int numOfLecturer = 0;
+            List<String> lecturerList = FileHandler.readFile("user.txt");
+            
+            for(String line: lecturerList){
+                String[] lecturerRecord = line.split(";");
+                if(lecturerRecord.length >11 && lecturerRecord[11].equals(record)){
+                    numOfLecturer++;
+                }
+            }
+            
+            String[] schoolWiseRow = {record, String.valueOf(numOfLecturer)};
             model.addRow(schoolWiseRow);
         }
-        
+
     }
-    
-    public void printLecturerTable(){
+
+    public void printLecturerTable() {
         DefaultTableModel model = (DefaultTableModel) lecturer_table.getModel();
         DefaultTableModel model1 = (DefaultTableModel) projectmanager_table.getModel();
         List<String> data = FileHandler.readFile("user.txt");
         Object[] records = data.toArray();
-        
-        for(int i = 0; i<records.length; i++){
+
+        for (int i = 0; i < records.length; i++) {
             String record = records[i].toString();
             String[] userData = record.split(";");
             String user = userData[10];
-            if(user.equals("lecturer") || user.equals("project manager")){
+            if (user.equals("lecturer") || user.equals("project manager")) {
                 String[] lecturerRow = {userData[0], userData[1], userData[11], userData[8], userData[3]};
                 model.addRow(lecturerRow);
-                if(user.equals("project manager")){
+                if (user.equals("project manager")) {
                     String[] projectManagerRow = {userData[0], userData[1], userData[11], userData[8], userData[3]};
                     model1.addRow(projectManagerRow);
-                    
+
                 }
             }
         }
@@ -336,11 +402,11 @@ public class admin_lecturer_record extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Employee ID", "Name", "School Wise", "Email", "Contact Number", "Assign Project Manager", "Action"
+                "Employee ID", "Name", "School Wise", "Email", "Contact Number", "Action"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, true
+                false, false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -361,7 +427,7 @@ public class admin_lecturer_record extends javax.swing.JFrame {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -383,7 +449,7 @@ public class admin_lecturer_record extends javax.swing.JFrame {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, true
+                false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {

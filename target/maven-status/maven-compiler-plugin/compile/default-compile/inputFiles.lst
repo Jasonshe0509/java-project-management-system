@@ -10,6 +10,7 @@ C:\Users\ASUS\OneDrive\Documents\NetBeansProjects\java-project-management-system
 C:\Users\ASUS\OneDrive\Documents\NetBeansProjects\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\GeneralFunction\URLRenderer.java
 C:\Users\ASUS\OneDrive\Documents\NetBeansProjects\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\Presentation\PresentationTableActionEvent.java
 C:\Users\ASUS\OneDrive\Documents\NetBeansProjects\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\lect_ReportPanelAction.java
+C:\Users\ASUS\OneDrive\Documents\NetBeansProjects\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\User\AdminDeleteActionEvent.java
 C:\Users\ASUS\OneDrive\Documents\NetBeansProjects\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\Intake\IntakeValidator.java
 C:\Users\ASUS\OneDrive\Documents\NetBeansProjects\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\EC\EC.java
 C:\Users\ASUS\OneDrive\Documents\NetBeansProjects\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\lect_PresentationPanelAction.java
@@ -38,6 +39,7 @@ C:\Users\ASUS\OneDrive\Documents\NetBeansProjects\java-project-management-system
 C:\Users\ASUS\OneDrive\Documents\NetBeansProjects\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\Presentation\PresentationRequest.java
 C:\Users\ASUS\OneDrive\Documents\NetBeansProjects\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\Presentation\PresentationController.java
 C:\Users\ASUS\OneDrive\Documents\NetBeansProjects\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\User\Lecturer.java
+C:\Users\ASUS\OneDrive\Documents\NetBeansProjects\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\AdminDeleteActionPanel.java
 C:\Users\ASUS\OneDrive\Documents\NetBeansProjects\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\admin_modify_studentrecord.java
 C:\Users\ASUS\OneDrive\Documents\NetBeansProjects\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\SchoolWiseList\SchoolWiseController.java
 C:\Users\ASUS\OneDrive\Documents\NetBeansProjects\java-project-management-system\src\main\java\com\mycompany\projectmanagementsystem\admin_ec_details.java
