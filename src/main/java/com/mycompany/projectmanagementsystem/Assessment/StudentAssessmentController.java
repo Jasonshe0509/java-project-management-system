@@ -8,6 +8,7 @@ package com.mycompany.projectmanagementsystem.Assessment;
  *
  * @author ASUS
  */
-public class StudentAssessmentController {
-    
+public interface StudentAssessmentController {
+
+    public boolean submitAssessment(String action, String[] assessmentInput);
 }

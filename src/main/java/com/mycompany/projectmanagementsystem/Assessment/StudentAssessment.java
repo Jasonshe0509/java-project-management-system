@@ -21,8 +21,11 @@ public class StudentAssessment {
     private String submissionStatus;
     private String feedback;
     private String grade;
+    private int supervisorMark;
+    private int secondMarkerMark;
+    private int assessmentSubmissionCount;
 
-    public StudentAssessment(String studentAssessmentID, String studentID, String assessmentID, String studentAssessmentDueDate, URL submissionLink, LocalDateTime submissionDateTime, String submissionStatus, String feedback, String grade) {
+    public StudentAssessment(String studentAssessmentID, String studentID, String assessmentID, String studentAssessmentDueDate, URL submissionLink, LocalDateTime submissionDateTime, String submissionStatus, String feedback, String grade, int supervisorMark, int secondMarkerMark, int assessmentSubmissionCount) {
         this.studentAssessmentID = studentAssessmentID;
         this.studentID = studentID;
         this.assessmentID = assessmentID;
@@ -32,7 +35,11 @@ public class StudentAssessment {
         this.submissionStatus = submissionStatus;
         this.feedback = feedback;
         this.grade = grade;
+        this.supervisorMark = supervisorMark;
+        this.secondMarkerMark = secondMarkerMark;
+        this.assessmentSubmissionCount = assessmentSubmissionCount;
     }
+
 
     public String getStudentAssessmentID() {
         return studentAssessmentID;
@@ -104,6 +111,32 @@ public class StudentAssessment {
 
     public void setGrade(String grade) {
         this.grade = grade;
+    }
+
+    public int getSupervisorMark() {
+        return supervisorMark;
+    }
+
+    public void setSupervisorMark(int supervisorMark) {
+        this.supervisorMark = supervisorMark;
+    }
+
+    public int getSecondMarkerMark() {
+        return secondMarkerMark;
+    }
+
+    public void setSecondMarkerMark(int secondMarkerMark) {
+        this.secondMarkerMark = secondMarkerMark;
+    }
+
+    
+
+    public int getAssessmentSubmissionCount() {
+        return assessmentSubmissionCount;
+    }
+
+    public void setAssessmentSubmissionCount(int assessmentSubmissionCount) {
+        this.assessmentSubmissionCount = assessmentSubmissionCount;
     }
     
     

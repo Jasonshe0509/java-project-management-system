@@ -4,7 +4,13 @@
  */
 package com.mycompany.projectmanagementsystem;
 
+import com.mycompany.projectmanagementsystem.GeneralFunction.FileHandler;
+import com.mycompany.projectmanagementsystem.GeneralFunction.SessionManager;
+import com.mycompany.projectmanagementsystem.Presentation.PresentationController;
+import com.mycompany.projectmanagementsystem.User.User;
 import java.awt.Toolkit;
+import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -15,9 +21,19 @@ public class LecturerPresentationFeedback extends javax.swing.JFrame {
     /**
      * Creates new form LecturerPresentationFeedback
      */
-    public LecturerPresentationFeedback() {
+    private final SessionManager sessionManager = SessionManager.getInstance();
+    User user = sessionManager.getCurrentUser();
+    private String stdID;
+    
+    public LecturerPresentationFeedback(String AssmntID, String stdID, String name, String marker, String presentSlot) {
+        this.stdID = stdID;
         initComponents();
         setIconImage();
+        stdIDLabel.setText(stdID);
+        stdNameLabel.setText(name);
+        secMarkerLabel.setText(marker);
+        slotLabel.setText(presentSlot);
+        showFeedback(AssmntID);
     }
 
     /**
@@ -33,24 +49,23 @@ public class LecturerPresentationFeedback extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        stdIDLabel = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        stdNameLabel = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        secMarkerLabel = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        slotLabel = new javax.swing.JLabel();
+        feedbackField = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
+        saveFeedbackBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Lecturer Presentation Feedback");
-        setMaximumSize(new java.awt.Dimension(700, 500));
         setMinimumSize(new java.awt.Dimension(700, 500));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -69,11 +84,11 @@ public class LecturerPresentationFeedback extends javax.swing.JFrame {
         jLabel2.setMinimumSize(new java.awt.Dimension(170, 30));
         jLabel2.setPreferredSize(new java.awt.Dimension(170, 30));
 
-        jLabel3.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(2, 50, 99));
-        jLabel3.setMaximumSize(new java.awt.Dimension(300, 30));
-        jLabel3.setMinimumSize(new java.awt.Dimension(300, 30));
-        jLabel3.setPreferredSize(new java.awt.Dimension(300, 30));
+        stdIDLabel.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        stdIDLabel.setForeground(new java.awt.Color(2, 50, 99));
+        stdIDLabel.setMaximumSize(new java.awt.Dimension(300, 30));
+        stdIDLabel.setMinimumSize(new java.awt.Dimension(300, 30));
+        stdIDLabel.setPreferredSize(new java.awt.Dimension(300, 30));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -83,7 +98,7 @@ public class LecturerPresentationFeedback extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(stdIDLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -91,7 +106,7 @@ public class LecturerPresentationFeedback extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(stdIDLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -107,11 +122,11 @@ public class LecturerPresentationFeedback extends javax.swing.JFrame {
         jLabel4.setMinimumSize(new java.awt.Dimension(170, 30));
         jLabel4.setPreferredSize(new java.awt.Dimension(170, 30));
 
-        jLabel5.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(2, 50, 99));
-        jLabel5.setMaximumSize(new java.awt.Dimension(300, 30));
-        jLabel5.setMinimumSize(new java.awt.Dimension(300, 30));
-        jLabel5.setPreferredSize(new java.awt.Dimension(300, 30));
+        stdNameLabel.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        stdNameLabel.setForeground(new java.awt.Color(2, 50, 99));
+        stdNameLabel.setMaximumSize(new java.awt.Dimension(300, 30));
+        stdNameLabel.setMinimumSize(new java.awt.Dimension(300, 30));
+        stdNameLabel.setPreferredSize(new java.awt.Dimension(300, 30));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -121,7 +136,7 @@ public class LecturerPresentationFeedback extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(stdNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -129,7 +144,7 @@ public class LecturerPresentationFeedback extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(stdNameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -145,11 +160,11 @@ public class LecturerPresentationFeedback extends javax.swing.JFrame {
         jLabel6.setMinimumSize(new java.awt.Dimension(170, 30));
         jLabel6.setPreferredSize(new java.awt.Dimension(170, 30));
 
-        jLabel8.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(2, 50, 99));
-        jLabel8.setMaximumSize(new java.awt.Dimension(300, 30));
-        jLabel8.setMinimumSize(new java.awt.Dimension(300, 30));
-        jLabel8.setPreferredSize(new java.awt.Dimension(300, 30));
+        secMarkerLabel.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        secMarkerLabel.setForeground(new java.awt.Color(2, 50, 99));
+        secMarkerLabel.setMaximumSize(new java.awt.Dimension(300, 30));
+        secMarkerLabel.setMinimumSize(new java.awt.Dimension(300, 30));
+        secMarkerLabel.setPreferredSize(new java.awt.Dimension(300, 30));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -159,7 +174,7 @@ public class LecturerPresentationFeedback extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
-                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(secMarkerLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -167,7 +182,7 @@ public class LecturerPresentationFeedback extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(secMarkerLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -183,11 +198,11 @@ public class LecturerPresentationFeedback extends javax.swing.JFrame {
         jLabel9.setMinimumSize(new java.awt.Dimension(170, 30));
         jLabel9.setPreferredSize(new java.awt.Dimension(170, 30));
 
-        jLabel10.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(2, 50, 99));
-        jLabel10.setMaximumSize(new java.awt.Dimension(300, 30));
-        jLabel10.setMinimumSize(new java.awt.Dimension(300, 30));
-        jLabel10.setPreferredSize(new java.awt.Dimension(300, 30));
+        slotLabel.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        slotLabel.setForeground(new java.awt.Color(2, 50, 99));
+        slotLabel.setMaximumSize(new java.awt.Dimension(300, 30));
+        slotLabel.setMinimumSize(new java.awt.Dimension(300, 30));
+        slotLabel.setPreferredSize(new java.awt.Dimension(300, 30));
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -197,7 +212,7 @@ public class LecturerPresentationFeedback extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
-                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(slotLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
@@ -205,16 +220,10 @@ public class LecturerPresentationFeedback extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(slotLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
-
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
 
         jLabel11.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(2, 50, 99));
@@ -238,7 +247,7 @@ public class LecturerPresentationFeedback extends javax.swing.JFrame {
                         .addComponent(jLabel7))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(80, 80, 80)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(feedbackField, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -260,23 +269,23 @@ public class LecturerPresentationFeedback extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(5, 5, 5)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(feedbackField, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 670, 420));
 
-        jButton4.setBackground(new java.awt.Color(76, 127, 174));
-        jButton4.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("Save");
-        jButton4.setPreferredSize(new java.awt.Dimension(60, 25));
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        saveFeedbackBtn.setBackground(new java.awt.Color(76, 127, 174));
+        saveFeedbackBtn.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
+        saveFeedbackBtn.setForeground(new java.awt.Color(255, 255, 255));
+        saveFeedbackBtn.setText("Save");
+        saveFeedbackBtn.setPreferredSize(new java.awt.Dimension(60, 25));
+        saveFeedbackBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                saveFeedbackBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 450, 80, 30));
+        getContentPane().add(saveFeedbackBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 450, 80, 30));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main_background.png"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -289,13 +298,22 @@ public class LecturerPresentationFeedback extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    private void saveFeedbackBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveFeedbackBtnActionPerformed
+        int confirm = JOptionPane.showConfirmDialog(null, "Are you sure you want to submit this feedback?", "Confirmation", JOptionPane.YES_NO_OPTION);
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+        if (confirm == JOptionPane.YES_OPTION) {
+            String feedback = feedbackField.getText();
+            PresentationController action = new PresentationController();
+            boolean feedbackGiven = action.updateStudentPresentationIndex(stdID, feedback);
+
+            if (feedbackGiven) {
+                JOptionPane.showMessageDialog(null, "Successfully submitted your feedback.");
+                this.setVisible(false);
+            } else {
+                JOptionPane.showMessageDialog(null, "Failed to submit feedback.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_saveFeedbackBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -327,32 +345,79 @@ public class LecturerPresentationFeedback extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LecturerPresentationFeedback().setVisible(true);
+                new LecturerPresentationFeedback("AssmntID", "stdID", "name", "marker", "presentSlot").setVisible(true);
             }
         });
     }
     private void setIconImage() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Sysco_icon_with_background.png")));
     }
+    
+    private void showFeedback(String assessmentID) {
+        List<String> datax = FileHandler.readFile("assessment.txt");
+        List<String> datay = FileHandler.readFile("presentation_confirmation.txt");
+        boolean isSupervisor = false;
+        boolean isSecondMarker = false;
+
+        for (String linex : datax) {
+            String[] listx = linex.split(";");
+            if (listx[0].equals(assessmentID)) { // Check the current assessment ID
+                if (listx[4].equals(user.getUserID())) { // supervisor
+                    isSupervisor = true;
+                } else if (listx[5].equals(user.getUserID())) { // second marker
+                    isSecondMarker = true;
+                }
+                break;
+            }
+        }
+
+        if (isSupervisor) {
+            for (String liney : datay) {
+                String[] listy = liney.split(";");
+                if (listy[1].equals(stdID)) {
+                    feedbackField.setText(listy[4]);
+                    feedbackField.setEditable(true); // Supervisors can always edit
+                }
+            }
+        } else if (isSecondMarker) {
+            boolean feedbackExists = false;
+            for (String liney : datay) {
+                String[] listy = liney.split(";");
+                if (listy[1].equals(stdID)) {
+                    if (listy.length > 5 && listy[4] != null && !listy[4].isEmpty()) {
+                        feedbackField.setText(listy[5]);
+                        feedbackField.setEditable(true); // Editable if feedback exists
+                        feedbackExists = true;
+                    }
+                }
+            }
+            if (!feedbackExists) {
+                feedbackField.setText("No feedback given by supervisor.");
+                feedbackField.setEditable(false); // Not editable if no feedback
+            }
+            saveFeedbackBtn.setEnabled(feedbackExists);
+        }
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton4;
+    private javax.swing.JTextField feedbackField;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton saveFeedbackBtn;
+    private javax.swing.JLabel secMarkerLabel;
+    private javax.swing.JLabel slotLabel;
+    private javax.swing.JLabel stdIDLabel;
+    private javax.swing.JLabel stdNameLabel;
     // End of variables declaration//GEN-END:variables
 }
