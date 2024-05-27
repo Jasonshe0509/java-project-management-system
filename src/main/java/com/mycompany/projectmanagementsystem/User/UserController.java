@@ -7,6 +7,7 @@ package com.mycompany.projectmanagementsystem.User;
 import com.mycompany.projectmanagementsystem.GeneralFunction.FileHandler;
 import com.mycompany.projectmanagementsystem.GeneralFunction.SessionManager;
 import com.mycompany.projectmanagementsystem.LoginPage;
+import com.mycompany.projectmanagementsystem.admin_lecturer_record;
 import com.mycompany.projectmanagementsystem.admin_view_lec_details;
 import com.mycompany.projectmanagementsystem.admin_student_management;
 import com.mycompany.projectmanagementsystem.admin_view_studentrecord;
@@ -205,10 +206,39 @@ public class UserController extends UserAuthenticationController {
             }
             JOptionPane.showMessageDialog(null, "Successfully Removed " +userID+ " from project manager list.");
             FileHandler.modifyFileData("user.txt", updatedData);
+            admin_lecturer_record.printLecturerTable();
+            admin_lecturer_record.readNumOfLecturer();
             return true;
         }else{
             JOptionPane.showMessageDialog(null, "Action Cancelled!");
             return false;
+        }
+    }
+    public void projectmanagerAdd(String userID){
+        
+        int confirm = JOptionPane.showConfirmDialog(null, "Assign " +userID+ " as Project Manager?", "Confirmation", JOptionPane.YES_NO_OPTION);
+        if(confirm == JOptionPane.YES_OPTION){
+            
+            List<String> data = FileHandler.readFile("user.txt");
+            ArrayList<String> updatedData = new ArrayList<>();
+
+            for(String lines: data){
+                if(lines.startsWith(userID)){
+                    String[] line = lines.split(";");
+                    line[10] = "project manager";
+                    String updatedLine = String.join(";", line);
+                    updatedData.add(updatedLine);
+                }else{
+                    updatedData.add(lines);
+                }
+            }
+            JOptionPane.showMessageDialog(null, "Successfully Assigned!");
+            FileHandler.modifyFileData("user.txt", updatedData);
+            admin_lecturer_record.printLecturerTable();
+            admin_lecturer_record.readNumOfLecturer();
+            
+        }else{
+            JOptionPane.showMessageDialog(null, "Action Cancelled!");
         }
     }
     
@@ -227,7 +257,12 @@ public class UserController extends UserAuthenticationController {
             JOptionPane.showMessageDialog(null, "Action Cancelled!");
             return false;
         }
+        
         FileHandler.modifyFileData("user.txt", updatedData);
+        admin_lecturer_record.printLecturerTable();
+        admin_lecturer_record.readNumOfLecturer();
+        admin_lecturer_record.printSchoolWiseTable();
+        admin_lecturer_record.readNumOfSchoolWise();
         return true;
     }
 

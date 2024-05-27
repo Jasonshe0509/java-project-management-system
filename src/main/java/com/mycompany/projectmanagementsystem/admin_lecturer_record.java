@@ -14,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class admin_lecturer_record extends javax.swing.JFrame {
 
-    int numOfSchoolWise, numOfLecturer, numOfProjectManager;
+    static int numOfSchoolWise, numOfLecturer, numOfProjectManager;
 
     public admin_lecturer_record() {
         initComponents();
@@ -35,7 +35,6 @@ public class admin_lecturer_record extends javax.swing.JFrame {
                 String userID = (String) model.getValueAt(row, columnIndex);
                 UserController action = new UserController();
                 action.viewUser(userID);
-                System.out.print(userID);
                 
             }
 
@@ -45,17 +44,8 @@ public class admin_lecturer_record extends javax.swing.JFrame {
                 int columnIndex = 0;
                 String userID = (String) model.getValueAt(row, columnIndex);
                 UserController action = new UserController();
-                boolean result = action.userDelete(userID);
-                if (result) {
-                    JOptionPane.showMessageDialog(null, "Successfully delete the Lecturer: " + userID);
-                    DefaultTableModel lecturermodel = (DefaultTableModel) lecturer_table.getModel();
-                    DefaultTableModel projectmanagermodel = (DefaultTableModel) projectmanager_table.getModel();
-                    lecturermodel.setNumRows(0);
-                    projectmanagermodel.setNumRows(0);
-                    printLecturerTable();
-                    readNumOfLecturer();
-
-                }
+                action.userDelete(userID);
+                
             }
         };
 
@@ -69,16 +59,8 @@ public class admin_lecturer_record extends javax.swing.JFrame {
                 int columnIndex = 0;
                 String userID = (String) model.getValueAt(row, columnIndex);
                 UserController action = new UserController();
-                boolean result = action.projectmanagerDelete(userID);
-                if (result) {
-                    DefaultTableModel lecturermodel = (DefaultTableModel) lecturer_table.getModel();
-                    DefaultTableModel projectmanagermodel = (DefaultTableModel) projectmanager_table.getModel();
-                    lecturermodel.setNumRows(0);
-                    projectmanagermodel.setNumRows(0);
-                    printLecturerTable();
-                    readNumOfLecturer();
-
-                }
+                action.projectmanagerDelete(userID);
+                
             }
             
         };
@@ -115,29 +97,33 @@ public class admin_lecturer_record extends javax.swing.JFrame {
         school_wise_table.getColumnModel().getColumn(2).setCellEditor(removeSWPanel.new AdminDeleteActionCellEditor(deleteSWEvent));
     }
 
-    private void readNumOfSchoolWise() {
+    public static void readNumOfSchoolWise() {
         List<String> data = FileHandler.readFile("school_wise.txt");
-        Object[] lines = data.toArray();
-        numOfSchoolWise = lines.length;
+        int i= 0;
+        for(String lines: data){
+            i++;
+        }
+        numOfSchoolWise = i;
         numSchoolWise.setText(String.valueOf(numOfSchoolWise));
+        
     }
 
-    private void readNumOfLecturer() {
+    public static void readNumOfLecturer() {
         List<String> data = FileHandler.readFile("user.txt");
-        Object[] lines = data.toArray();
         int countLecturer = 0;
         int countProjectManager = 0;
-        for (int i = 0; i < lines.length; i++) {
-            String record = lines[i].toString();
-            String[] userData = record.split(";");
+        for (String lines: data) {
+            
+            String[] userData = lines.split(";");
 
             String user = userData[10];
-            if (user.equals("lecturer") || user.equals("project manager")) {
+            if (user.equals("lecturer")) {
                 countLecturer++;
-                if (user.equals("project manager")) {
+                
+            }
+            if (user.equals("project manager")) {
                     countProjectManager++;
                 }
-            }
         }
         numOfLecturer = countLecturer;
         numOfProjectManager = countProjectManager;
@@ -145,49 +131,52 @@ public class admin_lecturer_record extends javax.swing.JFrame {
         numprojectmanager.setText(String.valueOf(numOfProjectManager));
     }
 
-    public void printSchoolWiseTable() {
+    public static void printSchoolWiseTable() {
         DefaultTableModel model = (DefaultTableModel) school_wise_table.getModel();
+        model.setNumRows(0);
         List<String> data = FileHandler.readFile("school_wise.txt");
-        Object[] records = data.toArray();
         
-        for (int i = 0; i < records.length; i++) {
-            String record = records[i].toString();
+        for (String line: data) {
+            
             
             int numOfLecturer = 0;
             List<String> lecturerList = FileHandler.readFile("user.txt");
             
-            for(String line: lecturerList){
-                String[] lecturerRecord = line.split(";");
-                if(lecturerRecord.length >11 && lecturerRecord[11].equals(record)){
+            for(String line2: lecturerList){
+                String[] lecturerRecord = line2.split(";");
+                if(lecturerRecord.length >11 && lecturerRecord[11].equals(line)){
                     numOfLecturer++;
                 }
             }
             
-            String[] schoolWiseRow = {record, String.valueOf(numOfLecturer)};
+            String[] schoolWiseRow = {line, String.valueOf(numOfLecturer)};
             model.addRow(schoolWiseRow);
         }
 
     }
 
-    public void printLecturerTable() {
+    public static void printLecturerTable() {
         DefaultTableModel model = (DefaultTableModel) lecturer_table.getModel();
+        model.setNumRows(0);
         DefaultTableModel model1 = (DefaultTableModel) projectmanager_table.getModel();
+        model1.setNumRows(0);
         List<String> data = FileHandler.readFile("user.txt");
-        Object[] records = data.toArray();
+        
 
-        for (int i = 0; i < records.length; i++) {
-            String record = records[i].toString();
-            String[] userData = record.split(";");
+        for (String line: data) {
+            
+            String[] userData = line.split(";");
             String user = userData[10];
-            if (user.equals("lecturer") || user.equals("project manager")) {
+            if (user.equals("lecturer")) {
                 String[] lecturerRow = {userData[0], userData[1], userData[11], userData[8], userData[3]};
                 model.addRow(lecturerRow);
-                if (user.equals("project manager")) {
+                
+            }
+            if (user.equals("project manager")) {
                     String[] projectManagerRow = {userData[0], userData[1], userData[11], userData[8], userData[3]};
                     model1.addRow(projectManagerRow);
 
                 }
-            }
         }
     }
 
@@ -462,7 +451,7 @@ public class admin_lecturer_record extends javax.swing.JFrame {
         lecturer_record.addTab("School Wise List", schoolwise_record);
 
         getContentPane().add(lecturer_record, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, 920, 370));
-        lecturer_record.getAccessibleContext().setAccessibleName("\"student_record\"");
+        lecturer_record.getAccessibleContext().setAccessibleName("");
         lecturer_record.getAccessibleContext().setAccessibleDescription("");
 
         totalpm_background.setBackground(new Color(192, 192, 192, 90));
@@ -525,13 +514,13 @@ public class admin_lecturer_record extends javax.swing.JFrame {
     private javax.swing.JLabel background;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTabbedPane lecturer_record;
-    private javax.swing.JTable lecturer_table;
-    private javax.swing.JLabel numSchoolWise;
-    private javax.swing.JLabel numlecturer;
-    private javax.swing.JLabel numprojectmanager;
-    private javax.swing.JTable projectmanager_table;
-    private javax.swing.JTable school_wise_table;
+    private static javax.swing.JTabbedPane lecturer_record;
+    private static javax.swing.JTable lecturer_table;
+    private static javax.swing.JLabel numSchoolWise;
+    private static javax.swing.JLabel numlecturer;
+    private static javax.swing.JLabel numprojectmanager;
+    private static javax.swing.JTable projectmanager_table;
+    private static javax.swing.JTable school_wise_table;
     private javax.swing.JLabel totallec_background;
     private javax.swing.JLabel totallec_border;
     private javax.swing.JLabel totalpm_background;

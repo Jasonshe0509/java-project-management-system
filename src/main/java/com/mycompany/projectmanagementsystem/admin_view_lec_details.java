@@ -75,7 +75,7 @@ public class admin_view_lec_details extends javax.swing.JFrame {
         admin_viewstudent_back = new javax.swing.JButton();
         background = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("View Lecturer Record");
         setMaximumSize(new java.awt.Dimension(700, 580));
         setMinimumSize(new java.awt.Dimension(700, 580));
@@ -331,26 +331,10 @@ public class admin_view_lec_details extends javax.swing.JFrame {
 
     private void assign_projectmanagerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assign_projectmanagerActionPerformed
         String userID = lecturerRecord[0];
-        int confirm = JOptionPane.showConfirmDialog(null, "Assign " +userID+ " as Project Manager?", "Confirmation", JOptionPane.YES_NO_OPTION);
-        if(confirm == JOptionPane.YES_OPTION){
-            lecturerRecord[10] = "project manager";
-            
-            List<String> data = FileHandler.readFile("user.txt");
-            ArrayList<String> updatedData = new ArrayList<>();
-
-            for(String line: data){
-                if(line.startsWith(userID)){
-                    String updatedLine = String.join(";", lecturerRecord);
-                    updatedData.add(updatedLine);
-                }else{
-                    updatedData.add(line);
-                }
-            }
-            JOptionPane.showMessageDialog(null, "Successfully Assigned!");
-            FileHandler.modifyFileData("user.txt", updatedData);
-        }else{
-            JOptionPane.showMessageDialog(null, "Action Cancelled!");
-        }
+        UserController addPM = new UserController();
+        addPM.projectmanagerAdd(userID);
+        dispose();
+        
 
     }//GEN-LAST:event_assign_projectmanagerActionPerformed
 

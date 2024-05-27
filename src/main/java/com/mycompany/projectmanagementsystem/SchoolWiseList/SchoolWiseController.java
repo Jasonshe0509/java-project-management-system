@@ -5,6 +5,7 @@
 package com.mycompany.projectmanagementsystem.SchoolWiseList;
 
 import com.mycompany.projectmanagementsystem.GeneralFunction.FileHandler;
+import com.mycompany.projectmanagementsystem.admin_lecturer_record;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -37,6 +38,8 @@ public class SchoolWiseController {
                 }
                 FileHandler.writeFile("school_wise.txt", formatInput.toString());
                 FileHandler.readFile("school_wise.txt");
+                admin_lecturer_record.printSchoolWiseTable();
+                admin_lecturer_record.readNumOfSchoolWise();
                 JOptionPane.showMessageDialog(null, formatInput + " has been added succefully!", "Successful", JOptionPane.INFORMATION_MESSAGE);
             }
         } else {
@@ -66,6 +69,8 @@ public class SchoolWiseController {
             }
             JOptionPane.showMessageDialog(null, "Successfully Removed " + schoolWise + " from project manager list.");
             FileHandler.modifyFileData("school_wise.txt", updatedData);
+            admin_lecturer_record.printSchoolWiseTable();
+            admin_lecturer_record.readNumOfSchoolWise();
             return true;
         } else {
             JOptionPane.showMessageDialog(null, "Action Cancelled!");
