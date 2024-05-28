@@ -49,12 +49,23 @@ public class admin_lecturer_record extends javax.swing.JFrame {
             }
         };
 
-        AdminDeleteActionPanel removePMPanel = new AdminDeleteActionPanel();
-        AdminDeleteActionEvent deletePMEvent;
-        deletePMEvent = new AdminDeleteActionEvent() {
+        UserTableActionPanel removePMPanel = new UserTableActionPanel();
+        UserTableActionEvent deletePMEvent;
+        deletePMEvent = new UserTableActionEvent() {
             
             @Override
-            public void adminDelete(int row, Object value){
+            public void userView(int row, Object value) {
+
+                DefaultTableModel model = (DefaultTableModel) projectmanager_table.getModel();
+                int columnIndex = 0;
+                String userID = (String) model.getValueAt(row, columnIndex);
+                UserController action = new UserController();
+                action.viewUser(userID);
+                
+            }
+            
+            @Override
+            public void userDelete(int row, Object value){
                 DefaultTableModel model = (DefaultTableModel) projectmanager_table.getModel();
                 int columnIndex = 0;
                 String userID = (String) model.getValueAt(row, columnIndex);
@@ -91,7 +102,7 @@ public class admin_lecturer_record extends javax.swing.JFrame {
         lecturer_table.getColumnModel().getColumn(5).setCellEditor(actionPanel.new UserTableActionCellEditor(event));
         
         projectmanager_table.getColumnModel().getColumn(5).setCellRenderer(removePMPanel.new rPanelActionRenderer());
-        projectmanager_table.getColumnModel().getColumn(5).setCellEditor(removePMPanel.new AdminDeleteActionCellEditor(deletePMEvent));
+        projectmanager_table.getColumnModel().getColumn(5).setCellEditor(removePMPanel.new UserTableActionCellEditor(deletePMEvent));
         
         school_wise_table.getColumnModel().getColumn(2).setCellRenderer(removeSWPanel.new rPanelActionRenderer());
         school_wise_table.getColumnModel().getColumn(2).setCellEditor(removeSWPanel.new AdminDeleteActionCellEditor(deleteSWEvent));
@@ -473,8 +484,9 @@ public class admin_lecturer_record extends javax.swing.JFrame {
         totalpm_border.setPreferredSize(new java.awt.Dimension(440, 125));
         getContentPane().add(totalpm_border, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 110, 300, 90));
 
+        background.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main_background.png"))); // NOI18N
-        getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, -1));
 
         pack();
         setLocationRelativeTo(null);

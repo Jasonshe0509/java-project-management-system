@@ -281,10 +281,9 @@ public class admin_modify_studentrecord extends javax.swing.JFrame {
         admin_modify_student_save.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         admin_modify_student_save.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                admin_modify_student_saveActionPerformed(evt);
+                admin_modify_student_saveaActionPerformed(evt);
             }
         });
-        getContentPane().add(admin_modify_student_save, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 440, -1, -1));
         getContentPane().add(admin_modify_student_save, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 490, -1, -1));
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main_background.png"))); // NOI18N
@@ -301,7 +300,6 @@ public class admin_modify_studentrecord extends javax.swing.JFrame {
     private void admin_viewstudent_backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_admin_viewstudent_backActionPerformed
 
         UserController viewUser = new UserController();
-        
         viewUser.viewUser(userID);
         dispose();
 
@@ -339,15 +337,7 @@ public class admin_modify_studentrecord extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_student_emailActionPerformed
 
-    private void admin_modify_student_saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_admin_modify_student_saveActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_admin_modify_student_saveActionPerformed
-    
-    private void student_intake_selectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_student_intake_selectionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_student_intake_selectionActionPerformed
-
-    private void admin_modify_student_saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_admin_modify_student_saveActionPerformed
+    private void admin_modify_student_saveActionPerformed(java.awt.event.ActionEvent evt) {                                                          
         while (true) {
             try {
                 String[] userInput = new String[12];
@@ -380,7 +370,15 @@ public class admin_modify_studentrecord extends javax.swing.JFrame {
                 break;
             }
         }
-    }//GEN-LAST:event_admin_modify_student_saveActionPerformed
+    }                                                         
+    
+    private void student_intake_selectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_student_intake_selectionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_student_intake_selectionActionPerformed
+
+    private void admin_modify_student_saveaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_admin_modify_student_saveaActionPerformed
+       
+    }//GEN-LAST:event_admin_modify_student_saveaActionPerformed
 
     public static void main(String args[]) {
 

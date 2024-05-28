@@ -12,11 +12,11 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.border.LineBorder;
 
-public class admin_view_lec_details extends javax.swing.JFrame {
+public class admin_view_projectmanager_details extends javax.swing.JFrame {
 
     String[] lecturerRecord;
     
-    public admin_view_lec_details() {
+    public admin_view_projectmanager_details() {
         initComponents();
         setIconImage();
     }
@@ -71,13 +71,11 @@ public class admin_view_lec_details extends javax.swing.JFrame {
         lec_details_background = new javax.swing.JLabel();
         lec_details_border = new javax.swing.JLabel();
         modify_lecturer = new javax.swing.JButton();
-        assign_projectmanager = new javax.swing.JButton();
         admin_viewstudent_back = new javax.swing.JButton();
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("View Lecturer Record");
-        setMaximumSize(new java.awt.Dimension(700, 580));
         setMinimumSize(new java.awt.Dimension(700, 580));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -249,18 +247,7 @@ public class admin_view_lec_details extends javax.swing.JFrame {
                 modify_lecturerActionPerformed(evt);
             }
         });
-        getContentPane().add(modify_lecturer, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 460, 110, -1));
-
-        assign_projectmanager.setBackground(new java.awt.Color(76, 127, 174));
-        assign_projectmanager.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
-        assign_projectmanager.setForeground(new java.awt.Color(2, 50, 99));
-        assign_projectmanager.setText("<html><div style = 'text-align: center; width: 100px;'>Assign Project Manager</div></html>");
-        assign_projectmanager.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                assign_projectmanagerActionPerformed(evt);
-            }
-        });
-        getContentPane().add(assign_projectmanager, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 450, 150, -1));
+        getContentPane().add(modify_lecturer, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 460, 110, -1));
 
         admin_viewstudent_back.setBackground(new java.awt.Color(76, 127, 174));
         admin_viewstudent_back.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
@@ -271,7 +258,7 @@ public class admin_view_lec_details extends javax.swing.JFrame {
                 admin_viewstudent_backActionPerformed(evt);
             }
         });
-        getContentPane().add(admin_viewstudent_back, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 460, -1, -1));
+        getContentPane().add(admin_viewstudent_back, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 460, -1, -1));
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main_background.png"))); // NOI18N
         background.setMaximumSize(new java.awt.Dimension(700, 580));
@@ -329,15 +316,6 @@ public class admin_view_lec_details extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_lec_schoolwiseActionPerformed
 
-    private void assign_projectmanagerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assign_projectmanagerActionPerformed
-        String userID = lecturerRecord[0];
-        UserController addPM = new UserController();
-        addPM.projectmanagerAdd(userID);
-        dispose();
-        
-
-    }//GEN-LAST:event_assign_projectmanagerActionPerformed
-
     private void modify_lecturerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modify_lecturerActionPerformed
         admin_modify_lecturerrecord modifyLecturerDetails = new admin_modify_lecturerrecord();
         modifyLecturerDetails.displayLecturerDetails(lecturerRecord);
@@ -349,7 +327,7 @@ public class admin_view_lec_details extends javax.swing.JFrame {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new admin_view_lec_details().setVisible(true);
+                new admin_view_projectmanager_details().setVisible(true);
             }
         });
     }
@@ -359,7 +337,6 @@ public class admin_view_lec_details extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton admin_viewstudent_back;
-    private javax.swing.JButton assign_projectmanager;
     private javax.swing.JLabel background;
     private javax.swing.JTextField lec_address;
     private javax.swing.JLabel lec_address_title;
