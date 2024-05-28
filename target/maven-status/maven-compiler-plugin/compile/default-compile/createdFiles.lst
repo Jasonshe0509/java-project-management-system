@@ -1,6 +1,7 @@
 com\mycompany\projectmanagementsystem\LecturerIntakePage$14.class
 com\mycompany\projectmanagementsystem\LoginPage.class
 com\mycompany\projectmanagementsystem\lect_ReportPanelAction$3.class
+com\mycompany\projectmanagementsystem\LecturerSummaryReport$5.class
 com\mycompany\projectmanagementsystem\admin_ec_details$1.class
 com\mycompany\projectmanagementsystem\admin_view_studentrecord$2.class
 com\mycompany\projectmanagementsystem\ForgetPasswordPage.class
@@ -21,6 +22,7 @@ com\mycompany\projectmanagementsystem\LecturerIntakePage$5.class
 com\mycompany\projectmanagementsystem\StudentEcSubmissionPage$5.class
 com\mycompany\projectmanagementsystem\StudentEcForm.class
 com\mycompany\projectmanagementsystem\LoginPage$4.class
+com\mycompany\projectmanagementsystem\JTableDataSource.class
 com\mycompany\projectmanagementsystem\StudentAssessmentDetailPage$15.class
 com\mycompany\projectmanagementsystem\StudentProfilePage$5.class
 com\mycompany\projectmanagementsystem\admin_modify_studentrecord$4.class
@@ -73,6 +75,7 @@ com\mycompany\projectmanagementsystem\admin_view_studentrecord$9.class
 com\mycompany\projectmanagementsystem\StudentECActionPanel$2.class
 com\mycompany\projectmanagementsystem\admin_register_student$2.class
 com\mycompany\projectmanagementsystem\admin_register_schoolwiselist$4.class
+com\mycompany\projectmanagementsystem\LecturerSummaryReport$7.class
 com\mycompany\projectmanagementsystem\LecturerIntakePage$2.class
 com\mycompany\projectmanagementsystem\admin_student.class
 com\mycompany\projectmanagementsystem\admin_view_lec_details.class
@@ -213,6 +216,7 @@ com\mycompany\projectmanagementsystem\Assessment\Assessment.class
 com\mycompany\projectmanagementsystem\lect_PresentationPanelAction$2.class
 com\mycompany\projectmanagementsystem\StudentEcSubmissionPage$6.class
 com\mycompany\projectmanagementsystem\LevelOfEducation\LevelOfEducation.class
+com\mycompany\projectmanagementsystem\LecturerSummaryReport$4.class
 com\mycompany\projectmanagementsystem\admin_register_lecturer$6.class
 com\mycompany\projectmanagementsystem\admin_view_studentrecord$3.class
 com\mycompany\projectmanagementsystem\admin_modify_lecturerrecord$6.class
@@ -279,6 +283,7 @@ com\mycompany\projectmanagementsystem\PM_assessment_page$6.class
 com\mycompany\projectmanagementsystem\admin_edit_intake.class
 com\mycompany\projectmanagementsystem\User\Lecturer.class
 com\mycompany\projectmanagementsystem\LecturerIntakePage$1.class
+com\mycompany\projectmanagementsystem\LecturerSummaryReport$6.class
 com\mycompany\projectmanagementsystem\SchoolWiseList\SchoolWise.class
 com\mycompany\projectmanagementsystem\LecturerReportConfirm$3.class
 com\mycompany\projectmanagementsystem\admin_lecturer_record.class
@@ -318,6 +323,7 @@ com\mycompany\projectmanagementsystem\lect_PresentationRqtActionPanel$1.class
 com\mycompany\projectmanagementsystem\StudentPresentationActionPanel$TableActionCellEditor.class
 com\mycompany\projectmanagementsystem\StudentECActionPanel.class
 com\mycompany\projectmanagementsystem\admin_ec_details$3.class
+com\mycompany\projectmanagementsystem\JPanel.class
 com\mycompany\projectmanagementsystem\StudentAssessmentDetailPage$6.class
 com\mycompany\projectmanagementsystem\admin_modify_lecturerrecord$11.class
 com\mycompany\projectmanagementsystem\StudentAssessmentDetailPage$17.class
@@ -338,6 +344,7 @@ com\mycompany\projectmanagementsystem\StudentAssessmentDetailPage$7.class
 com\mycompany\projectmanagementsystem\ProjectManagerPage$10.class
 com\mycompany\projectmanagementsystem\PM_report_status$1.class
 com\mycompany\projectmanagementsystem\admin_view_studentrecord$4.class
+com\mycompany\projectmanagementsystem\LecturerSummaryReport$3.class
 com\mycompany\projectmanagementsystem\StudentAssessmentDetailPage$1.class
 com\mycompany\projectmanagementsystem\UserTableActionPanel$rPanelActionRenderer.class
 com\mycompany\projectmanagementsystem\admin_register_lecturer$7.class

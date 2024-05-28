@@ -981,19 +981,18 @@ public class LecturerIntakePage extends javax.swing.JFrame {
 
     private void SumRptLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SumRptLabelMouseClicked
         this.setVisible(false);
-        LecturerSummaryReport lectSumRpt = new LecturerSummaryReport();
+        LecturerSummaryReport lectSumRpt = new LecturerSummaryReport(AssmntID, intakeCode);
         lectSumRpt.setVisible(true);
     }//GEN-LAST:event_SumRptLabelMouseClicked
 
     private void NotiLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NotiLabelMouseClicked
-        this.setVisible(false);
         NotificationPage lectNoti = new NotificationPage();
         lectNoti.setVisible(true);
     }//GEN-LAST:event_NotiLabelMouseClicked
 
     private void LecProfileLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LecProfileLabelMouseClicked
         this.setVisible(false);
-        LecturerProfile profile = new LecturerProfile();
+        LecturerProfile profile = new LecturerProfile(AssmntID, intakeCode);
         profile.setVisible(true);
     }//GEN-LAST:event_LecProfileLabelMouseClicked
 
@@ -1113,6 +1112,7 @@ public class LecturerIntakePage extends javax.swing.JFrame {
             }
             TotalSubmsnLabel.setText(Integer.toString(stdSubCount));
         }     
+    
     private void showPresentation(){
         List<String> presentationData = FileHandler.readFile("presentation_confirmation.txt");
         int schdPresentationCount = 0;
