@@ -1145,7 +1145,7 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
     }//GEN-LAST:event_resubmitBtnActionPerformed
 
     private void createDiscussionBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createDiscussionBtnActionPerformed
-        CreateNewMessagePage messagePage = new CreateNewMessagePage(assessmentID, assessmentType, null, null, this);
+        CreateNewMessagePage messagePage = new CreateNewMessagePage(assessmentID, assessmentType, null, null, this, null);
         messagePage.setVisible(true);
     }//GEN-LAST:event_createDiscussionBtnActionPerformed
 
@@ -1622,7 +1622,7 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
                 reply.addMouseListener(new java.awt.event.MouseAdapter() {
                     @Override
                     public void mouseClicked(java.awt.event.MouseEvent evt) {
-                        CreateNewMessagePage messagePage = new CreateNewMessagePage(assessmentID, assessmentType, list[3], list[0], page);
+                        CreateNewMessagePage messagePage = new CreateNewMessagePage(assessmentID, assessmentType, list[3], list[0], page, null);
                         messagePage.setVisible(true);
                     }
                 });
@@ -1876,7 +1876,7 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
             sorter.setRowFilter(RowFilter.andFilter(filters));
         }
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel assessment;
     private javax.swing.JLabel assessmentStatus;
