@@ -313,8 +313,7 @@ admin_view_studentrecord studentRecordInstace;
     }//GEN-LAST:event_student_emailActionPerformed
 
     private void admin_viewstudent_backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_admin_viewstudent_backActionPerformed
-        admin_student_management studentmanagement = new admin_student_management();
-        studentmanagement.show();
+        
         dispose();
     }//GEN-LAST:event_admin_viewstudent_backActionPerformed
 
