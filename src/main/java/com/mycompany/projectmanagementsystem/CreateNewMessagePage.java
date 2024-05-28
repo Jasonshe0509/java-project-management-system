@@ -193,7 +193,8 @@ public class CreateNewMessagePage extends javax.swing.JFrame {
                     page.setVisible(true);
                     page.selectCommunicationPanel(1, null);
                 } else {
-                    lecturerIntakePage.setVisible(false);
+                    lecturerIntakePage.refreshContent(); 
+                    lecturerIntakePage.selectCommunicationPanel(1, null);
                 }
             }
         } else {
@@ -212,7 +213,8 @@ public class CreateNewMessagePage extends javax.swing.JFrame {
                     page.setVisible(true);
                     page.selectCommunicationPanel(2, channelID);
                 } else {
-                    lecturerIntakePage.setVisible(false);
+                    lecturerIntakePage.refreshContent();
+                    lecturerIntakePage.selectCommunicationPanel(1, null);
                 }
             }
         }
