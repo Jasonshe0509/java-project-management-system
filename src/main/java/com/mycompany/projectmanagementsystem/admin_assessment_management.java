@@ -1,4 +1,4 @@
-   package com.mycompany.projectmanagementsystem;
+package com.mycompany.projectmanagementsystem;
 
 import com.mycompany.projectmanagementsystem.Assessment.AdminEditTableActionEvent;
 import com.mycompany.projectmanagementsystem.Assessment.AssessmentController;
@@ -10,7 +10,6 @@ import javax.swing.table.DefaultTableModel;
 
 public class admin_assessment_management extends javax.swing.JFrame {
 
-    
     public admin_assessment_management() {
         initComponents();
         setIconImage();
@@ -19,7 +18,7 @@ public class admin_assessment_management extends javax.swing.JFrame {
         AdminEditTableActionPanel editPanel = new AdminEditTableActionPanel();
         AdminEditTableActionEvent editEvent;
         editEvent = new AdminEditTableActionEvent() {
-            
+
             @Override
 
             public void adminEdit(int row, Object value) {
@@ -29,8 +28,6 @@ public class admin_assessment_management extends javax.swing.JFrame {
                 admin_edit_assessment display = new admin_edit_assessment();
                 display.displayAssessmentDetails(assessmentName);
                 display.show();
-                
-                
 
             }
         };
@@ -39,24 +36,27 @@ public class admin_assessment_management extends javax.swing.JFrame {
         assessment_table.getColumnModel().getColumn(7).setCellEditor(editPanel.new AdminEditTableActionCellEditor(editEvent));
     }
 
-    
-
-    public void printAssessmentTable() {
+    public static void printAssessmentTable() {
 
         DefaultTableModel model = (DefaultTableModel) assessment_table.getModel();
         model.setRowCount(0);
         List<String> data = FileHandler.readFile("assessment_type.txt");
 
-        for (String line: data) {
-            
+        for (String line : data) {
+
             String[] record = line.split(";");
+            for (int i = 1; i < record.length; i++) {
+                if (record[i].equals("0")) {
+                    record[i] = "N/A";
+                }
+            }
+
             String[] assessmentRow = {record[0], record[1], record[2], record[3], record[4], record[5], record[6]};
             model.addRow(assessmentRow);
 
         }
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -282,7 +282,7 @@ public class admin_assessment_management extends javax.swing.JFrame {
     private javax.swing.JLabel admin_profile;
     private javax.swing.JLabel admin_report;
     private javax.swing.JLabel admin_student;
-    private javax.swing.JTable assessment_table;
+    private static javax.swing.JTable assessment_table;
     private javax.swing.JLabel background;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;

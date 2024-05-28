@@ -4,6 +4,7 @@
  */
 package com.mycompany.projectmanagementsystem;
 
+import com.mycompany.projectmanagementsystem.Assessment.AssessmentController;
 import com.mycompany.projectmanagementsystem.GeneralFunction.FileHandler;
 import java.util.List;
 
@@ -70,7 +71,6 @@ public class admin_edit_assessment extends javax.swing.JFrame {
         setTitle("Admin: Edit Assessment Mark");
         setMaximumSize(new java.awt.Dimension(500, 420));
         setMinimumSize(new java.awt.Dimension(500, 420));
-        setPreferredSize(new java.awt.Dimension(500, 420));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -175,11 +175,22 @@ public class admin_edit_assessment extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void updatebuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatebuttonActionPerformed
-        // TODO add your handling code here:
+        String[] updatedMarks = new String[7];
+        updatedMarks[0] = assessment_name.getText();
+        updatedMarks[1] = contentmark.getValue().toString();
+        updatedMarks[2] = formatmark.getValue().toString();
+        updatedMarks[3] = presentationmark.getValue().toString();
+        updatedMarks[4] = passmark.getValue().toString();
+        updatedMarks[5] = passwithchanges.getValue().toString();
+        updatedMarks[6] = failmark.getValue().toString();
+        
+        AssessmentController modifymark = new AssessmentController();
+        modifymark.adminEditMark(updatedMarks);
+        
     }//GEN-LAST:event_updatebuttonActionPerformed
 
     private void backbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backbuttonActionPerformed
-        // TODO add your handling code here:
+        dispose();
     }//GEN-LAST:event_backbuttonActionPerformed
 
     /**

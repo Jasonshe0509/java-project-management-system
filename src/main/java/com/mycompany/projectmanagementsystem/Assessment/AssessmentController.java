@@ -7,6 +7,7 @@ package com.mycompany.projectmanagementsystem.Assessment;
 import com.mycompany.projectmanagementsystem.GeneralFunction.FileHandler;
 import com.mycompany.projectmanagementsystem.GeneralFunction.SessionManager;
 import com.mycompany.projectmanagementsystem.User.User;
+import com.mycompany.projectmanagementsystem.admin_assessment_management;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -82,7 +83,7 @@ public class AssessmentController implements StudentAssessmentController {
         }
         return false;
     }
-    
+
     public boolean spvReportDone(String stdID, String newStatus) {
         List<String> data = FileHandler.readFile("student_assessment.txt");
         ArrayList<String> updatedData = new ArrayList<>();
@@ -136,7 +137,7 @@ public class AssessmentController implements StudentAssessmentController {
 
         for (String line : data) {
             String[] list = line.split(";");
-            
+
             if (list[1].equals(stdID)) {
                 if (!list[9].isEmpty() && !list[10].isEmpty()) { // Validate if both marks are given
                     // Take the higher mark to assign grade
@@ -172,14 +173,63 @@ public class AssessmentController implements StudentAssessmentController {
 
     private String assignGrade(String stdID, int mark, int count) {
         if (count >= 2) {
-            if (mark >= 50) return "Pass with Small Changes";
+            if (mark >= 50) {
+                return "Pass with Small Changes";
+            }
             return null;
         } else {
-            if (mark >= 50) return "Pass";
+            if (mark >= 50) {
+                return "Pass";
+            }
             return "Fail";
         }
+    }
+
+    public void adminEditMark(String[] marklist) {
+
+        if (AssessmentValidator.validateAssessmentInput(marklist)) {
+            int totalMark = Integer.parseInt(marklist[1]) + Integer.parseInt(marklist[2]) + Integer.parseInt(marklist[3]);
+            if (totalMark <= 100) {
+                if (Integer.parseInt(marklist[6]) < Integer.parseInt(marklist[4])) {
+                    if ((Integer.parseInt(marklist[5]) != 0 && Integer.parseInt(marklist[6]) < Integer.parseInt(marklist[5])) || (Integer.parseInt(marklist[5]) == 0 && Integer.parseInt(marklist[6]) >= Integer.parseInt(marklist[5]))) {
+                        List<String> data = FileHandler.readFile("assessment_type.txt");
+                        ArrayList<String> updatedData = new ArrayList();
+                        for (String line : data) {
+                            if (line.startsWith(marklist[0])) {
+                                String[] record = line.split(";");
+                                record[0] = marklist[0];
+                                record[1] = marklist[1];
+                                record[2] = marklist[2];
+                                record[3] = marklist[3];
+                                record[4] = marklist[4];
+                                record[5] = marklist[5];
+                                record[6] = marklist[6];
+
+                                line = String.join(";", record);
+                                updatedData.add(line);
+
+                            } else {
+                                updatedData.add(line);
+                            }
+                        }
+                        FileHandler.modifyFileData("assessment_type.txt", updatedData);
+                        admin_assessment_management.printAssessmentTable();
+
+                        JOptionPane.showMessageDialog(null, "Marks For " + marklist[0] + " has been Updated succefully!", "Successful Updated", JOptionPane.INFORMATION_MESSAGE);
+
+                    } else {
+                        JOptionPane.showMessageDialog(null, "The Fail Mark Cannot Greater Than Pass Mark.", "Invalid Input", JOptionPane.ERROR_MESSAGE);
+                    }
+
+                } else {
+                        JOptionPane.showMessageDialog(null, "The Fail Mark Cannot Greater Than Pass With Changes Mark.", "Invalid Input", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "The Total Mark Of Content, Format, and Presentation Cannot Exceed 100!", "Invalid Input", JOptionPane.ERROR_MESSAGE);
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Please Ensure All The Fields Are Filled!", "Invalid Changes: Incomplete Input!", JOptionPane.ERROR_MESSAGE);
         }
-    
-    public void adminEditMark(String assessmentName){
     }
 }
