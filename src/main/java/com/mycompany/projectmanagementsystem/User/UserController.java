@@ -7,7 +7,6 @@ package com.mycompany.projectmanagementsystem.User;
 import com.mycompany.projectmanagementsystem.GeneralFunction.FileHandler;
 import com.mycompany.projectmanagementsystem.GeneralFunction.SessionManager;
 import com.mycompany.projectmanagementsystem.LoginPage;
-import com.mycompany.projectmanagementsystem.admin_student_management;
 import com.mycompany.projectmanagementsystem.admin_view_studentrecord;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -257,7 +256,7 @@ public class UserController extends UserAuthenticationController {
                                     FileHandler.modifyFileData("user.txt", array_list);
                                     admin_student_management.printStudentTable();
                                     JOptionPane.showMessageDialog(null, "Student: " + userInput[3] + " has been Updated succefully!", "Successful Updated", JOptionPane.INFORMATION_MESSAGE);
-
+                                    admin_student_mangement.printStudentTable();
                                 } else {
                                     JOptionPane.showMessageDialog(null, "Invalid Password,The password should contain\n \"At least 8 characters\",\"at "
                                             + "least one uppercase letter, one lowercase letter, one digit and one special character[!@#$%^&*()]\"", "Message", JOptionPane.ERROR_MESSAGE);
