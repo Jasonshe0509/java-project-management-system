@@ -179,4 +179,7 @@ public class AssessmentController implements StudentAssessmentController {
             return "Fail";
         }
         }
+    
+    public void adminEditMark(String assessmentName){
+    }
 }

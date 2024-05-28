@@ -1,0 +1,6 @@
+Internship Report;80;20;0;39;40;60
+Final Year Project;70;10;20;39;40;60
+Capstone 1;80;20;0;39;40;60
+Capstone 2;80;20;0;39;40;60
+RMCP;70;10;20;39;40;60
+Investigation;70;10;20;39;40;60
