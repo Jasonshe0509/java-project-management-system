@@ -1,14 +1,15 @@
 package com.mycompany.projectmanagementsystem;
 
+import com.mycompany.projectmanagementsystem.EC.ECController;
 import com.mycompany.projectmanagementsystem.GeneralFunction.FileHandler;
 import java.awt.Color;
 import java.awt.Toolkit;
 import java.util.List;
 import javax.swing.border.LineBorder;
 
-public class admin_ec_details extends javax.swing.JFrame {
+public class admin_approval_ec_details extends javax.swing.JFrame {
 
-    public admin_ec_details() {
+    public admin_approval_ec_details() {
         initComponents();
         setIconImage();
     }
@@ -62,22 +63,23 @@ public class admin_ec_details extends javax.swing.JFrame {
         student_details_background = new javax.swing.JLabel();
         student_details_border = new javax.swing.JLabel();
         ec_details = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         ec_status = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         assessment_id = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         applied_reason = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         ecdocument_link = new javax.swing.JTextField();
+        ec_approved = new javax.swing.JButton();
+        ec_reject = new javax.swing.JButton();
         ecdertail_background = new javax.swing.JLabel();
         ecdetail_border = new javax.swing.JLabel();
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("EC Details");
-        setMaximumSize(new java.awt.Dimension(800, 500));
-        setMinimumSize(new java.awt.Dimension(800, 500));
+        setMinimumSize(new java.awt.Dimension(800, 550));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -195,12 +197,7 @@ public class admin_ec_details extends javax.swing.JFrame {
         ec_details.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         ec_details.setText("EC Details");
         ec_details.setOpaque(true);
-        getContentPane().add(ec_details, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 180, 200));
-
-        jLabel5.setFont(new java.awt.Font("SansSerif", 1, 16)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(2, 50, 99));
-        jLabel5.setText("Status");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 380, -1, -1));
+        getContentPane().add(ec_details, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 160, 200));
 
         ec_status.setEditable(false);
         ec_status.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
@@ -213,6 +210,11 @@ public class admin_ec_details extends javax.swing.JFrame {
             }
         });
         getContentPane().add(ec_status, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 400, 130, 30));
+
+        jLabel5.setFont(new java.awt.Font("SansSerif", 1, 16)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(2, 50, 99));
+        jLabel5.setText("Status");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 380, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 16)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(2, 50, 99));
@@ -234,26 +236,50 @@ public class admin_ec_details extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 16)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(2, 50, 99));
         jLabel3.setText("Applied Reason");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 260, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 260, -1, -1));
 
         applied_reason.setEditable(false);
         applied_reason.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         applied_reason.setMaximumSize(new java.awt.Dimension(82, 30));
         applied_reason.setMinimumSize(new java.awt.Dimension(82, 30));
         applied_reason.setPreferredSize(new java.awt.Dimension(82, 30));
-        getContentPane().add(applied_reason, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 280, 330, 60));
+        getContentPane().add(applied_reason, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 280, 330, 60));
 
         jLabel4.setFont(new java.awt.Font("SansSerif", 1, 16)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(2, 50, 99));
         jLabel4.setText("EC Document");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 350, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 350, -1, 20));
 
         ecdocument_link.setEditable(false);
         ecdocument_link.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         ecdocument_link.setMaximumSize(new java.awt.Dimension(82, 30));
         ecdocument_link.setMinimumSize(new java.awt.Dimension(82, 30));
         ecdocument_link.setPreferredSize(new java.awt.Dimension(82, 30));
-        getContentPane().add(ecdocument_link, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 370, 330, 60));
+        getContentPane().add(ecdocument_link, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 370, 330, 60));
+
+        ec_approved.setBackground(new java.awt.Color(51, 204, 0));
+        ec_approved.setFont(new java.awt.Font("Bell MT", 1, 24)); // NOI18N
+        ec_approved.setForeground(new java.awt.Color(255, 255, 255));
+        ec_approved.setText("APPROVE");
+        ec_approved.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ec_approved.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ec_approvedActionPerformed(evt);
+            }
+        });
+        getContentPane().add(ec_approved, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 490, -1, -1));
+
+        ec_reject.setBackground(new java.awt.Color(255, 51, 51));
+        ec_reject.setFont(new java.awt.Font("Bell MT", 1, 24)); // NOI18N
+        ec_reject.setForeground(new java.awt.Color(255, 255, 255));
+        ec_reject.setText("REJECT");
+        ec_reject.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ec_reject.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ec_rejectActionPerformed(evt);
+            }
+        });
+        getContentPane().add(ec_reject, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 490, -1, -1));
 
         ecdertail_background.setBackground(new Color(192, 192, 192, 90));
         ecdertail_background.setMaximumSize(new java.awt.Dimension(790, 190));
@@ -271,10 +297,10 @@ public class admin_ec_details extends javax.swing.JFrame {
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main_background.png"))); // NOI18N
         background.setText("jLabel1");
-        background.setMaximumSize(new java.awt.Dimension(800, 500));
-        background.setMinimumSize(new java.awt.Dimension(800, 500));
-        background.setPreferredSize(new java.awt.Dimension(800, 500));
-        getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        background.setMaximumSize(new java.awt.Dimension(800, 550));
+        background.setMinimumSize(new java.awt.Dimension(800, 550));
+        background.setPreferredSize(new java.awt.Dimension(800, 550));
+        getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 550));
         background.getAccessibleContext().setAccessibleName("background");
 
         pack();
@@ -305,35 +331,55 @@ public class admin_ec_details extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ec_idActionPerformed
 
+    private void ec_approvedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ec_approvedActionPerformed
+        String ECID = ec_id.getText();
+        ECController approveEC = new ECController();
+        approveEC.approveEC(ECID);
+        dispose();
+    }//GEN-LAST:event_ec_approvedActionPerformed
+
+    private void ec_rejectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ec_rejectActionPerformed
+        String ECID = ec_id.getText();
+        ECController rejectEC = new ECController();
+        rejectEC.rejectEC(ECID);
+        dispose();
+    }//GEN-LAST:event_ec_rejectActionPerformed
+
     private void ec_statusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ec_statusActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ec_statusActionPerformed
     
     public static void main(String args[]) {
         
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(admin_ec_details.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(admin_ec_details.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(admin_ec_details.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(admin_ec_details.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(admin_approval_ec_details.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(admin_approval_ec_details.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(admin_approval_ec_details.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(admin_approval_ec_details.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new admin_ec_details().setVisible(true);
+                new admin_approval_ec_details().setVisible(true);
             }
         });
     }
@@ -345,9 +391,11 @@ public class admin_ec_details extends javax.swing.JFrame {
     private javax.swing.JTextField applied_reason;
     private javax.swing.JTextField assessment_id;
     private javax.swing.JLabel background;
+    private javax.swing.JButton ec_approved;
     private javax.swing.JLabel ec_details;
     private javax.swing.JTextField ec_id;
     private javax.swing.JLabel ec_id_title;
+    private javax.swing.JButton ec_reject;
     private javax.swing.JTextField ec_status;
     private javax.swing.JLabel ecdertail_background;
     private javax.swing.JLabel ecdetail_border;
