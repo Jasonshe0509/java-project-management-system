@@ -23,14 +23,16 @@ public class CreateNewMessagePage extends javax.swing.JFrame {
     private String assessmentType;
     private String resubject;
     private String channelID;
-    private StudentAssessmentDetailPage parentPage;
+    private StudentAssessmentDetailPage studentParentPage;
+    private LecturerIntakePage lecturerIntakePage;
 
-    public CreateNewMessagePage(String assessmentID, String assessmentType, String resubject, String channelID, StudentAssessmentDetailPage parentPage) {
+    public CreateNewMessagePage(String assessmentID, String assessmentType, String resubject, String channelID, StudentAssessmentDetailPage studentParentPage, LecturerIntakePage lecturerIntakePage) {
         initComponents();
         setIconImage();
         this.assessmentID = assessmentID;
         this.assessmentType = assessmentType;
-        this.parentPage = parentPage;
+        this.studentParentPage = studentParentPage;
+        this.lecturerIntakePage = lecturerIntakePage;
         this.resubject = resubject;
         this.channelID = channelID;
         if (resubject == null) {
@@ -185,10 +187,14 @@ public class CreateNewMessagePage extends javax.swing.JFrame {
             if (result) {
                 JOptionPane.showMessageDialog(null, "Successfully created a discussion.");
                 this.setVisible(false);
-                parentPage.setVisible(false);
-                StudentAssessmentDetailPage page = new StudentAssessmentDetailPage(assessmentID, assessmentType);
-                page.setVisible(true);
-                page.selectCommunicationPanel(1, null);
+                if (studentParentPage != null) {
+                    studentParentPage.setVisible(false);
+                    StudentAssessmentDetailPage page = new StudentAssessmentDetailPage(assessmentID, assessmentType);
+                    page.setVisible(true);
+                    page.selectCommunicationPanel(1, null);
+                } else {
+                    lecturerIntakePage.setVisible(false);
+                }
             }
         } else {
             String[] messageInput = new String[2];
@@ -200,10 +206,14 @@ public class CreateNewMessagePage extends javax.swing.JFrame {
             if (result) {
                 JOptionPane.showMessageDialog(null, "Successfully created a message.");
                 this.setVisible(false);
-                parentPage.setVisible(false);
-                StudentAssessmentDetailPage page = new StudentAssessmentDetailPage(assessmentID, assessmentType);
-                page.setVisible(true);
-                page.selectCommunicationPanel(2, channelID);
+                if (studentParentPage != null) {
+                    studentParentPage.setVisible(false);
+                    StudentAssessmentDetailPage page = new StudentAssessmentDetailPage(assessmentID, assessmentType);
+                    page.setVisible(true);
+                    page.selectCommunicationPanel(2, channelID);
+                } else {
+                    lecturerIntakePage.setVisible(false);
+                }
             }
         }
     }//GEN-LAST:event_submitBtnActionPerformed
@@ -239,7 +249,7 @@ public class CreateNewMessagePage extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CreateNewMessagePage("A0001", "internship_report", null, null, null).setVisible(true);
+                new CreateNewMessagePage("A0001", "internship_report", null, null, null, null).setVisible(true);
             }
         });
     }
