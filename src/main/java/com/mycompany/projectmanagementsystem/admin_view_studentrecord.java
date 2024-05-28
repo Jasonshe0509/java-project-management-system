@@ -4,15 +4,18 @@
  */
 package com.mycompany.projectmanagementsystem;
 
-import static com.sun.source.util.Trees.instance;
 import java.awt.Color;
 import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import javax.swing.border.LineBorder;
 
 public class admin_view_studentrecord extends javax.swing.JFrame {
 String[] studentDetails;
+ArrayList<String> studentlist;
+
+
 admin_view_studentrecord studentRecordInstace;
     public admin_view_studentrecord() {
         initComponents();
@@ -21,7 +24,7 @@ admin_view_studentrecord studentRecordInstace;
         
     }
     
-    public void displayStudentDetails(String[] studentDetails){
+    public ArrayList<String> displayStudentDetails(String[] studentDetails){
         
         System.out.print(Arrays.toString(studentDetails));
         ArrayList<String> list = new ArrayList();
@@ -39,6 +42,8 @@ admin_view_studentrecord studentRecordInstace;
         student_email.setText(list.get(8));
         student_intake.setText(list.get(11));
         
+        studentlist = list;
+        return studentlist;
         
 }
     
@@ -70,7 +75,7 @@ admin_view_studentrecord studentRecordInstace;
         view_student_background = new javax.swing.JLabel();
         view_student_border = new javax.swing.JLabel();
         admin_viewstudent_back = new javax.swing.JButton();
-        admin_viewstudent_back1 = new javax.swing.JButton();
+        admin_make_changes = new javax.swing.JButton();
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -253,16 +258,16 @@ admin_view_studentrecord studentRecordInstace;
         });
         getContentPane().add(admin_viewstudent_back, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 440, -1, -1));
 
-        admin_viewstudent_back1.setBackground(new java.awt.Color(76, 127, 174));
-        admin_viewstudent_back1.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
-        admin_viewstudent_back1.setForeground(new java.awt.Color(2, 50, 99));
-        admin_viewstudent_back1.setText("MAKE CHANGES");
-        admin_viewstudent_back1.addActionListener(new java.awt.event.ActionListener() {
+        admin_make_changes.setBackground(new java.awt.Color(76, 127, 174));
+        admin_make_changes.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
+        admin_make_changes.setForeground(new java.awt.Color(2, 50, 99));
+        admin_make_changes.setText("MAKE CHANGES");
+        admin_make_changes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                admin_viewstudent_back1ActionPerformed(evt);
+                admin_make_changesActionPerformed(evt);
             }
         });
-        getContentPane().add(admin_viewstudent_back1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 440, -1, -1));
+        getContentPane().add(admin_make_changes, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 440, -1, -1));
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main_background.png"))); // NOI18N
         background.setMaximumSize(new java.awt.Dimension(700, 500));
@@ -316,9 +321,12 @@ admin_view_studentrecord studentRecordInstace;
         dispose();
     }//GEN-LAST:event_admin_viewstudent_backActionPerformed
 
-    private void admin_viewstudent_back1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_admin_viewstudent_back1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_admin_viewstudent_back1ActionPerformed
+    private void admin_make_changesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_admin_make_changesActionPerformed
+        admin_modify_studentrecord modifyStudentDetails = new admin_modify_studentrecord();
+        modifyStudentDetails.displayStudentDetails(studentlist);
+        modifyStudentDetails.show();
+        hide();
+    }//GEN-LAST:event_admin_make_changesActionPerformed
 
     private void student_genderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_student_genderActionPerformed
         // TODO add your handling code here:
@@ -337,8 +345,8 @@ admin_view_studentrecord studentRecordInstace;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton admin_make_changes;
     private javax.swing.JButton admin_viewstudent_back;
-    private javax.swing.JButton admin_viewstudent_back1;
     private javax.swing.JLabel background;
     private javax.swing.JTextField student_address;
     private javax.swing.JLabel student_address_title;
