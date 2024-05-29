@@ -7,8 +7,11 @@ package com.mycompany.projectmanagementsystem.User;
 import com.mycompany.projectmanagementsystem.GeneralFunction.FileHandler;
 import com.mycompany.projectmanagementsystem.GeneralFunction.SessionManager;
 import com.mycompany.projectmanagementsystem.LoginPage;
-import com.mycompany.projectmanagementsystem.admin_student_management;
+import com.mycompany.projectmanagementsystem.admin_lecturer_record;
+import com.mycompany.projectmanagementsystem.admin_view_lec_details;
+import com.mycompany.projectmanagementsystem.admin_view_projectmanager_details;
 import com.mycompany.projectmanagementsystem.admin_view_studentrecord;
+import com.mycompany.projectmanagementsystem.admin_student_management;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -141,6 +144,8 @@ public class UserController extends UserAuthenticationController {
                                                 FileHandler.writeFile("user.txt", userInput[3] + ";" + userInput[0] + ";" + userInput[1] + ";"
                                                         + userInput[5] + ";" + userInput[2] + ";" + userInput[4] + ";" + userInput[6] + ";" + userInput[7]
                                                         + ";" + userInput[8] + ";" + initialPassword + ";" + userInput[9] + ";" + userInput[10]);
+                                                admin_student_management.printStudentTable();
+                                                admin_student_management.readNumOfStudent();
                                                 JOptionPane.showMessageDialog(null, "Student: " + userID + " has been added succefully!", "Successful Added", JOptionPane.INFORMATION_MESSAGE);
                                             }
                                             case "lecturer" -> {
@@ -183,43 +188,131 @@ public class UserController extends UserAuthenticationController {
         }
 
     }
-    
-    public boolean userDelete(String userID){
-        List<String> data = FileHandler.readFile("user.txt");
-        ArrayList<String> updatedData = new ArrayList<>();
-        int confirm =  JOptionPane.showConfirmDialog(null, "Are you sure you want to delete " + userID + "?", "Confirmation", JOptionPane.YES_NO_OPTION);
-        if(confirm == JOptionPane.YES_OPTION){
-            for(String line: data){
-                if(!line.startsWith(userID)){
+
+    public boolean projectmanagerDelete(String userID) {
+        System.out.println(userID);
+        int confirm = JOptionPane.showConfirmDialog(null, "Remove " + userID + " as Project Manager?", "Confirmation", JOptionPane.YES_NO_OPTION);
+        if (confirm == JOptionPane.YES_OPTION) {
+            List<String> data = FileHandler.readFile("user.txt");
+            ArrayList<String> updatedData = new ArrayList<>();
+
+            for (String line : data) {
+                if (line.startsWith(userID)) {
+                    String[] record = line.split(";");
+                    record[10] = "lecturer";
+                    String updatedLine = String.join(";", record);
+                    System.out.println(updatedLine);
+                    updatedData.add(updatedLine);
+                } else {
                     updatedData.add(line);
                 }
             }
-            
-        }else {
+            JOptionPane.showMessageDialog(null, "Successfully Removed " + userID + " from project manager list.");
+            FileHandler.modifyFileData("user.txt", updatedData);
+            admin_lecturer_record.printLecturerTable();
+            admin_lecturer_record.readNumOfLecturer();
+            return true;
+        } else {
+            JOptionPane.showMessageDialog(null, "Action Cancelled!");
+            return false;
+        }
+    }
+
+    public void projectmanagerAdd(String userID) {
+
+        int confirm = JOptionPane.showConfirmDialog(null, "Assign " + userID + " as Project Manager?", "Confirmation", JOptionPane.YES_NO_OPTION);
+        if (confirm == JOptionPane.YES_OPTION) {
+
+            List<String> data = FileHandler.readFile("user.txt");
+            ArrayList<String> updatedData = new ArrayList<>();
+
+            for (String lines : data) {
+                if (lines.startsWith(userID)) {
+                    String[] line = lines.split(";");
+                    line[10] = "project manager";
+                    String updatedLine = String.join(";", line);
+                    updatedData.add(updatedLine);
+                } else {
+                    updatedData.add(lines);
+                }
+            }
+            JOptionPane.showMessageDialog(null, "Successfully Assigned!");
+            FileHandler.modifyFileData("user.txt", updatedData);
+            admin_lecturer_record.printLecturerTable();
+            admin_lecturer_record.readNumOfLecturer();
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Action Cancelled!");
+        }
+    }
+
+    public boolean userDelete(String userID) {
+        List<String> data = FileHandler.readFile("user.txt");
+        ArrayList<String> updatedData = new ArrayList<>();
+        String role = null;
+        int confirm = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete " + userID + "?", "Confirmation", JOptionPane.YES_NO_OPTION);
+        if (confirm == JOptionPane.YES_OPTION) {
+            for (String line : data) {
+                if (!line.startsWith(userID)) {
+                    updatedData.add(line);
+                }
+                String[] list = line.split(";");
+                if (list[0].equals(userID)) {
+                    role = list[10];
+                }
+            }
+
+        } else {
             JOptionPane.showMessageDialog(null, "Action Cancelled!");
             return false;
         }
         FileHandler.modifyFileData("user.txt", updatedData);
+        if ("student".equals(role)) {
+            admin_student_management.printStudentTable();
+            admin_student_management.readNumOfStudent();
+        } else {
+            admin_lecturer_record.printLecturerTable();
+            admin_lecturer_record.readNumOfLecturer();
+            admin_lecturer_record.printSchoolWiseTable();
+            admin_lecturer_record.readNumOfSchoolWise();
+        }
+
         return true;
     }
-    
-    public void viewUser(String userID){
+
+    public void viewUser(String userID) {
         List<String> data = FileHandler.readFile("user.txt");
         String[] userDetails = null;
-        for(String line: data){
-                if(line.startsWith(userID)){
-                    userDetails = line.split(";");
+        String user = null;
+        for (String line : data) {
+            if (line.startsWith(userID)) {
+                userDetails = line.split(";");
+                user = userDetails[10];
+
+                switch (user) {
+                    case "student" -> {
+                        admin_view_studentrecord studentDetails = new admin_view_studentrecord();
+                        studentDetails.displayStudentDetails(userDetails);
+                        studentDetails.show();
+                    }
+                    case "lecturer" -> {
+                        admin_view_lec_details lecturerDetails = new admin_view_lec_details();
+                        lecturerDetails.displayLecturerDetails(userDetails);
+                        lecturerDetails.show();
+                    }
+                    case "project manager" -> {
+                        admin_view_projectmanager_details lecturerDetails = new admin_view_projectmanager_details();
+                        lecturerDetails.displayLecturerDetails(userDetails);
+                        lecturerDetails.show();
+                    }
+
                 }
             }
-        
-        admin_view_studentrecord studentDetails = new admin_view_studentrecord();
-        studentDetails.displayStudentDetails(userDetails);
-        studentDetails.show();
-        
-    }
-    
-    public static void modifyUser(String[] userInput) {
+        }
 
+    }
+
+    public static void modifyUser(String[] userInput) {
         if (UserValidator.validateUserInput(userInput)) {
             if (UserValidator.validateDateOfBirth(userInput[2])) {
                 if (UserValidator.validateContact(userInput[5])) {
@@ -229,6 +322,7 @@ public class UserController extends UserAuthenticationController {
                                 if (UserValidator.validatePassword(userInput[11])) {
                                     List<String> data = FileHandler.readFile("user.txt");
                                     ArrayList<String> array_list = new ArrayList<>();
+
                                     for (String line : data) {
                                         String[] list = line.split(";");
                                         if (userInput[3].equals(list[0])) {
@@ -252,7 +346,25 @@ public class UserController extends UserAuthenticationController {
                                         }
                                     }
                                     FileHandler.modifyFileData("user.txt", array_list);
-                                    JOptionPane.showMessageDialog(null, "Student: " + userInput[3] + " has been Updated succefully!", "Successful Updated", JOptionPane.INFORMATION_MESSAGE);
+                                    switch (userInput[9]) {
+                                        case "student" -> {
+                                            JOptionPane.showMessageDialog(null, "Student: " + userInput[3] + " has been Updated succefully!", "Successful Updated", JOptionPane.INFORMATION_MESSAGE);
+                                            admin_student_management.printStudentTable();
+                                        }
+                                        case "lecturer" -> {
+                                            JOptionPane.showMessageDialog(null, "Lecturer: " + userInput[3] + " has been Updated succefully!", "Successful Updated", JOptionPane.INFORMATION_MESSAGE);
+                                            admin_lecturer_record.printLecturerTable();
+                                            admin_lecturer_record.readNumOfLecturer();
+                                            admin_lecturer_record.printSchoolWiseTable();
+                                        }
+                                        case "project manager" -> {
+                                            JOptionPane.showMessageDialog(null, "Project Manager: " + userInput[3] + " has been Updated succefully!", "Successful Updated", JOptionPane.INFORMATION_MESSAGE);
+                                            admin_lecturer_record.printLecturerTable();
+                                            admin_lecturer_record.readNumOfLecturer();
+                                            admin_lecturer_record.printSchoolWiseTable();
+                                        }
+
+                                    }
 
                                 } else {
                                     JOptionPane.showMessageDialog(null, "Invalid Password,The password should contain\n \"At least 8 characters\",\"at "

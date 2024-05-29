@@ -469,7 +469,7 @@ public class LecturerDashboardPage extends javax.swing.JFrame {
                 AssessmentViewBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
                 AssessmentViewBtn.addActionListener(new java.awt.event.ActionListener() {
                     public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        redirectIntakePage(AssmntID,intakeCode);
+                        redirectIntakePage(AssmntList[0],AssmntList[2], AssmntList[1]);
                     }
                 });
                 
@@ -608,7 +608,7 @@ public class LecturerDashboardPage extends javax.swing.JFrame {
                 AssessmentViewBtn.setBounds(230, 220, 60, 25);
                 AssessmentViewBtn.addActionListener(new java.awt.event.ActionListener() {
                     public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        redirectIntakePage(AssmntID,intakeCode);
+                        redirectIntakePage(AssmntList[0],AssmntList[2],AssmntList[1]);
                     }
                 });
                 
@@ -660,8 +660,8 @@ public class LecturerDashboardPage extends javax.swing.JFrame {
         jPanel2.repaint();    // Repaint to update the UI
     }
     
-    private void redirectIntakePage(String assessmentID, String intakeCode){
-        LecturerIntakePage intake = new LecturerIntakePage(assessmentID,intakeCode);
+    private void redirectIntakePage(String assessmentID, String intakeCode, String assessmentType){
+        LecturerIntakePage intake = new LecturerIntakePage(assessmentID,intakeCode,assessmentType);
         intake.setVisible(true);
         this.setVisible(false);
     }

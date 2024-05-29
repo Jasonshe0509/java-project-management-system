@@ -39,8 +39,9 @@ public class LecturerPresentationRequest extends javax.swing.JFrame {
     User user = sessionManager.getCurrentUser();
     private String AssmntID;
     private String intakeCode;
+    private String AssmntType;
     
-    public LecturerPresentationRequest(String id, String code) {
+    public LecturerPresentationRequest(String id, String code, String type) {
         this.AssmntID = id;
         this.intakeCode = code;
         initComponents();
@@ -300,7 +301,7 @@ public class LecturerPresentationRequest extends javax.swing.JFrame {
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         this.setVisible(false);
-        LecturerIntakePage intake = new LecturerIntakePage(AssmntID, intakeCode);
+        LecturerIntakePage intake = new LecturerIntakePage(AssmntID, intakeCode, AssmntType);
         intake.setVisible(true);
     }//GEN-LAST:event_backBtnActionPerformed
 
@@ -334,7 +335,7 @@ public class LecturerPresentationRequest extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LecturerPresentationRequest("id", "intakeCode").setVisible(true);
+                new LecturerPresentationRequest("id", "intakeCode", "type").setVisible(true);
             }
         });
     }
