@@ -143,6 +143,8 @@ public class UserController extends UserAuthenticationController {
                                                 FileHandler.writeFile("user.txt", userInput[3] + ";" + userInput[0] + ";" + userInput[1] + ";"
                                                         + userInput[5] + ";" + userInput[2] + ";" + userInput[4] + ";" + userInput[6] + ";" + userInput[7]
                                                         + ";" + userInput[8] + ";" + initialPassword + ";" + userInput[9] + ";" + userInput[10]);
+                                                admin_student_management.printStudentTable();
+                                                admin_student_management.readNumOfStudent();
                                                 JOptionPane.showMessageDialog(null, "Student: " + userID + " has been added succefully!", "Successful Added", JOptionPane.INFORMATION_MESSAGE);
                                             }
                                             case "lecturer" -> {
@@ -336,19 +338,22 @@ public class UserController extends UserAuthenticationController {
                                         }
                                     }
                                     FileHandler.modifyFileData("user.txt", array_list);
-                                    admin_lecturer_record.printLecturerTable();
-                                    admin_lecturer_record.readNumOfLecturer();
-                                    admin_lecturer_record.printSchoolWiseTable();
-
                                     switch (userInput[9]) {
                                         case "student" -> {
                                             JOptionPane.showMessageDialog(null, "Student: " + userInput[3] + " has been Updated succefully!", "Successful Updated", JOptionPane.INFORMATION_MESSAGE);
+                                            admin_student_management.printStudentTable();
                                         }
                                         case "lecturer" -> {
                                             JOptionPane.showMessageDialog(null, "Lecturer: " + userInput[3] + " has been Updated succefully!", "Successful Updated", JOptionPane.INFORMATION_MESSAGE);
+                                            admin_lecturer_record.printLecturerTable();
+                                            admin_lecturer_record.readNumOfLecturer();
+                                            admin_lecturer_record.printSchoolWiseTable();
                                         }
                                         case "project manager" -> {
                                             JOptionPane.showMessageDialog(null, "Project Manager: " + userInput[3] + " has been Updated succefully!", "Successful Updated", JOptionPane.INFORMATION_MESSAGE);
+                                            admin_lecturer_record.printLecturerTable();
+                                            admin_lecturer_record.readNumOfLecturer();
+                                            admin_lecturer_record.printSchoolWiseTable();
                                         }
 
                                     }
