@@ -53,7 +53,7 @@ com\mycompany\projectmanagementsystem\User\UserController.class
 com\mycompany\projectmanagementsystem\PM_register_assessment_create$3.class
 com\mycompany\projectmanagementsystem\EC\EC.class
 com\mycompany\projectmanagementsystem\LecturerPresentationRequest$4.class
-com\mycompany\projectmanagementsystem\$rPanelActionRenderer.class
+com\mycompany\projectmanagementsystem\admin_assessment_management$3.class
 com\mycompany\projectmanagementsystem\admin_ec_record$1.class
 com\mycompany\projectmanagementsystem\CreateNewMessagePage$2.class
 com\mycompany\projectmanagementsystem\lect_PresentationRqtActionPanel.class
@@ -161,6 +161,7 @@ com\mycompany\projectmanagementsystem\ForgetPasswordPage$5.class
 com\mycompany\projectmanagementsystem\LecturerDashboardPage$3.class
 com\mycompany\projectmanagementsystem\admin_view_lec_details$5.class
 com\mycompany\projectmanagementsystem\LecturerSummaryReport.class
+com\mycompany\projectmanagementsystem\admin_edit_assessment$1.class
 com\mycompany\projectmanagementsystem\StudentEcSubmissionPage.class
 com\mycompany\projectmanagementsystem\admin_register_course$2.class
 com\mycompany\projectmanagementsystem\admin_register_student.class
