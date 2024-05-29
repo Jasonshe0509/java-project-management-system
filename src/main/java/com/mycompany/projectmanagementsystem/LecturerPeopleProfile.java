@@ -504,9 +504,11 @@ public class LecturerPeopleProfile extends javax.swing.JFrame {
     
     private void setStatusColor(Component component, String status) {
         switch (status) {
-            case "pending" -> component.setBackground(new java.awt.Color(255, 255, 0)); 
+            case "pending" -> component.setBackground(new java.awt.Color(255, 255, 0));
+            case "scheduled" -> component.setBackground(new java.awt.Color(255, 255, 0));
             case "rejected" -> component.setBackground(new java.awt.Color(255, 51, 51)); 
-            case "accepted" -> component.setBackground(new java.awt.Color(0, 204, 0));
+            case "completed" -> component.setBackground(new java.awt.Color(0, 204, 0));
+            case "approved" -> component.setBackground(new java.awt.Color(0, 204, 0));
             case "submitted" -> component.setBackground(new java.awt.Color(51, 153, 255));
             default -> {
             }
@@ -517,33 +519,51 @@ public class LecturerPeopleProfile extends javax.swing.JFrame {
     private void showAssmntDetails() {
         List<String> assmntData = FileHandler.readFile("student_assessment.txt");
         List<String> presentData = FileHandler.readFile("presentation_request.txt");
+        List<String> presentDoneData = FileHandler.readFile("presentation_confirmation.txt");
 
         for (String line : assmntData) {
             String[] list = line.split(";");
             if (list[1].equals(stdID)) {
                 dueDateLabel.setText(list[3]);
                 submissionStatus.setText(list[6]);
-                switch (list[6]) {
-                    case "pending" -> {
-                        assmntStatus.setText("pending");
-                        overallStatus.setText("in progress");
-                        setStatusColor(assmntStatus, "pending");
-                        setStatusColor(overallStatus, "pending");
-                        setStatusColor(submissionStatus, "pending");
-                    }
-                    case "submitted" -> {
-                        assmntStatus.setText("pending");
-                        overallStatus.setText("in progress");
-                        setStatusColor(assmntStatus, "pending");
-                        setStatusColor(overallStatus, "pending");
-                        setStatusColor(submissionStatus, "submitted");
-                    }
-                    case "marked" -> {
-                        assmntStatus.setText("completed");
+
+                boolean markedCompleted = false;
+                for (String linea : presentDoneData) {
+                    String[] lista = linea.split(";");
+                    if ("marked".equals(list[6]) && "completed".equals(lista[5])) {
                         overallStatus.setText("completed");
-                        setStatusColor(assmntStatus, "completed");
+                        assmntStatus.setText("completed");
                         setStatusColor(overallStatus, "completed");
+                        setStatusColor(assmntStatus, "completed");
                         setStatusColor(submissionStatus, "completed");
+                        markedCompleted = true;
+                        break; // Exit loop early if condition is met
+                    }
+                }
+
+                if (!markedCompleted) {
+                    switch (list[6]) {
+                        case "pending" -> {
+                            assmntStatus.setText("pending");
+                            overallStatus.setText("in progress");
+                            setStatusColor(assmntStatus, "pending");
+                            setStatusColor(overallStatus, "pending");
+                            setStatusColor(submissionStatus, "pending");
+                        }
+                        case "submitted" -> {
+                            assmntStatus.setText("pending");
+                            overallStatus.setText("in progress");
+                            setStatusColor(assmntStatus, "pending");
+                            setStatusColor(overallStatus, "pending");
+                            setStatusColor(submissionStatus, "submitted");
+                        }
+                        case "marked" -> {
+                            assmntStatus.setText("pending");
+                            overallStatus.setText("in progress");
+                            setStatusColor(assmntStatus, "pending");
+                            setStatusColor(overallStatus, "pending");
+                            setStatusColor(submissionStatus, "completed");
+                        }
                     }
                 }
             }
@@ -555,13 +575,26 @@ public class LecturerPeopleProfile extends javax.swing.JFrame {
                 spvPresentStatus.setText(list[4]);
                 secMarkPresentStatus.setText(list[5]);
                 presentStatus.setText(list[6]);
+
+                boolean statusSet = false;
+                for (String linea : presentDoneData) {
+                    String[] lista = linea.split(";");
+                    if ("approved".equals(list[6]) || "completed".equals(lista[5])) {
+                        presentStatus.setText(lista[5]);
+                        setStatusColor(presentStatus, lista[5]);
+                        statusSet = true;
+                        break;
+                    }
+                }
+
+                if (!statusSet) {
+                    setStatusColor(presentStatus, list[6]);
+                }
                 setStatusColor(spvPresentStatus, list[4]);
                 setStatusColor(secMarkPresentStatus, list[5]);
-                setStatusColor(presentStatus, list[6]);
             }
         }
     }
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel addressLabel;

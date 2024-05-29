@@ -108,7 +108,7 @@ public class AssessmentController implements StudentAssessmentController {
                     updateStatus = true;
                 } else if (!list[9].isEmpty() && list[10].isEmpty()) {
                     JOptionPane.showMessageDialog(null,
-                            "Successfully marked as done. Pending supervisor's grading.");
+                            "Successfully marked as done. Pending second marker's grading.");
                     return true;
                 } else {
                     JOptionPane.showMessageDialog(null,

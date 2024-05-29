@@ -93,7 +93,7 @@ public class LecturerPresentationRequest extends javax.swing.JFrame {
                     String[] list = line.split(";");
                     if (AssmntID.equals(list[0])) {
                         if (user.getUserID().equals(list[4])) { // Supervisor
-                            boolean result = action.presentationRqtApprove("supervisor", stdID, "accepted");
+                            boolean result = action.presentationRqtApprove("supervisor", stdID, "approved");
                             if (result) {
                                 model.removeRow(row);
                                 String[] schdPInput = new String[3];
@@ -103,7 +103,7 @@ public class LecturerPresentationRequest extends javax.swing.JFrame {
                                 boolean confirm = action.writeAccptPresentation(schdPInput);
                                 if (confirm){
                                     JOptionPane.showMessageDialog(null, 
-                                        "Presentation request from supervisee (" + stdID + ") has been accepted.");
+                                        "Presentation request from supervisee (" + stdID + ") has been approved.");
                                 } 
                             } else {
                                 JOptionPane.showMessageDialog(null, 
@@ -112,7 +112,7 @@ public class LecturerPresentationRequest extends javax.swing.JFrame {
                             }
                             return; // No need to continue the loop once a match is found
                         } else if (user.getUserID().equals(list[5])) { // Second Marker
-                            boolean result = action.presentationRqtApprove("second marker", stdID, "accepted");
+                            boolean result = action.presentationRqtApprove("second marker", stdID, "approved");
                             if (result) {
                                 model.removeRow(row);
                                 String[] schdPInput = new String[3];
@@ -122,7 +122,7 @@ public class LecturerPresentationRequest extends javax.swing.JFrame {
                                 boolean confirm = action.writeAccptPresentation(schdPInput);
                                 if (confirm){
                                     JOptionPane.showMessageDialog(null, 
-                                        "Presentation request from supervisee (" + stdID + ") has been accepted.");
+                                        "Presentation request from supervisee (" + stdID + ") has been approved.");
                                 } 
                             } else {
                                 JOptionPane.showMessageDialog(null, 
