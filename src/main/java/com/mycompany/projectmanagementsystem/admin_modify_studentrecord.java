@@ -16,7 +16,6 @@ public class admin_modify_studentrecord extends javax.swing.JFrame {
 
     String userID;
     List<String> genderList, intakeRecord;
-    
 
     public admin_modify_studentrecord() {
         initComponents();
@@ -67,8 +66,6 @@ public class admin_modify_studentrecord extends javax.swing.JFrame {
 
         return userID;
     }
-    
-    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -116,19 +113,9 @@ public class admin_modify_studentrecord extends javax.swing.JFrame {
 
         student_name.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         student_name.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, java.awt.Color.lightGray, null, null));
-        student_name.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                student_nameActionPerformed(evt);
-            }
-        });
         getContentPane().add(student_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, 190, 50));
 
         student_gender_selection.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        student_gender_selection.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                student_gender_selectionActionPerformed(evt);
-            }
-        });
         getContentPane().add(student_gender_selection, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 140, 190, 50));
 
         intake_title.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
@@ -137,20 +124,10 @@ public class admin_modify_studentrecord extends javax.swing.JFrame {
         getContentPane().add(intake_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 90, -1, 30));
 
         student_intake_selection.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        student_intake_selection.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                student_intake_selectionActionPerformed(evt);
-            }
-        });
         getContentPane().add(student_intake_selection, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 80, 190, 50));
 
         student_tpno.setEditable(false);
         student_tpno.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        student_tpno.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                student_tpnoActionPerformed(evt);
-            }
-        });
         getContentPane().add(student_tpno, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 80, 190, 50));
 
         student_tpno_title.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
@@ -169,11 +146,6 @@ public class admin_modify_studentrecord extends javax.swing.JFrame {
         getContentPane().add(student_address_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 330, -1, -1));
 
         student_address.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        student_address.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                student_addressActionPerformed(evt);
-            }
-        });
         getContentPane().add(student_address, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 320, 190, 50));
 
         student_contact_title.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
@@ -183,19 +155,9 @@ public class admin_modify_studentrecord extends javax.swing.JFrame {
         getContentPane().add(student_contact_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 200, 90, -1));
 
         student_contact.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        student_contact.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                student_contactActionPerformed(evt);
-            }
-        });
         getContentPane().add(student_contact, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 200, 190, 50));
 
         student_nation.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        student_nation.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                student_nationActionPerformed(evt);
-            }
-        });
         getContentPane().add(student_nation, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 260, 190, 50));
 
         student_nation_title.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
@@ -212,19 +174,9 @@ public class admin_modify_studentrecord extends javax.swing.JFrame {
         getContentPane().add(student_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 380, 190, 50));
 
         student_nric.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        student_nric.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                student_nricActionPerformed(evt);
-            }
-        });
         getContentPane().add(student_nric, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, 190, 50));
 
         student_email.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        student_email.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                student_emailActionPerformed(evt);
-            }
-        });
         getContentPane().add(student_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 320, 190, 50));
 
         student_email_title.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
@@ -281,7 +233,7 @@ public class admin_modify_studentrecord extends javax.swing.JFrame {
         admin_modify_student_save.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         admin_modify_student_save.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                admin_modify_student_saveActionPerformed(evt);
+                admin_modify_student_saveaActionPerformed(evt);
             }
         });
         getContentPane().add(admin_modify_student_save, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 490, -1, -1));
@@ -298,51 +250,13 @@ public class admin_modify_studentrecord extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void admin_viewstudent_backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_admin_viewstudent_backActionPerformed
-
         UserController viewUser = new UserController();
-        
         viewUser.viewUser(userID);
         dispose();
 
     }//GEN-LAST:event_admin_viewstudent_backActionPerformed
 
-    private void student_nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_student_nameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_student_nameActionPerformed
-
-    private void student_gender_selectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_student_gender_selectionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_student_gender_selectionActionPerformed
-
-    private void student_tpnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_student_tpnoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_student_tpnoActionPerformed
-
-    private void student_addressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_student_addressActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_student_addressActionPerformed
-
-    private void student_contactActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_student_contactActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_student_contactActionPerformed
-
-    private void student_nationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_student_nationActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_student_nationActionPerformed
-
-    private void student_nricActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_student_nricActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_student_nricActionPerformed
-
-    private void student_emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_student_emailActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_student_emailActionPerformed
-
-    private void student_intake_selectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_student_intake_selectionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_student_intake_selectionActionPerformed
-
-    private void admin_modify_student_saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_admin_modify_student_saveActionPerformed
+    private void admin_modify_student_saveaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_admin_modify_student_saveaActionPerformed
         while (true) {
             try {
                 String[] userInput = new String[12];
@@ -367,15 +281,14 @@ public class admin_modify_studentrecord extends javax.swing.JFrame {
                 userInput[10] = student_intake_selection.getSelectedItem().toString();
                 userInput[11] = student_password.getText().trim();
                 UserController.modifyUser(userInput);
-                
-                
+
                 break;
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "NULL!", "Error: Missing Value(s)", JOptionPane.ERROR_MESSAGE);
                 break;
             }
         }
-    }//GEN-LAST:event_admin_modify_student_saveActionPerformed
+    }//GEN-LAST:event_admin_modify_student_saveaActionPerformed
 
     public static void main(String args[]) {
 
