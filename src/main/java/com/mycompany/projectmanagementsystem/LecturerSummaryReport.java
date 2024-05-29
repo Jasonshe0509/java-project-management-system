@@ -304,7 +304,7 @@ public class LecturerSummaryReport extends javax.swing.JFrame {
     }//GEN-LAST:event_logoutLabelMouseClicked
 
     private void generateBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_generateBtnMouseClicked
-        generateReport(sumRptTable, "C:\\Users\\user\\OneDrive\\Documents\\NetBeansProjects\\GitHub\\java-project-management-system\\LecSumReport.jasper");
+        generateReport(sumRptTable, "LecSumReport.jasper");
     }//GEN-LAST:event_generateBtnMouseClicked
 
     /**

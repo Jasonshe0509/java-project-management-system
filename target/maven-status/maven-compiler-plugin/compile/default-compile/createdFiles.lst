@@ -43,8 +43,8 @@ com\mycompany\projectmanagementsystem\AdminECTableActionPanel$AdminECTableAction
 com\mycompany\projectmanagementsystem\LecturerIntakePage.class
 com\mycompany\projectmanagementsystem\admin_approval_ec_details$4.class
 com\mycompany\projectmanagementsystem\StudentPresentationActionPanel$1.class
-com\mycompany\projectmanagementsystem\LecturerIntakePage$19.class
 com\mycompany\projectmanagementsystem\admin_view_projectmanager_details.class
+com\mycompany\projectmanagementsystem\LecturerIntakePage$19.class
 com\mycompany\projectmanagementsystem\ProjectManagerPage$1.class
 com\mycompany\projectmanagementsystem\admin_view_lec_details$10.class
 com\mycompany\projectmanagementsystem\StudentAssessmentDetailPage$21.class
@@ -226,9 +226,9 @@ com\mycompany\projectmanagementsystem\lect_PresentationPanelAction$2.class
 com\mycompany\projectmanagementsystem\StudentEcSubmissionPage$6.class
 com\mycompany\projectmanagementsystem\AdminECTableActionPanel$1.class
 com\mycompany\projectmanagementsystem\LevelOfEducation\LevelOfEducation.class
-com\mycompany\projectmanagementsystem\LecturerSummaryReport$4.class
 com\mycompany\projectmanagementsystem\admin_ec_details$7.class
 com\mycompany\projectmanagementsystem\admin_ec_record$7.class
+com\mycompany\projectmanagementsystem\LecturerSummaryReport$4.class
 com\mycompany\projectmanagementsystem\admin_register_lecturer$6.class
 com\mycompany\projectmanagementsystem\admin_modify_lecturerrecord$6.class
 com\mycompany\projectmanagementsystem\StudentPresentationRequestPage.class
