@@ -5,6 +5,9 @@
 package com.mycompany.projectmanagementsystem.Intake;
 
 import com.mycompany.projectmanagementsystem.GeneralFunction.FileHandler;
+import com.mycompany.projectmanagementsystem.admin_student_management;
+import static com.mycompany.projectmanagementsystem.admin_student_management.printIntakeTable;
+import static com.mycompany.projectmanagementsystem.admin_student_management.readNumOfIntake;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -73,6 +76,8 @@ public class IntakeController {
             }
             if (!intakeExist) {
                 FileHandler.writeFile("intake.txt", inputIntake + ";" + userInput[1] + ";" + userInput[0] + ";" + userInput[2] + ";" + userInput[4] + ";" + inputMonthTwoDigits);
+                admin_student_management.printIntakeTable();
+                admin_student_management.readNumOfIntake();
                 JOptionPane.showMessageDialog(null, inputIntake + " has been added succefully!", "Successful Added", JOptionPane.INFORMATION_MESSAGE);
             }
 
@@ -109,6 +114,8 @@ public class IntakeController {
             return false;
         }
         FileHandler.modifyFileData("intake.txt", updatedData);
+        admin_student_management.printIntakeTable();
+        admin_student_management.readNumOfIntake();
         return true;
     }
 }
