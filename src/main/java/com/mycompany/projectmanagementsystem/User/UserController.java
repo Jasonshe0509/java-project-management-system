@@ -141,6 +141,8 @@ public class UserController extends UserAuthenticationController {
                                                 FileHandler.writeFile("user.txt", userInput[3] + ";" + userInput[0] + ";" + userInput[1] + ";"
                                                         + userInput[5] + ";" + userInput[2] + ";" + userInput[4] + ";" + userInput[6] + ";" + userInput[7]
                                                         + ";" + userInput[8] + ";" + initialPassword + ";" + userInput[9] + ";" + userInput[10]);
+                                                admin_student_management.printStudentTable();
+                                                admin_student_management.readNumOfStudent();
                                                 JOptionPane.showMessageDialog(null, "Student: " + userID + " has been added succefully!", "Successful Added", JOptionPane.INFORMATION_MESSAGE);
                                             }
                                             case "lecturer" -> {
@@ -200,6 +202,7 @@ public class UserController extends UserAuthenticationController {
             return false;
         }
         FileHandler.modifyFileData("user.txt", updatedData);
+        admin_student_management.printStudentTable();
         return true;
     }
     
@@ -252,8 +255,9 @@ public class UserController extends UserAuthenticationController {
                                         }
                                     }
                                     FileHandler.modifyFileData("user.txt", array_list);
+                                    admin_student_management.printStudentTable();
                                     JOptionPane.showMessageDialog(null, "Student: " + userInput[3] + " has been Updated succefully!", "Successful Updated", JOptionPane.INFORMATION_MESSAGE);
-
+                                    
                                 } else {
                                     JOptionPane.showMessageDialog(null, "Invalid Password,The password should contain\n \"At least 8 characters\",\"at "
                                             + "least one uppercase letter, one lowercase letter, one digit and one special character[!@#$%^&*()]\"", "Message", JOptionPane.ERROR_MESSAGE);
