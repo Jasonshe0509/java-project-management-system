@@ -41,6 +41,7 @@ com\mycompany\projectmanagementsystem\AdminECTableActionPanel$AdminECTableAction
 com\mycompany\projectmanagementsystem\LecturerIntakePage.class
 com\mycompany\projectmanagementsystem\admin_approval_ec_details$4.class
 com\mycompany\projectmanagementsystem\StudentPresentationActionPanel$1.class
+com\mycompany\projectmanagementsystem\LecturerIntakePage$19.class
 com\mycompany\projectmanagementsystem\admin_view_projectmanager_details.class
 com\mycompany\projectmanagementsystem\ProjectManagerPage$1.class
 com\mycompany\projectmanagementsystem\admin_view_lec_details$10.class
@@ -310,6 +311,7 @@ com\mycompany\projectmanagementsystem\Course\CourseController.class
 com\mycompany\projectmanagementsystem\GeneralFunction\URLRenderer.class
 com\mycompany\projectmanagementsystem\LecturerSummaryReport$2.class
 com\mycompany\projectmanagementsystem\LecturerDashboardPage$9.class
+com\mycompany\projectmanagementsystem\LecturerIntakePage$17.class
 com\mycompany\projectmanagementsystem\lect_PresentationRqtActionPanel$PanelActionRenderer.class
 com\mycompany\projectmanagementsystem\EC\ECValidator.class
 com\mycompany\projectmanagementsystem\LecturerIntakePage$11.class
@@ -351,6 +353,7 @@ com\mycompany\projectmanagementsystem\admin_register_student$6.class
 com\mycompany\projectmanagementsystem\UserTableActionPanel$UserTableActionCellEditor.class
 com\mycompany\projectmanagementsystem\StudentPresentationActionPanel$rPanelActionRenderer.class
 com\mycompany\projectmanagementsystem\GeneralFunction\SessionManager.class
+com\mycompany\projectmanagementsystem\LecturerIntakePage$18.class
 com\mycompany\projectmanagementsystem\Course\CourseValidator.class
 com\mycompany\projectmanagementsystem\StudentAssessmentDetailPage$7.class
 com\mycompany\projectmanagementsystem\ProjectManagerPage$10.class
