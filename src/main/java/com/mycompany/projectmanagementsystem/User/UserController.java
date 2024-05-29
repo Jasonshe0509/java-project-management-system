@@ -11,6 +11,7 @@ import com.mycompany.projectmanagementsystem.admin_lecturer_record;
 import com.mycompany.projectmanagementsystem.admin_view_lec_details;
 import com.mycompany.projectmanagementsystem.admin_view_projectmanager_details;
 import com.mycompany.projectmanagementsystem.admin_view_studentrecord;
+import com.mycompany.projectmanagementsystem.admin_student_management;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -248,11 +249,16 @@ public class UserController extends UserAuthenticationController {
     public boolean userDelete(String userID) {
         List<String> data = FileHandler.readFile("user.txt");
         ArrayList<String> updatedData = new ArrayList<>();
+        String role = null;
         int confirm = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete " + userID + "?", "Confirmation", JOptionPane.YES_NO_OPTION);
         if (confirm == JOptionPane.YES_OPTION) {
             for (String line : data) {
                 if (!line.startsWith(userID)) {
                     updatedData.add(line);
+                }
+                String[] list = line.split(";");
+                if (list[0].equals(userID)) {
+                    role = list[10];
                 }
             }
 
@@ -260,12 +266,17 @@ public class UserController extends UserAuthenticationController {
             JOptionPane.showMessageDialog(null, "Action Cancelled!");
             return false;
         }
-
         FileHandler.modifyFileData("user.txt", updatedData);
-        admin_lecturer_record.printLecturerTable();
-        admin_lecturer_record.readNumOfLecturer();
-        admin_lecturer_record.printSchoolWiseTable();
-        admin_lecturer_record.readNumOfSchoolWise();
+        if ("student".equals(role)) {
+            admin_student_management.printStudentTable();
+            admin_student_management.readNumOfStudent();
+        } else {
+            admin_lecturer_record.printLecturerTable();
+            admin_lecturer_record.readNumOfLecturer();
+            admin_lecturer_record.printSchoolWiseTable();
+            admin_lecturer_record.readNumOfSchoolWise();
+        }
+
         return true;
     }
 
@@ -299,12 +310,9 @@ public class UserController extends UserAuthenticationController {
             }
         }
 
-        
-
     }
 
     public static void modifyUser(String[] userInput) {
-
         if (UserValidator.validateUserInput(userInput)) {
             if (UserValidator.validateDateOfBirth(userInput[2])) {
                 if (UserValidator.validateContact(userInput[5])) {
