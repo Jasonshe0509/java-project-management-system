@@ -214,7 +214,7 @@ public class CreateNewMessagePage extends javax.swing.JFrame {
                     page.selectCommunicationPanel(2, channelID);
                 } else {
                     lecturerIntakePage.refreshContent();
-                    lecturerIntakePage.selectCommunicationPanel(1, null);
+                    lecturerIntakePage.selectCommunicationPanel(2, channelID);
                 }
             }
         }
