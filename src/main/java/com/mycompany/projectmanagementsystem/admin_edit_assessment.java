@@ -14,29 +14,40 @@ import java.util.List;
  */
 public class admin_edit_assessment extends javax.swing.JFrame {
 
+    String assessmentNameInList;
+
     /**
      * Creates new form admin_edit_assessment
      */
     public admin_edit_assessment() {
         initComponents();
     }
-    
-    public void displayAssessmentDetails(String assessmentName){
+
+    public String displayAssessmentDetails(String assessmentName) {
         List<String> data = FileHandler.readFile("assessment_type.txt");
-        for(String line: data){
-            if(line.startsWith(assessmentName)){
+
+        for (String line : data) {
+            if (line.startsWith(assessmentName.toLowerCase())) {
+                System.out.println(assessmentName);
                 String[] assessment = line.split(";");
-                assessment_name.setText(assessment[0]);
+
+                AssessmentController getAssessmentName = new AssessmentController();
+                String assessmentNameWithSpace = getAssessmentName.assessmentType(assessmentName);
+
+                assessment_name.setText(assessmentNameWithSpace);
                 contentmark.setValue(Integer.parseInt(assessment[1]));
                 formatmark.setValue(Integer.parseInt(assessment[2]));
                 presentationmark.setValue(Integer.parseInt(assessment[3]));
-                failmark.setValue(Integer.parseInt(assessment[4]));
-                passwithchanges.setValue(Integer.parseInt(assessment[5]));
-                passmark.setValue(Integer.parseInt(assessment[6]));
-                
+                failmark.setValue(Integer.parseInt(assessment[6]));
+
+                passwithchanges.setText(assessment[5]);
+                passmark.setValue(Integer.parseInt(assessment[4]));
+
             }
         }
-        
+
+        assessmentNameInList = assessmentName;
+        return assessmentNameInList;
     }
 
     /**
@@ -56,13 +67,15 @@ public class admin_edit_assessment extends javax.swing.JFrame {
         formatmark = new javax.swing.JSpinner();
         fail_mark_title = new javax.swing.JLabel();
         failmark = new javax.swing.JSpinner();
-        passwithchanges = new javax.swing.JSpinner();
-        passwithchanges1 = new javax.swing.JSpinner();
         passwithchanges_mark_title = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        passwithchanges = new javax.swing.JTextPane();
         pass_mark_title = new javax.swing.JLabel();
         passmark = new javax.swing.JSpinner();
         content_mark_title = new javax.swing.JLabel();
         contentmark = new javax.swing.JSpinner();
+        changeswithpass_checkbox = new javax.swing.JCheckBox();
+        jLabel1 = new javax.swing.JLabel();
         backbutton = new javax.swing.JButton();
         updatebutton = new javax.swing.JButton();
         background = new javax.swing.JLabel();
@@ -105,24 +118,21 @@ public class admin_edit_assessment extends javax.swing.JFrame {
         fail_mark_title.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         fail_mark_title.setForeground(new java.awt.Color(2, 50, 99));
         fail_mark_title.setText("Fail Mark");
-        getContentPane().add(fail_mark_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 240, -1, -1));
+        getContentPane().add(fail_mark_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 160, -1, -1));
 
         failmark.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         failmark.setAutoscrolls(true);
-        getContentPane().add(failmark, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 270, 120, -1));
-
-        passwithchanges.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        passwithchanges.setAutoscrolls(true);
-        getContentPane().add(passwithchanges, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 190, 120, -1));
-
-        passwithchanges1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        passwithchanges1.setAutoscrolls(true);
-        getContentPane().add(passwithchanges1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 190, 80, -1));
+        getContentPane().add(failmark, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 190, 120, -1));
 
         passwithchanges_mark_title.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         passwithchanges_mark_title.setForeground(new java.awt.Color(2, 50, 99));
         passwithchanges_mark_title.setText("Pass With Changes Mark");
-        getContentPane().add(passwithchanges_mark_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 160, -1, 30));
+        getContentPane().add(passwithchanges_mark_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 240, -1, 30));
+
+        passwithchanges.setEditable(false);
+        jScrollPane1.setViewportView(passwithchanges);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 270, 120, 30));
 
         pass_mark_title.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         pass_mark_title.setForeground(new java.awt.Color(2, 50, 99));
@@ -142,6 +152,18 @@ public class admin_edit_assessment extends javax.swing.JFrame {
         contentmark.setAutoscrolls(true);
         getContentPane().add(contentmark, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, 120, -1));
 
+        changeswithpass_checkbox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                changeswithpass_checkboxActionPerformed(evt);
+            }
+        });
+        getContentPane().add(changeswithpass_checkbox, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 310, -1, -1));
+
+        jLabel1.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(2, 50, 99));
+        jLabel1.setText("<html>Do not apply \"Pass With Changes\" in this module.</html>");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 310, 230, -1));
+
         backbutton.setBackground(new java.awt.Color(2, 50, 99));
         backbutton.setFont(new java.awt.Font("Bell MT", 1, 20)); // NOI18N
         backbutton.setForeground(new java.awt.Color(255, 255, 255));
@@ -151,7 +173,7 @@ public class admin_edit_assessment extends javax.swing.JFrame {
                 backbuttonActionPerformed(evt);
             }
         });
-        getContentPane().add(backbutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 350, -1, -1));
+        getContentPane().add(backbutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 370, -1, -1));
 
         updatebutton.setBackground(new java.awt.Color(2, 50, 99));
         updatebutton.setFont(new java.awt.Font("Bell MT", 1, 20)); // NOI18N
@@ -162,7 +184,7 @@ public class admin_edit_assessment extends javax.swing.JFrame {
                 updatebuttonActionPerformed(evt);
             }
         });
-        getContentPane().add(updatebutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 350, -1, -1));
+        getContentPane().add(updatebutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 370, -1, -1));
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main_background.png"))); // NOI18N
         background.setMaximumSize(new java.awt.Dimension(500, 420));
@@ -175,23 +197,39 @@ public class admin_edit_assessment extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void updatebuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatebuttonActionPerformed
-        String[] updatedMarks = new String[7];
+        String[] updatedMarks = new String[8];
+
         updatedMarks[0] = assessment_name.getText();
         updatedMarks[1] = contentmark.getValue().toString();
         updatedMarks[2] = formatmark.getValue().toString();
         updatedMarks[3] = presentationmark.getValue().toString();
         updatedMarks[4] = passmark.getValue().toString();
-        updatedMarks[5] = passwithchanges.getValue().toString();
         updatedMarks[6] = failmark.getValue().toString();
-        
+        if (changeswithpass_checkbox.isSelected()) {
+            passwithchanges.setText("0");
+            updatedMarks[5] = "0";
+        } else {
+            int passwithchangesMin = Integer.parseInt(updatedMarks[6]) + 1;
+            int passwithchangesMax = Integer.parseInt(updatedMarks[4]) - 1;
+            String passwithchangerange = String.valueOf(passwithchangesMin) + "-" + String.valueOf(passwithchangesMax);
+            passwithchanges.setText(passwithchangerange);
+            updatedMarks[5] = passwithchangerange;
+        }
+
+        updatedMarks[7] = assessmentNameInList;
+
         AssessmentController modifymark = new AssessmentController();
         modifymark.adminEditMark(updatedMarks);
-        
+
     }//GEN-LAST:event_updatebuttonActionPerformed
 
     private void backbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backbuttonActionPerformed
         dispose();
     }//GEN-LAST:event_backbuttonActionPerformed
+
+    private void changeswithpass_checkboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeswithpass_checkboxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_changeswithpass_checkboxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -233,16 +271,18 @@ public class admin_edit_assessment extends javax.swing.JFrame {
     private javax.swing.JLabel assessment_name_title;
     private javax.swing.JButton backbutton;
     private javax.swing.JLabel background;
+    private javax.swing.JCheckBox changeswithpass_checkbox;
     private javax.swing.JLabel content_mark_title;
     private javax.swing.JSpinner contentmark;
     private javax.swing.JLabel fail_mark_title;
     private javax.swing.JSpinner failmark;
     private javax.swing.JLabel format_mark_title;
     private javax.swing.JSpinner formatmark;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel pass_mark_title;
     private javax.swing.JSpinner passmark;
-    private javax.swing.JSpinner passwithchanges;
-    private javax.swing.JSpinner passwithchanges1;
+    private javax.swing.JTextPane passwithchanges;
     private javax.swing.JLabel passwithchanges_mark_title;
     private javax.swing.JLabel presentation_mark_title;
     private javax.swing.JSpinner presentationmark;

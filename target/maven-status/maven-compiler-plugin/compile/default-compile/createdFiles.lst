@@ -88,6 +88,7 @@ com\mycompany\projectmanagementsystem\admin_student.class
 com\mycompany\projectmanagementsystem\admin_view_lec_details.class
 com\mycompany\projectmanagementsystem\admin_view_studentrecord$7.class
 com\mycompany\projectmanagementsystem\IntakeTableActionPanel$1.class
+com\mycompany\projectmanagementsystem\admin_edit_assessment$4.class
 com\mycompany\projectmanagementsystem\LecturerReportConfirm$2.class
 com\mycompany\projectmanagementsystem\StudentEcSubmissionPage$2.class
 com\mycompany\projectmanagementsystem\StudentProfilePage.class

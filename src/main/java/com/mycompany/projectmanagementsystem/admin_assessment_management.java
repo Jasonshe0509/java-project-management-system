@@ -25,6 +25,11 @@ public class admin_assessment_management extends javax.swing.JFrame {
                 DefaultTableModel model = (DefaultTableModel) assessment_table.getModel();
                 int columnIndex = 0;
                 String assessmentName = (String) model.getValueAt(row, columnIndex);
+               
+                //AssessmentController getAssessmentName = new AssessmentController();
+                //String assessment = getAssessmentName.assessmentType(assessmentName);
+                
+                
                 admin_edit_assessment display = new admin_edit_assessment();
                 display.displayAssessmentDetails(assessmentName);
                 display.show();
@@ -50,8 +55,14 @@ public class admin_assessment_management extends javax.swing.JFrame {
                     record[i] = "N/A";
                 }
             }
+            
+            String passmark = record[4] + "-100";
 
-            String[] assessmentRow = {record[0], record[1], record[2], record[3], record[4], record[5], record[6]};
+            
+            
+            String failmark = "0-" + record[6];
+
+            String[] assessmentRow = {record[0].toUpperCase(), record[1], record[2], record[3], failmark, passmark, record[5]};
             model.addRow(assessmentRow);
 
         }
