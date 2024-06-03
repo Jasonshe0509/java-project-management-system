@@ -95,7 +95,7 @@ public class AssessmentController implements StudentAssessmentController {
         for (String line : data) {
             String[] list = line.split(";");
             if (list[1].equals(stdID)) {
-                if ("internship_report".equals(type) || "investigation_report".equals(type)) {
+                if ("internship_report".equals(type) || "investigation".equals(type)) {
                     if(!list[9].isEmpty() && !list[7].isEmpty() ){ //validate feedback and mark
                         spvMark = Integer.parseInt(list[9]);
                         resubmissionCount = Integer.parseInt(list[11]);

@@ -173,7 +173,7 @@ public class LecturerPresentationRequest extends javax.swing.JFrame {
             }
 
         };
-        if ("internship_report".equals(AssmntType) || "investigation_report".equals(AssmntType)) {
+        if ("internship_report".equals(AssmntType) || "investigation".equals(AssmntType)) {
             PresentRqtTable.getColumnModel().getColumn(3).setCellRenderer(panel.new PanelActionRenderer());
             PresentRqtTable.getColumnModel().getColumn(3).setCellEditor(panel.new TableActionCellEditor(event));
         } else {
@@ -394,7 +394,7 @@ public class LecturerPresentationRequest extends javax.swing.JFrame {
                         String rowIdentifier = studentID + "-" + assessmentID;
                         if (!addedRows.contains(rowIdentifier)) {
                             if (spv.equals(user.getUserID()) && "pending".equals(listx[6]) && "pending".equals(listx[4])) {
-                                if ("internship_report".equals(AssmntType) || "investigation_report".equals(AssmntType)) {
+                                if ("internship_report".equals(AssmntType) || "investigation".equals(AssmntType)) {
                                     PresentRqtTable.removeColumn(PresentRqtTable.getColumnModel().getColumn(2)); 
                                     PresentRqtTable.getTableHeader().repaint();
                                     String[] reorderedData = {

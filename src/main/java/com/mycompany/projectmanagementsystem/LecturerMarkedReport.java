@@ -68,7 +68,7 @@ public class LecturerMarkedReport extends javax.swing.JFrame {
             }
             
         };
-        if ("internship_report".equals(AssmntType) || "investigation_report".equals(AssmntType)) {
+        if ("internship_report".equals(AssmntType) || "investigation".equals(AssmntType)) {
             MarkedReportTable.getColumnModel().getColumn(3).setCellRenderer(rpanel.new rPanelActionRenderer());
             MarkedReportTable.getColumnModel().getColumn(3).setCellEditor(rpanel.new TableActionCellEditor(rptevent));
         } else {
@@ -273,7 +273,7 @@ public class LecturerMarkedReport extends javax.swing.JFrame {
                             String rowIdentifier = studentID + "-" + assessmentID;
                             if (!addedRows.contains(rowIdentifier)) {
                                 if (spv.equals(user.getUserID()) && "partially marked".equals(listx[6]) || "marked".equals(listx[6])) { // supervisor
-                                    if ("internship_report".equals(AssmntType) || "investigation_report".equals(AssmntType)) {
+                                    if ("internship_report".equals(AssmntType) || "investigation".equals(AssmntType)) {
                                         MarkedReportTable.removeColumn(MarkedReportTable.getColumnModel().getColumn(3)); 
                                         MarkedReportTable.getTableHeader().repaint();
                                         String[] reorderedData = {

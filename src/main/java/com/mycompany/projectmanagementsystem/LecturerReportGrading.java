@@ -571,7 +571,7 @@ public class LecturerReportGrading extends javax.swing.JFrame {
         for (String line : data) {
             String[] list = line.split(";");
             if (list[1].equals(stdID)) {
-                if ("internship_report".equals(AssmntType) || "investigation_report".equals(AssmntType)) {
+                if ("internship_report".equals(AssmntType) || "investigation".equals(AssmntType)) {
                     jLabel10.setText("Your Mark:");
                     contentMark.setText(list[9]);
                     contentMarkScheme.setText("/ 100");

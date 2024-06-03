@@ -161,7 +161,7 @@ public class LecturerIntakePage extends javax.swing.JFrame {
                 String name = (String) model.getValueAt(row, 1);
                 String marker = (String) model.getValueAt(row, 2);
                 String presentSlot = (String) model.getValueAt(row, 3);
-                LecturerPresentationFeedback pfeedback = new LecturerPresentationFeedback(AssmntID ,stdID, name, marker, presentSlot);
+                LecturerPresentationFeedback pfeedback = new LecturerPresentationFeedback(AssmntID ,stdID, name, marker, presentSlot, AssmntType);
                 pfeedback.setVisible(true);
             }
             
@@ -200,7 +200,7 @@ public class LecturerIntakePage extends javax.swing.JFrame {
             }
 
         };
-        if ("internship_report".equals(AssmntType) || "investigation_report".equals(AssmntType)) {
+        if ("internship_report".equals(AssmntType) || "investigation".equals(AssmntType)) {
             SchdPresentationTable.getColumnModel().getColumn(3).setCellRenderer(ppanel.new PanelActionRenderer());
             SchdPresentationTable.getColumnModel().getColumn(3).setCellEditor(ppanel.new TableActionCellEditor(event));
         } else {
@@ -1343,7 +1343,7 @@ public class LecturerIntakePage extends javax.swing.JFrame {
                         String rowIdentifier = studentID + "-" + assessmentID;
                         if (!addedRows.contains(rowIdentifier) && "scheduled".equals(status)) {
                             if (spv.equals(user.getUserID())) {
-                                if ("internship_report".equals(AssmntType) || "investigation_report".equals(AssmntType)) {
+                                if ("internship_report".equals(AssmntType) || "investigation".equals(AssmntType)) {
                                     SchdPresentationTable.removeColumn(SchdPresentationTable.getColumnModel().getColumn(2)); 
                                     SchdPresentationTable.getTableHeader().repaint();
                                     String[] reorderedData = {

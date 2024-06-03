@@ -426,7 +426,7 @@ public class LecturerDashboardPage extends javax.swing.JFrame {
                         
                         AssessmentNameLabel.setText("Final Year Project");
                     }
-                    case "investigation_report" -> {
+                    case "investigation" -> {
                         bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/investigation_report.png")));
 
                         AssessmentNameLabel.setText("Investigation Report");
@@ -566,7 +566,7 @@ public class LecturerDashboardPage extends javax.swing.JFrame {
                         
                         AssessmentNameLabel.setText("Final Year Project");
                     }
-                    case "investigation_report" -> {
+                    case "investigation" -> {
                         bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/investigation_report.png")));
 
                         AssessmentNameLabel.setText("Investigation Report");
