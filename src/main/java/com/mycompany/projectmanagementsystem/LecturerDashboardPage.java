@@ -10,6 +10,9 @@ import com.mycompany.projectmanagementsystem.User.User;
 import com.mycompany.projectmanagementsystem.User.UserController;
 import java.awt.Toolkit;
 import java.awt.Color;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -635,15 +638,22 @@ public class LecturerDashboardPage extends javax.swing.JFrame {
             JLabel noAssmntLabel = new JLabel("No Assessment Assigned");
             noAssmntLabel.setFont(new java.awt.Font("SansSerif", 1, 16));
             noAssmntLabel.setForeground(new java.awt.Color(2, 50, 99));
-            //set label to center
-            int labelWidth = noAssmntLabel.getPreferredSize().width;
-            int labelHeight = noAssmntLabel.getPreferredSize().height;
-            int a = (contentPanel.getWidth() - labelWidth) / 2;
-            int b = (contentPanel.getHeight() - labelHeight) / 2;
 
-            noAssmntLabel.setBounds(a, b, labelWidth, labelHeight);
-            contentPanel.add(noAssmntLabel);
+            contentPanel.setLayout(new GridBagLayout());
+            GridBagConstraints gbc = new GridBagConstraints();
+
+            gbc.gridx = 0;
+            gbc.gridy = 0;
+            gbc.gridwidth = GridBagConstraints.REMAINDER;
+            gbc.gridheight = GridBagConstraints.REMAINDER;
+            gbc.weightx = 1.0;
+            gbc.weighty = 1.0;
+            gbc.anchor = GridBagConstraints.CENTER;
+            gbc.insets = new Insets(0, 0, 0, 0);
+
+            contentPanel.add(noAssmntLabel, gbc);
         }
+
         
         // Set preferred size for the content panel based on the number of items
         contentPanel.setPreferredSize(new java.awt.Dimension(

@@ -26,24 +26,27 @@ public class LecturerReportGrading extends javax.swing.JFrame {
     private String stdID;
     private String stdName;
     private String submissionLink;
+    private String AssmntType;
     private int mark1;
     private int mark2;
     private int mark3;
     private String feedback;
     
-    public LecturerReportGrading(String assmntid, String id, String name, String link) {
+    public LecturerReportGrading(String assmntid, String id, String name, String link, String type) {
         this.AssmntID = assmntid;
         this.stdID = id;
         this.stdName = name;
         this.submissionLink = link;
+        this.AssmntType = type;
         initComponents();
         setIconImage();
-        showRptFeedback();
+        showReportMarkingScheme();
         showGradedReport(AssmntID);
         
         stdIDLabel.setText(id);
         stdNameLabel.setText(name);
         stdSubmissionLink.setText("<html><a href=''>" + link + "</a></html>");
+        
     }
     
     private void openConfirmationDialog(int mark1, int mark2, int mark3, String feedback) {
@@ -77,12 +80,13 @@ public class LecturerReportGrading extends javax.swing.JFrame {
         contentMark = new javax.swing.JTextField();
         presentMark = new javax.swing.JTextField();
         formatMark = new javax.swing.JTextField();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
+        contentMarkScheme = new javax.swing.JLabel();
+        formatMarkScheme = new javax.swing.JLabel();
+        presentMarkScheme = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
-        feedbackRptField = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        feedbackRptField = new javax.swing.JTextArea();
         saveBtn = new javax.swing.JButton();
         backBtn = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
@@ -236,41 +240,41 @@ public class LecturerReportGrading extends javax.swing.JFrame {
         formatMark.setMinimumSize(new java.awt.Dimension(40, 22));
         formatMark.setPreferredSize(new java.awt.Dimension(40, 22));
 
-        jLabel13.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jLabel13.setText("/ 60");
+        contentMarkScheme.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        contentMarkScheme.setText("/ 60");
 
-        jLabel14.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jLabel14.setText("/ 10");
+        formatMarkScheme.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        formatMarkScheme.setText("/ 10");
 
-        jLabel15.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jLabel15.setText("/ 30");
+        presentMarkScheme.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        presentMarkScheme.setText("/ 30");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(58, 58, 58)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(formatMark, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel14))
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(presentMark, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel15))
+                        .addComponent(presentMarkScheme))
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(24, 24, 24)
+                        .addComponent(formatMark, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(formatMarkScheme))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(24, 24, 24)
                         .addComponent(contentMark, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel13)))
-                .addContainerGap(55, Short.MAX_VALUE))
+                        .addComponent(contentMarkScheme)))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -279,38 +283,40 @@ public class LecturerReportGrading extends javax.swing.JFrame {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(contentMark, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel13))
+                    .addComponent(contentMarkScheme))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(formatMark, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel14))
+                    .addComponent(formatMarkScheme))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(presentMark, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel15))
+                    .addComponent(presentMarkScheme))
                 .addContainerGap(85, Short.MAX_VALUE))
         );
 
         jPanel7.setMaximumSize(new java.awt.Dimension(275, 211));
         jPanel7.setMinimumSize(new java.awt.Dimension(275, 211));
 
-        feedbackRptField.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
         jLabel9.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(2, 50, 99));
         jLabel9.setText("Feedback");
+
+        feedbackRptField.setColumns(20);
+        feedbackRptField.setRows(5);
+        jScrollPane1.setViewportView(feedbackRptField);
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(feedbackRptField)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel9)
                 .addContainerGap(221, Short.MAX_VALUE))
+            .addComponent(jScrollPane1)
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -318,7 +324,7 @@ public class LecturerReportGrading extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(feedbackRptField, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         saveBtn.setBackground(new java.awt.Color(76, 127, 174));
@@ -383,7 +389,7 @@ public class LecturerReportGrading extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 13, Short.MAX_VALUE))
+                .addGap(0, 5, Short.MAX_VALUE))
         );
 
         jLabel3.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
@@ -420,6 +426,19 @@ public class LecturerReportGrading extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
+        int maxMark1 = 0, maxMark2 = 0, maxMark3 = 0;
+
+        List<String> data = FileHandler.readFile("assessment_type.txt");
+        for (String line : data) {
+            String[] list = line.split(";");
+            if (list[0].equals(AssmntType)) {
+                maxMark1 = Integer.parseInt(list[1]);
+                maxMark2 = Integer.parseInt(list[2]);
+                maxMark3 = Integer.parseInt(list[3]);
+                break; // Break once we find the matching assessment type
+            }
+        }
+
         String mark1Text = contentMark.getText().trim(); 
         if (mark1Text.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Content mark cannot be empty.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -427,12 +446,12 @@ public class LecturerReportGrading extends javax.swing.JFrame {
         }
         try {
             mark1 = Integer.parseInt(mark1Text);
-            if (mark1 < 0 || mark1 > 60) {
-                JOptionPane.showMessageDialog(null, "Content mark should be between 0 and 60.", "Error", JOptionPane.ERROR_MESSAGE);
+            if (mark1 < 0 || mark1 > maxMark1) {
+                JOptionPane.showMessageDialog(null, "Content mark should be at most " + maxMark1 + ".", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Please enter a valid integer for Mark 1.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Please enter a valid integer for Content Mark.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
@@ -443,12 +462,12 @@ public class LecturerReportGrading extends javax.swing.JFrame {
         }
         try {
             mark2 = Integer.parseInt(mark2Text);
-            if (mark2 < 0 || mark2 > 10) {
-                JOptionPane.showMessageDialog(null, "Format mark should be between 0 and 10.", "Error", JOptionPane.ERROR_MESSAGE);
+            if (mark2 < 0 || mark2 > maxMark2) {
+                JOptionPane.showMessageDialog(null, "Format mark should be at most " + maxMark2 + ".", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Please enter a valid integer for Mark 2.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Please enter a valid integer for Format Mark.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
@@ -459,12 +478,12 @@ public class LecturerReportGrading extends javax.swing.JFrame {
         }
         try {
             mark3 = Integer.parseInt(mark3Text);
-            if (mark3 < 0 || mark3 > 30) {
-                JOptionPane.showMessageDialog(null, "Presentation mark should be between 0 and 20.", "Error", JOptionPane.ERROR_MESSAGE);
+            if (mark3 < 0 || mark3 > maxMark3) {
+                JOptionPane.showMessageDialog(null, "Presentation mark should be at most " + maxMark3 + ".", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Please enter a valid integer for Mark 3.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Please enter a valid integer for Presentation Mark.", "Error", JOptionPane.ERROR_MESSAGE);
             return; 
         }
 
@@ -473,7 +492,7 @@ public class LecturerReportGrading extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Feedback field cannot be empty.", "Error", JOptionPane.ERROR_MESSAGE);
             return; 
         }
-        
+
         openConfirmationDialog(mark1, mark2, mark3, feedback);
     }//GEN-LAST:event_saveBtnActionPerformed
 
@@ -511,12 +530,25 @@ public class LecturerReportGrading extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LecturerReportGrading("AssmntID", "stdID", "name", "subLink").setVisible(true);
+                new LecturerReportGrading("AssmntID", "stdID", "name", "subLink", "type").setVisible(true);
             }
         });
     }
     private void setIconImage() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Sysco_icon_with_background.png")));
+    }
+    
+    private void showReportMarkingScheme(){
+        List<String> data = FileHandler.readFile("assessment_type.txt");
+        for (String line : data) {
+            String[] list = line.split(";");
+            if (list[0].equals(AssmntType)) {
+                contentMarkScheme.setText("/ " + list[1]);
+                formatMarkScheme.setText("/ " + list[2]);
+                presentMarkScheme.setText("/ " + list[3]);
+                break; // Break once we find the matching assessment type
+            }
+        }
     }
     
     private void showRptFeedback() {
@@ -526,10 +558,79 @@ public class LecturerReportGrading extends javax.swing.JFrame {
             String[] list = line.split(";");
             if (list[1].equals(stdID) && !list[7].isEmpty()) {
                 feedbackRptField.setText(list[7]);
+                if(!list[8].isEmpty()){
+                    feedbackRptField.setText(list[7] + "\n\nGrade Obtained: " + list[8]);
+                }
             }
         }
     }
     
+    private void showMarks(boolean isSupervisor) {
+        List<String> data = FileHandler.readFile("student_assessment.txt");
+        // show feedback given by another marker 
+        for (String line : data) {
+            String[] list = line.split(";");
+            if (list[1].equals(stdID)) {
+                if ("internship_report".equals(AssmntType) || "investigation_report".equals(AssmntType)) {
+                    jLabel10.setText("Your Mark:");
+                    contentMark.setText(list[9]);
+                    contentMarkScheme.setText("/ 100");
+                    jLabel12.setVisible(false);
+                    formatMark.setVisible(false);
+                    formatMarkScheme.setVisible(false);
+                    jLabel11.setText("Total:");
+                    presentMark.setText(list[9]);
+                    presentMarkScheme.setText("/ 100");
+                    break;
+                } else {
+                    float mark1 = 0;
+                    float mark2 = 0;
+                    boolean mark1Valid = false;
+                    boolean mark2Valid = false;
+
+                    if (isSupervisor && !list[9].isEmpty()) {
+                        mark1 = Float.parseFloat(list[9]);
+                        mark1Valid = true;
+                    } else if (!isSupervisor && !list[10].isEmpty()) {
+                        mark1 = Float.parseFloat(list[10]);
+                        mark1Valid = true;
+                    }
+
+                    if (isSupervisor && !list[10].isEmpty()) {
+                        mark2 = Float.parseFloat(list[10]);
+                        mark2Valid = true;
+                    } else if (!isSupervisor && !list[9].isEmpty()) {
+                        mark2 = Float.parseFloat(list[9]);
+                        mark2Valid = true;
+                    }
+
+                    // Calculate the average if both marks are valid
+                    float average = (mark1Valid && mark2Valid) ? (mark1 + mark2) / 2 : (mark1Valid ? mark1 : mark2);
+
+                    // Set the labels accordingly
+                    if (isSupervisor && mark1Valid) {
+                        jLabel10.setText("Your Mark:");
+                        contentMark.setText(String.valueOf(mark1));
+                        jLabel12.setText("<html>Second Marker's Mark:</html>");
+                        formatMark.setText(String.valueOf(mark2));
+                    } else if (!isSupervisor && mark1Valid) {
+                        jLabel10.setText("Your Mark:");
+                        contentMark.setText(String.valueOf(mark1));
+                        jLabel12.setText("Supervisor's Mark:");
+                        formatMark.setText(String.valueOf(mark2));
+                    }
+
+                    contentMarkScheme.setText("/ 100");
+                    formatMarkScheme.setText("/ 100");
+                    jLabel11.setText("Total:");
+                    presentMark.setText(String.valueOf(average));
+                    presentMarkScheme.setText("/ 100");
+                    break;
+                }   
+            }
+        }
+    }
+  
     private void showGradedReport(String assessmentID) {
         List<String> assessmentData = FileHandler.readFile("assessment.txt");
         List<String> studentAssessmentData = FileHandler.readFile("student_assessment.txt");
@@ -570,19 +671,18 @@ public class LecturerReportGrading extends javax.swing.JFrame {
                 boolean hasFeedback = fields.length > 5 && fields[4] != null && !fields[4].isEmpty();
 
                 if (isSupervisor && isMarked || !isSupervisor && hasFeedback) {
-                    labelMarked();
+                    showMarks(isSupervisor);
+                    showRptFeedback();
                     disableEditing();
                     if (!isSupervisor) {
-                        saveBtn.setEnabled(false);
+                        showMarks(!isSupervisor);
+                        showRptFeedback();
+                        disableEditing();
                     }
                     break;
                 }
             }
         }
-    }
-
-    private void labelMarked() {
-        feedbackRptField.setText("You have already marked this report.");
     }
 
     private void disableEditing() {
@@ -596,15 +696,14 @@ public class LecturerReportGrading extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;
     private javax.swing.JTextField contentMark;
-    private javax.swing.JTextField feedbackRptField;
+    private javax.swing.JLabel contentMarkScheme;
+    private javax.swing.JTextArea feedbackRptField;
     private javax.swing.JTextField formatMark;
+    private javax.swing.JLabel formatMarkScheme;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
@@ -617,7 +716,9 @@ public class LecturerReportGrading extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField presentMark;
+    private javax.swing.JLabel presentMarkScheme;
     private javax.swing.JButton saveBtn;
     private javax.swing.JLabel stdIDLabel;
     private javax.swing.JLabel stdNameLabel;
