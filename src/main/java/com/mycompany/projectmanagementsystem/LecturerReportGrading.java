@@ -653,9 +653,9 @@ public class LecturerReportGrading extends javax.swing.JFrame {
 
         boolean isSupervisor = isUserSupervisor(assessmentData, assessmentID);
         boolean isSecondMarker = isUserSecondMarker(assessmentData, assessmentID);
-
+        
         if (isSupervisor || isSecondMarker) {
-            displayGradedReport(studentAssessmentData, isSupervisor);
+            displayGradedReport(studentAssessmentData, isSupervisor);       
         }
     }
 
@@ -684,18 +684,19 @@ public class LecturerReportGrading extends javax.swing.JFrame {
             String[] fields = line.split(";");
             if (fields[1].equals(stdID)) {
                 boolean isMarked = !fields[9].isEmpty();
+                boolean isSecMarked = !fields[10].isEmpty();
                 boolean hasFeedback = fields.length > 5 && fields[4] != null && !fields[4].isEmpty();
 
-                if (isSupervisor && isMarked || !isSupervisor && hasFeedback) {
+                if (isSupervisor && isMarked) {
                     showMarks(isSupervisor);
                     showRptFeedback();
                     disableEditing();
-                    if (!isSupervisor) {
-                        showMarks(!isSupervisor);
-                        showRptFeedback();
-                        disableEditing();
-                    }
-                    break;
+                } else if (!isSupervisor && isSecMarked) {
+                    showMarks(!isSupervisor);
+                    showRptFeedback();
+                    disableEditing();
+                } else if (isSupervisor || !isSupervisor && hasFeedback){
+                    showRptFeedback();
                 }
             }
         }

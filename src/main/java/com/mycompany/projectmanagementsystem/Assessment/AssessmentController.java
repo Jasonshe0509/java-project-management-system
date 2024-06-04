@@ -6,6 +6,7 @@ package com.mycompany.projectmanagementsystem.Assessment;
 
 import com.mycompany.projectmanagementsystem.GeneralFunction.FileHandler;
 import com.mycompany.projectmanagementsystem.GeneralFunction.SessionManager;
+import com.mycompany.projectmanagementsystem.Notification.NotificationController;
 import com.mycompany.projectmanagementsystem.User.User;
 import com.mycompany.projectmanagementsystem.admin_assessment_management;
 import java.time.LocalDateTime;
@@ -107,6 +108,10 @@ public class AssessmentController implements StudentAssessmentController {
                         updateStatus = true;
                         JOptionPane.showMessageDialog(null,
                                 "The final mark (" + spvMark + ") has been submitted, grade \"" + grade + "\" is recorded.");
+                        if("Pass with Changes".equals(grade)){
+                            NotificationController.create(stdID, "The submitted report for assessment (" + list[2] 
+                                        + ") has been graded \"Pass with Changes\". Please note that you may resubmit your report for regrading.");
+                        }
                     } else {
                         JOptionPane.showMessageDialog(null,
                                 "Supervisee (" + stdID + ") cannot be marked as done because marks have not been given.", "Message", JOptionPane.ERROR_MESSAGE);
@@ -126,6 +131,10 @@ public class AssessmentController implements StudentAssessmentController {
                         updateStatus = true;
                         JOptionPane.showMessageDialog(null,
                                 "The final mark (" + avgMark + ") has been submitted, grade \"" + grade + "\" is recorded.");
+                        if("Pass with Changes".equals(grade)){
+                            NotificationController.create(stdID, "The submitted report for assessment (" + list[2] 
+                                        + ") has been graded \"Pass with Changes\". Please note that you may resubmit your report for regrading.");
+                        }
                     } else if (!list[9].isEmpty() && list[10].isEmpty()) {
                         list[6] = "partially marked";
                         line = String.join(";", list);
@@ -175,6 +184,10 @@ public class AssessmentController implements StudentAssessmentController {
                     updateStatus = true;
                     JOptionPane.showMessageDialog(null,
                                 "The final mark (" + avgMark + ") has been submitted, grade \"" + grade + "\" is recorded.");
+                    if("Pass with Changes".equals(grade)){
+                            NotificationController.create(stdID, "The submitted report for assessment (" + list[2] 
+                                        + ") has been graded \"Pass with Changes\". Please note that you may resubmit your report for regrading.");
+                        }
                 } else if (!list[10].isEmpty() && list[9].isEmpty()) {
                     list[6] = "partially marked";
                     line = String.join(";", list);
@@ -206,19 +219,19 @@ public class AssessmentController implements StudentAssessmentController {
 
             if (list[0].equals(type)) {
                 if (count >= 2) {
+                    if (mark >= pass){
+                        return "Pass";
+                    } else {
+                        return "Fail";                       
+                    }
+                } else {
                     if (isWithinRange(mark, passChangesRange)) {
-                        return "Pass with Changes";
+                        return "Pass with Changes"; //allow student to resubmit
                     } else if ("0".equals(passChangesRange) && mark >= pass){
                         return "Pass";
                     } else if (mark >= pass){
                         return "Pass";
                     } else{
-                        return "Fail";                       
-                    }
-                } else {
-                    if (mark >= pass) {
-                        return "Pass";
-                    } else {
                         return "Fail";                       
                     }
                 }
