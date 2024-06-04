@@ -144,8 +144,8 @@
                               <EmptySpace min="43" pref="43" max="-2" attributes="0"/>
                               <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="assessmentStatus" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="399" max="-2" attributes="0"/>
+                              <Component id="assessmentStatus" min="-2" pref="126" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="360" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>

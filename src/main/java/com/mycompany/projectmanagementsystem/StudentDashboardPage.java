@@ -55,7 +55,7 @@ public final class StudentDashboardPage extends javax.swing.JFrame {
         initComponents();
         setIconImage();
         if (user != null) {
-            name.setText(((Student) user).getIntakeCode());
+            jLabel8.setText("Welcome: Lecturer " + "(" + user.getName() + " " + user.getUserID() + ")");
         }
         showAssessmentInfo();
         showDueDateInfo();
@@ -73,7 +73,6 @@ public final class StudentDashboardPage extends javax.swing.JFrame {
 
         dueDate = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        name = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         upcomingEvent = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -109,15 +108,10 @@ public final class StudentDashboardPage extends javax.swing.JFrame {
 
         getContentPane().add(dueDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 120, -1, -1));
 
-        name.setFont(new java.awt.Font("Bell MT", 1, 20)); // NOI18N
-        name.setForeground(new java.awt.Color(2, 50, 99));
-        name.setText("Name");
-        getContentPane().add(name, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 70, 280, 30));
-
         jLabel8.setFont(new java.awt.Font("Bell MT", 1, 20)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(2, 50, 99));
         jLabel8.setText("Welcome: ");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 100, 30));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 420, 30));
 
         upcomingEvent.setBackground(new Color(217,217,217,40));
         upcomingEvent.setMaximumSize(new java.awt.Dimension(207, 332));
@@ -647,7 +641,6 @@ public final class StudentDashboardPage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel name;
     private javax.swing.JLabel studentEcSubmission;
     private javax.swing.JPanel studentHeader;
     private javax.swing.JLabel studentLogo;
