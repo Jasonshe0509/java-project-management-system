@@ -440,53 +440,59 @@ public class LecturerReportGrading extends javax.swing.JFrame {
         }
 
         String mark1Text = contentMark.getText().trim(); 
-        if (mark1Text.isEmpty()) {
+        if (mark1Text.isEmpty() && contentMark.isEditable()) {
             JOptionPane.showMessageDialog(null, "Content mark cannot be empty.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        try {
-            mark1 = Integer.parseInt(mark1Text);
-            if (mark1 < 0 || mark1 > maxMark1) {
-                JOptionPane.showMessageDialog(null, "Content mark should be at most " + maxMark1 + ".", "Error", JOptionPane.ERROR_MESSAGE);
+        if(!mark1Text.isEmpty() && contentMark.isEditable()){
+            try {
+                mark1 = Integer.parseInt(mark1Text);
+                if (mark1 < 0 || mark1 > maxMark1) {
+                    JOptionPane.showMessageDialog(null, "Content mark should be at most " + maxMark1 + ".", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Please enter a valid integer for Content Mark.", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Please enter a valid integer for Content Mark.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
         }
-
+        
         String mark2Text = formatMark.getText().trim();
-        if (mark2Text.isEmpty()) {
+        if (mark2Text.isEmpty() && formatMark.isEditable()) {
             JOptionPane.showMessageDialog(null, "Format mark cannot be empty.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        try {
-            mark2 = Integer.parseInt(mark2Text);
-            if (mark2 < 0 || mark2 > maxMark2) {
-                JOptionPane.showMessageDialog(null, "Format mark should be at most " + maxMark2 + ".", "Error", JOptionPane.ERROR_MESSAGE);
+        if(!mark2Text.isEmpty() && formatMark.isEditable()){
+            try {
+                mark2 = Integer.parseInt(mark2Text);
+                if (mark2 < 0 || mark2 > maxMark2) {
+                    JOptionPane.showMessageDialog(null, "Format mark should be at most " + maxMark2 + ".", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Please enter a valid integer for Format Mark.", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Please enter a valid integer for Format Mark.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
         }
-
+        
         String mark3Text = presentMark.getText().trim();
-        if (mark3Text.isEmpty()) {
+        if (mark3Text.isEmpty() && presentMark.isEditable()) {
             JOptionPane.showMessageDialog(null, "Presentation mark cannot be empty.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        try {
-            mark3 = Integer.parseInt(mark3Text);
-            if (mark3 < 0 || mark3 > maxMark3) {
-                JOptionPane.showMessageDialog(null, "Presentation mark should be at most " + maxMark3 + ".", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
+        if(!mark3Text.isEmpty() && presentMark.isEditable()){
+            try {
+                mark3 = Integer.parseInt(mark3Text);
+                if (mark3 < 0 || mark3 > maxMark3) {
+                    JOptionPane.showMessageDialog(null, "Presentation mark should be at most " + maxMark3 + ".", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Please enter a valid integer for Presentation Mark.", "Error", JOptionPane.ERROR_MESSAGE);
+                return; 
             }
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Please enter a valid integer for Presentation Mark.", "Error", JOptionPane.ERROR_MESSAGE);
-            return; 
         }
-
+        
         feedback = feedbackRptField.getText().trim();
         if (feedback.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Feedback field cannot be empty.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -543,6 +549,16 @@ public class LecturerReportGrading extends javax.swing.JFrame {
         for (String line : data) {
             String[] list = line.split(";");
             if (list[0].equals(AssmntType)) {
+                if("0".equals(list[1])){
+                    contentMark.setText("0");
+                    contentMark.setEditable(false);
+                } else if ("0".equals(list[2])){
+                    formatMark.setText("0");
+                    formatMark.setEditable(false);
+                } else if ("0".equals(list[3])){
+                    presentMark.setText("0");
+                    presentMark.setEditable(false);
+                }
                 contentMarkScheme.setText("/ " + list[1]);
                 formatMarkScheme.setText("/ " + list[2]);
                 presentMarkScheme.setText("/ " + list[3]);
