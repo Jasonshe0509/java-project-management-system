@@ -418,7 +418,6 @@ com\mycompany\projectmanagementsystem\PM_cp2_page.class
 com\mycompany\projectmanagementsystem\PM_notification_page.class
 com\mycompany\projectmanagementsystem\admin_assessment_management.class
 com\mycompany\projectmanagementsystem\admin_lecturer_record$13.class
-com\mycompany\projectmanagementsystem\admin_assessment_management.class
 com\mycompany\projectmanagementsystem\admin_lecturer_record$2.class
 com\mycompany\projectmanagementsystem\admin_assessment_management$2.class
 com\mycompany\projectmanagementsystem\LecturerSummaryReport$1.class
