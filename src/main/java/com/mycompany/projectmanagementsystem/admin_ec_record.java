@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
+import java.util.regex.Pattern;
 import javax.swing.RowFilter;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
@@ -550,17 +551,17 @@ public class admin_ec_record extends javax.swing.JFrame {
         DefaultTableModel ecPending = (DefaultTableModel) ec_pending_list.getModel();
        TableRowSorter<DefaultTableModel> searchECPending = new TableRowSorter<>(ecPending);
        ec_pending_list.setRowSorter(searchECPending);
-       searchECPending.setRowFilter(RowFilter.regexFilter(searchText));
+       searchECPending.setRowFilter(RowFilter.regexFilter("(?i)" + Pattern.quote(searchText)));
        
        DefaultTableModel ecApproved = (DefaultTableModel) ec_approved_list.getModel();
        TableRowSorter<DefaultTableModel> searchECApproved = new TableRowSorter<>(ecApproved);
        ec_approved_list.setRowSorter(searchECApproved);
-       searchECApproved.setRowFilter(RowFilter.regexFilter(searchText));
+       searchECApproved.setRowFilter(RowFilter.regexFilter("(?i)" + Pattern.quote(searchText)));
        
        DefaultTableModel ecRejected = (DefaultTableModel) ec_rejected_list.getModel();
        TableRowSorter<DefaultTableModel> searchECRejected = new TableRowSorter<>(ecRejected);
        ec_rejected_list.setRowSorter(searchECRejected);
-       searchECRejected.setRowFilter(RowFilter.regexFilter(searchText));
+       searchECRejected.setRowFilter(RowFilter.regexFilter("(?i)" + Pattern.quote(searchText)));
     }//GEN-LAST:event_searchKeyReleased
 
     public static void main(String args[]) {
