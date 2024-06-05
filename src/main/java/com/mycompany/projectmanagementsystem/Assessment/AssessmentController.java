@@ -6,6 +6,7 @@ package com.mycompany.projectmanagementsystem.Assessment;
 
 import com.mycompany.projectmanagementsystem.GeneralFunction.FileHandler;
 import com.mycompany.projectmanagementsystem.GeneralFunction.SessionManager;
+import com.mycompany.projectmanagementsystem.Notification.NotificationController;
 import com.mycompany.projectmanagementsystem.User.User;
 import com.mycompany.projectmanagementsystem.admin_assessment_management;
 import java.time.LocalDateTime;
@@ -84,7 +85,7 @@ public class AssessmentController implements StudentAssessmentController {
         return false;
     }
 
-    public boolean spvReportDone(String stdID, String newStatus) {
+    public boolean spvReportDone(String stdID, String newStatus, String type) {
         List<String> data = FileHandler.readFile("student_assessment.txt");
         ArrayList<String> updatedData = new ArrayList<>();
         boolean updateStatus = false; // Flag to determine if the status can be updated
@@ -95,26 +96,56 @@ public class AssessmentController implements StudentAssessmentController {
         for (String line : data) {
             String[] list = line.split(";");
             if (list[1].equals(stdID)) {
-                if (!list[9].isEmpty() && !list[10].isEmpty()) { // Validate if both marks are given
-                    // Take the higher mark to assign grade
-                    spvMark = Integer.parseInt(list[9]);
-                    secMarkerMark = Integer.parseInt(list[10]);
-                    resubmissionCount = Integer.parseInt(list[11]);
-                    int higherMark = Math.max(spvMark, secMarkerMark);
-                    String grade = assignGrade(stdID, higherMark, resubmissionCount);
-                    list[8] = grade;
-                    // Mark status as 'marked'
-                    list[6] = newStatus;
-                    line = String.join(";", list);
-                    updateStatus = true;
-                } else if (!list[9].isEmpty() && list[10].isEmpty()) {
-                    JOptionPane.showMessageDialog(null,
-                            "Successfully marked as done. Pending second marker's grading.");
-                    return true;
+                if ("internship_report".equals(type) || "investigation".equals(type)) {
+                    if(!list[9].isEmpty() && !list[7].isEmpty() ){ //validate feedback and mark
+                        spvMark = Integer.parseInt(list[9]);
+                        resubmissionCount = Integer.parseInt(list[11]);
+                        String grade = assignGrade(type, spvMark, resubmissionCount);
+                        list[8] = grade;
+                        // Mark status as 'marked'
+                        list[6] = newStatus;
+                        line = String.join(";", list);
+                        updateStatus = true;
+                        JOptionPane.showMessageDialog(null,
+                                "The final mark (" + spvMark + ") has been submitted, grade \"" + grade + "\" is recorded.");
+                        if("Pass with Changes".equals(grade)){
+                            NotificationController.create(stdID, "The submitted report for assessment (" + list[2] 
+                                        + ") has been graded \"Pass with Changes\". Please note that you may resubmit your report for regrading.");
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null,
+                                "Supervisee (" + stdID + ") cannot be marked as done because marks have not been given.", "Message", JOptionPane.ERROR_MESSAGE);
+                    }
                 } else {
-                    JOptionPane.showMessageDialog(null,
-                            "Supervisee (" + stdID + ") cannot be marked as done because both markers have not submitted their marks.", "Message", JOptionPane.ERROR_MESSAGE);
-                }
+                    if (!list[9].isEmpty() && !list[10].isEmpty()) { // Validate if both marks are given
+                        // Take the higher mark to assign grade
+                        spvMark = Integer.parseInt(list[9]);
+                        secMarkerMark = Integer.parseInt(list[10]);
+                        resubmissionCount = Integer.parseInt(list[11]);
+                        int avgMark = (spvMark + secMarkerMark) / 2;
+                        String grade = assignGrade(type, avgMark, resubmissionCount);
+                        list[8] = grade;
+                        // Mark status as 'marked'
+                        list[6] = newStatus;
+                        line = String.join(";", list);
+                        updateStatus = true;
+                        JOptionPane.showMessageDialog(null,
+                                "The final mark (" + avgMark + ") has been submitted, grade \"" + grade + "\" is recorded.");
+                        if("Pass with Changes".equals(grade)){
+                            NotificationController.create(stdID, "The submitted report for assessment (" + list[2] 
+                                        + ") has been graded \"Pass with Changes\". Please note that you may resubmit your report for regrading.");
+                        }
+                    } else if (!list[9].isEmpty() && list[10].isEmpty()) {
+                        list[6] = "partially marked";
+                        line = String.join(";", list);
+                        JOptionPane.showMessageDialog(null,
+                                "Successfully marked as done.");
+                        updateStatus = true;
+                    } else {
+                        JOptionPane.showMessageDialog(null,
+                                "Supervisee (" + stdID + ") cannot be marked as done because marks have not been given.", "Message", JOptionPane.ERROR_MESSAGE);
+                    }
+                }  
             }
             updatedData.add(line);
         }
@@ -127,7 +158,7 @@ public class AssessmentController implements StudentAssessmentController {
         }
     }
 
-    public boolean secMarkReportDone(String stdID, String newStatus) {
+    public boolean secMarkReportDone(String stdID, String newStatus, String type) {
         List<String> data = FileHandler.readFile("student_assessment.txt");
         ArrayList<String> updatedData = new ArrayList<>();
         boolean updateStatus = false; // Flag to determine if the status can be updated
@@ -144,20 +175,28 @@ public class AssessmentController implements StudentAssessmentController {
                     spvMark = Integer.parseInt(list[9]);
                     secMarkerMark = Integer.parseInt(list[10]);
                     resubmissionCount = Integer.parseInt(list[11]);
-                    int higherMark = Math.max(spvMark, secMarkerMark);
-                    String grade = assignGrade(stdID, higherMark, resubmissionCount);
+                    int avgMark = (spvMark + secMarkerMark) / 2;
+                    String grade = assignGrade(type, avgMark, resubmissionCount);
                     list[8] = grade;
                     // Mark status as 'marked'
                     list[6] = newStatus;
                     line = String.join(";", list);
                     updateStatus = true;
+                    JOptionPane.showMessageDialog(null,
+                                "The final mark (" + avgMark + ") has been submitted, grade \"" + grade + "\" is recorded.");
+                    if("Pass with Changes".equals(grade)){
+                            NotificationController.create(stdID, "The submitted report for assessment (" + list[2] 
+                                        + ") has been graded \"Pass with Changes\". Please note that you may resubmit your report for regrading.");
+                        }
                 } else if (!list[10].isEmpty() && list[9].isEmpty()) {
+                    list[6] = "partially marked";
+                    line = String.join(";", list);
                     JOptionPane.showMessageDialog(null,
-                            "Successfully marked as done. Pending supervisor's grading.");
-                    return true;
+                            "Successfully marked as done.");
+                    updateStatus = true;
                 } else {
                     JOptionPane.showMessageDialog(null,
-                            "Supervisee (" + stdID + ") cannot be marked as done because both markers have not submitted their marks.", "Message", JOptionPane.ERROR_MESSAGE);
+                            "Supervisee (" + stdID + ") cannot be marked as done because marks have not been given.", "Message", JOptionPane.ERROR_MESSAGE);
                 }
             }
             updatedData.add(line);
@@ -171,17 +210,46 @@ public class AssessmentController implements StudentAssessmentController {
         }
     }
 
-    private String assignGrade(String stdID, int mark, int count) {
-        if (count >= 2) {
-            if (mark >= 50) {
-                return "Pass with Small Changes";
+    private String assignGrade(String type, int mark, int count) {
+        List<String> data = FileHandler.readFile("assessment_type.txt");
+        for (String line : data) {
+            String[] list = line.split(";");
+            int pass = Integer.parseInt(list[4]);
+            String passChangesRange = list[5];
+
+            if (list[0].equals(type)) {
+                if (count >= 2) {
+                    if (mark >= pass){
+                        return "pass";
+                    } else {
+                        return "fail";                       
+                    }
+                } else {
+                    if (isWithinRange(mark, passChangesRange)) {
+                        return "pass_with_changes"; //allow student to resubmit
+                    } else if ("0".equals(passChangesRange) && mark >= pass){
+                        return "pass";
+                    } else if (mark >= pass){
+                        return "pass";
+                    } else{
+                        return "fail";                       
+                    }
+                }
             }
-            return null;
+        }
+        return "Fail";
+    }
+
+    private boolean isWithinRange(int mark, String range) {
+        if (range.contains("-")) {
+            String[] bounds = range.split("-");
+            int lowerBound = Integer.parseInt(bounds[0]);
+            int upperBound = Integer.parseInt(bounds[1]);
+            return mark >= lowerBound && mark <= upperBound;
         } else {
-            if (mark >= 50) {
-                return "Pass";
-            }
-            return "Fail";
+            // If range is a single number, treat it as an exact match
+            int exactValue = Integer.parseInt(range);
+            return mark == exactValue;
         }
     }
 

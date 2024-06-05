@@ -161,7 +161,7 @@ public class LecturerIntakePage extends javax.swing.JFrame {
                 String name = (String) model.getValueAt(row, 1);
                 String marker = (String) model.getValueAt(row, 2);
                 String presentSlot = (String) model.getValueAt(row, 3);
-                LecturerPresentationFeedback pfeedback = new LecturerPresentationFeedback(AssmntID ,stdID, name, marker, presentSlot);
+                LecturerPresentationFeedback pfeedback = new LecturerPresentationFeedback(AssmntID ,stdID, name, marker, presentSlot, AssmntType);
                 pfeedback.setVisible(true);
             }
             
@@ -200,9 +200,14 @@ public class LecturerIntakePage extends javax.swing.JFrame {
             }
 
         };
-        SchdPresentationTable.getColumnModel().getColumn(4).setCellRenderer(ppanel.new PanelActionRenderer());
-        SchdPresentationTable.getColumnModel().getColumn(4).setCellEditor(ppanel.new TableActionCellEditor(event));
-        
+        if ("internship_report".equals(AssmntType) || "investigation".equals(AssmntType)) {
+            SchdPresentationTable.getColumnModel().getColumn(3).setCellRenderer(ppanel.new PanelActionRenderer());
+            SchdPresentationTable.getColumnModel().getColumn(3).setCellEditor(ppanel.new TableActionCellEditor(event));
+        } else {
+            SchdPresentationTable.getColumnModel().getColumn(4).setCellRenderer(ppanel.new PanelActionRenderer());
+            SchdPresentationTable.getColumnModel().getColumn(4).setCellEditor(ppanel.new TableActionCellEditor(event));
+        }
+               
         lect_ReportPanelAction rpanel = new lect_ReportPanelAction();
         LecReportTableActionEvent rptevent = new LecReportTableActionEvent() {
             @Override
@@ -223,7 +228,7 @@ public class LecturerIntakePage extends javax.swing.JFrame {
                 }
 
                 if (subLink != null) {
-                    LecturerReportGrading markReport = new LecturerReportGrading(AssmntID, stdID, name, subLink);
+                    LecturerReportGrading markReport = new LecturerReportGrading(AssmntID, stdID, name, subLink, AssmntType);
                     markReport.setVisible(true);
                 } else {
                     JOptionPane.showMessageDialog(null, "Submission link not found for student ID: " + stdID);
@@ -248,7 +253,7 @@ public class LecturerIntakePage extends javax.swing.JFrame {
                             for (String assmntline : assmntdata) {
                                 String[] assmntlist = assmntline.split(";");
                                 if (stdID.equals(assmntlist[1])) {
-                                    boolean result = action.spvReportDone(stdID, "marked");
+                                    boolean result = action.spvReportDone(stdID, "marked", AssmntType);
                                     if (result && !assmntlist[9].isEmpty()) {
                                         model.removeRow(row);
                                     }
@@ -261,7 +266,7 @@ public class LecturerIntakePage extends javax.swing.JFrame {
                             for (String assmntline : assmntdata) {
                                 String[] assmntlist = assmntline.split(";");
                                 if (stdID.equals(assmntlist[1])) {
-                                    boolean result = action.secMarkReportDone(stdID, "marked");
+                                    boolean result = action.secMarkReportDone(stdID, "marked", AssmntType);
                                     if (result && !assmntlist[10].isEmpty()) {
                                         model.removeRow(row);
                                     }
@@ -314,16 +319,17 @@ public class LecturerIntakePage extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         CmpltPresentLabel = new javax.swing.JLabel();
         schdPresentationList = new javax.swing.JPanel();
+        jLabel20 = new javax.swing.JLabel();
         jPanel14 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         SchdPresentationTable = new javax.swing.JTable();
-        jLabel20 = new javax.swing.JLabel();
         viewPresentRqtLabel = new javax.swing.JLabel();
         submittedReportList = new javax.swing.JPanel();
         jLabel22 = new javax.swing.JLabel();
         jPanel15 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         reportTable = new javax.swing.JTable();
+        viewMarkedRptLabel = new javax.swing.JLabel();
         lecCommunicationScrollPanel = new javax.swing.JScrollPane();
         jPanel12 = new javax.swing.JPanel();
         lecreplyCommunicationScrollPanel = new javax.swing.JScrollPane();
@@ -635,6 +641,11 @@ public class LecturerIntakePage extends javax.swing.JFrame {
 
         schdPresentationList.setBackground(new java.awt.Color(217, 217, 217));
 
+        jLabel20.setFont(new java.awt.Font("Bell MT", 1, 22)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(2, 50, 99));
+        jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel20.setText("Scheduled Presentation");
+
         jPanel14.setBackground(new java.awt.Color(255, 255, 255));
 
         SchdPresentationTable.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
@@ -663,6 +674,11 @@ public class LecturerIntakePage extends javax.swing.JFrame {
         SchdPresentationTable.getTableHeader().setResizingAllowed(false);
         SchdPresentationTable.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(SchdPresentationTable);
+        if (SchdPresentationTable.getColumnModel().getColumnCount() > 0) {
+            SchdPresentationTable.getColumnModel().getColumn(4).setMinWidth(170);
+            SchdPresentationTable.getColumnModel().getColumn(4).setPreferredWidth(170);
+            SchdPresentationTable.getColumnModel().getColumn(4).setMaxWidth(170);
+        }
 
         javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
         jPanel14.setLayout(jPanel14Layout);
@@ -674,11 +690,6 @@ public class LecturerIntakePage extends javax.swing.JFrame {
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
         );
-
-        jLabel20.setFont(new java.awt.Font("Bell MT", 1, 22)); // NOI18N
-        jLabel20.setForeground(new java.awt.Color(2, 50, 99));
-        jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel20.setText("Scheduled Presentation");
 
         viewPresentRqtLabel.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
         viewPresentRqtLabel.setForeground(new java.awt.Color(2, 50, 99));
@@ -756,8 +767,19 @@ public class LecturerIntakePage extends javax.swing.JFrame {
         );
         jPanel15Layout.setVerticalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE)
         );
+
+        viewMarkedRptLabel.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
+        viewMarkedRptLabel.setForeground(new java.awt.Color(2, 50, 99));
+        viewMarkedRptLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        viewMarkedRptLabel.setText("View Marked Report List >");
+        viewMarkedRptLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        viewMarkedRptLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                viewMarkedRptLabelMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout submittedReportListLayout = new javax.swing.GroupLayout(submittedReportList);
         submittedReportList.setLayout(submittedReportListLayout);
@@ -765,6 +787,7 @@ public class LecturerIntakePage extends javax.swing.JFrame {
             submittedReportListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, 920, Short.MAX_VALUE)
             .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(viewMarkedRptLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         submittedReportListLayout.setVerticalGroup(
             submittedReportListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -773,7 +796,9 @@ public class LecturerIntakePage extends javax.swing.JFrame {
                 .addComponent(jLabel22)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(viewMarkedRptLabel)
+                .addContainerGap(8, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Report", submittedReportList);
@@ -1135,6 +1160,10 @@ public class LecturerIntakePage extends javax.swing.JFrame {
         jTabbedPane1.setSelectedComponent(lecCommunicationScrollPanel);
     }//GEN-LAST:event_backIconMouseClicked
 
+    private void viewMarkedRptLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewMarkedRptLabelMouseClicked
+        redirectMarkedReport(AssmntID);
+    }//GEN-LAST:event_viewMarkedRptLabelMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -1314,15 +1343,27 @@ public class LecturerIntakePage extends javax.swing.JFrame {
                         String rowIdentifier = studentID + "-" + assessmentID;
                         if (!addedRows.contains(rowIdentifier) && "scheduled".equals(status)) {
                             if (spv.equals(user.getUserID())) {
-                                SchdPresentationTable.getColumnModel().getColumn(2).setHeaderValue("Second Marker");
-                                SchdPresentationTable.getTableHeader().repaint();
-                                String[] reorderedData = {
-                                    studentID,       // Supervisee ID
-                                    studentName,     // Supervisee Name
-                                    SecMarkerName,   // Second Marker Name
-                                    presentationSlot // Presentation Slot
-                                };
-                                model.addRow(reorderedData);
+                                if ("internship_report".equals(AssmntType) || "investigation".equals(AssmntType)) {
+                                    SchdPresentationTable.removeColumn(SchdPresentationTable.getColumnModel().getColumn(2)); 
+                                    SchdPresentationTable.getTableHeader().repaint();
+                                    String[] reorderedData = {
+                                        studentID,       // Supervisee ID
+                                        studentName,     // Supervisee Name
+                                        "null",
+                                        presentationSlot // Presentation Slot
+                                    };
+                                    model.addRow(reorderedData);
+                                } else {
+                                    SchdPresentationTable.getColumnModel().getColumn(2).setHeaderValue("Second Marker");
+                                    SchdPresentationTable.getTableHeader().repaint();
+                                    String[] reorderedData = {
+                                        studentID,       // Supervisee ID
+                                        studentName,     // Supervisee Name
+                                        SecMarkerName,   // Second Marker Name
+                                        presentationSlot // Presentation Slot
+                                    };
+                                    model.addRow(reorderedData);
+                                }
                                 addedRows.add(rowIdentifier);
                             } else if (secMarker.equals(user.getUserID())) {
                                 SchdPresentationTable.getColumnModel().getColumn(2).setHeaderValue("Supervisor");
@@ -1422,26 +1463,29 @@ public class LecturerIntakePage extends javax.swing.JFrame {
 
                             String rowIdentifier = studentID + "-" + assessmentID;
                             if (!addedRows.contains(rowIdentifier)) {
-                                if (spv.equals(user.getUserID()) && !listx[4].isEmpty() && !"marked".equals(listx[6])) { // supervisor
-                                    String[] reorderedData = {
-                                        studentID,         // Supervisee ID
-                                        studentName,       // Supervisee Name
-                                        submissionDate,    // Submission Date
-                                        ecStatusString,   // EC Status                                        
-                                        finalResubmissionCount // Resubmission Count
-                                    };
-                                    model.addRow(reorderedData);
-                                    addedRows.add(rowIdentifier);
-                                } else if (secMarker.equals(user.getUserID()) && !listx[4].isEmpty() && !"marked".equals(listx[6])) { //second marker
-                                    String[] reorderedData = {
-                                        studentID,         // second marker ID
-                                        studentName,       // second marker Name
-                                        submissionDate,    // Submission Date
-                                        ecStatusString,   // EC Status                                        
-                                        finalResubmissionCount // Resubmission Count
-                                    };
-                                    model.addRow(reorderedData);
-                                    addedRows.add(rowIdentifier);
+                                // Check if listx[6] is 'partially marked' or 'marked'
+                                if (!"partially marked".equals(listx[6]) && !"marked".equals(listx[6])) {
+                                    if (spv.equals(user.getUserID()) && !listx[4].isEmpty()) { // supervisor
+                                        String[] reorderedData = {
+                                            studentID,         // Supervisee ID
+                                            studentName,       // Supervisee Name
+                                            submissionDate,    // Submission Date
+                                            ecStatusString,    // EC Status                                        
+                                            finalResubmissionCount // Resubmission Count
+                                        };
+                                        model.addRow(reorderedData);
+                                        addedRows.add(rowIdentifier);
+                                    } else if (secMarker.equals(user.getUserID()) && !listx[4].isEmpty()) { // second marker
+                                        String[] reorderedData = {
+                                            studentID,         // second marker ID
+                                            studentName,       // second marker Name
+                                            submissionDate,    // Submission Date
+                                            ecStatusString,    // EC Status                                        
+                                            finalResubmissionCount // Resubmission Count
+                                        };
+                                        model.addRow(reorderedData);
+                                        addedRows.add(rowIdentifier);
+                                    }
                                 }
                             }
                         }
@@ -1451,6 +1495,11 @@ public class LecturerIntakePage extends javax.swing.JFrame {
         }
     }
     
+    private void redirectMarkedReport(String id){
+        LecturerMarkedReport marked = new LecturerMarkedReport(id, intakeCode, AssmntType);
+        marked.setVisible(true);
+    }
+        
     public void selectCommunicationPanel(int selection, String channelID) {
         // Check if the reply panel is currently displayed
         int replyPanelIndex = jTabbedPane1.indexOfComponent(lecreplyCommunicationScrollPanel);
@@ -1976,6 +2025,7 @@ public class LecturerIntakePage extends javax.swing.JFrame {
     private javax.swing.JScrollPane stdPeopleList;
     private javax.swing.JPanel submittedReportList;
     private javax.swing.JLabel syscoLogo;
+    private javax.swing.JLabel viewMarkedRptLabel;
     private javax.swing.JLabel viewPresentRqtLabel;
     // End of variables declaration//GEN-END:variables
 }

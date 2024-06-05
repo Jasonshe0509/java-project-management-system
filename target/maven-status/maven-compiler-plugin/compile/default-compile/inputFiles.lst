@@ -34,6 +34,7 @@ C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ
 C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\PM_assessment_edit.java
 C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\PM_ec_approvement.java
 C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\PM_report_status.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\lect_MarkedReportPanelAction.java
 C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\User\UserValidator.java
 C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\CreateNewMessagePage.java
 C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\Presentation\PresentationRequest.java
@@ -41,6 +42,7 @@ C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ
 C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\LecturerComm_CreateMessage.java
 C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\GeneralFunction\SessionManager.java
 C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\NotificationPage.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\LecturerMarkedReport.java
 C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\SchoolWiseList\SchoolWise.java
 C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\StudentNotificationPage.java
 C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\GeneralPage.java
@@ -70,6 +72,7 @@ C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ
 C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\admin_register_lecturer.java
 C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\User\UserTableActionEvent.java
 C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\PM_cp2_page.java
+C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\Assessment\LecMarkedReportTableActionEvent.java
 C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\Notification\Notification.java
 C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\Assessment\AssessmentValidator.java
 C:\Users\ASUS\OneDrive - Asia Pacific University\Documents\NetBeansProjects\OODJ\ProjectManagementSystem\src\main\java\com\mycompany\projectmanagementsystem\GeneralFunction\URLRenderer.java

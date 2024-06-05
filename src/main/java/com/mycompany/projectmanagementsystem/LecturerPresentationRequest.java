@@ -44,7 +44,9 @@ public class LecturerPresentationRequest extends javax.swing.JFrame {
     public LecturerPresentationRequest(String id, String code, String type) {
         this.AssmntID = id;
         this.intakeCode = code;
+        this.AssmntType = type;
         initComponents();
+        intakeLabel.setText(code);
         setIconImage();
         showPresentRqt();
        
@@ -110,7 +112,7 @@ public class LecturerPresentationRequest extends javax.swing.JFrame {
                                         "You have accepted the presentation request from supervisee (" + stdID 
                                                 + ").\nSecond marker acceptance is still pending.");
                             }
-                            return; // No need to continue the loop once a match is found
+                            return;
                         } else if (user.getUserID().equals(list[5])) { // Second Marker
                             boolean result = action.presentationRqtApprove("second marker", stdID, "approved");
                             if (result) {
@@ -129,7 +131,7 @@ public class LecturerPresentationRequest extends javax.swing.JFrame {
                                         "You have accepted the presentation request from supervisee (" + stdID 
                                                 + ").\nSupervisor acceptance is still pending.");
                             }
-                            return; // No need to continue the loop once a match is found
+                            return;
                         }
                     }
                 }
@@ -149,7 +151,7 @@ public class LecturerPresentationRequest extends javax.swing.JFrame {
                     String[] list = line.split(";");
                     if (AssmntID.equals(list[0])) {
                         if (user.getUserID().equals(list[4])) { // Supervisor
-                            boolean result = action.presentationRqtReject("supervisor", stdID, "rejected");
+                            boolean result = action.presentationRqtReject("supervisor", stdID, AssmntID, "rejected");
                             if (result) {
                                 model.removeRow(row);
                                 JOptionPane.showMessageDialog(null, 
@@ -157,7 +159,7 @@ public class LecturerPresentationRequest extends javax.swing.JFrame {
                             }
                             return; // No need to continue the loop once a match is found
                         } else if (user.getUserID().equals(list[5])) { // Second Marker
-                            boolean result = action.presentationRqtReject("second marker", stdID, "rejected");
+                            boolean result = action.presentationRqtReject("second marker", stdID, AssmntID, "rejected");
                             if (result) {
                                 model.removeRow(row);
                                 JOptionPane.showMessageDialog(null, 
@@ -171,9 +173,13 @@ public class LecturerPresentationRequest extends javax.swing.JFrame {
             }
 
         };
-        PresentRqtTable.getColumnModel().getColumn(4).setCellRenderer(panel.new PanelActionRenderer());
-        PresentRqtTable.getColumnModel().getColumn(4).setCellEditor(panel.new TableActionCellEditor(event));
-
+        if ("internship_report".equals(AssmntType) || "investigation".equals(AssmntType)) {
+            PresentRqtTable.getColumnModel().getColumn(3).setCellRenderer(panel.new PanelActionRenderer());
+            PresentRqtTable.getColumnModel().getColumn(3).setCellEditor(panel.new TableActionCellEditor(event));
+        } else {
+            PresentRqtTable.getColumnModel().getColumn(4).setCellRenderer(panel.new PanelActionRenderer());
+            PresentRqtTable.getColumnModel().getColumn(4).setCellEditor(panel.new TableActionCellEditor(event));
+        }       
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -184,7 +190,7 @@ public class LecturerPresentationRequest extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel7 = new javax.swing.JLabel();
+        intakeLabel = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         PresentRqtTable = new javax.swing.JTable();
@@ -199,12 +205,12 @@ public class LecturerPresentationRequest extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel7.setFont(new java.awt.Font("Bell MT", 1, 28)); // NOI18N
-        jLabel7.setText("Intake");
-        jLabel7.setMaximumSize(new java.awt.Dimension(275, 47));
-        jLabel7.setMinimumSize(new java.awt.Dimension(275, 47));
-        jLabel7.setPreferredSize(new java.awt.Dimension(275, 47));
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 275, 40));
+        intakeLabel.setFont(new java.awt.Font("Bell MT", 1, 24)); // NOI18N
+        intakeLabel.setText("Intake");
+        intakeLabel.setMaximumSize(new java.awt.Dimension(275, 47));
+        intakeLabel.setMinimumSize(new java.awt.Dimension(275, 47));
+        intakeLabel.setPreferredSize(new java.awt.Dimension(275, 47));
+        getContentPane().add(intakeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 275, 40));
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
@@ -239,9 +245,9 @@ public class LecturerPresentationRequest extends javax.swing.JFrame {
             PresentRqtTable.getColumnModel().getColumn(2).setMinWidth(170);
             PresentRqtTable.getColumnModel().getColumn(2).setPreferredWidth(170);
             PresentRqtTable.getColumnModel().getColumn(2).setMaxWidth(170);
-            PresentRqtTable.getColumnModel().getColumn(3).setMinWidth(130);
-            PresentRqtTable.getColumnModel().getColumn(3).setPreferredWidth(130);
-            PresentRqtTable.getColumnModel().getColumn(3).setMaxWidth(130);
+            PresentRqtTable.getColumnModel().getColumn(4).setMinWidth(140);
+            PresentRqtTable.getColumnModel().getColumn(4).setPreferredWidth(140);
+            PresentRqtTable.getColumnModel().getColumn(4).setMaxWidth(140);
         }
 
         jLabel2.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
@@ -388,15 +394,27 @@ public class LecturerPresentationRequest extends javax.swing.JFrame {
                         String rowIdentifier = studentID + "-" + assessmentID;
                         if (!addedRows.contains(rowIdentifier)) {
                             if (spv.equals(user.getUserID()) && "pending".equals(listx[6]) && "pending".equals(listx[4])) {
-                                PresentRqtTable.getColumnModel().getColumn(2).setHeaderValue("Second Marker Acceptance");
-                                PresentRqtTable.getTableHeader().repaint();
-                                String[] reorderedData = {
-                                    studentID,       // Supervisee ID
-                                    studentName,     // Supervisee Name
-                                    secMarkerstatus,   // Second Marker Name
-                                    rqtPresentationSlot // Requested Presentation Slot
-                                };
-                                model.addRow(reorderedData);
+                                if ("internship_report".equals(AssmntType) || "investigation".equals(AssmntType)) {
+                                    PresentRqtTable.removeColumn(PresentRqtTable.getColumnModel().getColumn(2)); 
+                                    PresentRqtTable.getTableHeader().repaint();
+                                    String[] reorderedData = {
+                                        studentID,       // Supervisee ID
+                                        studentName,     // Supervisee Name
+                                        "null",
+                                        rqtPresentationSlot // Requested Presentation Slot
+                                    };
+                                    model.addRow(reorderedData);                                    
+                                } else {
+                                    PresentRqtTable.getColumnModel().getColumn(2).setHeaderValue("Second Marker Acceptance");
+                                    PresentRqtTable.getTableHeader().repaint();
+                                    String[] reorderedData = {
+                                        studentID,       // Supervisee ID
+                                        studentName,     // Supervisee Name
+                                        secMarkerstatus,   // Second Marker Name
+                                        rqtPresentationSlot // Requested Presentation Slot
+                                    };
+                                    model.addRow(reorderedData);
+                                }
                                 addedRows.add(rowIdentifier);
                             } else if (secMarker.equals(user.getUserID()) && "pending".equals(listx[6]) && "pending".equals(listx[5])) {
                                 PresentRqtTable.getColumnModel().getColumn(2).setHeaderValue("Supervisor Acceptance");
@@ -422,9 +440,9 @@ public class LecturerPresentationRequest extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable PresentRqtTable;
     private javax.swing.JButton backBtn;
+    private javax.swing.JLabel intakeLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
