@@ -12,9 +12,7 @@ import com.mycompany.projectmanagementsystem.StudentECActionPanel.rPanelActionRe
 import com.mycompany.projectmanagementsystem.User.User;
 import com.mycompany.projectmanagementsystem.User.UserController;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Desktop;
-import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -22,10 +20,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import com.mycompany.projectmanagementsystem.EC.ECTableActionEvent;
@@ -75,14 +70,24 @@ public class StudentEcSubmissionPage extends javax.swing.JFrame {
                 DefaultTableModel model = (DefaultTableModel) ecSubmissionTable.getModel();
                 int columnIndex = 0;
                 String ecID = (String) model.getValueAt(row, columnIndex);
-                ECController action = new ECController();
-                boolean result = action.ecDelete(ecID);
-                if (result) {
-                    JOptionPane.showMessageDialog(null, "Successfully delete the EC submission");
-                    dispose();
-                    StudentEcSubmissionPage page = new StudentEcSubmissionPage();
-                    page.setVisible(true);
+                int response = JOptionPane.showConfirmDialog(
+                        null,
+                        "Are you sure you want to delete " + ecID + " EC request",
+                        "Confirm Delete",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.WARNING_MESSAGE
+                );
+                if (response == JOptionPane.YES_OPTION) {
+                    ECController action = new ECController();
+                    boolean result = action.ecDelete(ecID);
+                    if (result) {
+                        JOptionPane.showMessageDialog(null, "Successfully delete the EC submission");
+                        dispose();
+                        StudentEcSubmissionPage page = new StudentEcSubmissionPage();
+                        page.setVisible(true);
+                    }
                 }
+
             }
         };
         ecSubmissionTable.getColumnModel().getColumn(5).setCellRenderer(panel.new rPanelActionRenderer());

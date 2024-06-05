@@ -55,7 +55,7 @@ public final class StudentDashboardPage extends javax.swing.JFrame {
         initComponents();
         setIconImage();
         if (user != null) {
-            name.setText(((Student) user).getIntakeCode());
+            jLabel8.setText("Welcome: Lecturer " + "(" + user.getName() + " " + user.getUserID() + ")");
         }
         showAssessmentInfo();
         showDueDateInfo();
@@ -73,7 +73,6 @@ public final class StudentDashboardPage extends javax.swing.JFrame {
 
         dueDate = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        name = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         upcomingEvent = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -88,7 +87,7 @@ public final class StudentDashboardPage extends javax.swing.JFrame {
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Student Dahsboard");
+        setTitle("Student Dashboard");
         setMinimumSize(new java.awt.Dimension(1000, 700));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -109,15 +108,10 @@ public final class StudentDashboardPage extends javax.swing.JFrame {
 
         getContentPane().add(dueDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 120, -1, -1));
 
-        name.setFont(new java.awt.Font("Bell MT", 1, 20)); // NOI18N
-        name.setForeground(new java.awt.Color(2, 50, 99));
-        name.setText("Name");
-        getContentPane().add(name, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 70, 280, 30));
-
         jLabel8.setFont(new java.awt.Font("Bell MT", 1, 20)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(2, 50, 99));
         jLabel8.setText("Welcome: ");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 100, 30));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 420, 30));
 
         upcomingEvent.setBackground(new Color(217,217,217,40));
         upcomingEvent.setMaximumSize(new java.awt.Dimension(207, 332));
@@ -455,14 +449,17 @@ public final class StudentDashboardPage extends javax.swing.JFrame {
                         supervisorLabel = new javax.swing.JLabel();
                         supervisorLabel.setFont(new java.awt.Font("Bell MT", 1, 14));
                         supervisorLabel.setForeground(new java.awt.Color(2, 50, 99));
-                        supervisorLabel.setBounds(10, 190, 200, 20);
-                        supervisorLabel.setText("Supervisor:" + supervisorName);
+                        supervisorLabel.setBounds(10, 190, 250, 20);
+                        supervisorLabel.setText("<html>" + "Supervisor:" + supervisorName + "</html>");
 
                         secondMarkerLabel = new javax.swing.JLabel();
                         secondMarkerLabel.setFont(new java.awt.Font("Bell MT", 1, 14));
                         secondMarkerLabel.setForeground(new java.awt.Color(2, 50, 99));
-                        secondMarkerLabel.setBounds(10, 210, 200, 20);
-                        secondMarkerLabel.setText("Second Marker:" + secondMarkerName);
+                        secondMarkerLabel.setBounds(10, 210, 250, 20);
+                        secondMarkerLabel.setText("<html>" + "Second Marker:" + secondMarkerName + "</html>");
+                        if(secondMarkerName == null){
+                            secondMarkerLabel.setVisible(false);
+                        }
 
                         AssessmentViewBtn = new javax.swing.JButton();
                         AssessmentViewBtn.setBackground(new java.awt.Color(76, 127, 174));
@@ -470,10 +467,11 @@ public final class StudentDashboardPage extends javax.swing.JFrame {
                         AssessmentViewBtn.setForeground(new java.awt.Color(255, 255, 255));
                         AssessmentViewBtn.setText("View");
                         AssessmentViewBtn.setBounds(230, 220, 60, 25);
+                        AssessmentViewBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
                         AssessmentViewBtn.addActionListener(new java.awt.event.ActionListener() {
                             @Override
                             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                redirectAssessmentPage(AssmntList[0],AssmntList[1]);
+                                redirectAssessmentPage(AssmntList[0], AssmntList[1]);
                             }
                         });
 
@@ -586,7 +584,7 @@ public final class StudentDashboardPage extends javax.swing.JFrame {
 
         List<String> AssmntData = FileHandler.readFile("assessment.txt");
         List<String> assmnt = setAssessmentData();
-         AssessmentController action = new AssessmentController();
+        AssessmentController action = new AssessmentController();
         LocalDate today = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
@@ -633,8 +631,8 @@ public final class StudentDashboardPage extends javax.swing.JFrame {
         }
     }
 
-    private void redirectAssessmentPage(String assessmentID,String assessmentType) {
-        StudentAssessmentDetailPage details = new StudentAssessmentDetailPage(assessmentID,assessmentType);
+    private void redirectAssessmentPage(String assessmentID, String assessmentType) {
+        StudentAssessmentDetailPage details = new StudentAssessmentDetailPage(assessmentID, assessmentType);
         details.setVisible(true);
         this.setVisible(false);
     }
@@ -647,7 +645,6 @@ public final class StudentDashboardPage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel name;
     private javax.swing.JLabel studentEcSubmission;
     private javax.swing.JPanel studentHeader;
     private javax.swing.JLabel studentLogo;

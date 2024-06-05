@@ -25,13 +25,17 @@ public class LecturerPresentationFeedback extends javax.swing.JFrame {
     User user = sessionManager.getCurrentUser();
     private String stdID;
     
-    public LecturerPresentationFeedback(String AssmntID, String stdID, String name, String marker, String presentSlot) {
+    public LecturerPresentationFeedback(String AssmntID, String stdID, String name, String marker, String presentSlot, String type) {
         this.stdID = stdID;
         initComponents();
         setIconImage();
         stdIDLabel.setText(stdID);
         stdNameLabel.setText(name);
-        secMarkerLabel.setText(marker);
+        if ("internship_report".equals(type) || "investigation".equals(type)) {
+            secMarkerLabel.setText("_");
+        } else {
+            secMarkerLabel.setText(marker);
+        }      
         slotLabel.setText(presentSlot);
         showFeedback(AssmntID);
     }
@@ -59,8 +63,9 @@ public class LecturerPresentationFeedback extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         slotLabel = new javax.swing.JLabel();
-        feedbackField = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        feedbackField = new javax.swing.JTextArea();
         saveFeedbackBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
@@ -99,7 +104,7 @@ public class LecturerPresentationFeedback extends javax.swing.JFrame {
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
                 .addComponent(stdIDLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(157, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -232,6 +237,13 @@ public class LecturerPresentationFeedback extends javax.swing.JFrame {
         jLabel11.setMinimumSize(new java.awt.Dimension(170, 30));
         jLabel11.setPreferredSize(new java.awt.Dimension(170, 30));
 
+        feedbackField.setColumns(20);
+        feedbackField.setRows(5);
+        feedbackField.setMaximumSize(new java.awt.Dimension(510, 100));
+        feedbackField.setMinimumSize(new java.awt.Dimension(510, 100));
+        feedbackField.setPreferredSize(new java.awt.Dimension(510, 100));
+        jScrollPane1.setViewportView(feedbackField);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -246,12 +258,12 @@ public class LecturerPresentationFeedback extends javax.swing.JFrame {
                         .addGap(280, 280, 280)
                         .addComponent(jLabel7))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(80, 80, 80)
-                        .addComponent(feedbackField, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(80, 80, 80)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(80, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -268,8 +280,8 @@ public class LecturerPresentationFeedback extends javax.swing.JFrame {
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(5, 5, 5)
-                .addComponent(feedbackField, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36))
         );
 
@@ -301,8 +313,8 @@ public class LecturerPresentationFeedback extends javax.swing.JFrame {
     private void saveFeedbackBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveFeedbackBtnActionPerformed
         int confirm = JOptionPane.showConfirmDialog(null, "Are you sure you want to submit this feedback?", "Confirmation", JOptionPane.YES_NO_OPTION);
 
-        if (confirm == JOptionPane.YES_OPTION) {
-            String feedback = feedbackField.getText();
+        String feedback = feedbackField.getText().trim();
+        if (confirm == JOptionPane.YES_OPTION && !feedback.isEmpty()) {
             PresentationController action = new PresentationController();
             boolean feedbackGiven = action.updateStudentPresentationIndex(stdID, feedback);
 
@@ -312,6 +324,8 @@ public class LecturerPresentationFeedback extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(null, "Failed to submit feedback.", "Error", JOptionPane.ERROR_MESSAGE);
             }
+        } else {
+            JOptionPane.showMessageDialog(null, "Feedback field cannot be empty.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_saveFeedbackBtnActionPerformed
 
@@ -345,7 +359,7 @@ public class LecturerPresentationFeedback extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LecturerPresentationFeedback("AssmntID", "stdID", "name", "marker", "presentSlot").setVisible(true);
+                new LecturerPresentationFeedback("AssmntID", "stdID", "name", "marker", "presentSlot", "type").setVisible(true);
             }
         });
     }
@@ -401,7 +415,7 @@ public class LecturerPresentationFeedback extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField feedbackField;
+    private javax.swing.JTextArea feedbackField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
@@ -414,6 +428,7 @@ public class LecturerPresentationFeedback extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton saveFeedbackBtn;
     private javax.swing.JLabel secMarkerLabel;
     private javax.swing.JLabel slotLabel;

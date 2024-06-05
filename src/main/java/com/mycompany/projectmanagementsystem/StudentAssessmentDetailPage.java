@@ -45,6 +45,7 @@ import javax.swing.event.ChangeListener;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 import javax.swing.table.TableRowSorter;
 
 /**
@@ -221,8 +222,8 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
                 .addGap(43, 43, 43)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(assessmentStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(399, 399, 399))
+                .addComponent(assessmentStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(360, 360, 360))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1224,6 +1225,10 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
                         assessmentStatus.setText("Submitted");
                         assessmentStatus.setBackground(new Color(0x1B3D60)); // Set the background color
                     }
+                    case "partially marked" -> {
+                        assessmentStatus.setText("Partially Marked");
+                        assessmentStatus.setBackground(new Color(0x1B6047)); // Set the background color
+                    }
                     case "marked" -> {
                         assessmentStatus.setText("Marked");
                         assessmentStatus.setBackground(new Color(0x1B6047)); // Set the background color
@@ -1369,6 +1374,10 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
                 model.addRow(reorderedData);
             }
         }
+        if (assessmentType.equals("internship_report") || assessmentType.equals("investigation")) {
+            TableColumn column = presentationRequestTable.getColumnModel().getColumn(3);
+            presentationRequestTable.getColumnModel().removeColumn(column);
+        }
     }
 
     private void showPresentationRequestButton() {
@@ -1396,8 +1405,14 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
                 }
             }
         };
-        presentationRequestTable.getColumnModel().getColumn(5).setCellRenderer(panel.new rPanelActionRenderer());
-        presentationRequestTable.getColumnModel().getColumn(5).setCellEditor(panel.new TableActionCellEditor(event));
+        if (assessmentType.equals("internship_report") || assessmentType.equals("investigation")) {
+            presentationRequestTable.getColumnModel().getColumn(4).setCellRenderer(panel.new rPanelActionRenderer());
+            presentationRequestTable.getColumnModel().getColumn(4).setCellEditor(panel.new TableActionCellEditor(event));
+        } else {
+            presentationRequestTable.getColumnModel().getColumn(5).setCellRenderer(panel.new rPanelActionRenderer());
+            presentationRequestTable.getColumnModel().getColumn(5).setCellEditor(panel.new TableActionCellEditor(event));
+        }
+
     }
 
     private String[] getSupervisorAndSecondMarkerNames(String supervisorId, String secondMarkerId) {
@@ -1452,7 +1467,13 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
                 String secondMarkerId = assessmentList[5].trim(); // Second Marker ID
                 String[] names = getSupervisorAndSecondMarkerNames(supervisorId, secondMarkerId);
                 supervisorName.setText(names[0]);
-                secondMarkerName.setText(names[1]);
+                if (secondMarkerId.isEmpty()) {
+                    secondMarkerName.setText("-");
+
+                } else {
+                    secondMarkerName.setText(names[1]);
+
+                }
             }
         }
     }
@@ -1796,13 +1817,16 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
                     names[0],
                     "supervisor"
                 };
-                String[] secondMarkerRecord = {
-                    list[5],
-                    names[1],
-                    "second marker"
-                };
                 model.addRow(supevisorRecord);
-                model.addRow(secondMarkerRecord);
+
+                if (names[1] != null) {
+                    String[] secondMarkerRecord = {
+                        list[5],
+                        names[1],
+                        "second marker"
+                    };
+                    model.addRow(secondMarkerRecord);
+                }
                 break;
             }
         }
