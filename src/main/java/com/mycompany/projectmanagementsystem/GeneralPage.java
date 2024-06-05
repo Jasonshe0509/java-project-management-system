@@ -5,10 +5,14 @@
 package com.mycompany.projectmanagementsystem;
 
 import java.awt.Toolkit;
+import com.mycompany.projectmanagementsystem.GeneralFunction.FileHandler;
+import com.mycompany.projectmanagementsystem.GeneralFunction.IDGenerator;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
- * 
+ *
  */
 public class GeneralPage extends javax.swing.JFrame {
 
@@ -18,6 +22,25 @@ public class GeneralPage extends javax.swing.JFrame {
     public GeneralPage() {
         initComponents();
         setIconImage();
+        //write file
+//        String schoolName = "School of General Studies";
+//        String schoolCode = "SGS";
+//        String record = schoolName +","+schoolCode;
+//        FileHandler.writeFile("school_wise.txt", record);
+        //modify file
+//        List<String> data = FileHandler.readFile("school_wise.txt");
+//        ArrayList<String> array_list = new ArrayList<>();
+//        for (String line : data) {
+//            String[]list = line.split(";");
+//            if(schoolCode.equals(list[1])){
+//                list[1] = "SOE";
+//                line = String.join(",", list);
+//                array_list.add(line);
+//            }else{
+//                array_list.add(line);
+//            }
+//        }
+//        FileHandler.modifyFileData("school_wise.txt", array_list);
     }
 
     /**
@@ -39,7 +62,6 @@ public class GeneralPage extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("General Homepage");
-        setMaximumSize(new java.awt.Dimension(1000, 700));
         setMinimumSize(new java.awt.Dimension(1000, 700));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -48,6 +70,7 @@ public class GeneralPage extends javax.swing.JFrame {
         NextButton.setFont(new java.awt.Font("Bell MT", 1, 28)); // NOI18N
         NextButton.setForeground(new java.awt.Color(255, 255, 255));
         NextButton.setText("Next");
+        NextButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         NextButton.setMaximumSize(new java.awt.Dimension(131, 52));
         NextButton.setMinimumSize(new java.awt.Dimension(131, 52));
         NextButton.setPreferredSize(new java.awt.Dimension(131, 52));
@@ -101,7 +124,9 @@ public class GeneralPage extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void NextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NextButtonActionPerformed
-        // TODO add your handling code here:
+        LoginPage login = new LoginPage();
+        login.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_NextButtonActionPerformed
 
     /**
@@ -131,13 +156,14 @@ public class GeneralPage extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-        
+
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
             new GeneralPage().setVisible(true);
         });
     }
+
     private void setIconImage() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Sysco_icon_with_background.png")));
     }
@@ -150,6 +176,5 @@ public class GeneralPage extends javax.swing.JFrame {
     private javax.swing.JLabel logo;
     private javax.swing.JLabel side_bar;
     // End of variables declaration//GEN-END:variables
-
 
 }

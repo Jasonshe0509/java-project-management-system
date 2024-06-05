@@ -1,0 +1,7 @@
+TP0001;She Jun Yuan;Male;017-3953823;2003-05-09;D'Kiara Apt;030509-12-1938;Malaysian;jasonshe80@mail.agh.edu.my;Jy!030509;student;DEG2403CS(DA)
+TP0002;Ong Jia Yee;Female;0129403301;2003-04-10;Bukit Jalil;030410-10-3910;Malaysian;jiayee@gmail.com;Jiayee@1123;admin
+TP0003;Lee Shu Hui;Female;0193013847;2003-07-21;Bukit Jalil;030721-08-4018;Malaysian;shuhui@gmail.com;Shuhui@1123;project manager;School of Foundation
+TP0004;Chan Kar Heng;Male;0124013739;2003-09-10;Bukit Jalil;030910-10-1039;Malaysian;karheng@gmail.com;Karheng@1123;lecturer;School of Computing
+TP0005;TAN MEI LING;Female;018-7654321;1979-06-05;PUCHONG;801125-12-1234;MALAYSIAN;meiling.tan@mail.agh.edu.my;Meiling@1123;project manager;School of Business
+TP0008;DALTON LOO;Male;019-3813800;2001-05-18;PUCHONG;020510-20-1023;MALAYSIAN;daltonloo@mail.agh.edu.my;Tp0008@@@;project manager;School of Engineering
+TP0011;LOON;Female;019-2233333;2003-05-09;D'KIARA APT;030509-12-9999;MALAYSIAN;jasonshe80@mail.agh.edu.my;Tp0011@@@;student;CERT2406CS(DA)
