@@ -43,6 +43,7 @@ com\mycompany\projectmanagementsystem\ProjectManagerPage$8.class
 com\mycompany\projectmanagementsystem\GeneralFunction\GeneralValidator.class
 com\mycompany\projectmanagementsystem\admin_view_projectmanager_details$6.class
 com\mycompany\projectmanagementsystem\PM_assessment_page$3.class
+com\mycompany\projectmanagementsystem\admin_ec_record$16.class
 com\mycompany\projectmanagementsystem\admin_modify_lecturerrecord$7.class
 com\mycompany\projectmanagementsystem\LecturerPresentationReject.class
 com\mycompany\projectmanagementsystem\admin_register_schoolwiselist$1.class
@@ -262,6 +263,7 @@ com\mycompany\projectmanagementsystem\admin_student_management$2.class
 com\mycompany\projectmanagementsystem\User\ProjectManager.class
 com\mycompany\projectmanagementsystem\admin_view_projectmanager_details$12.class
 com\mycompany\projectmanagementsystem\GeneralPage.class
+com\mycompany\projectmanagementsystem\StudentAssessmentDetailPage$22.class
 com\mycompany\projectmanagementsystem\admin_student_management$4.class
 com\mycompany\projectmanagementsystem\admin_lecturer_record$3.class
 com\mycompany\projectmanagementsystem\PM_register_assessment_create$2.class
@@ -303,6 +305,7 @@ com\mycompany\projectmanagementsystem\UserTableAction$1.class
 com\mycompany\projectmanagementsystem\IntakeTableActionPanel$IntakeTableActionCellEditor.class
 com\mycompany\projectmanagementsystem\admin_view_projectmanager_details$7.class
 com\mycompany\projectmanagementsystem\LecturerComm_CreateMessage$1.class
+com\mycompany\projectmanagementsystem\admin_ec_record$17.class
 com\mycompany\projectmanagementsystem\EC\ECTableActionEvent.class
 com\mycompany\projectmanagementsystem\LecturerSummaryReport$WrappedHeaderRenderer.class
 com\mycompany\projectmanagementsystem\PM_assessment_edit$3.class
@@ -334,6 +337,7 @@ com\mycompany\projectmanagementsystem\admin_ec_details$2.class
 com\mycompany\projectmanagementsystem\admin_ec_record$2.class
 com\mycompany\projectmanagementsystem\Communication\CommunicationMessage.class
 com\mycompany\projectmanagementsystem\LecturerIntakePage$1WhiteBackgroundRenderer.class
+com\mycompany\projectmanagementsystem\admin_ec_record$15.class
 com\mycompany\projectmanagementsystem\admin_view_lec_details$14.class
 com\mycompany\projectmanagementsystem\PM_cp2_page$1.class
 com\mycompany\projectmanagementsystem\admin_view_projectmanager_details$5.class

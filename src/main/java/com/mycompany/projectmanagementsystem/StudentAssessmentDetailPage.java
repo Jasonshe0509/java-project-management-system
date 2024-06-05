@@ -894,6 +894,11 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
         roleComboBox.setMaximumSize(new java.awt.Dimension(335, 40));
         roleComboBox.setMinimumSize(new java.awt.Dimension(335, 40));
         roleComboBox.setPreferredSize(new java.awt.Dimension(335, 40));
+        roleComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                roleComboBoxActionPerformed(evt);
+            }
+        });
 
         peopleTable.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
         peopleTable.setForeground(new java.awt.Color(2, 50, 99));
@@ -1167,6 +1172,10 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
         jTabbedPane1.insertTab("Communication", null, communicationScrollPanel, null, index);
         jTabbedPane1.setSelectedComponent(communicationScrollPanel);
     }//GEN-LAST:event_backIconMouseClicked
+
+    private void roleComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roleComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_roleComboBoxActionPerformed
 
     /**
      * @param args the command line arguments
