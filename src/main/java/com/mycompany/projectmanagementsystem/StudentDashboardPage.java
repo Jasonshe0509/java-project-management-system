@@ -449,14 +449,17 @@ public final class StudentDashboardPage extends javax.swing.JFrame {
                         supervisorLabel = new javax.swing.JLabel();
                         supervisorLabel.setFont(new java.awt.Font("Bell MT", 1, 14));
                         supervisorLabel.setForeground(new java.awt.Color(2, 50, 99));
-                        supervisorLabel.setBounds(10, 190, 200, 20);
-                        supervisorLabel.setText("Supervisor:" + supervisorName);
+                        supervisorLabel.setBounds(10, 190, 250, 20);
+                        supervisorLabel.setText("<html>" + "Supervisor:" + supervisorName + "</html>");
 
                         secondMarkerLabel = new javax.swing.JLabel();
                         secondMarkerLabel.setFont(new java.awt.Font("Bell MT", 1, 14));
                         secondMarkerLabel.setForeground(new java.awt.Color(2, 50, 99));
-                        secondMarkerLabel.setBounds(10, 210, 200, 20);
-                        secondMarkerLabel.setText("Second Marker:" + secondMarkerName);
+                        secondMarkerLabel.setBounds(10, 210, 250, 20);
+                        secondMarkerLabel.setText("<html>" + "Second Marker:" + secondMarkerName + "</html>");
+                        if(secondMarkerName == null){
+                            secondMarkerLabel.setVisible(false);
+                        }
 
                         AssessmentViewBtn = new javax.swing.JButton();
                         AssessmentViewBtn.setBackground(new java.awt.Color(76, 127, 174));
@@ -468,7 +471,7 @@ public final class StudentDashboardPage extends javax.swing.JFrame {
                         AssessmentViewBtn.addActionListener(new java.awt.event.ActionListener() {
                             @Override
                             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                redirectAssessmentPage(AssmntList[0],AssmntList[1]);
+                                redirectAssessmentPage(AssmntList[0], AssmntList[1]);
                             }
                         });
 
@@ -581,7 +584,7 @@ public final class StudentDashboardPage extends javax.swing.JFrame {
 
         List<String> AssmntData = FileHandler.readFile("assessment.txt");
         List<String> assmnt = setAssessmentData();
-         AssessmentController action = new AssessmentController();
+        AssessmentController action = new AssessmentController();
         LocalDate today = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
@@ -628,8 +631,8 @@ public final class StudentDashboardPage extends javax.swing.JFrame {
         }
     }
 
-    private void redirectAssessmentPage(String assessmentID,String assessmentType) {
-        StudentAssessmentDetailPage details = new StudentAssessmentDetailPage(assessmentID,assessmentType);
+    private void redirectAssessmentPage(String assessmentID, String assessmentType) {
+        StudentAssessmentDetailPage details = new StudentAssessmentDetailPage(assessmentID, assessmentType);
         details.setVisible(true);
         this.setVisible(false);
     }
