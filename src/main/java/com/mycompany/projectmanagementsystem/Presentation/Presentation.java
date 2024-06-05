@@ -17,14 +17,24 @@ public class Presentation {
     private LocalDateTime presentationDateTime;
     private String presentationStatus;
     private String presentationFeedback;
+    private String isSecMarkExist;
 
-    public Presentation(String presentationID, String userID, String assessmentID, LocalDateTime presentationDateTime, String presentationStatus, String presentationFeedback) {
+    public Presentation(String presentationID, String userID, String assessmentID, LocalDateTime presentationDateTime, String presentationStatus, String presentationFeedback, String isSecMarkExist) {
         this.presentationID = presentationID;
         this.userID = userID;
         this.assessmentID = assessmentID;
         this.presentationDateTime = presentationDateTime;
         this.presentationStatus = presentationStatus;
         this.presentationFeedback = presentationFeedback;
+        this.isSecMarkExist = isSecMarkExist;
+    }
+
+    public String getIsSecMarkExist() {
+        return isSecMarkExist;
+    }
+
+    public void setIsSecMarkExist(String isSecMarkExist) {
+        this.isSecMarkExist = isSecMarkExist;
     }
 
     public String getPresentationID() {

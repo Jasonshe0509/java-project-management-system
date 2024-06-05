@@ -23,22 +23,37 @@ public class PresentationController {
     private final SessionManager sessionManager = SessionManager.getInstance();
     User user = sessionManager.getCurrentUser();
 
-    public boolean spvPresentationDone(String stdID, String newStatus) {
+    public boolean spvPresentationDone(String stdID, String newStatus, String type) {
         List<String> data = FileHandler.readFile("presentation_confirmation.txt");
         ArrayList<String> updatedData = new ArrayList<>();
 
         for (String line : data) {
             String[] list = line.split(";");
             if (list[1].equals(stdID)) {
-                // Validate if feedback has no value or not
-                if (!list[4].isEmpty()) {
-                    list[5] = newStatus;
-                    line = String.join(";", list);
+                if ("internship_report".equals(type) || "investigation".equals(type)) {
+                    if (!list[4].isEmpty()) {
+                        list[5] = newStatus;
+                        line = String.join(";", list);
+                    } else {
+                        JOptionPane.showMessageDialog(null,
+                                "Supervisee(" + stdID + ") cannot be marked as done because feedback has not been given.", "Message", JOptionPane.ERROR_MESSAGE);
+                        return false;
+                    }
                 } else {
-                    JOptionPane.showMessageDialog(null,
-                            "Supervisee(" + stdID + ") cannot be marked as done because feedback has not been given.", "Message", JOptionPane.ERROR_MESSAGE);
-                    return false;
-                }
+                    // Validate if feedback has no value or not
+                    if (!list[4].isEmpty() && "true".equals(list[6])) {
+                        list[5] = newStatus;
+                        line = String.join(";", list);
+                    } else if (!list[4].isEmpty() && !"true".equals(list[6])){
+                        JOptionPane.showMessageDialog(null,
+                                "Supervisee(" + stdID + ") cannot be marked as done because feedback has not been given by second marker.", "Message", JOptionPane.ERROR_MESSAGE);
+                        return false;
+                    } else {
+                        JOptionPane.showMessageDialog(null,
+                                "Supervisee(" + stdID + ") cannot be marked as done because feedback has not been given.", "Message", JOptionPane.ERROR_MESSAGE);
+                        return false;
+                    }
+                }   
             }
 
             updatedData.add(line);
@@ -47,8 +62,9 @@ public class PresentationController {
         return true;
     }
 
-    public boolean secMarkPresentationDone(String stdID) {
+    public boolean secMarkPresentationDone(String stdID, String secMarkFeedbackStatus) {
         List<String> data = FileHandler.readFile("presentation_confirmation.txt");
+        ArrayList<String> updatedData = new ArrayList<>();
 
         for (String line : data) {
             String[] list = line.split(";");
@@ -62,12 +78,17 @@ public class PresentationController {
                     int confirm = JOptionPane.showConfirmDialog(null,
                             "Here's the feedback for student (" + stdID + "):\n" + list[4] + "\nSubmit?",
                             "Confirmation", JOptionPane.YES_NO_OPTION);
-                    if (confirm == JOptionPane.NO_OPTION) {
+                    if (confirm == JOptionPane.YES_OPTION) {
+                        list[6] = secMarkFeedbackStatus;
+                        line = String.join(";", list);
+                    } else {
                         return false;
                     }
                 }
             }
+            updatedData.add(line);
         }
+        FileHandler.modifyFileData("presentation_confirmation.txt", updatedData);
         return true;
     }
 
@@ -83,7 +104,7 @@ public class PresentationController {
                 switch (userRole) {
                     case "supervisor" -> {
                         if ("pending".equals(list[4])) {
-                            if ("accepted".equals(list[5]) || list[5].isEmpty()) { //isEmpty indicates second marker not existed
+                            if ("approved".equals(list[5]) || list[5].isEmpty()) { //isEmpty indicates second marker not existed
                                 list[6] = newStatus;
                                 NotificationController.create(stdID, "Your presentation request has been approved. "
                                         + "Please view your scheduled presentation date & time");
@@ -94,7 +115,7 @@ public class PresentationController {
                     }
                     case "second marker" -> {
                         if ("pending".equals(list[5])) {
-                            if ("accepted".equals(list[4])) {
+                            if ("approved".equals(list[4])) {
                                 list[6] = newStatus;
                                 NotificationController.create(stdID, "Your presentation request has been approved. "
                                         + "Please view your scheduled presentation date & time");
@@ -121,7 +142,7 @@ public class PresentationController {
     public boolean writeAccptPresentation(String[] schdPInput) {
         if (schdPInput != null && schdPInput.length == 3) {
             String schdPID = IDGenerator.genID("P");
-            String record = schdPID + ";" + schdPInput[0] + ";" + schdPInput[1] + ";" + schdPInput[2] + ";" + "" + ";" + "scheduled";
+            String record = schdPID + ";" + schdPInput[0] + ";" + schdPInput[1] + ";" + schdPInput[2] + ";" + "" + ";" + "scheduled" + ";" + "false";
 
             FileHandler.writeFile("presentation_confirmation.txt", record);
             return true;

@@ -624,17 +624,10 @@ public class LecturerReportGrading extends javax.swing.JFrame {
                     float average = (mark1Valid && mark2Valid) ? (mark1 + mark2) / 2 : (mark1Valid ? mark1 : mark2);
 
                     // Set the labels accordingly
-                    if (isSupervisor && mark1Valid) {
-                        jLabel10.setText("Your Mark:");
-                        contentMark.setText(String.valueOf(mark1));
-                        jLabel12.setText("<html>Second Marker's Mark:</html>");
-                        formatMark.setText(String.valueOf(mark2));
-                    } else if (!isSupervisor && mark1Valid) {
-                        jLabel10.setText("Your Mark:");
-                        contentMark.setText(String.valueOf(mark1));
-                        jLabel12.setText("Supervisor's Mark:");
-                        formatMark.setText(String.valueOf(mark2));
-                    }
+                    jLabel10.setText("Your Mark:");
+                    contentMark.setText(String.valueOf(mark1));
+                    jLabel12.setText(isSupervisor ? "Second Marker's Mark:" : "Supervisor's Mark:");
+                    formatMark.setText(String.valueOf(mark2));
 
                     contentMarkScheme.setText("/ 100");
                     formatMarkScheme.setText("/ 100");
@@ -646,14 +639,14 @@ public class LecturerReportGrading extends javax.swing.JFrame {
             }
         }
     }
-  
+
     private void showGradedReport(String assessmentID) {
         List<String> assessmentData = FileHandler.readFile("assessment.txt");
         List<String> studentAssessmentData = FileHandler.readFile("student_assessment.txt");
 
         boolean isSupervisor = isUserSupervisor(assessmentData, assessmentID);
         boolean isSecondMarker = isUserSecondMarker(assessmentData, assessmentID);
-        
+
         if (isSupervisor || isSecondMarker) {
             displayGradedReport(studentAssessmentData, isSupervisor);       
         }
@@ -687,15 +680,11 @@ public class LecturerReportGrading extends javax.swing.JFrame {
                 boolean isSecMarked = !fields[10].isEmpty();
                 boolean hasFeedback = fields.length > 5 && fields[4] != null && !fields[4].isEmpty();
 
-                if (isSupervisor && isMarked) {
+                if ((isSupervisor && isMarked) || (!isSupervisor && isSecMarked)) {
                     showMarks(isSupervisor);
                     showRptFeedback();
                     disableEditing();
-                } else if (!isSupervisor && isSecMarked) {
-                    showMarks(!isSupervisor);
-                    showRptFeedback();
-                    disableEditing();
-                } else if (isSupervisor || !isSupervisor && hasFeedback){
+                } else if (isSupervisor || (!isSupervisor && hasFeedback)) {
                     showRptFeedback();
                 }
             }
