@@ -45,6 +45,7 @@ import javax.swing.event.ChangeListener;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 import javax.swing.table.TableRowSorter;
 
 /**
@@ -1373,6 +1374,10 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
                 model.addRow(reorderedData);
             }
         }
+        if (assessmentType.equals("internship_report") || assessmentType.equals("investigation")) {
+            TableColumn column = presentationRequestTable.getColumnModel().getColumn(3);
+            presentationRequestTable.getColumnModel().removeColumn(column);
+        }
     }
 
     private void showPresentationRequestButton() {
@@ -1400,8 +1405,14 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
                 }
             }
         };
-        presentationRequestTable.getColumnModel().getColumn(5).setCellRenderer(panel.new rPanelActionRenderer());
-        presentationRequestTable.getColumnModel().getColumn(5).setCellEditor(panel.new TableActionCellEditor(event));
+        if (assessmentType.equals("internship_report") || assessmentType.equals("investigation")) {
+            presentationRequestTable.getColumnModel().getColumn(4).setCellRenderer(panel.new rPanelActionRenderer());
+            presentationRequestTable.getColumnModel().getColumn(4).setCellEditor(panel.new TableActionCellEditor(event));
+        } else {
+            presentationRequestTable.getColumnModel().getColumn(5).setCellRenderer(panel.new rPanelActionRenderer());
+            presentationRequestTable.getColumnModel().getColumn(5).setCellEditor(panel.new TableActionCellEditor(event));
+        }
+
     }
 
     private String[] getSupervisorAndSecondMarkerNames(String supervisorId, String secondMarkerId) {
