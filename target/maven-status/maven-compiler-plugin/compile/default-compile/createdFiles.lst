@@ -62,6 +62,7 @@ com\mycompany\projectmanagementsystem\User\UserController.class
 com\mycompany\projectmanagementsystem\PM_FYP_page$2.class
 com\mycompany\projectmanagementsystem\PM_register_assessment_create$3.class
 com\mycompany\projectmanagementsystem\admin_mainpage$5.class
+com\mycompany\projectmanagementsystem\admin_mainpage$ClockPanel.class
 com\mycompany\projectmanagementsystem\Assessment\LecMarkedReportTableActionEvent.class
 com\mycompany\projectmanagementsystem\EC\EC.class
 com\mycompany\projectmanagementsystem\LecturerPresentationRequest$4.class
@@ -277,6 +278,7 @@ com\mycompany\projectmanagementsystem\StudentEcSubmissionPage$6.class
 com\mycompany\projectmanagementsystem\AdminECTableActionPanel$1.class
 com\mycompany\projectmanagementsystem\PM_investigation_page$1.class
 com\mycompany\projectmanagementsystem\LevelOfEducation\LevelOfEducation.class
+com\mycompany\projectmanagementsystem\admin_mainpage$6.class
 com\mycompany\projectmanagementsystem\admin_ec_details$7.class
 com\mycompany\projectmanagementsystem\admin_ec_record$7.class
 com\mycompany\projectmanagementsystem\LecturerSummaryReport$4.class
@@ -430,6 +432,7 @@ com\mycompany\projectmanagementsystem\LecturerIntakePage$18.class
 com\mycompany\projectmanagementsystem\Course\CourseValidator.class
 com\mycompany\projectmanagementsystem\StudentAssessmentDetailPage$7.class
 com\mycompany\projectmanagementsystem\PM_cp2_page$3.class
+com\mycompany\projectmanagementsystem\admin_mainpage$TickTimerTask.class
 com\mycompany\projectmanagementsystem\ProjectManagerPage$10.class
 com\mycompany\projectmanagementsystem\PM_report_status$1.class
 com\mycompany\projectmanagementsystem\admin_view_studentrecord$4.class
