@@ -609,6 +609,7 @@ public class LecturerDashboardPage extends javax.swing.JFrame {
                 AssessmentViewBtn.setForeground(new java.awt.Color(255, 255, 255));
                 AssessmentViewBtn.setText("View");
                 AssessmentViewBtn.setBounds(230, 220, 60, 25);
+                AssessmentViewBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
                 AssessmentViewBtn.addActionListener(new java.awt.event.ActionListener() {
                     public void actionPerformed(java.awt.event.ActionEvent evt) {
                         redirectIntakePage(AssmntList[0],AssmntList[2],AssmntList[1]);

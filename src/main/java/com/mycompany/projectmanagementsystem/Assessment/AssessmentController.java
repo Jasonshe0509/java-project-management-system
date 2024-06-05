@@ -220,19 +220,19 @@ public class AssessmentController implements StudentAssessmentController {
             if (list[0].equals(type)) {
                 if (count >= 2) {
                     if (mark >= pass){
-                        return "Pass";
+                        return "pass";
                     } else {
-                        return "Fail";                       
+                        return "fail";                       
                     }
                 } else {
                     if (isWithinRange(mark, passChangesRange)) {
-                        return "Pass with Changes"; //allow student to resubmit
+                        return "pass_with_changes"; //allow student to resubmit
                     } else if ("0".equals(passChangesRange) && mark >= pass){
-                        return "Pass";
+                        return "pass";
                     } else if (mark >= pass){
-                        return "Pass";
+                        return "pass";
                     } else{
-                        return "Fail";                       
+                        return "fail";                       
                     }
                 }
             }

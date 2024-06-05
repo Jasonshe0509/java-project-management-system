@@ -87,7 +87,7 @@ public final class StudentDashboardPage extends javax.swing.JFrame {
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Student Dahsboard");
+        setTitle("Student Dashboard");
         setMinimumSize(new java.awt.Dimension(1000, 700));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -464,6 +464,7 @@ public final class StudentDashboardPage extends javax.swing.JFrame {
                         AssessmentViewBtn.setForeground(new java.awt.Color(255, 255, 255));
                         AssessmentViewBtn.setText("View");
                         AssessmentViewBtn.setBounds(230, 220, 60, 25);
+                        AssessmentViewBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
                         AssessmentViewBtn.addActionListener(new java.awt.event.ActionListener() {
                             @Override
                             public void actionPerformed(java.awt.event.ActionEvent evt) {
