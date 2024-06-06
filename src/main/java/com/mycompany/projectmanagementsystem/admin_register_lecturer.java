@@ -82,7 +82,7 @@ public class admin_register_lecturer extends javax.swing.JFrame {
         lecturer_gender.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         lecturer_gender.setForeground(new java.awt.Color(2, 50, 99));
         lecturer_gender.setText("Gender");
-        getContentPane().add(lecturer_gender, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 150, -1, -1));
+        getContentPane().add(lecturer_gender, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 180, -1, -1));
 
         lecturer_gender_selection.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         lecturer_gender_selection.addActionListener(new java.awt.event.ActionListener() {
@@ -90,17 +90,17 @@ public class admin_register_lecturer extends javax.swing.JFrame {
                 lecturer_gender_selectionActionPerformed(evt);
             }
         });
-        getContentPane().add(lecturer_gender_selection, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 140, 190, 50));
+        getContentPane().add(lecturer_gender_selection, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 170, 190, 50));
 
         lecturer_dob_title.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         lecturer_dob_title.setForeground(new java.awt.Color(2, 50, 99));
         lecturer_dob_title.setText("Date Of Birth\n");
-        getContentPane().add(lecturer_dob_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 110, 40));
+        getContentPane().add(lecturer_dob_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 110, 40));
 
         lecturer_empno_title.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         lecturer_empno_title.setForeground(new java.awt.Color(2, 50, 99));
         lecturer_empno_title.setText("EMP ID");
-        getContentPane().add(lecturer_empno_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 80, -1));
+        getContentPane().add(lecturer_empno_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, 80, -1));
 
         emp_tpno.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         emp_tpno.addActionListener(new java.awt.event.ActionListener() {
@@ -108,13 +108,13 @@ public class admin_register_lecturer extends javax.swing.JFrame {
                 emp_tpnoActionPerformed(evt);
             }
         });
-        getContentPane().add(emp_tpno, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, 190, 50));
+        getContentPane().add(emp_tpno, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, 190, 50));
 
         lecturer_contact_title.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         lecturer_contact_title.setForeground(new java.awt.Color(2, 50, 99));
         lecturer_contact_title.setText("<html><div style = 'text-align: center; width:90px;'>Phone Number </div></html>");
         lecturer_contact_title.setToolTipText("");
-        getContentPane().add(lecturer_contact_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 210, 90, -1));
+        getContentPane().add(lecturer_contact_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 240, 90, -1));
 
         lecturer_contact.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         lecturer_contact.addActionListener(new java.awt.event.ActionListener() {
@@ -122,12 +122,12 @@ public class admin_register_lecturer extends javax.swing.JFrame {
                 lecturer_contactActionPerformed(evt);
             }
         });
-        getContentPane().add(lecturer_contact, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 210, 190, 50));
+        getContentPane().add(lecturer_contact, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 240, 190, 50));
 
         lecturer_address_title.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         lecturer_address_title.setForeground(new java.awt.Color(2, 50, 99));
         lecturer_address_title.setText("Address");
-        getContentPane().add(lecturer_address_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 360, -1, -1));
+        getContentPane().add(lecturer_address_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 390, -1, -1));
 
         lecturer_address.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         lecturer_address.addActionListener(new java.awt.event.ActionListener() {
@@ -135,12 +135,12 @@ public class admin_register_lecturer extends javax.swing.JFrame {
                 lecturer_addressActionPerformed(evt);
             }
         });
-        getContentPane().add(lecturer_address, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 350, 190, 50));
+        getContentPane().add(lecturer_address, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 380, 190, 50));
 
         lecturer_email_title.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         lecturer_email_title.setForeground(new java.awt.Color(2, 50, 99));
         lecturer_email_title.setText("<html><div style = 'text-align: center; width:90px;'>Email Address</div></html>");
-        getContentPane().add(lecturer_email_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, 120, 50));
+        getContentPane().add(lecturer_email_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, 120, 50));
 
         lecturer_email.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         lecturer_email.addActionListener(new java.awt.event.ActionListener() {
@@ -148,7 +148,7 @@ public class admin_register_lecturer extends javax.swing.JFrame {
                 lecturer_emailActionPerformed(evt);
             }
         });
-        getContentPane().add(lecturer_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 350, 190, 50));
+        getContentPane().add(lecturer_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 380, 190, 50));
 
         register_lecturer_submit.setBackground(new java.awt.Color(2, 50, 99));
         register_lecturer_submit.setFont(new java.awt.Font("Bell MT", 1, 19)); // NOI18N
@@ -159,12 +159,12 @@ public class admin_register_lecturer extends javax.swing.JFrame {
                 register_lecturer_submitActionPerformed(evt);
             }
         });
-        getContentPane().add(register_lecturer_submit, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 450, -1, -1));
+        getContentPane().add(register_lecturer_submit, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 450, -1, -1));
 
         lecturer_nation_title.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         lecturer_nation_title.setForeground(new java.awt.Color(2, 50, 99));
         lecturer_nation_title.setText("Nationality");
-        getContentPane().add(lecturer_nation_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 290, -1, -1));
+        getContentPane().add(lecturer_nation_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 320, -1, -1));
 
         lecturer_nation.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         lecturer_nation.addActionListener(new java.awt.event.ActionListener() {
@@ -172,12 +172,12 @@ public class admin_register_lecturer extends javax.swing.JFrame {
                 lecturer_nationActionPerformed(evt);
             }
         });
-        getContentPane().add(lecturer_nation, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 280, 190, 50));
+        getContentPane().add(lecturer_nation, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 310, 190, 50));
 
         lecturer_name_title.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         lecturer_name_title.setForeground(new java.awt.Color(2, 50, 99));
         lecturer_name_title.setText("Full Name");
-        getContentPane().add(lecturer_name_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 90, -1));
+        getContentPane().add(lecturer_name_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, 90, -1));
 
         lecturer_name.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         lecturer_name.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, java.awt.Color.lightGray, null, null));
@@ -186,12 +186,12 @@ public class admin_register_lecturer extends javax.swing.JFrame {
                 lecturer_nameActionPerformed(evt);
             }
         });
-        getContentPane().add(lecturer_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, 190, 50));
+        getContentPane().add(lecturer_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 170, 190, 50));
 
         lecturer_nric_title.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         lecturer_nric_title.setForeground(new java.awt.Color(2, 50, 99));
         lecturer_nric_title.setText("<html><div style= 'text-align: center; width: 90px;'>NRIC/ Passoport No</div></html>");
-        getContentPane().add(lecturer_nric_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, 120, -1));
+        getContentPane().add(lecturer_nric_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, 120, -1));
 
         lecturer_nric.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         lecturer_nric.addActionListener(new java.awt.event.ActionListener() {
@@ -199,15 +199,15 @@ public class admin_register_lecturer extends javax.swing.JFrame {
                 lecturer_nricActionPerformed(evt);
             }
         });
-        getContentPane().add(lecturer_nric, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 280, 190, 50));
+        getContentPane().add(lecturer_nric, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 310, 190, 50));
 
         lecturer_schoolwise_title.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         lecturer_schoolwise_title.setForeground(new java.awt.Color(2, 50, 99));
         lecturer_schoolwise_title.setText("<html><div style= 'text-align: center; width: 50px;'>School Wise</div></html>");
-        getContentPane().add(lecturer_schoolwise_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 70, 80, -1));
+        getContentPane().add(lecturer_schoolwise_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 100, 80, -1));
 
         dob_chooser.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        getContentPane().add(dob_chooser, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 210, 190, 50));
+        getContentPane().add(dob_chooser, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 240, 190, 50));
 
         schoolwise_dropbox.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         schoolwise_dropbox.addActionListener(new java.awt.event.ActionListener() {
@@ -215,7 +215,18 @@ public class admin_register_lecturer extends javax.swing.JFrame {
                 schoolwise_dropboxActionPerformed(evt);
             }
         });
-        getContentPane().add(schoolwise_dropbox, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 70, 190, 50));
+        getContentPane().add(schoolwise_dropbox, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 100, 190, 50));
+
+        jLabel1.setFont(new java.awt.Font("Bell MT", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(2, 50, 99));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/back.png"))); // NOI18N
+        jLabel1.setText("BACK");
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Bell MT", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(2, 50, 99));

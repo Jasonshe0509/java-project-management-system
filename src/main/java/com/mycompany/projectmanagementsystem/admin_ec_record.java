@@ -31,18 +31,18 @@ public class admin_ec_record extends javax.swing.JFrame {
         printApprovedECTable();
         printRejectedECTable();
         readNumOfPendingEC();
-        
+
         //header of the table
         ec_pending_list.getTableHeader().setFont(new Font("SansSerif", Font.BOLD, 14));
         ec_pending_list.getTableHeader().setOpaque(false);
         ec_pending_list.getTableHeader().setBackground(new Color(2, 50, 99));
         ec_pending_list.getTableHeader().setForeground(new Color(255, 255, 255));
-        
+
         ec_approved_list.getTableHeader().setFont(new Font("SansSerif", Font.BOLD, 14));
         ec_approved_list.getTableHeader().setOpaque(false);
         ec_approved_list.getTableHeader().setBackground(new Color(2, 50, 99));
         ec_approved_list.getTableHeader().setForeground(new Color(255, 255, 255));
-        
+
         ec_rejected_list.getTableHeader().setFont(new Font("SansSerif", Font.BOLD, 14));
         ec_rejected_list.getTableHeader().setOpaque(false);
         ec_rejected_list.getTableHeader().setBackground(new Color(2, 50, 99));
@@ -225,6 +225,7 @@ public class admin_ec_record extends javax.swing.JFrame {
     private void initComponents() {
 
         ec_record_title = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         admin_header = new javax.swing.JPanel();
         admin_lecturer = new javax.swing.JLabel();
         admin_student = new javax.swing.JLabel();
@@ -256,7 +257,18 @@ public class admin_ec_record extends javax.swing.JFrame {
         ec_record_title.setFont(new java.awt.Font("Bell MT", 1, 24)); // NOI18N
         ec_record_title.setForeground(new java.awt.Color(2, 50, 99));
         ec_record_title.setText("EC Record");
-        getContentPane().add(ec_record_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 180, 30));
+        getContentPane().add(ec_record_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 80, 120, 30));
+
+        jLabel2.setFont(new java.awt.Font("Bell MT", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(2, 50, 99));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/back.png"))); // NOI18N
+        jLabel2.setText("BACK");
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, -1, -1));
 
         admin_header.setBackground(new Color(255, 255, 255, 90));
         admin_header.setToolTipText("");
@@ -546,23 +558,29 @@ public class admin_ec_record extends javax.swing.JFrame {
     }//GEN-LAST:event_searchActionPerformed
 
     private void searchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchKeyReleased
-       String searchText = search.getText();
-        
+        String searchText = search.getText();
+
         DefaultTableModel ecPending = (DefaultTableModel) ec_pending_list.getModel();
-       TableRowSorter<DefaultTableModel> searchECPending = new TableRowSorter<>(ecPending);
-       ec_pending_list.setRowSorter(searchECPending);
-       searchECPending.setRowFilter(RowFilter.regexFilter("(?i)" + Pattern.quote(searchText)));
-       
-       DefaultTableModel ecApproved = (DefaultTableModel) ec_approved_list.getModel();
-       TableRowSorter<DefaultTableModel> searchECApproved = new TableRowSorter<>(ecApproved);
-       ec_approved_list.setRowSorter(searchECApproved);
-       searchECApproved.setRowFilter(RowFilter.regexFilter("(?i)" + Pattern.quote(searchText)));
-       
-       DefaultTableModel ecRejected = (DefaultTableModel) ec_rejected_list.getModel();
-       TableRowSorter<DefaultTableModel> searchECRejected = new TableRowSorter<>(ecRejected);
-       ec_rejected_list.setRowSorter(searchECRejected);
-       searchECRejected.setRowFilter(RowFilter.regexFilter("(?i)" + Pattern.quote(searchText)));
+        TableRowSorter<DefaultTableModel> searchECPending = new TableRowSorter<>(ecPending);
+        ec_pending_list.setRowSorter(searchECPending);
+        searchECPending.setRowFilter(RowFilter.regexFilter("(?i)" + Pattern.quote(searchText)));
+
+        DefaultTableModel ecApproved = (DefaultTableModel) ec_approved_list.getModel();
+        TableRowSorter<DefaultTableModel> searchECApproved = new TableRowSorter<>(ecApproved);
+        ec_approved_list.setRowSorter(searchECApproved);
+        searchECApproved.setRowFilter(RowFilter.regexFilter("(?i)" + Pattern.quote(searchText)));
+
+        DefaultTableModel ecRejected = (DefaultTableModel) ec_rejected_list.getModel();
+        TableRowSorter<DefaultTableModel> searchECRejected = new TableRowSorter<>(ecRejected);
+        ec_rejected_list.setRowSorter(searchECRejected);
+        searchECRejected.setRowFilter(RowFilter.regexFilter("(?i)" + Pattern.quote(searchText)));
     }//GEN-LAST:event_searchKeyReleased
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        dispose();
+        admin_student adminStudent = new admin_student();
+        adminStudent.show();
+    }//GEN-LAST:event_jLabel2MouseClicked
 
     public static void main(String args[]) {
 
@@ -595,6 +613,7 @@ public class admin_ec_record extends javax.swing.JFrame {
     private javax.swing.JLabel ecnum_background;
     private javax.swing.JLabel ecnum_border;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private static javax.swing.JLabel label_num_pending_ec;
     private javax.swing.JTextField search;
