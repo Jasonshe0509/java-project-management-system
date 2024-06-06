@@ -1,4 +1,4 @@
-   package com.mycompany.projectmanagementsystem;
+package com.mycompany.projectmanagementsystem;
 
 import com.mycompany.projectmanagementsystem.GeneralFunction.FileHandler;
 import com.mycompany.projectmanagementsystem.Intake.IntakeController;
@@ -7,16 +7,20 @@ import com.mycompany.projectmanagementsystem.IntakeTableActionPanel.IntakeTableA
 import com.mycompany.projectmanagementsystem.User.UserController;
 import com.mycompany.projectmanagementsystem.User.UserTableActionEvent;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Toolkit;
 import java.util.List;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 public class admin_student_management extends javax.swing.JFrame {
 
     private static admin_student_management instance;
-    
+
     admin_view_studentrecord studentRecordInstace;
     static int numOfIntake, numOfStudent;
 
@@ -28,6 +32,16 @@ public class admin_student_management extends javax.swing.JFrame {
         readNumOfIntake();
         readNumOfStudent();
 
+        intake_table.getTableHeader().setFont(new Font("SansSerif", Font.BOLD, 18));
+        intake_table.getTableHeader().setOpaque(false);
+        intake_table.getTableHeader().setBackground(new Color(2, 50, 99));
+        intake_table.getTableHeader().setForeground(new Color(255, 255, 255));
+
+        student_table.getTableHeader().setFont(new Font("SansSerif", Font.BOLD, 18));
+        student_table.getTableHeader().setOpaque(false);
+        student_table.getTableHeader().setBackground(new Color(2, 50, 99));
+        student_table.getTableHeader().setForeground(new Color(255, 255, 255));
+
         IntakeTableActionPanel intakeAcitonPanel = new IntakeTableActionPanel();
         IntakeTableActionEvent intakeEvent;
         intakeEvent = new IntakeTableActionEvent() {
@@ -38,7 +52,6 @@ public class admin_student_management extends javax.swing.JFrame {
                 String intakeID = (String) model.getValueAt(row, columnIndex);
                 IntakeController action = new IntakeController();
                 boolean result = action.intakeDelete(intakeID);
-                
 
             }
         };
@@ -54,10 +67,9 @@ public class admin_student_management extends javax.swing.JFrame {
                 int columnIndex = 0;
                 String userID = (String) model.getValueAt(row, columnIndex);
                 UserController action = new UserController();
-                
+
                 action.viewUser(userID);
-                
-               
+
                 //System.out.print(Arrays.toString(userDetails));
                 //admin_view_studentrecord studentDetails = new admin_view_studentrecord();
                 //admin_view_studentrecord.displayStudentDetails(userDetails);
@@ -82,7 +94,7 @@ public class admin_student_management extends javax.swing.JFrame {
         };
         student_table.getColumnModel().getColumn(5).setCellRenderer(actionPanel.new rPanelActionRenderer());
         student_table.getColumnModel().getColumn(5).setCellEditor(actionPanel.new UserTableActionCellEditor(event));
-        
+
         intake_table.getColumnModel().getColumn(5).setCellRenderer(intakeAcitonPanel.new rPanelActionRenderer());
         intake_table.getColumnModel().getColumn(5).setCellEditor(intakeAcitonPanel.new IntakeTableActionCellEditor(intakeEvent));
     }
@@ -149,9 +161,7 @@ public class admin_student_management extends javax.swing.JFrame {
 
         }
     }
-    
-    
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -175,6 +185,8 @@ public class admin_student_management extends javax.swing.JFrame {
         intake_table = new javax.swing.JTable();
         ec_rejeceted_record = new javax.swing.JScrollPane();
         student_table = new javax.swing.JTable();
+        jLabel2 = new javax.swing.JLabel();
+        search = new javax.swing.JTextField();
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -208,6 +220,11 @@ public class admin_student_management extends javax.swing.JFrame {
         admin_lecturer.setMaximumSize(new java.awt.Dimension(96, 73));
         admin_lecturer.setMinimumSize(new java.awt.Dimension(96, 73));
         admin_lecturer.setPreferredSize(new java.awt.Dimension(96, 73));
+        admin_lecturer.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                admin_lecturerMouseClicked(evt);
+            }
+        });
 
         admin_student.setBackground(new Color(255, 255, 255, 0));
         admin_student.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
@@ -228,21 +245,31 @@ public class admin_student_management extends javax.swing.JFrame {
         admin_report.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
         admin_report.setForeground(new java.awt.Color(2, 50, 99));
         admin_report.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        admin_report.setText("Report");
+        admin_report.setText("EC Management");
         admin_report.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         admin_report.setMaximumSize(new java.awt.Dimension(96, 73));
         admin_report.setMinimumSize(new java.awt.Dimension(96, 73));
         admin_report.setPreferredSize(new java.awt.Dimension(96, 73));
+        admin_report.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                admin_reportMouseClicked(evt);
+            }
+        });
 
         admin_profile.setBackground(new Color(255, 255, 255, 0));
         admin_profile.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
         admin_profile.setForeground(new java.awt.Color(2, 50, 99));
         admin_profile.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        admin_profile.setText("Profile");
+        admin_profile.setText("Assessment");
         admin_profile.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         admin_profile.setMaximumSize(new java.awt.Dimension(96, 73));
         admin_profile.setMinimumSize(new java.awt.Dimension(96, 73));
         admin_profile.setPreferredSize(new java.awt.Dimension(96, 73));
+        admin_profile.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                admin_profileMouseClicked(evt);
+            }
+        });
 
         admin_logout.setBackground(new Color(255, 255, 255, 0));
         admin_logout.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
@@ -268,14 +295,14 @@ public class admin_student_management extends javax.swing.JFrame {
             .addGroup(admin_headerLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(admin_logo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 294, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 240, Short.MAX_VALUE)
+                .addComponent(admin_report, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(admin_profile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(admin_lecturer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(admin_student, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(admin_report, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(admin_profile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(admin_logout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -283,17 +310,15 @@ public class admin_student_management extends javax.swing.JFrame {
         admin_headerLayout.setVerticalGroup(
             admin_headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(admin_headerLayout.createSequentialGroup()
-                .addGroup(admin_headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(admin_headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(admin_logout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(admin_headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(admin_report, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(admin_profile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(admin_logout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, admin_headerLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(admin_student, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(admin_lecturer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(admin_headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(admin_student, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(admin_lecturer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap())
+                            .addComponent(admin_report, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(admin_profile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(admin_headerLayout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addComponent(admin_logo)
@@ -347,8 +372,8 @@ public class admin_student_management extends javax.swing.JFrame {
 
         student_record.setOpaque(true);
 
-        intake_table.setBackground(new java.awt.Color(192, 192, 192));
         intake_table.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
+        intake_table.setForeground(new java.awt.Color(2, 50, 99));
         intake_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
@@ -373,8 +398,8 @@ public class admin_student_management extends javax.swing.JFrame {
 
         student_record.addTab("Intake", ec_approved_record);
 
-        student_table.setBackground(new java.awt.Color(192, 192, 192));
         student_table.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
+        student_table.setForeground(new java.awt.Color(2, 50, 99));
         student_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -396,9 +421,23 @@ public class admin_student_management extends javax.swing.JFrame {
 
         student_record.addTab("Student", ec_rejeceted_record);
 
-        getContentPane().add(student_record, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, 920, 300));
+        getContentPane().add(student_record, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 360, 920, 300));
         student_record.getAccessibleContext().setAccessibleName("");
         student_record.getAccessibleContext().setAccessibleDescription("");
+
+        jLabel2.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(2, 50, 99));
+        jLabel2.setText("Type To Search");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 280, -1, -1));
+
+        search.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        search.setForeground(new java.awt.Color(2, 50, 99));
+        search.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                searchKeyReleased(evt);
+            }
+        });
+        getContentPane().add(search, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 310, 170, 40));
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main_background.png"))); // NOI18N
         getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -409,8 +448,8 @@ public class admin_student_management extends javax.swing.JFrame {
 
     private void admin_studentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_admin_studentMouseClicked
         // TODO add your handling code here:
-        admin_student admin_stu = new admin_student();
-        admin_stu.show();
+        admin_student adminStudent = new admin_student();
+        adminStudent.show();
         dispose();
     }//GEN-LAST:event_admin_studentMouseClicked
 
@@ -420,6 +459,38 @@ public class admin_student_management extends javax.swing.JFrame {
         admin_main.show();
         dispose();
     }//GEN-LAST:event_admin_logoMouseClicked
+
+    private void searchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchKeyReleased
+        String searchText = search.getText();
+
+        DefaultTableModel intake = (DefaultTableModel) intake_table.getModel();
+        TableRowSorter<DefaultTableModel> searchIntake = new TableRowSorter<>(intake);
+        intake_table.setRowSorter(searchIntake);
+        searchIntake.setRowFilter(RowFilter.regexFilter("(?i)" + Pattern.quote(searchText)));
+
+        DefaultTableModel student = (DefaultTableModel) student_table.getModel();
+        TableRowSorter<DefaultTableModel> searchStudent = new TableRowSorter<>(student);
+        student_table.setRowSorter(searchStudent);
+        searchStudent.setRowFilter(RowFilter.regexFilter("(?i)" + Pattern.quote(searchText)));
+    }//GEN-LAST:event_searchKeyReleased
+
+    private void admin_reportMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_admin_reportMouseClicked
+        dispose();
+        admin_ec_record ecRecord = new admin_ec_record();
+        ecRecord.show();
+    }//GEN-LAST:event_admin_reportMouseClicked
+
+    private void admin_profileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_admin_profileMouseClicked
+        dispose();
+        admin_assessment_management assessmentManagement = new admin_assessment_management();
+        assessmentManagement.show();
+    }//GEN-LAST:event_admin_profileMouseClicked
+
+    private void admin_lecturerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_admin_lecturerMouseClicked
+        dispose();
+        admin_lecturer adminLecturer = new admin_lecturer();
+        adminLecturer.show();
+    }//GEN-LAST:event_admin_lecturerMouseClicked
 
     public static void main(String args[]) {
 
@@ -446,8 +517,10 @@ public class admin_student_management extends javax.swing.JFrame {
     private javax.swing.JScrollPane ec_rejeceted_record;
     private static javax.swing.JTable intake_table;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private static javax.swing.JLabel label_num_intake;
     private static javax.swing.JLabel label_num_student;
+    private javax.swing.JTextField search;
     private static javax.swing.JTabbedPane student_record;
     private static javax.swing.JTable student_table;
     private javax.swing.JLabel totalintake_background;
