@@ -272,6 +272,11 @@ public class PresentationController {
             if (!list[0].equals(requestID)) {
                 line = String.join(";", list);
                 array_list.add(line);
+            }else{
+                if(list[6].equals("rejected") || list[6].equals("approved")){
+                    JOptionPane.showMessageDialog(null, "The rejected and approved request cannot be removed", "Message", JOptionPane.ERROR_MESSAGE);
+                    return false;
+                }
             }
         }
         FileHandler.modifyFileData("presentation_request.txt", array_list);
