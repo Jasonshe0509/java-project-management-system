@@ -1,5 +1,6 @@
 package com.mycompany.projectmanagementsystem;
 
+import com.mycompany.projectmanagementsystem.Course.CourseController;
 import com.mycompany.projectmanagementsystem.GeneralFunction.FileHandler;
 import com.mycompany.projectmanagementsystem.Intake.IntakeController;
 import com.mycompany.projectmanagementsystem.Intake.IntakeTableActionEvent;
@@ -29,8 +30,10 @@ public class admin_student_management extends javax.swing.JFrame {
         setIconImage();
         printStudentTable();
         printIntakeTable();
+        printCourseTable();
         readNumOfIntake();
         readNumOfStudent();
+        
 
         intake_table.getTableHeader().setFont(new Font("SansSerif", Font.BOLD, 18));
         intake_table.getTableHeader().setOpaque(false);
@@ -41,6 +44,11 @@ public class admin_student_management extends javax.swing.JFrame {
         student_table.getTableHeader().setOpaque(false);
         student_table.getTableHeader().setBackground(new Color(2, 50, 99));
         student_table.getTableHeader().setForeground(new Color(255, 255, 255));
+        
+        course_table.getTableHeader().setFont(new Font("SansSerif", Font.BOLD, 18));
+        course_table.getTableHeader().setOpaque(false);
+        course_table.getTableHeader().setBackground(new Color(2, 50, 99));
+        course_table.getTableHeader().setForeground(new Color(255, 255, 255));
 
         IntakeTableActionPanel intakeAcitonPanel = new IntakeTableActionPanel();
         IntakeTableActionEvent intakeEvent;
@@ -92,11 +100,49 @@ public class admin_student_management extends javax.swing.JFrame {
                 }
             }
         };
+        
+        UserTableActionPanel courseActionPanel = new UserTableActionPanel();
+        UserTableActionEvent courseEvent;
+        courseEvent = new UserTableActionEvent() {
+
+            @Override
+            public void userView(int row, Object value) {
+
+                DefaultTableModel model = (DefaultTableModel) course_table.getModel();
+                int columnIndex = 0;
+                String courseCode = (String) model.getValueAt(row, columnIndex);
+                CourseController action = new CourseController();
+
+                action.viewCourse(courseCode);
+
+                
+            }
+
+            @Override
+            public void userDelete(int row, Object value) {
+                DefaultTableModel model = (DefaultTableModel) course_table.getModel();
+                int columnIndex = 0;
+                String courseCode = (String) model.getValueAt(row, columnIndex);
+                CourseController action = new CourseController();
+                boolean result = action.courseDelete(courseCode);
+                if (result) {
+                    JOptionPane.showMessageDialog(null, "Successfully delete the Student: " + courseCode);
+//                    DefaultTableModel umodel = (DefaultTableModel) student_table.getModel();
+//                    umodel.setNumRows(0);
+//                    printStudentTable();
+//                    readNumOfStudent();
+                }
+            }
+        };
+        
         student_table.getColumnModel().getColumn(5).setCellRenderer(actionPanel.new rPanelActionRenderer());
         student_table.getColumnModel().getColumn(5).setCellEditor(actionPanel.new UserTableActionCellEditor(event));
 
         intake_table.getColumnModel().getColumn(5).setCellRenderer(intakeAcitonPanel.new rPanelActionRenderer());
         intake_table.getColumnModel().getColumn(5).setCellEditor(intakeAcitonPanel.new IntakeTableActionCellEditor(intakeEvent));
+        
+        course_table.getColumnModel().getColumn(3).setCellRenderer(courseActionPanel.new rPanelActionRenderer());
+        course_table.getColumnModel().getColumn(3).setCellEditor(courseActionPanel.new UserTableActionCellEditor(courseEvent));
     }
 
     public static void readNumOfIntake() {
@@ -141,6 +187,23 @@ public class admin_student_management extends javax.swing.JFrame {
 
         }
     }
+    
+    public static void printCourseTable() {
+
+        DefaultTableModel model = (DefaultTableModel) course_table.getModel();
+        model.setRowCount(0);
+        List<String> data = FileHandler.readFile("course.txt");
+        Object[] records = data.toArray();
+
+        for (int i = 0; i < records.length; i++) {
+            String record = records[i].toString();
+            String[] courseData = record.split(";");
+            
+            String[] courseRow = {courseData[0], courseData[1], courseData[2]};
+            model.addRow(courseRow);
+
+        }
+    }
 
     public static void printStudentTable() {
 
@@ -181,10 +244,12 @@ public class admin_student_management extends javax.swing.JFrame {
         totalstudent_background = new javax.swing.JLabel();
         totalintake_border = new javax.swing.JLabel();
         student_record = new javax.swing.JTabbedPane();
-        javax.swing.JScrollPane ec_approved_record = new javax.swing.JScrollPane();
-        intake_table = new javax.swing.JTable();
         ec_rejeceted_record = new javax.swing.JScrollPane();
         student_table = new javax.swing.JTable();
+        javax.swing.JScrollPane ec_approved_record = new javax.swing.JScrollPane();
+        intake_table = new javax.swing.JTable();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        course_table = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         search = new javax.swing.JTextField();
         background = new javax.swing.JLabel();
@@ -319,12 +384,13 @@ public class admin_student_management extends javax.swing.JFrame {
                     .addComponent(admin_logout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, admin_headerLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(admin_headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(admin_student, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(admin_lecturer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(admin_headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(admin_headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(admin_report, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(admin_profile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(admin_profile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(admin_headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(admin_student, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(admin_lecturer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
             .addGroup(admin_headerLayout.createSequentialGroup()
                 .addGap(17, 17, 17)
@@ -379,6 +445,40 @@ public class admin_student_management extends javax.swing.JFrame {
 
         student_record.setOpaque(true);
 
+        student_table.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
+        student_table.setForeground(new java.awt.Color(2, 50, 99));
+        student_table.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Student ID", "Name", "Intake Code", "Email Address", "Contact Number", "Action"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        student_table.setRowHeight(30);
+        ec_rejeceted_record.setViewportView(student_table);
+        if (student_table.getColumnModel().getColumnCount() > 0) {
+            student_table.getColumnModel().getColumn(0).setMinWidth(100);
+            student_table.getColumnModel().getColumn(0).setPreferredWidth(100);
+            student_table.getColumnModel().getColumn(0).setMaxWidth(100);
+            student_table.getColumnModel().getColumn(2).setMinWidth(150);
+            student_table.getColumnModel().getColumn(2).setPreferredWidth(150);
+            student_table.getColumnModel().getColumn(2).setMaxWidth(150);
+            student_table.getColumnModel().getColumn(5).setMinWidth(110);
+            student_table.getColumnModel().getColumn(5).setPreferredWidth(110);
+            student_table.getColumnModel().getColumn(5).setMaxWidth(110);
+        }
+
+        student_record.addTab("Student", ec_rejeceted_record);
+
         intake_table.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
         intake_table.setForeground(new java.awt.Color(2, 50, 99));
         intake_table.setModel(new javax.swing.table.DefaultTableModel(
@@ -402,31 +502,39 @@ public class admin_student_management extends javax.swing.JFrame {
         });
         intake_table.setRowHeight(30);
         ec_approved_record.setViewportView(intake_table);
+        if (intake_table.getColumnModel().getColumnCount() > 0) {
+            intake_table.getColumnModel().getColumn(5).setMinWidth(60);
+            intake_table.getColumnModel().getColumn(5).setPreferredWidth(60);
+            intake_table.getColumnModel().getColumn(5).setMaxWidth(60);
+        }
 
         student_record.addTab("Intake", ec_approved_record);
 
-        student_table.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
-        student_table.setForeground(new java.awt.Color(2, 50, 99));
-        student_table.setModel(new javax.swing.table.DefaultTableModel(
+        course_table.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        course_table.setForeground(new java.awt.Color(2, 50, 99));
+        course_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Student ID", "Name", "Intake Code", "Email Address", "Contact Number", "Action"
+                "Course Code", "Course Name", "School Wise", "Action"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, true
+                false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        student_table.setRowHeight(30);
-        ec_rejeceted_record.setViewportView(student_table);
+        course_table.setRowHeight(30);
+        jScrollPane1.setViewportView(course_table);
 
-        student_record.addTab("Student", ec_rejeceted_record);
+        student_record.addTab("Course", jScrollPane1);
 
         getContentPane().add(student_record, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 370, 920, 300));
         student_record.getAccessibleContext().setAccessibleName("");
@@ -528,10 +636,12 @@ public class admin_student_management extends javax.swing.JFrame {
     private javax.swing.JLabel admin_report;
     private javax.swing.JLabel admin_student;
     private javax.swing.JLabel background;
+    private static javax.swing.JTable course_table;
     private javax.swing.JScrollPane ec_rejeceted_record;
     private static javax.swing.JTable intake_table;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private static javax.swing.JLabel label_num_intake;
     private static javax.swing.JLabel label_num_student;
     private javax.swing.JTextField search;

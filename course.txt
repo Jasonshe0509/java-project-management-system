@@ -1,3 +1,2 @@
-CS(DA);Computer Science (Data Analyst)
-CS(AI);Computer Science(Artificial Intelligence);School of Computing
-IT;Infomation Technology;School of Foundation
+CS(DA);Computer Science (Data Analyst);School of Computing
+CS(DA);Computer Science (Data Analyst);School of Foundation
