@@ -559,6 +559,7 @@ public class admin_student_management extends javax.swing.JFrame {
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 280, -1, 40));
 
         search.setForeground(new java.awt.Color(2, 50, 99));
+        search.setMaximumSize(new java.awt.Dimension(64, 22));
         search.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 searchKeyReleased(evt);
