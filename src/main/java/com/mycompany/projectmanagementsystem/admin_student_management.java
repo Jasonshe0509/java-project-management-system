@@ -168,6 +168,7 @@ public class admin_student_management extends javax.swing.JFrame {
 
         label_num_student = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         admin_header = new javax.swing.JPanel();
         admin_lecturer = new javax.swing.JLabel();
         admin_student = new javax.swing.JLabel();
@@ -203,7 +204,18 @@ public class admin_student_management extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Bell MT", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(2, 50, 99));
         jLabel1.setText("Student Record");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 250, 30));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 80, 180, 30));
+
+        jLabel3.setFont(new java.awt.Font("Bell MT", 1, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(2, 50, 99));
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/back.png"))); // NOI18N
+        jLabel3.setText("BACK");
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, -1, -1));
 
         admin_header.setBackground(new Color(255, 255, 255, 90));
         admin_header.setToolTipText("");
@@ -319,12 +331,13 @@ public class admin_student_management extends javax.swing.JFrame {
                     .addComponent(admin_logout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, admin_headerLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(admin_headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(admin_student, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(admin_lecturer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(admin_headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(admin_headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(admin_report, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(admin_profile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(admin_profile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(admin_headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(admin_student, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(admin_lecturer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
             .addGroup(admin_headerLayout.createSequentialGroup()
                 .addGap(17, 17, 17)
@@ -337,14 +350,14 @@ public class admin_student_management extends javax.swing.JFrame {
         label_num_intake.setFont(new java.awt.Font("Bell MT", 1, 100)); // NOI18N
         label_num_intake.setForeground(new java.awt.Color(2, 50, 99));
         label_num_intake.setText("jLabel2");
-        getContentPane().add(label_num_intake, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 140, 130, 90));
+        getContentPane().add(label_num_intake, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 160, 130, 90));
 
         totalstudent_border.setBackground(new Color(2, 50, 99, 0));
         totalstudent_border.setBorder(new LineBorder(new Color(192, 192, 192, 90), 15, true));
         totalstudent_border.setMaximumSize(new java.awt.Dimension(440, 125));
         totalstudent_border.setMinimumSize(new java.awt.Dimension(440, 125));
         totalstudent_border.setPreferredSize(new java.awt.Dimension(440, 125));
-        getContentPane().add(totalstudent_border, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 110, 460, 150));
+        getContentPane().add(totalstudent_border, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 130, 460, 150));
 
         totalintake_background.setBackground(new Color(192, 192, 192, 90));
         totalintake_background.setFont(new java.awt.Font("Bell MT", 1, 24)); // NOI18N
@@ -356,7 +369,7 @@ public class admin_student_management extends javax.swing.JFrame {
         totalintake_background.setMinimumSize(new java.awt.Dimension(418, 123));
         totalintake_background.setOpaque(true);
         totalintake_background.setPreferredSize(new java.awt.Dimension(418, 123));
-        getContentPane().add(totalintake_background, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 440, 130));
+        getContentPane().add(totalintake_background, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 440, 130));
 
         totalstudent_background.setBackground(new Color(192, 192, 192, 90));
         totalstudent_background.setFont(new java.awt.Font("Bell MT", 1, 24)); // NOI18N
@@ -368,14 +381,14 @@ public class admin_student_management extends javax.swing.JFrame {
         totalstudent_background.setMinimumSize(new java.awt.Dimension(418, 123));
         totalstudent_background.setOpaque(true);
         totalstudent_background.setPreferredSize(new java.awt.Dimension(418, 123));
-        getContentPane().add(totalstudent_background, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 120, 440, 130));
+        getContentPane().add(totalstudent_background, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 140, 440, 130));
 
         totalintake_border.setBackground(new Color(2, 50, 99, 0));
         totalintake_border.setBorder(new LineBorder(new Color(192, 192, 192, 90), 15, true));
         totalintake_border.setMaximumSize(new java.awt.Dimension(440, 125));
         totalintake_border.setMinimumSize(new java.awt.Dimension(440, 125));
         totalintake_border.setPreferredSize(new java.awt.Dimension(440, 125));
-        getContentPane().add(totalintake_border, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 460, 150));
+        getContentPane().add(totalintake_border, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 460, 150));
 
         student_record.setOpaque(true);
 
@@ -506,6 +519,12 @@ public class admin_student_management extends javax.swing.JFrame {
         ecRecord.show();
     }//GEN-LAST:event_admin_reportMouseClicked
 
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        dispose();
+        admin_student adminStudent = new admin_student();
+        adminStudent.show();
+    }//GEN-LAST:event_jLabel3MouseClicked
+
     public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -532,6 +551,7 @@ public class admin_student_management extends javax.swing.JFrame {
     private static javax.swing.JTable intake_table;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private static javax.swing.JLabel label_num_intake;
     private static javax.swing.JLabel label_num_student;
     private javax.swing.JTextField search;
