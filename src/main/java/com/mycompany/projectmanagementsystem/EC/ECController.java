@@ -4,8 +4,12 @@
  */
 package com.mycompany.projectmanagementsystem.EC;
 
+import com.mycompany.projectmanagementsystem.Assessment.AssessmentController;
 import com.mycompany.projectmanagementsystem.GeneralFunction.FileHandler;
 import com.mycompany.projectmanagementsystem.GeneralFunction.IDGenerator;
+import com.mycompany.projectmanagementsystem.GeneralFunction.SessionManager;
+import com.mycompany.projectmanagementsystem.Notification.NotificationController;
+import com.mycompany.projectmanagementsystem.User.User;
 import com.mycompany.projectmanagementsystem.admin_approval_ec_details;
 import com.mycompany.projectmanagementsystem.admin_ec_details;
 import com.mycompany.projectmanagementsystem.admin_ec_record;
@@ -19,7 +23,11 @@ import javax.swing.JOptionPane;
  */
 public class ECController {
 
+    private final SessionManager sessionManager = SessionManager.getInstance();
+    User user = sessionManager.getCurrentUser();
+
     public boolean ecApply(String[] ecInput) {
+        String assessmentName = null;
         if (ECValidator.validateECInput(ecInput)) {
             if (ECValidator.validateECDocLink(ecInput[3])) {
                 List<String> data = FileHandler.readFile("ec.txt");
@@ -33,6 +41,15 @@ public class ECController {
                 String ecID = IDGenerator.genID("EC");
                 String record = ecID + ";" + ecInput[0] + ";" + ecInput[1] + ";" + ecInput[2] + ";" + ecInput[3] + ";" + "pending" + ";" + "";
                 FileHandler.writeFile("ec.txt", record);
+                List<String> Assessmentdata = FileHandler.readFile("assessment.txt");
+                for (String assessmentline : Assessmentdata) {
+                    String[] assessmentlist = assessmentline.split(";");
+                    if (assessmentlist[0].equals(ecInput[1])) {
+                        AssessmentController action  = new AssessmentController();
+                        assessmentName = action.assessmentType(assessmentlist[1]);
+                    }
+                }
+                NotificationController.create(user.getUserID(), "New EC has been applied for assessment: " + assessmentName);
                 return true;
             } else {
                 JOptionPane.showMessageDialog(null, "Wrong url format", "Message", JOptionPane.ERROR_MESSAGE);
@@ -52,7 +69,7 @@ public class ECController {
                 line = String.join(";", list);
                 array_list.add(line);
             } else {
-                if (list[5].equals("approve")) {
+                if (list[5].equals("approved")) {
                     JOptionPane.showMessageDialog(null, "The ec cannot be remove once approved", "Message", JOptionPane.ERROR_MESSAGE);
                     return false;
                 }

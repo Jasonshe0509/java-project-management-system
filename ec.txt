@@ -1,6 +1,1 @@
-EC0004;TP0001;A0001;aloha;https://contentatscale.ai/ai-content-detector/;pending
-EC0005;TP0001;A0001;aloha;https://contentatscale.ai/ai-content-detector/;pending
-EC0003;TP0001;A0001;aloha;https://contentatscale.ai/ai-content-detector/;pending
-EC0001;TP0001;A0001;aloha;https://contentatscale.ai/ai-content-detector/;pending
-EC0002;TP0001;A0001;aloha;https://contentatscale.ai/ai-content-detector/;rejected
-EC0008;TP0001;A0001;aloha;https://contentatscale.ai/ai-content-detector/;pending
+EC0006;TP0001;A0002;sick;https://contentatscale.ai/ai-content-detector/;pending;

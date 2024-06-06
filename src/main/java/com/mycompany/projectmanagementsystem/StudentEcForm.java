@@ -7,7 +7,6 @@ package com.mycompany.projectmanagementsystem;
 import com.mycompany.projectmanagementsystem.EC.ECController;
 import com.mycompany.projectmanagementsystem.GeneralFunction.FileHandler;
 import com.mycompany.projectmanagementsystem.GeneralFunction.SessionManager;
-import com.mycompany.projectmanagementsystem.Notification.NotificationController;
 import com.mycompany.projectmanagementsystem.User.User;
 import java.awt.Color;
 import java.awt.Toolkit;
@@ -200,7 +199,6 @@ public class StudentEcForm extends javax.swing.JFrame {
                 StudentEcSubmissionPage page = new StudentEcSubmissionPage();
                 page.setVisible(true);
             }
-            NotificationController.create(user.getUserID(), "New EC has been applied");
         }
     }//GEN-LAST:event_saveBtnActionPerformed
 
