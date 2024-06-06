@@ -23,14 +23,12 @@ public class CourseController {
         for (String line : data) {
             if (line.startsWith(courseCode)) {
                 courseDetails = line.split(";");
-
             }
 
-            admin_view_course courseRecord = new admin_view_course();
-            courseRecord.displayCourseDetails(courseDetails);
-            System.out.println(courseDetails[2]);
-            courseRecord.show();
         }
+        admin_view_course courseRecord = new admin_view_course();
+        courseRecord.displayCourseDetails(courseDetails);
+        courseRecord.show();
     }
 
     public boolean courseDelete(String courseCode) {
@@ -47,45 +45,24 @@ public class CourseController {
                     if (intakeCode.endsWith(courseCode)) {
                         JOptionPane.showMessageDialog(null, "Course cannot be deleted as there are students enrolled under this course!");
                         return false;
-                    } else {
-                        for (String line : data) {
-                            if (!line.startsWith(courseCode)) {
-                                updatedData.add(line);
-                            }
-                        }
                     }
+
                 }
             }
+            for (String line : data) {
+                if (!line.startsWith(courseCode)) {
+                    updatedData.add(line);
+                }
+            }
+            FileHandler.modifyFileData("course.txt", updatedData);
+            admin_student_management.printCourseTable();
+            return true;
 
         } else {
             JOptionPane.showMessageDialog(null, "Action Cancelled!");
             return false;
         }
-        FileHandler.modifyFileData("course.txt", updatedData);
-        admin_student_management.printCourseTable();
-        return true;
-    }
 
-    public static void modifyCourse(String[] userInput) {
-
-        List<String> data = FileHandler.readFile("course.txt");
-        ArrayList<String> array_list = new ArrayList<>();
-        for (String lines : data) {
-            String[] line = lines.split(";");
-            if (userInput[0].equals(line[0])) {
-                line[0] = userInput[0]; //code
-                line[1] = userInput[1]; //coursename
-                line[2] = userInput[2]; //schoolwise
-
-                lines = String.join(";", line);
-                array_list.add(lines);
-            } else {
-                array_list.add(lines);
-            }
-        }
-        FileHandler.modifyFileData("course.txt", array_list);
-        JOptionPane.showMessageDialog(null, "Course: " + userInput[0] + " has been Updated succefully!", "Successful Updated", JOptionPane.INFORMATION_MESSAGE);
-        admin_student_management.printCourseTable();
     }
 
     public static void addCourse(String[] userInput) {
@@ -101,7 +78,7 @@ public class CourseController {
             }
             String courseCode = null;
             String courseSpecialism = String.valueOf(userInput[2]);
-            
+
             if (courseSpecialism == null || courseSpecialism.equals("")) {
                 courseCode = courseNameShortForm.toString().toUpperCase();          //form the course code
             } else {
@@ -115,7 +92,6 @@ public class CourseController {
 
             }
 
-            //String courseCode = (courseNameShortForm + "(" + courseSpecialismShortForm + ")").toUpperCase();          //form the course code
             List<String> courseList = FileHandler.readFile("course.txt");
             Object[] lines = courseList.toArray();
             boolean courseExist = false;
@@ -137,23 +113,23 @@ public class CourseController {
                     formatCourseName.append(word3.substring(1).toLowerCase());
                     formatCourseName.append(" ");
                 }
-                
+
                 StringBuilder formatCourseSpecialism = new StringBuilder();
                 String newCourseData;
                 System.out.println("this is error" + userInput[2]);
-                if(userInput[2] != null && !(userInput[2]).equals("")){
+                if (userInput[2] != null && !(userInput[2]).equals("")) {
                     String[] words4 = userInput[2].split("\\s");
-                //formatCourseSpecialism = new StringBuilder();
-                for (String word4 : words4) {
-                    formatCourseSpecialism.append(Character.toUpperCase(word4.charAt(0)));
-                    formatCourseSpecialism.append(word4.substring(1).toLowerCase());
-                    formatCourseSpecialism.append(" ");
+                    //formatCourseSpecialism = new StringBuilder();
+                    for (String word4 : words4) {
+                        formatCourseSpecialism.append(Character.toUpperCase(word4.charAt(0)));
+                        formatCourseSpecialism.append(word4.substring(1).toLowerCase());
+                        formatCourseSpecialism.append(" ");
+                    }
+                    newCourseData = courseCode.trim() + ";" + formatCourseName.toString().trim() + "(" + formatCourseSpecialism.toString().trim() + ");" + userInput[0];
+                } else {
+                    newCourseData = courseCode.trim() + ";" + formatCourseName.toString().trim() + ";" + userInput[0];
                 }
-                newCourseData = courseCode.trim() + ";" + formatCourseName.toString().trim() + "(" + formatCourseSpecialism.toString().trim() + ");" + userInput[0];
-                } else{
-                    newCourseData = courseCode.trim() + ";" + formatCourseName.toString().trim() + ";" +userInput[0];
-                }
-                
+
                 FileHandler.writeFile("course.txt", newCourseData);
                 JOptionPane.showMessageDialog(null, courseCode + " has been added succefully!", "Successful Added", JOptionPane.INFORMATION_MESSAGE);
 

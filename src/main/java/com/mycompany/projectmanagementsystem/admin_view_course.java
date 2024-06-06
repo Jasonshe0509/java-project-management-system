@@ -18,27 +18,17 @@ import javax.swing.JOptionPane;
 public class admin_view_course extends javax.swing.JFrame {
 
     String[] courseRecord;
-    List<String> schoolWiseList;
+    
     /**
      * Creates new form admin_register_course
      */
     public admin_view_course() {
         initComponents();
         setIconImage();
-        dropbox_SchoolWise(schoolWiseList);
+        
     }
     
-    public void dropbox_SchoolWise(List<String> schoolWiseList) {
-        schoolWiseList = FileHandler.readFile("school_wise.txt");
-        Object[] lines = schoolWiseList.toArray();
-
-        for (int i = 0; i < lines.length; i++) {
-            String line = lines[i].toString();
-            
-            school_wise.addItem(line);
-        }
-
-    }
+    
     
     public String[] displayCourseDetails(String[] courseDetails){
         
@@ -49,7 +39,7 @@ public class admin_view_course extends javax.swing.JFrame {
     }
         
         
-        school_wise.setSelectedItem(list.get(2).trim());
+        school_wise.setText(list.get(2));
         course_name.setText(list.get(1));
         course_code.setText(list.get(0));
         
@@ -69,13 +59,12 @@ public class admin_view_course extends javax.swing.JFrame {
 
         reg_course_title = new javax.swing.JLabel();
         school_wise_title = new javax.swing.JLabel();
-        school_wise = new javax.swing.JComboBox<>();
         course_name_title = new javax.swing.JLabel();
         course_name = new javax.swing.JTextField();
         course_code_title = new javax.swing.JLabel();
         course_code = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        school_wise = new javax.swing.JTextField();
         background = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -93,17 +82,14 @@ public class admin_view_course extends javax.swing.JFrame {
         school_wise_title.setFont(new java.awt.Font("SansSerif", 0, 22)); // NOI18N
         school_wise_title.setForeground(new java.awt.Color(2, 50, 99));
         school_wise_title.setText("School Wise");
-        getContentPane().add(school_wise_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, -1, -1));
-
-        school_wise.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
-        school_wise.setForeground(new java.awt.Color(2, 50, 99));
-        getContentPane().add(school_wise, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, 270, 40));
+        getContentPane().add(school_wise_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, -1, -1));
 
         course_name_title.setFont(new java.awt.Font("SansSerif", 0, 22)); // NOI18N
         course_name_title.setForeground(new java.awt.Color(2, 50, 99));
         course_name_title.setText("Course Name");
-        getContentPane().add(course_name_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, -1, -1));
+        getContentPane().add(course_name_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, -1, -1));
 
+        course_name.setEditable(false);
         course_name.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
         course_name.setForeground(new java.awt.Color(2, 50, 99));
         course_name.addActionListener(new java.awt.event.ActionListener() {
@@ -111,28 +97,17 @@ public class admin_view_course extends javax.swing.JFrame {
                 course_nameActionPerformed(evt);
             }
         });
-        getContentPane().add(course_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 170, 270, 40));
+        getContentPane().add(course_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 200, 270, 40));
 
         course_code_title.setFont(new java.awt.Font("SansSerif", 0, 22)); // NOI18N
         course_code_title.setForeground(new java.awt.Color(2, 50, 99));
         course_code_title.setText("Course Code");
-        getContentPane().add(course_code_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, -1, -1));
+        getContentPane().add(course_code_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, -1, -1));
 
         course_code.setEditable(false);
         course_code.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
         course_code.setForeground(new java.awt.Color(2, 50, 99));
-        getContentPane().add(course_code, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 60, 260, 40));
-
-        jButton1.setBackground(new java.awt.Color(2, 50, 99));
-        jButton1.setFont(new java.awt.Font("Bell MT", 1, 20)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("CONFIRM CHANGES");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, -1, -1));
+        getContentPane().add(course_code, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 80, 270, 40));
 
         jButton2.setBackground(new java.awt.Color(2, 50, 99));
         jButton2.setFont(new java.awt.Font("Bell MT", 1, 20)); // NOI18N
@@ -143,14 +118,24 @@ public class admin_view_course extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 240, -1, -1));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 290, -1, -1));
+
+        school_wise.setEditable(false);
+        school_wise.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
+        school_wise.setForeground(new java.awt.Color(2, 50, 99));
+        school_wise.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                school_wiseActionPerformed(evt);
+            }
+        });
+        getContentPane().add(school_wise, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 140, 270, 40));
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main_background.png"))); // NOI18N
         background.setMaximumSize(new java.awt.Dimension(500, 300));
         background.setMinimumSize(new java.awt.Dimension(500, 300));
         background.setOpaque(true);
         background.setPreferredSize(new java.awt.Dimension(500, 300));
-        getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 350));
 
         jLabel1.setFont(new java.awt.Font("Bell MT", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(2, 50, 99));
@@ -179,20 +164,9 @@ public class admin_view_course extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       while (true) {
-          
-                String[] userInput = new String[3];
-                userInput[0] = course_code.getText().trim();
-                userInput[1] = course_name.getText().trim();
-                userInput[2] = school_wise.getSelectedItem().toString();
-
-                CourseController.modifyCourse(userInput);
-
-                break;
-            
-        }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void school_wiseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_school_wiseActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_school_wiseActionPerformed
 
     /**
      * @param args the command line arguments
@@ -241,11 +215,10 @@ public class admin_view_course extends javax.swing.JFrame {
     private javax.swing.JLabel course_code_title;
     private javax.swing.JTextField course_name;
     private javax.swing.JLabel course_name_title;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel reg_course_title;
-    private javax.swing.JComboBox<String> school_wise;
+    private javax.swing.JTextField school_wise;
     private javax.swing.JLabel school_wise_title;
     // End of variables declaration//GEN-END:variables
 }
