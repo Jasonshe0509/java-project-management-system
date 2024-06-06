@@ -118,14 +118,13 @@ public class StudentPresentationRequestPage extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void submitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitBtnActionPerformed
-        String[] presentationInput = new String[2];
+        String[] presentationInput = new String[3];
         String dateTimeText = null;
         presentationInput[0] = assessmentID;
         Date selectedDate = presentationDate.getDate();
         Date selectedTime = (Date) jSpinner1.getValue();
 
         if (selectedDate != null && selectedTime != null) {
-            System.out.println("Hi");
             // Combine date and time
             Calendar dateCal = Calendar.getInstance();
             dateCal.setTime(selectedDate);
@@ -143,6 +142,7 @@ public class StudentPresentationRequestPage extends javax.swing.JFrame {
             dateTimeText = dateTimeFormat.format(combinedDateTime);
         }
         presentationInput[1] = dateTimeText;
+        presentationInput[2] = assessmentType;
         PresentationController action = new PresentationController();
         boolean result = action.studentRequestPresentation(presentationInput);
         if (result) {

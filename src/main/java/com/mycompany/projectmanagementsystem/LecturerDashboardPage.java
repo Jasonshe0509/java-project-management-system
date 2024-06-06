@@ -10,6 +10,9 @@ import com.mycompany.projectmanagementsystem.User.User;
 import com.mycompany.projectmanagementsystem.User.UserController;
 import java.awt.Toolkit;
 import java.awt.Color;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -41,6 +44,8 @@ public class LecturerDashboardPage extends javax.swing.JFrame {
     private JPanel contentPanel;
     List<JPanel> assessments = new ArrayList<JPanel>();
     private JLabel lastClickedLabel = null;
+    private String AssmntID;
+    private String intakeCode;
     
     public LecturerDashboardPage() {
         initComponents();
@@ -96,6 +101,7 @@ public class LecturerDashboardPage extends javax.swing.JFrame {
         LecLogOutLabel.setForeground(new java.awt.Color(2, 50, 99));
         LecLogOutLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LecLogOutLabel.setText("Log Out");
+        LecLogOutLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         LecLogOutLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 LecLogOutLabelMouseClicked(evt);
@@ -106,6 +112,7 @@ public class LecturerDashboardPage extends javax.swing.JFrame {
         ProfileLabel.setForeground(new java.awt.Color(2, 50, 99));
         ProfileLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         ProfileLabel.setText("Profile");
+        ProfileLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         ProfileLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 ProfileLabelMouseClicked(evt);
@@ -116,6 +123,7 @@ public class LecturerDashboardPage extends javax.swing.JFrame {
         NotiLabel.setForeground(new java.awt.Color(2, 50, 99));
         NotiLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         NotiLabel.setText("Notification");
+        NotiLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         NotiLabel.setMaximumSize(new java.awt.Dimension(37, 21));
         NotiLabel.setMinimumSize(new java.awt.Dimension(37, 21));
         NotiLabel.setPreferredSize(new java.awt.Dimension(37, 21));
@@ -129,6 +137,7 @@ public class LecturerDashboardPage extends javax.swing.JFrame {
         SumRptLabel.setForeground(new java.awt.Color(2, 50, 99));
         SumRptLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         SumRptLabel.setText("Summary Report");
+        SumRptLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         SumRptLabel.setMaximumSize(new java.awt.Dimension(37, 21));
         SumRptLabel.setMinimumSize(new java.awt.Dimension(37, 21));
         SumRptLabel.setPreferredSize(new java.awt.Dimension(37, 21));
@@ -185,6 +194,7 @@ public class LecturerDashboardPage extends javax.swing.JFrame {
         supervisorLabel.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
         supervisorLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         supervisorLabel.setText("Supervisor");
+        supervisorLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         supervisorLabel.setMaximumSize(new java.awt.Dimension(147, 34));
         supervisorLabel.setMinimumSize(new java.awt.Dimension(147, 34));
         supervisorLabel.setOpaque(true);
@@ -200,6 +210,7 @@ public class LecturerDashboardPage extends javax.swing.JFrame {
         secMarkerLabel.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
         secMarkerLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         secMarkerLabel.setText("Second Marker");
+        secMarkerLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         secMarkerLabel.setMaximumSize(new java.awt.Dimension(147, 34));
         secMarkerLabel.setMinimumSize(new java.awt.Dimension(147, 34));
         secMarkerLabel.setOpaque(true);
@@ -280,19 +291,18 @@ public class LecturerDashboardPage extends javax.swing.JFrame {
 
     private void ProfileLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ProfileLabelMouseClicked
         this.setVisible(false);
-        LecturerProfile profile = new LecturerProfile();
+        LecturerProfile profile = new LecturerProfile(AssmntID, intakeCode);
         profile.setVisible(true);
     }//GEN-LAST:event_ProfileLabelMouseClicked
 
     private void NotiLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NotiLabelMouseClicked
-        this.setVisible(false);
         NotificationPage lectNoti = new NotificationPage();
         lectNoti.setVisible(true);
     }//GEN-LAST:event_NotiLabelMouseClicked
 
     private void SumRptLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SumRptLabelMouseClicked
         this.setVisible(false);
-        LecturerSummaryReport lectSumRpt = new LecturerSummaryReport();
+        LecturerSummaryReport lectSumRpt = new LecturerSummaryReport(AssmntID, intakeCode);
         lectSumRpt.setVisible(true);
     }//GEN-LAST:event_SumRptLabelMouseClicked
 
@@ -393,6 +403,8 @@ public class LecturerDashboardPage extends javax.swing.JFrame {
         for (String line : AssmntData) {
             String[] AssmntList = line.split(";");
             if (user.getUserID().equals(AssmntList[4])) {
+                AssmntID = AssmntList[0];
+                intakeCode = AssmntList[2];
                 AssessmentPanel = new JPanel();
                 AssessmentPanel.setBackground(Color.WHITE);
                 AssessmentPanel.setPreferredSize(new java.awt.Dimension(panelWidth, panelHeight));
@@ -414,7 +426,7 @@ public class LecturerDashboardPage extends javax.swing.JFrame {
                         
                         AssessmentNameLabel.setText("Final Year Project");
                     }
-                    case "investigation_report" -> {
+                    case "investigation" -> {
                         bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/investigation_report.png")));
 
                         AssessmentNameLabel.setText("Investigation Report");
@@ -457,9 +469,10 @@ public class LecturerDashboardPage extends javax.swing.JFrame {
                 AssessmentViewBtn.setForeground(new java.awt.Color(255, 255, 255));
                 AssessmentViewBtn.setText("View");
                 AssessmentViewBtn.setBounds(230, 220, 60, 25);
+                AssessmentViewBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
                 AssessmentViewBtn.addActionListener(new java.awt.event.ActionListener() {
                     public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        redirectIntakePage(AssmntList[0],AssmntList[2]);
+                        redirectIntakePage(AssmntList[0],AssmntList[2], AssmntList[1]);
                     }
                 });
                 
@@ -530,6 +543,8 @@ public class LecturerDashboardPage extends javax.swing.JFrame {
         for (String line : AssmntData) {
             String[] AssmntList = line.split(";");
             if (user.getUserID().equals(AssmntList[5])) {
+                AssmntID = AssmntList[0];
+                intakeCode = AssmntList[2];
                 AssessmentPanel = new JPanel();
                 AssessmentPanel.setBackground(Color.WHITE);                
                 AssessmentPanel.setPreferredSize(new java.awt.Dimension(panelWidth, panelHeight));
@@ -551,7 +566,7 @@ public class LecturerDashboardPage extends javax.swing.JFrame {
                         
                         AssessmentNameLabel.setText("Final Year Project");
                     }
-                    case "investigation_report" -> {
+                    case "investigation" -> {
                         bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/investigation_report.png")));
 
                         AssessmentNameLabel.setText("Investigation Report");
@@ -594,9 +609,10 @@ public class LecturerDashboardPage extends javax.swing.JFrame {
                 AssessmentViewBtn.setForeground(new java.awt.Color(255, 255, 255));
                 AssessmentViewBtn.setText("View");
                 AssessmentViewBtn.setBounds(230, 220, 60, 25);
+                AssessmentViewBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
                 AssessmentViewBtn.addActionListener(new java.awt.event.ActionListener() {
                     public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        redirectIntakePage(AssmntList[0],AssmntList[2]);
+                        redirectIntakePage(AssmntList[0],AssmntList[2],AssmntList[1]);
                     }
                 });
                 
@@ -623,15 +639,22 @@ public class LecturerDashboardPage extends javax.swing.JFrame {
             JLabel noAssmntLabel = new JLabel("No Assessment Assigned");
             noAssmntLabel.setFont(new java.awt.Font("SansSerif", 1, 16));
             noAssmntLabel.setForeground(new java.awt.Color(2, 50, 99));
-            //set label to center
-            int labelWidth = noAssmntLabel.getPreferredSize().width;
-            int labelHeight = noAssmntLabel.getPreferredSize().height;
-            int a = (contentPanel.getWidth() - labelWidth) / 2;
-            int b = (contentPanel.getHeight() - labelHeight) / 2;
 
-            noAssmntLabel.setBounds(a, b, labelWidth, labelHeight);
-            contentPanel.add(noAssmntLabel);
+            contentPanel.setLayout(new GridBagLayout());
+            GridBagConstraints gbc = new GridBagConstraints();
+
+            gbc.gridx = 0;
+            gbc.gridy = 0;
+            gbc.gridwidth = GridBagConstraints.REMAINDER;
+            gbc.gridheight = GridBagConstraints.REMAINDER;
+            gbc.weightx = 1.0;
+            gbc.weighty = 1.0;
+            gbc.anchor = GridBagConstraints.CENTER;
+            gbc.insets = new Insets(0, 0, 0, 0);
+
+            contentPanel.add(noAssmntLabel, gbc);
         }
+
         
         // Set preferred size for the content panel based on the number of items
         contentPanel.setPreferredSize(new java.awt.Dimension(
@@ -648,8 +671,8 @@ public class LecturerDashboardPage extends javax.swing.JFrame {
         jPanel2.repaint();    // Repaint to update the UI
     }
     
-    private void redirectIntakePage(String assessmentID, String intakeCode){
-        LecturerIntakePage intake = new LecturerIntakePage(assessmentID,intakeCode);
+    private void redirectIntakePage(String assessmentID, String intakeCode, String assessmentType){
+        LecturerIntakePage intake = new LecturerIntakePage(assessmentID,intakeCode,assessmentType);
         intake.setVisible(true);
         this.setVisible(false);
     }

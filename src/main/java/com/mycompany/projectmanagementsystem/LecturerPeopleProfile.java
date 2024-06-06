@@ -4,7 +4,12 @@
  */
 package com.mycompany.projectmanagementsystem;
 
+import com.mycompany.projectmanagementsystem.GeneralFunction.FileHandler;
+import com.mycompany.projectmanagementsystem.GeneralFunction.SessionManager;
+import com.mycompany.projectmanagementsystem.User.User;
+import java.awt.Component;
 import java.awt.Toolkit;
+import java.util.List;
 
 /**
  *
@@ -15,9 +20,16 @@ public class LecturerPeopleProfile extends javax.swing.JFrame {
     /**
      * Creates new form LecturerPeopleProfile
      */
-    public LecturerPeopleProfile() {
+    private final SessionManager sessionManager = SessionManager.getInstance();
+    User user = sessionManager.getCurrentUser();
+    private String stdID;
+    
+    public LecturerPeopleProfile(String id) {
+        this.stdID = id;
         initComponents();
         setIconImage();
+        showStdDetails();
+        showAssmntDetails();
     }
 
     /**
@@ -34,33 +46,33 @@ public class LecturerPeopleProfile extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel27 = new javax.swing.JLabel();
+        genderLabel = new javax.swing.JLabel();
+        icpassLabel = new javax.swing.JLabel();
+        idLabel = new javax.swing.JLabel();
+        nameLabel = new javax.swing.JLabel();
+        emailLabel = new javax.swing.JLabel();
+        nationLabel = new javax.swing.JLabel();
+        dobLabel = new javax.swing.JLabel();
+        hpLabel = new javax.swing.JLabel();
+        addressLabel = new javax.swing.JLabel();
+        overallStatus = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel28 = new javax.swing.JLabel();
+        dueDateLabel = new javax.swing.JLabel();
+        submissionStatus = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        jLabel29 = new javax.swing.JLabel();
-        jLabel30 = new javax.swing.JLabel();
-        jLabel31 = new javax.swing.JLabel();
+        presentStatus = new javax.swing.JLabel();
+        spvPresentStatus = new javax.swing.JLabel();
+        secMarkPresentStatus = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
-        jLabel32 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        assmntStatus = new javax.swing.JLabel();
+        backBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Lecturer People Profile");
         setMaximumSize(new java.awt.Dimension(900, 500));
         setResizable(false);
@@ -72,7 +84,7 @@ public class LecturerPeopleProfile extends javax.swing.JFrame {
         jLabel7.setMaximumSize(new java.awt.Dimension(275, 47));
         jLabel7.setMinimumSize(new java.awt.Dimension(275, 47));
         jLabel7.setPreferredSize(new java.awt.Dimension(275, 47));
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 275, 47));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 320, 47));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setMaximumSize(new java.awt.Dimension(880, 370));
@@ -83,56 +95,57 @@ public class LecturerPeopleProfile extends javax.swing.JFrame {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/profile1_icon.png"))); // NOI18N
 
-        jLabel3.setFont(new java.awt.Font("SansSerif", 1, 16)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(2, 50, 99));
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Gender");
+        genderLabel.setFont(new java.awt.Font("SansSerif", 1, 16)); // NOI18N
+        genderLabel.setForeground(new java.awt.Color(2, 50, 99));
+        genderLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        genderLabel.setText("Gender");
 
-        jLabel4.setFont(new java.awt.Font("SansSerif", 1, 16)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(2, 50, 99));
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("IC/Passport");
+        icpassLabel.setFont(new java.awt.Font("SansSerif", 1, 16)); // NOI18N
+        icpassLabel.setForeground(new java.awt.Color(2, 50, 99));
+        icpassLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        icpassLabel.setText("IC/Passport");
 
-        jLabel5.setFont(new java.awt.Font("SansSerif", 1, 16)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(2, 50, 99));
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("ID");
+        idLabel.setFont(new java.awt.Font("SansSerif", 1, 16)); // NOI18N
+        idLabel.setForeground(new java.awt.Color(2, 50, 99));
+        idLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        idLabel.setText("ID");
 
-        jLabel6.setFont(new java.awt.Font("SansSerif", 1, 16)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(2, 50, 99));
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Name");
+        nameLabel.setFont(new java.awt.Font("SansSerif", 1, 16)); // NOI18N
+        nameLabel.setForeground(new java.awt.Color(2, 50, 99));
+        nameLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        nameLabel.setText("Name");
 
-        jLabel8.setFont(new java.awt.Font("SansSerif", 1, 16)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(2, 50, 99));
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("Email");
+        emailLabel.setFont(new java.awt.Font("SansSerif", 1, 16)); // NOI18N
+        emailLabel.setForeground(new java.awt.Color(2, 50, 99));
+        emailLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        emailLabel.setText("Email");
 
-        jLabel9.setFont(new java.awt.Font("SansSerif", 1, 16)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(2, 50, 99));
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setText("Nationality");
+        nationLabel.setFont(new java.awt.Font("SansSerif", 1, 16)); // NOI18N
+        nationLabel.setForeground(new java.awt.Color(2, 50, 99));
+        nationLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        nationLabel.setText("Nationality");
 
-        jLabel10.setFont(new java.awt.Font("SansSerif", 1, 16)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(2, 50, 99));
-        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel10.setText("DOB");
+        dobLabel.setFont(new java.awt.Font("SansSerif", 1, 16)); // NOI18N
+        dobLabel.setForeground(new java.awt.Color(2, 50, 99));
+        dobLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        dobLabel.setText("DOB");
 
-        jLabel11.setFont(new java.awt.Font("SansSerif", 1, 16)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(2, 50, 99));
-        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel11.setText("Phone no.");
+        hpLabel.setFont(new java.awt.Font("SansSerif", 1, 16)); // NOI18N
+        hpLabel.setForeground(new java.awt.Color(2, 50, 99));
+        hpLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        hpLabel.setText("Phone no.");
 
-        jLabel12.setFont(new java.awt.Font("SansSerif", 1, 16)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(2, 50, 99));
-        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel12.setText("Address");
+        addressLabel.setFont(new java.awt.Font("SansSerif", 1, 16)); // NOI18N
+        addressLabel.setForeground(new java.awt.Color(2, 50, 99));
+        addressLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        addressLabel.setText("Address");
 
-        jLabel27.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel27.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
-        jLabel27.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel27.setText("Status");
-        jLabel27.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        overallStatus.setBackground(new java.awt.Color(255, 255, 255));
+        overallStatus.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        overallStatus.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        overallStatus.setText("Status");
+        overallStatus.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        overallStatus.setOpaque(true);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -141,21 +154,21 @@ public class LecturerPeopleProfile extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(122, Short.MAX_VALUE)
                 .addComponent(jLabel2)
-                .addGap(30, 30, 30)
-                .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36))
+                .addGap(18, 18, 18)
+                .addComponent(overallStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(17, 17, 17))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(genderLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(idLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(nationLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(icpassLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(emailLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(hpLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(dobLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(addressLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(nameLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -167,25 +180,25 @@ public class LecturerPeopleProfile extends javax.swing.JFrame {
                         .addComponent(jLabel2))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(44, 44, 44)
-                        .addComponent(jLabel27)))
+                        .addComponent(overallStatus)))
                 .addGap(18, 18, Short.MAX_VALUE)
-                .addComponent(jLabel5)
+                .addComponent(idLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel6)
+                .addComponent(nameLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
+                .addComponent(icpassLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
+                .addComponent(genderLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel9)
+                .addComponent(nationLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel8)
+                .addComponent(emailLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel11)
+                .addComponent(hpLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel10)
+                .addComponent(dobLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel12)
+                .addComponent(addressLabel)
                 .addContainerGap(64, Short.MAX_VALUE))
         );
 
@@ -205,20 +218,21 @@ public class LecturerPeopleProfile extends javax.swing.JFrame {
         jLabel14.setMinimumSize(new java.awt.Dimension(220, 21));
         jLabel14.setPreferredSize(new java.awt.Dimension(220, 21));
 
-        jLabel15.setFont(new java.awt.Font("SansSerif", 2, 14)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(2, 50, 99));
-        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel15.setText("Date");
-        jLabel15.setMaximumSize(new java.awt.Dimension(180, 55));
-        jLabel15.setMinimumSize(new java.awt.Dimension(180, 55));
-        jLabel15.setPreferredSize(new java.awt.Dimension(180, 55));
+        dueDateLabel.setFont(new java.awt.Font("SansSerif", 2, 24)); // NOI18N
+        dueDateLabel.setForeground(new java.awt.Color(2, 50, 99));
+        dueDateLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        dueDateLabel.setText("Date");
+        dueDateLabel.setMaximumSize(new java.awt.Dimension(180, 55));
+        dueDateLabel.setMinimumSize(new java.awt.Dimension(180, 55));
+        dueDateLabel.setPreferredSize(new java.awt.Dimension(180, 55));
 
-        jLabel28.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel28.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
-        jLabel28.setForeground(new java.awt.Color(2, 50, 99));
-        jLabel28.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel28.setText("Status");
-        jLabel28.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        submissionStatus.setBackground(new java.awt.Color(255, 255, 255));
+        submissionStatus.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        submissionStatus.setForeground(new java.awt.Color(2, 50, 99));
+        submissionStatus.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        submissionStatus.setText("Status");
+        submissionStatus.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        submissionStatus.setOpaque(true);
 
         jPanel4.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
@@ -246,25 +260,28 @@ public class LecturerPeopleProfile extends javax.swing.JFrame {
         jLabel18.setMinimumSize(new java.awt.Dimension(220, 21));
         jLabel18.setPreferredSize(new java.awt.Dimension(220, 21));
 
-        jLabel29.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel29.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
-        jLabel29.setForeground(new java.awt.Color(2, 50, 99));
-        jLabel29.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel29.setText("Status");
-        jLabel29.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        presentStatus.setBackground(new java.awt.Color(255, 255, 255));
+        presentStatus.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        presentStatus.setForeground(new java.awt.Color(2, 50, 99));
+        presentStatus.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        presentStatus.setText("Status");
+        presentStatus.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        presentStatus.setOpaque(true);
 
-        jLabel30.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel30.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
-        jLabel30.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel30.setText("Status");
-        jLabel30.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        spvPresentStatus.setBackground(new java.awt.Color(255, 255, 255));
+        spvPresentStatus.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        spvPresentStatus.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        spvPresentStatus.setText("Status");
+        spvPresentStatus.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        spvPresentStatus.setOpaque(true);
 
-        jLabel31.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel31.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
-        jLabel31.setForeground(new java.awt.Color(2, 50, 99));
-        jLabel31.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel31.setText("Status");
-        jLabel31.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        secMarkPresentStatus.setBackground(new java.awt.Color(255, 255, 255));
+        secMarkPresentStatus.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        secMarkPresentStatus.setForeground(new java.awt.Color(2, 50, 99));
+        secMarkPresentStatus.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        secMarkPresentStatus.setText("Status");
+        secMarkPresentStatus.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        secMarkPresentStatus.setOpaque(true);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -273,25 +290,26 @@ public class LecturerPeopleProfile extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(82, 82, 82)
-                        .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
-                        .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(79, 79, 79)))))
+                        .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(74, 74, 74)
+                        .addComponent(presentStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
+                        .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(15, 15, 15))
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(92, 92, 92))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addComponent(spvPresentStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(86, 86, 86))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addComponent(secMarkPresentStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(88, 88, 88))))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -301,7 +319,7 @@ public class LecturerPeopleProfile extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel30))
+                        .addComponent(spvPresentStatus))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(2, 2, 2)
                         .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -311,9 +329,9 @@ public class LecturerPeopleProfile extends javax.swing.JFrame {
                                 .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
-                                .addComponent(jLabel29)))))
+                                .addComponent(presentStatus)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel31)
+                .addComponent(secMarkPresentStatus)
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
@@ -325,11 +343,12 @@ public class LecturerPeopleProfile extends javax.swing.JFrame {
         jLabel19.setMinimumSize(new java.awt.Dimension(220, 21));
         jLabel19.setPreferredSize(new java.awt.Dimension(220, 21));
 
-        jLabel32.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel32.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
-        jLabel32.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel32.setText("Status");
-        jLabel32.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        assmntStatus.setBackground(new java.awt.Color(255, 255, 255));
+        assmntStatus.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        assmntStatus.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        assmntStatus.setText("Status");
+        assmntStatus.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        assmntStatus.setOpaque(true);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -343,23 +362,20 @@ public class LecturerPeopleProfile extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGap(32, 32, 32)
-                                        .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGap(112, 112, 112)
-                                        .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(32, 32, 32)
+                                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(23, 23, 23)
-                                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(dueDateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(125, 125, 125)
+                                .addComponent(submissionStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(162, 162, 162)
                         .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(246, 246, 246)
-                        .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(238, 238, 238)
+                        .addComponent(assmntStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -374,14 +390,14 @@ public class LecturerPeopleProfile extends javax.swing.JFrame {
                     .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel28))
+                    .addComponent(dueDateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(submissionStatus))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel32)
+                .addComponent(assmntStatus)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -402,17 +418,17 @@ public class LecturerPeopleProfile extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 880, 420));
 
-        jButton2.setBackground(new java.awt.Color(76, 127, 174));
-        jButton2.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Back");
-        jButton2.setPreferredSize(new java.awt.Dimension(60, 25));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        backBtn.setBackground(new java.awt.Color(76, 127, 174));
+        backBtn.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
+        backBtn.setForeground(new java.awt.Color(255, 255, 255));
+        backBtn.setText("Back");
+        backBtn.setPreferredSize(new java.awt.Dimension(60, 25));
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                backBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 20, 70, 30));
+        getContentPane().add(backBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 20, 70, 30));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main_background.png"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -425,9 +441,9 @@ public class LecturerPeopleProfile extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_backBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -459,44 +475,157 @@ public class LecturerPeopleProfile extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LecturerPeopleProfile().setVisible(true);
+                new LecturerPeopleProfile("id").setVisible(true);
             }
         });
     }
     private void setIconImage() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Sysco_icon_with_background.png")));
     }
+    
+    private void showStdDetails(){
+        List<String> data = FileHandler.readFile("user.txt");
+        
+        for (String line : data){
+            String[] list = line.split(";");
+            if (list[0].equals(stdID)){
+                idLabel.setText(stdID);
+                nameLabel.setText(list[1]);
+                icpassLabel.setText(list[6]);
+                genderLabel.setText(list[2]);
+                nationLabel.setText(list[7]);
+                emailLabel.setText(list[8]);
+                hpLabel.setText(list[3]);
+                dobLabel.setText(list[4]);
+                addressLabel.setText(list[5]);
+            }
+        }
+    }
+    
+    private void setStatusColor(Component component, String status) {
+        switch (status) {
+            case "pending" -> component.setBackground(new java.awt.Color(255, 255, 0));
+            case "scheduled" -> component.setBackground(new java.awt.Color(255, 255, 0));
+            case "rejected" -> component.setBackground(new java.awt.Color(255, 51, 51)); 
+            case "completed" -> component.setBackground(new java.awt.Color(0, 204, 0));
+            case "approved" -> component.setBackground(new java.awt.Color(0, 204, 0));
+            case "submitted" -> component.setBackground(new java.awt.Color(51, 153, 255));
+            default -> {
+            }
+        }
+        // Handle other cases or provide a default color
+            }
+
+    private void showAssmntDetails() {
+        List<String> assmntData = FileHandler.readFile("student_assessment.txt");
+        List<String> presentData = FileHandler.readFile("presentation_request.txt");
+        List<String> presentDoneData = FileHandler.readFile("presentation_confirmation.txt");
+
+        for (String line : assmntData) {
+            String[] list = line.split(";");
+            if (list[1].equals(stdID)) {
+                dueDateLabel.setText(list[3]);
+                submissionStatus.setText(list[6]);
+
+                boolean markedCompleted = false;
+                for (String linea : presentDoneData) {
+                    String[] lista = linea.split(";");
+                    if ("marked".equals(list[6]) && "completed".equals(lista[5])) {
+                        overallStatus.setText("completed");
+                        assmntStatus.setText("completed");
+                        setStatusColor(overallStatus, "completed");
+                        setStatusColor(assmntStatus, "completed");
+                        setStatusColor(submissionStatus, "completed");
+                        markedCompleted = true;
+                        break; // Exit loop early if condition is met
+                    }
+                }
+
+                if (!markedCompleted) {
+                    switch (list[6]) {
+                        case "pending" -> {
+                            assmntStatus.setText("pending");
+                            overallStatus.setText("in progress");
+                            setStatusColor(assmntStatus, "pending");
+                            setStatusColor(overallStatus, "pending");
+                            setStatusColor(submissionStatus, "pending");
+                        }
+                        case "submitted" -> {
+                            assmntStatus.setText("pending");
+                            overallStatus.setText("in progress");
+                            setStatusColor(assmntStatus, "pending");
+                            setStatusColor(overallStatus, "pending");
+                            setStatusColor(submissionStatus, "submitted");
+                        }
+                        case "marked" -> {
+                            assmntStatus.setText("pending");
+                            overallStatus.setText("in progress");
+                            setStatusColor(assmntStatus, "pending");
+                            setStatusColor(overallStatus, "pending");
+                            setStatusColor(submissionStatus, "completed");
+                        }
+                    }
+                }
+            }
+        }
+
+        for (String line : presentData) {
+            String[] list = line.split(";");
+            if (list[1].equals(stdID)) {
+                spvPresentStatus.setText(list[4]);
+                secMarkPresentStatus.setText(list[5]);
+                presentStatus.setText(list[6]);
+
+                boolean statusSet = false;
+                for (String linea : presentDoneData) {
+                    String[] lista = linea.split(";");
+                    if ("approved".equals(list[6]) || "completed".equals(lista[5])) {
+                        presentStatus.setText(lista[5]);
+                        setStatusColor(presentStatus, lista[5]);
+                        statusSet = true;
+                        break;
+                    }
+                }
+
+                if (!statusSet) {
+                    setStatusColor(presentStatus, list[6]);
+                }
+                setStatusColor(spvPresentStatus, list[4]);
+                setStatusColor(secMarkPresentStatus, list[5]);
+            }
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel addressLabel;
+    private javax.swing.JLabel assmntStatus;
+    private javax.swing.JButton backBtn;
+    private javax.swing.JLabel dobLabel;
+    private javax.swing.JLabel dueDateLabel;
+    private javax.swing.JLabel emailLabel;
+    private javax.swing.JLabel genderLabel;
+    private javax.swing.JLabel hpLabel;
+    private javax.swing.JLabel icpassLabel;
+    private javax.swing.JLabel idLabel;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel30;
-    private javax.swing.JLabel jLabel31;
-    private javax.swing.JLabel jLabel32;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JLabel nameLabel;
+    private javax.swing.JLabel nationLabel;
+    private javax.swing.JLabel overallStatus;
+    private javax.swing.JLabel presentStatus;
+    private javax.swing.JLabel secMarkPresentStatus;
+    private javax.swing.JLabel spvPresentStatus;
+    private javax.swing.JLabel submissionStatus;
     // End of variables declaration//GEN-END:variables
 }

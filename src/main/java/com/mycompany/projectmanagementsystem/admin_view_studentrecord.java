@@ -4,16 +4,19 @@
  */
 package com.mycompany.projectmanagementsystem;
 
-import static com.sun.source.util.Trees.instance;
 import java.awt.Color;
 import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import javax.swing.border.LineBorder;
 
 public class admin_view_studentrecord extends javax.swing.JFrame {
 String[] studentDetails;
 ArrayList<String> list;
+ArrayList<String> studentlist;
+
+
 admin_view_studentrecord studentRecordInstace;
     public admin_view_studentrecord() {
         initComponents();
@@ -41,6 +44,11 @@ admin_view_studentrecord studentRecordInstace;
         //student_intake.setText("**********");
         student_intake.setText(list.get(11));
         return list;
+        student_intake.setText(list.get(11));
+        
+        studentlist = list;
+        return studentlist;
+        
 }
     
     @SuppressWarnings("unchecked")
@@ -60,6 +68,7 @@ admin_view_studentrecord studentRecordInstace;
         student_nation = new javax.swing.JTextField();
         student_nation_title = new javax.swing.JLabel();
         student_password_title = new javax.swing.JLabel();
+        student_intake_title = new javax.swing.JLabel();
         student_intake = new javax.swing.JTextField();
         student_nric = new javax.swing.JTextField();
         student_email = new javax.swing.JTextField();
@@ -71,7 +80,7 @@ admin_view_studentrecord studentRecordInstace;
         view_student_background = new javax.swing.JLabel();
         view_student_border = new javax.swing.JLabel();
         admin_viewstudent_back = new javax.swing.JButton();
-        admin_viewstudent_back1 = new javax.swing.JButton();
+        admin_make_changes = new javax.swing.JButton();
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -84,7 +93,7 @@ admin_view_studentrecord studentRecordInstace;
         student_name_title.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         student_name_title.setForeground(new java.awt.Color(2, 50, 99));
         student_name_title.setText("Full Name");
-        getContentPane().add(student_name_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, 90, -1));
+        getContentPane().add(student_name_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 140, 90, -1));
 
         student_name.setEditable(false);
         student_name.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
@@ -94,7 +103,7 @@ admin_view_studentrecord studentRecordInstace;
                 student_nameActionPerformed(evt);
             }
         });
-        getContentPane().add(student_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 60, 190, 50));
+        getContentPane().add(student_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, 190, 50));
 
         student_tpno.setEditable(false);
         student_tpno.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
@@ -103,12 +112,12 @@ admin_view_studentrecord studentRecordInstace;
                 student_tpnoActionPerformed(evt);
             }
         });
-        getContentPane().add(student_tpno, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 130, 190, 50));
+        getContentPane().add(student_tpno, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 60, 190, 50));
 
         student_tpno_title.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         student_tpno_title.setForeground(new java.awt.Color(2, 50, 99));
         student_tpno_title.setText("TP Number");
-        getContentPane().add(student_tpno_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 140, -1, -1));
+        getContentPane().add(student_tpno_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, -1, -1));
 
         student_dob.setEditable(false);
         student_dob.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
@@ -117,17 +126,17 @@ admin_view_studentrecord studentRecordInstace;
                 student_dobActionPerformed(evt);
             }
         });
-        getContentPane().add(student_dob, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, 190, 50));
+        getContentPane().add(student_dob, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 200, 190, 50));
 
         student_dob_title.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         student_dob_title.setForeground(new java.awt.Color(2, 50, 99));
         student_dob_title.setText("Date Of Birth\n");
-        getContentPane().add(student_dob_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, 110, 40));
+        getContentPane().add(student_dob_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, 110, 40));
 
         student_address_title.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         student_address_title.setForeground(new java.awt.Color(2, 50, 99));
         student_address_title.setText("Address");
-        getContentPane().add(student_address_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, -1, -1));
+        getContentPane().add(student_address_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 350, -1, -1));
 
         student_address.setEditable(false);
         student_address.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
@@ -136,7 +145,7 @@ admin_view_studentrecord studentRecordInstace;
                 student_addressActionPerformed(evt);
             }
         });
-        getContentPane().add(student_address, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 200, 190, 50));
+        getContentPane().add(student_address, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 340, 190, 50));
 
         student_contact_title.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         student_contact_title.setForeground(new java.awt.Color(2, 50, 99));
@@ -171,6 +180,10 @@ admin_view_studentrecord studentRecordInstace;
         student_password_title.setForeground(new java.awt.Color(2, 50, 99));
         student_password_title.setText("Intake Code");
         getContentPane().add(student_password_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 350, -1, -1));
+        student_intake_title.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        student_intake_title.setForeground(new java.awt.Color(2, 50, 99));
+        student_intake_title.setText("Intake Code");
+        getContentPane().add(student_intake_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 70, -1, -1));
 
         student_intake.setEditable(false);
         student_intake.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
@@ -180,6 +193,7 @@ admin_view_studentrecord studentRecordInstace;
             }
         });
         getContentPane().add(student_intake, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 340, 190, 50));
+        getContentPane().add(student_intake, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 60, 190, 50));
 
         student_nric.setEditable(false);
         student_nric.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
@@ -212,7 +226,7 @@ admin_view_studentrecord studentRecordInstace;
         student_gender_title.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         student_gender_title.setForeground(new java.awt.Color(2, 50, 99));
         student_gender_title.setText("Gender");
-        getContentPane().add(student_gender_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 70, -1, -1));
+        getContentPane().add(student_gender_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 140, -1, -1));
 
         student_gender.setEditable(false);
         student_gender.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
@@ -222,7 +236,7 @@ admin_view_studentrecord studentRecordInstace;
                 student_genderActionPerformed(evt);
             }
         });
-        getContentPane().add(student_gender, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 60, 190, 50));
+        getContentPane().add(student_gender, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 130, 190, 50));
 
         student_image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/student_image.png"))); // NOI18N
         getContentPane().add(student_image, new org.netbeans.lib.awtextra.AbsoluteConstraints(-70, 320, -1, -1));
@@ -254,16 +268,16 @@ admin_view_studentrecord studentRecordInstace;
         });
         getContentPane().add(admin_viewstudent_back, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 440, -1, -1));
 
-        admin_viewstudent_back1.setBackground(new java.awt.Color(76, 127, 174));
-        admin_viewstudent_back1.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
-        admin_viewstudent_back1.setForeground(new java.awt.Color(2, 50, 99));
-        admin_viewstudent_back1.setText("MAKE CHANGES");
-        admin_viewstudent_back1.addActionListener(new java.awt.event.ActionListener() {
+        admin_make_changes.setBackground(new java.awt.Color(76, 127, 174));
+        admin_make_changes.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
+        admin_make_changes.setForeground(new java.awt.Color(2, 50, 99));
+        admin_make_changes.setText("MAKE CHANGES");
+        admin_make_changes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                admin_viewstudent_back1ActionPerformed(evt);
+                admin_make_changesActionPerformed(evt);
             }
         });
-        getContentPane().add(admin_viewstudent_back1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 440, -1, -1));
+        getContentPane().add(admin_make_changes, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 440, -1, -1));
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main_background.png"))); // NOI18N
         background.setMaximumSize(new java.awt.Dimension(700, 500));
@@ -313,6 +327,7 @@ admin_view_studentrecord studentRecordInstace;
     }//GEN-LAST:event_student_emailActionPerformed
 
     private void admin_viewstudent_backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_admin_viewstudent_backActionPerformed
+        
         dispose();
     }//GEN-LAST:event_admin_viewstudent_backActionPerformed
 
@@ -322,6 +337,12 @@ admin_view_studentrecord studentRecordInstace;
         modifyStudentDetails.show();
         hide();
     }//GEN-LAST:event_admin_viewstudent_back1ActionPerformed
+    private void admin_make_changesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_admin_make_changesActionPerformed
+        admin_modify_studentrecord modifyStudentDetails = new admin_modify_studentrecord();
+        modifyStudentDetails.displayStudentDetails(studentlist);
+        modifyStudentDetails.show();
+        hide();
+    }//GEN-LAST:event_admin_make_changesActionPerformed
 
     private void student_genderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_student_genderActionPerformed
         // TODO add your handling code here:
@@ -340,8 +361,8 @@ admin_view_studentrecord studentRecordInstace;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton admin_make_changes;
     private javax.swing.JButton admin_viewstudent_back;
-    private javax.swing.JButton admin_viewstudent_back1;
     private javax.swing.JLabel background;
     private javax.swing.JTextField student_address;
     private javax.swing.JLabel student_address_title;
@@ -355,6 +376,7 @@ admin_view_studentrecord studentRecordInstace;
     private javax.swing.JLabel student_gender_title;
     private javax.swing.JLabel student_image;
     private javax.swing.JTextField student_intake;
+    private javax.swing.JLabel student_intake_title;
     private javax.swing.JTextField student_name;
     private javax.swing.JLabel student_name_title;
     private javax.swing.JTextField student_nation;

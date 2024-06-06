@@ -1,1 +1,1 @@
-EC0001;TP0001;A0001;sick;https://datatofish.com/export-dataframe-to-csv-in-r/;approve;
+EC0004;TP0001;A0001;aloha;https://contentatscale.ai/ai-content-detector/;pending

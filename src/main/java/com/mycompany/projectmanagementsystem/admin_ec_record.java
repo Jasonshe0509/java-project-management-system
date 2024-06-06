@@ -1,14 +1,208 @@
 package com.mycompany.projectmanagementsystem;
 
+import com.mycompany.projectmanagementsystem.EC.AdminECTableActionEvent;
+import com.mycompany.projectmanagementsystem.EC.ECController;
+import com.mycompany.projectmanagementsystem.GeneralFunction.FileHandler;
+import com.mycompany.projectmanagementsystem.GeneralFunction.URLRenderer;
 import java.awt.Color;
+import java.awt.Desktop;
 import java.awt.Toolkit;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.List;
 import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableModel;
 
 public class admin_ec_record extends javax.swing.JFrame {
+
+    static int numOfPendingEC;
 
     public admin_ec_record() {
         initComponents();
         setIconImage();
+        printPendingECTable();
+        printApprovedECTable();
+        printRejectedECTable();
+        readNumOfPendingEC();
+        
+        ec_pending_list.getColumnModel().getColumn(4).setCellRenderer(new URLRenderer());
+        ec_approved_list.getColumnModel().getColumn(4).setCellRenderer(new URLRenderer());
+        ec_rejected_list.getColumnModel().getColumn(4).setCellRenderer(new URLRenderer());
+
+        // Add mouse listener to handle URL clicks
+        ec_pending_list.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int row = ec_pending_list.rowAtPoint(e.getPoint());
+                int col = ec_pending_list.columnAtPoint(e.getPoint());
+
+                if (col == 4) { // Column index for URL
+                    String url = (String) ec_pending_list.getValueAt(row, col);
+                    if (Desktop.isDesktopSupported()) {
+                        try {
+                            Desktop.getDesktop().browse(new URI(url));
+                        } catch (IOException | URISyntaxException ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+                }
+            }
+        });
+        ec_approved_list.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int row = ec_approved_list.rowAtPoint(e.getPoint());
+                int col = ec_approved_list.columnAtPoint(e.getPoint());
+
+                if (col == 4) { // Column index for URL
+                    String url = (String) ec_approved_list.getValueAt(row, col);
+                    if (Desktop.isDesktopSupported()) {
+                        try {
+                            Desktop.getDesktop().browse(new URI(url));
+                        } catch (IOException | URISyntaxException ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+                }
+            }
+        });
+        
+        ec_rejected_list.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int row = ec_rejected_list.rowAtPoint(e.getPoint());
+                int col = ec_rejected_list.columnAtPoint(e.getPoint());
+
+                if (col == 4) { // Column index for URL
+                    String url = (String) ec_rejected_list.getValueAt(row, col);
+                    if (Desktop.isDesktopSupported()) {
+                        try {
+                            Desktop.getDesktop().browse(new URI(url));
+                        } catch (IOException | URISyntaxException ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+                }
+            }
+        });
+
+        AdminECTableActionPanel pendingECPanel = new AdminECTableActionPanel();
+        AdminECTableActionEvent pendingECEvent;
+        pendingECEvent = new AdminECTableActionEvent() {
+
+            public void adminViewEC(int row, Object value) {
+                DefaultTableModel model = (DefaultTableModel) ec_pending_list.getModel();
+                int columnIndex = 0;
+                String ECID = (String) model.getValueAt(row, columnIndex);
+                ECController action = new ECController();
+                action.adminViewPendingEC(ECID);
+                
+
+            }
+        };
+
+        ec_pending_list.getColumnModel().getColumn(5).setCellRenderer(pendingECPanel.new rPanelActionRenderer());
+        ec_pending_list.getColumnModel().getColumn(5).setCellEditor(pendingECPanel.new AdminECTableActionCellEditor(pendingECEvent));
+        
+        AdminECTableActionPanel approvedECPanel = new AdminECTableActionPanel();
+        AdminECTableActionEvent approvedECEvent;
+        approvedECEvent = new AdminECTableActionEvent() {
+
+            public void adminViewEC(int row, Object value) {
+                DefaultTableModel model = (DefaultTableModel) ec_approved_list.getModel();
+                int columnIndex = 0;
+                String ECID = (String) model.getValueAt(row, columnIndex);
+                ECController action = new ECController();
+                action.adminViewEC(ECID);
+                
+
+            }
+        };
+
+        ec_approved_list.getColumnModel().getColumn(5).setCellRenderer(approvedECPanel.new rPanelActionRenderer());
+        ec_approved_list.getColumnModel().getColumn(5).setCellEditor(approvedECPanel.new AdminECTableActionCellEditor(approvedECEvent));
+        
+        AdminECTableActionPanel rejectedECPanel = new AdminECTableActionPanel();
+        AdminECTableActionEvent rejectedECEvent;
+        rejectedECEvent = new AdminECTableActionEvent() {
+
+            public void adminViewEC(int row, Object value) {
+                DefaultTableModel model = (DefaultTableModel) ec_rejected_list.getModel();
+                int columnIndex = 0;
+                String ECID = (String) model.getValueAt(row, columnIndex);
+                ECController action = new ECController();
+                action.adminViewEC(ECID);
+                
+
+            }
+        };
+
+        ec_rejected_list.getColumnModel().getColumn(5).setCellRenderer(rejectedECPanel.new rPanelActionRenderer());
+        ec_rejected_list.getColumnModel().getColumn(5).setCellEditor(rejectedECPanel.new AdminECTableActionCellEditor(rejectedECEvent));
+    }
+
+    
+    
+    public static void readNumOfPendingEC() {
+        List<String> data = FileHandler.readFile("ec.txt");
+        int countEC = 0;
+        for (String line : data) {
+            String[] ecLine = line.split(";");
+            if (ecLine[5].equals("pending")) {
+                countEC++;
+            }
+        }
+        numOfPendingEC = countEC;
+        label_num_pending_ec.setText(String.valueOf(numOfPendingEC));
+
+    }
+
+    public static void printPendingECTable() {
+        DefaultTableModel model = (DefaultTableModel) ec_pending_list.getModel();
+        model.setRowCount(0);
+        List<String> data = FileHandler.readFile("ec.txt");
+        for (String line : data) {
+            String[] ecLine = line.split(";");
+
+            if (ecLine[5].equals("pending")) {
+                String[] pendingEC = {ecLine[0], ecLine[1], ecLine[2], ecLine[3], ecLine[4]};
+                model.addRow(pendingEC);
+            }
+        }
+
+    }
+
+    public static void printApprovedECTable() {
+        DefaultTableModel model = (DefaultTableModel) ec_approved_list.getModel();
+        model.setRowCount(0);
+        List<String> data = FileHandler.readFile("ec.txt");
+        for (String line : data) {
+            String[] ecLine = line.split(";");
+
+            if (ecLine[5].equals("approved")) {
+                String[] approvedEC = {ecLine[0], ecLine[1], ecLine[2], ecLine[3], ecLine[4]};
+                model.addRow(approvedEC);
+            }
+        }
+
+    }
+
+    public static void printRejectedECTable() {
+        DefaultTableModel model = (DefaultTableModel) ec_rejected_list.getModel();
+        model.setRowCount(0);
+        List<String> data = FileHandler.readFile("ec.txt");
+        for (String line : data) {
+            String[] ecLine = line.split(";");
+
+            if (ecLine[5].equals("rejected")) {
+                String[] rejectedEC = {ecLine[0], ecLine[1], ecLine[2], ecLine[3], ecLine[4]};
+                model.addRow(rejectedEC);
+            }
+        }
+
     }
 
     @SuppressWarnings("unchecked")
@@ -23,15 +217,16 @@ public class admin_ec_record extends javax.swing.JFrame {
         admin_profile = new javax.swing.JLabel();
         admin_logout = new javax.swing.JLabel();
         admin_logo = new javax.swing.JLabel();
+        label_num_pending_ec = new javax.swing.JLabel();
         ecnum_border = new javax.swing.JLabel();
         ecnum_background = new javax.swing.JLabel();
         ec_record = new javax.swing.JTabbedPane();
         javax.swing.JScrollPane ec_approved_record = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        ec_pending_list = new javax.swing.JTable();
         ec_rejeceted_record = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
+        ec_approved_list = new javax.swing.JTable();
         jScrollPane1 = new javax.swing.JScrollPane();
-        ec_rejected_record = new javax.swing.JTable();
+        ec_rejected_list = new javax.swing.JTable();
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -151,6 +346,11 @@ public class admin_ec_record extends javax.swing.JFrame {
 
         getContentPane().add(admin_header, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
+        label_num_pending_ec.setFont(new java.awt.Font("Bell MT", 1, 100)); // NOI18N
+        label_num_pending_ec.setForeground(new java.awt.Color(2, 50, 99));
+        label_num_pending_ec.setText("jLabel1");
+        getContentPane().add(label_num_pending_ec, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 120, 120, 120));
+
         ecnum_border.setBackground(new Color(2, 50, 99, 0));
         ecnum_border.setBorder(new LineBorder(new Color(192, 192, 192, 90), 15, true));
         ecnum_border.setMaximumSize(new java.awt.Dimension(440, 125));
@@ -172,56 +372,75 @@ public class admin_ec_record extends javax.swing.JFrame {
 
         ec_record.setOpaque(true);
 
-        jTable2.setBackground(new java.awt.Color(192, 192, 192));
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        ec_pending_list.setBackground(new java.awt.Color(192, 192, 192));
+        ec_pending_list.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4", "null"
+                "EC ID", "Student ID", "Assessment ID", "Applied Reason", "EC Document Link", "Action"
             }
-        ));
-        ec_approved_record.setViewportView(jTable2);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        ec_pending_list.setRowHeight(30);
+        ec_approved_record.setViewportView(ec_pending_list);
 
         ec_record.addTab("Pending", ec_approved_record);
 
-        jTable3.setAutoCreateRowSorter(true);
-        jTable3.setBackground(new java.awt.Color(192, 192, 192));
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        ec_approved_list.setAutoCreateRowSorter(true);
+        ec_approved_list.setBackground(new java.awt.Color(192, 192, 192));
+        ec_approved_list.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "EC ID", "Student ID", "Assessment ID", "Applied Reason", "EC Document Link", "Action"
             }
         ));
-        ec_rejeceted_record.setViewportView(jTable3);
+        ec_approved_list.setRowHeight(30);
+        ec_rejeceted_record.setViewportView(ec_approved_list);
 
         ec_record.addTab("Approved", ec_rejeceted_record);
 
-        ec_rejected_record.setModel(new javax.swing.table.DefaultTableModel(
+        ec_rejected_list.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "EC ID", "Student ID", "Assessment ID", "Applied Reason", "EC Document Link", "Action"
             }
-        ));
-        jScrollPane1.setViewportView(ec_rejected_record);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        ec_rejected_list.setRowHeight(30);
+        jScrollPane1.setViewportView(ec_rejected_list);
 
         ec_record.addTab("Rejected", jScrollPane1);
 
         getContentPane().add(ec_record, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, 920, 300));
-        ec_record.getAccessibleContext().setAccessibleName("ec_record");
+        ec_record.getAccessibleContext().setAccessibleName("");
         ec_record.getAccessibleContext().setAccessibleDescription("");
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main_background.png"))); // NOI18N
@@ -246,6 +465,7 @@ public class admin_ec_record extends javax.swing.JFrame {
             }
         });
     }
+
     private void setIconImage() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Sysco_icon_with_background.png")));
     }
@@ -259,14 +479,15 @@ public class admin_ec_record extends javax.swing.JFrame {
     private javax.swing.JLabel admin_report;
     private javax.swing.JLabel admin_student;
     private javax.swing.JLabel background;
-    private javax.swing.JTabbedPane ec_record;
+    private static javax.swing.JTable ec_approved_list;
+    private static javax.swing.JTable ec_pending_list;
+    private static javax.swing.JTabbedPane ec_record;
     private javax.swing.JLabel ec_record_title;
     private javax.swing.JScrollPane ec_rejeceted_record;
-    private javax.swing.JTable ec_rejected_record;
+    private static javax.swing.JTable ec_rejected_list;
     private javax.swing.JLabel ecnum_background;
     private javax.swing.JLabel ecnum_border;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTable3;
+    private static javax.swing.JLabel label_num_pending_ec;
     // End of variables declaration//GEN-END:variables
 }

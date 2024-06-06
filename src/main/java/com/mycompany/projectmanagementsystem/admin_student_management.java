@@ -1,4 +1,4 @@
-package com.mycompany.projectmanagementsystem;
+   package com.mycompany.projectmanagementsystem;
 
 import com.mycompany.projectmanagementsystem.GeneralFunction.FileHandler;
 import com.mycompany.projectmanagementsystem.Intake.IntakeController;
@@ -15,8 +15,10 @@ import javax.swing.table.DefaultTableModel;
 
 public class admin_student_management extends javax.swing.JFrame {
 
+    private static admin_student_management instance;
+    
     admin_view_studentrecord studentRecordInstace;
-    int numOfIntake, numOfStudent;
+    static int numOfIntake, numOfStudent;
 
     public admin_student_management() {
         initComponents();
@@ -36,13 +38,7 @@ public class admin_student_management extends javax.swing.JFrame {
                 String intakeID = (String) model.getValueAt(row, columnIndex);
                 IntakeController action = new IntakeController();
                 boolean result = action.intakeDelete(intakeID);
-                if (result) {
-                    JOptionPane.showMessageDialog(null, "Successfully delete the Intake: " + intakeID);
-                    DefaultTableModel umodel = (DefaultTableModel) intake_table.getModel();
-                    model.setNumRows(0);
-                    printIntakeTable();
-                    readNumOfIntake();
-                }
+                
 
             }
         };
@@ -58,7 +54,10 @@ public class admin_student_management extends javax.swing.JFrame {
                 int columnIndex = 0;
                 String userID = (String) model.getValueAt(row, columnIndex);
                 UserController action = new UserController();
+                
                 action.viewUser(userID);
+                
+               
                 //System.out.print(Arrays.toString(userDetails));
                 //admin_view_studentrecord studentDetails = new admin_view_studentrecord();
                 //admin_view_studentrecord.displayStudentDetails(userDetails);
@@ -88,14 +87,14 @@ public class admin_student_management extends javax.swing.JFrame {
         intake_table.getColumnModel().getColumn(5).setCellEditor(intakeAcitonPanel.new IntakeTableActionCellEditor(intakeEvent));
     }
 
-    private void readNumOfIntake() {
+    public static void readNumOfIntake() {
         List<String> data = FileHandler.readFile("intake.txt");
         Object[] lines = data.toArray();
         numOfIntake = lines.length;
         label_num_intake.setText(String.valueOf(numOfIntake));
     }
 
-    private void readNumOfStudent() {
+    public static void readNumOfStudent() {
         List<String> data1 = FileHandler.readFile("user.txt");
         Object[] lines1 = data1.toArray();
         int countStudent = 0;
@@ -114,7 +113,7 @@ public class admin_student_management extends javax.swing.JFrame {
         label_num_student.setText(String.valueOf(numOfStudent));
     }
 
-    private void printIntakeTable() {
+    public static void printIntakeTable() {
 
         DefaultTableModel model = (DefaultTableModel) intake_table.getModel();
         model.setRowCount(0);
@@ -131,7 +130,7 @@ public class admin_student_management extends javax.swing.JFrame {
         }
     }
 
-    private void printStudentTable() {
+    public static void printStudentTable() {
 
         DefaultTableModel model = (DefaultTableModel) student_table.getModel();
         model.setRowCount(0);
@@ -150,7 +149,9 @@ public class admin_student_management extends javax.swing.JFrame {
 
         }
     }
-
+    
+    
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -396,7 +397,7 @@ public class admin_student_management extends javax.swing.JFrame {
         student_record.addTab("Student", ec_rejeceted_record);
 
         getContentPane().add(student_record, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, 920, 300));
-        student_record.getAccessibleContext().setAccessibleName("\"student_record\"");
+        student_record.getAccessibleContext().setAccessibleName("");
         student_record.getAccessibleContext().setAccessibleDescription("");
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main_background.png"))); // NOI18N
@@ -443,12 +444,12 @@ public class admin_student_management extends javax.swing.JFrame {
     private javax.swing.JLabel admin_student;
     private javax.swing.JLabel background;
     private javax.swing.JScrollPane ec_rejeceted_record;
-    private javax.swing.JTable intake_table;
+    private static javax.swing.JTable intake_table;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel label_num_intake;
-    private javax.swing.JLabel label_num_student;
-    private javax.swing.JTabbedPane student_record;
-    private javax.swing.JTable student_table;
+    private static javax.swing.JLabel label_num_intake;
+    private static javax.swing.JLabel label_num_student;
+    private static javax.swing.JTabbedPane student_record;
+    private static javax.swing.JTable student_table;
     private javax.swing.JLabel totalintake_background;
     private javax.swing.JLabel totalintake_border;
     private javax.swing.JLabel totalstudent_background;

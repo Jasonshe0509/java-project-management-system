@@ -6,7 +6,9 @@ package com.mycompany.projectmanagementsystem.Presentation;
 
 import com.mycompany.projectmanagementsystem.GeneralFunction.FileHandler;
 import com.mycompany.projectmanagementsystem.GeneralFunction.IDGenerator;
+import com.mycompany.projectmanagementsystem.LecturerPresentationReject;
 import com.mycompany.projectmanagementsystem.GeneralFunction.SessionManager;
+import com.mycompany.projectmanagementsystem.Notification.NotificationController;
 import com.mycompany.projectmanagementsystem.User.User;
 import java.util.ArrayList;
 import java.util.List;
@@ -69,11 +71,167 @@ public class PresentationController {
         return true;
     }
 
+    public boolean presentationRqtApprove(String userRole, String stdID, String newStatus) {
+        List<String> data = FileHandler.readFile("presentation_request.txt");
+        ArrayList<String> updatedData = new ArrayList<>();
+        boolean found = false;
+
+        for (String line : data) {
+            String[] list = line.split(";");
+            if (list[1].equals(stdID)) {
+                found = true;
+                switch (userRole) {
+                    case "supervisor" -> {
+                        if ("pending".equals(list[4])) {
+                            if ("accepted".equals(list[5]) || list[5].isEmpty()) { //isEmpty indicates second marker not existed
+                                list[6] = newStatus;
+                                NotificationController.create(stdID, "Your presentation request has been approved. "
+                                        + "Please view your scheduled presentation date & time");
+                            }
+                            list[4] = newStatus;
+                            line = String.join(";", list);
+                        }
+                    }
+                    case "second marker" -> {
+                        if ("pending".equals(list[5])) {
+                            if ("accepted".equals(list[4])) {
+                                list[6] = newStatus;
+                                NotificationController.create(stdID, "Your presentation request has been approved. "
+                                        + "Please view your scheduled presentation date & time");
+                            }
+                            list[5] = newStatus;
+                            line = String.join(";", list);
+                        }
+                    }
+                }
+            }
+            updatedData.add(line);
+        }
+
+        if (!found) {
+            JOptionPane.showMessageDialog(null,
+                    "Request from supervisee(" + stdID + ") cannot be approved because acceptance is not pending.", "Message", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+
+        FileHandler.modifyFileData("presentation_request.txt", updatedData);
+        return true;
+    }
+
+    public boolean writeAccptPresentation(String[] schdPInput) {
+        if (schdPInput != null && schdPInput.length == 3) {
+            String schdPID = IDGenerator.genID("P");
+            String record = schdPID + ";" + schdPInput[0] + ";" + schdPInput[1] + ";" + schdPInput[2] + ";" + "" + ";" + "scheduled";
+
+            FileHandler.writeFile("presentation_confirmation.txt", record);
+            return true;
+        } else {
+            JOptionPane.showMessageDialog(null, "All input cannot be null", "Message", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+
+    }
+
+    public boolean presentationRqtReject(String userRole, String stdID, String assmntID, String newStatus) {
+        List<String> data = FileHandler.readFile("presentation_request.txt");
+        ArrayList<String> updatedData = new ArrayList<>();
+        boolean statusChanged = false; // Track if the status has been changed
+
+        // Count the number of requests for the same student ID and assessment ID
+        int requestCount = 0;
+        for (String line : data) {
+            String[] list = line.split(";");
+            if (list[1].equals(stdID) && list[2].equals(assmntID)) {
+                requestCount++;
+            }
+        }
+
+        // If the request count exceeds 2, show a message and return false
+        if (requestCount > 2) {
+            JOptionPane.showMessageDialog(null,
+                    "Request from supervisee(" + stdID + ") cannot be rejected more than twice. Please approve the request.", "Message", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+
+        for (String line : data) {
+            String[] list = line.split(";");
+            if (list[1].equals(stdID)) {
+                switch (userRole) {
+                    case "supervisor" -> {
+                        if ("pending".equals(list[4])) {
+                            LecturerPresentationReject reject = new LecturerPresentationReject(userRole, stdID);
+                            reject.setVisible(true);
+
+                            if (reject.isNotificationCreated()) {
+                                // Update the status to rejected for supervisor
+                                list[4] = newStatus;
+                                list[6] = newStatus;
+                                statusChanged = true;
+                            } else {
+                                JOptionPane.showMessageDialog(null,
+                                        "Request from supervisee(" + stdID + ") cannot be rejected because available slot is not provided.", "Message", JOptionPane.ERROR_MESSAGE);
+                                return false;
+                            }
+                        } else {
+                            JOptionPane.showMessageDialog(null,
+                                    "Request from supervisee(" + stdID + ") cannot be rejected because acceptance is not pending.", "Message", JOptionPane.ERROR_MESSAGE);
+                            return false;
+                        }
+                    }
+                    case "second marker" -> {
+                        if ("pending".equals(list[5])) {
+                            LecturerPresentationReject reject = new LecturerPresentationReject(userRole, stdID);
+                            reject.setVisible(true); // This will block until the dialog is closed
+
+                            if (reject.isNotificationCreated()) {
+                                // Update the status to rejected for second marker
+                                list[5] = newStatus;
+                                list[6] = newStatus;
+                                statusChanged = true;
+                            } else {
+                                JOptionPane.showMessageDialog(null,
+                                        "Request from supervisee(" + stdID + ") cannot be rejected because available slot is not provided.", "Message", JOptionPane.ERROR_MESSAGE);
+                                return false;
+                            }
+                        } else {
+                            JOptionPane.showMessageDialog(null,
+                                    "Request from supervisee(" + stdID + ") cannot be rejected because acceptance is not pending.", "Message", JOptionPane.ERROR_MESSAGE);
+                            return false;
+                        }
+                    }
+                    default -> {
+                        JOptionPane.showMessageDialog(null,
+                                "Invalid user role: " + userRole, "Message", JOptionPane.ERROR_MESSAGE);
+                        return false;
+                    }
+                }
+                line = String.join(";", list); // Update the line after changing status
+            }
+            updatedData.add(line); // Add line to updated data
+        }
+
+        if (statusChanged) {
+            FileHandler.modifyFileData("presentation_request.txt", updatedData);
+            return true;
+        } else {
+            JOptionPane.showMessageDialog(null,
+                    "Request from supervisee(" + stdID + ") cannot be rejected because it was not found.", "Message", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+    }
+
     public boolean studentRequestPresentation(String[] presentationInput) {
+        String record;
         if (PresentationValidator.validatePresentationInput(presentationInput)) {
             if (PresentationValidator.validatePresentationDateTime(presentationInput[1])) {
                 String requestID = IDGenerator.genID("PR");
-                String record = requestID + ";" + user.getUserID() + ";" + presentationInput[0] + ";" + presentationInput[1] + ";" + "pending" + ";" + "pending" + ";" + "pending";
+                if (presentationInput[2].equals("internship_report") || presentationInput[2].equals("investigation")) {
+                    record = requestID + ";" + user.getUserID() + ";" + presentationInput[0] + ";" + presentationInput[1] + ";" + "pending" + ";" + "" + ";" + "pending";
+
+                } else {
+                    record = requestID + ";" + user.getUserID() + ";" + presentationInput[0] + ";" + presentationInput[1] + ";" + "pending" + ";" + "pending" + ";" + "pending";
+                }
+
                 FileHandler.writeFile("presentation_request.txt", record);
                 return true;
             } else {
@@ -97,5 +255,29 @@ public class PresentationController {
         }
         FileHandler.modifyFileData("presentation_request.txt", array_list);
         return true;
+    }
+
+    public boolean updateStudentPresentationIndex(String stdID, String feedback) {
+        List<String> data = FileHandler.readFile("presentation_confirmation.txt");
+        ArrayList<String> updatedData = new ArrayList<>();
+        boolean isUpdated = false;
+
+        for (String line : data) {
+            String[] list = line.split(";");
+            if (list[1].equals(stdID)) {
+                list[4] = feedback; // Update the feedback at index 5
+                line = String.join(";", list);
+                isUpdated = true;
+            }
+            updatedData.add(line);
+        }
+
+        if (isUpdated) {
+            FileHandler.modifyFileData("presentation_confirmation.txt", updatedData);
+            return true;
+        } else {
+            JOptionPane.showMessageDialog(null, "Student ID not found.", "Message", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
     }
 }
