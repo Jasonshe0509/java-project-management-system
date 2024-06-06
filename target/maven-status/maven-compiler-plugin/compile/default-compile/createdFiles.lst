@@ -136,6 +136,7 @@ com\mycompany\projectmanagementsystem\UserTableAction.class
 com\mycompany\projectmanagementsystem\GeneralPage$1.class
 com\mycompany\projectmanagementsystem\StudentDashboardPage$3.class
 com\mycompany\projectmanagementsystem\admin_ec_record$4.class
+com\mycompany\projectmanagementsystem\admin_student_management$8.class
 com\mycompany\projectmanagementsystem\admin_view_projectmanager_details$4.class
 com\mycompany\projectmanagementsystem\StudentDashboardPage.class
 com\mycompany\projectmanagementsystem\admin_ec_record$14.class
@@ -359,6 +360,7 @@ com\mycompany\projectmanagementsystem\User\User.class
 com\mycompany\projectmanagementsystem\Assessment\StudentAssessmentController.class
 com\mycompany\projectmanagementsystem\StudentECActionPanel$TableActionCellEditor.class
 com\mycompany\projectmanagementsystem\admin_view_studentrecord$12.class
+com\mycompany\projectmanagementsystem\admin_student_management$9.class
 com\mycompany\projectmanagementsystem\PM_profile_page$1.class
 com\mycompany\projectmanagementsystem\admin_register_lecturer$9.class
 com\mycompany\projectmanagementsystem\LecturerReportGrading$1.class
@@ -391,6 +393,7 @@ com\mycompany\projectmanagementsystem\CreateNewMessagePage.class
 com\mycompany\projectmanagementsystem\ForgetPasswordPage$2.class
 com\mycompany\projectmanagementsystem\StudentSubmissionPage$2.class
 com\mycompany\projectmanagementsystem\admin_approval_ec_details$6.class
+com\mycompany\projectmanagementsystem\admin_student_management$10.class
 com\mycompany\projectmanagementsystem\GeneralFunction\IDGenerator.class
 com\mycompany\projectmanagementsystem\admin_assessment_management$1.class
 com\mycompany\projectmanagementsystem\Course\CourseController.class
@@ -481,6 +484,7 @@ com\mycompany\projectmanagementsystem\admin_register_intake$1.class
 com\mycompany\projectmanagementsystem\admin_student$2.class
 com\mycompany\projectmanagementsystem\PM_report_status$2.class
 com\mycompany\projectmanagementsystem\StudentAssessmentDetailPage$5.class
+com\mycompany\projectmanagementsystem\admin_student_management$11.class
 com\mycompany\projectmanagementsystem\LecturerIntakePage$13.class
 com\mycompany\projectmanagementsystem\Notification\NotificationController.class
 com\mycompany\projectmanagementsystem\LecturerMarkedReport$1.class
@@ -501,6 +505,7 @@ com\mycompany\projectmanagementsystem\PM_FYP_page.class
 com\mycompany\projectmanagementsystem\StudentAssessmentDetailPage.class
 com\mycompany\projectmanagementsystem\PM_cp1_page$4.class
 com\mycompany\projectmanagementsystem\StudentPresentationActionPanel.class
+com\mycompany\projectmanagementsystem\admin_student_management$12.class
 com\mycompany\projectmanagementsystem\IntakeTableActionPanel.class
 com\mycompany\projectmanagementsystem\LecturerPeopleProfile.class
 com\mycompany\projectmanagementsystem\admin_register_intake$3.class
