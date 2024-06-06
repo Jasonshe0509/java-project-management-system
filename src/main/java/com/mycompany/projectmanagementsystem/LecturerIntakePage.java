@@ -655,7 +655,7 @@ public class LecturerIntakePage extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Supervisee ID", "Name", "Marker", "Presentation Slot", "Action"
+                "Request ID", "Name", "Marker", "Presentation Slot", "Action"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -1327,7 +1327,6 @@ public class LecturerIntakePage extends javax.swing.JFrame {
         String presentationSlot = listx[3];
         String status = listx[5];
 
-
         if (studentID != null) {
             String studentName = studentNames.get(studentID);
             if (studentName != null) {
@@ -1389,7 +1388,6 @@ public class LecturerIntakePage extends javax.swing.JFrame {
     private void redirectPresentRqt(String id){
         LecturerPresentationRequest request = new LecturerPresentationRequest(id, intakeCode, AssmntType);
         request.setVisible(true);
-        this.setVisible(false);
     }
     
     private void showReport(){

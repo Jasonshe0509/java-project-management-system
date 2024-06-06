@@ -92,14 +92,15 @@ public class PresentationController {
         return true;
     }
 
-    public boolean presentationRqtApprove(String userRole, String stdID, String newStatus) {
+    public boolean presentationRqtApprove(String userRole, String rqtID, String newStatus) {
         List<String> data = FileHandler.readFile("presentation_request.txt");
         ArrayList<String> updatedData = new ArrayList<>();
         boolean found = false;
 
         for (String line : data) {
             String[] list = line.split(";");
-            if (list[1].equals(stdID)) {
+            if (list[0].equals(rqtID)) {
+                String stdID = list[1];
                 found = true;
                 switch (userRole) {
                     case "supervisor" -> {
@@ -131,7 +132,7 @@ public class PresentationController {
 
         if (!found) {
             JOptionPane.showMessageDialog(null,
-                    "Request from supervisee(" + stdID + ") cannot be approved because acceptance is not pending.", "Message", JOptionPane.ERROR_MESSAGE);
+                    "Request (" + rqtID + ") cannot be approved because acceptance is not pending.", "Message", JOptionPane.ERROR_MESSAGE);
             return false;
         }
 
@@ -153,7 +154,7 @@ public class PresentationController {
 
     }
 
-    public boolean presentationRqtReject(String userRole, String stdID, String assmntID, String newStatus) {
+    public boolean presentationRqtReject(String userRole, String rqtID, String stdID, String assmntID, String newStatus) {
         List<String> data = FileHandler.readFile("presentation_request.txt");
         ArrayList<String> updatedData = new ArrayList<>();
         boolean statusChanged = false; // Track if the status has been changed
@@ -176,7 +177,7 @@ public class PresentationController {
 
         for (String line : data) {
             String[] list = line.split(";");
-            if (list[1].equals(stdID)) {
+            if (list[0].equals(rqtID)) {
                 switch (userRole) {
                     case "supervisor" -> {
                         if ("pending".equals(list[4])) {
@@ -190,18 +191,18 @@ public class PresentationController {
                                 statusChanged = true;
                             } else {
                                 JOptionPane.showMessageDialog(null,
-                                        "Request from supervisee(" + stdID + ") cannot be rejected because available slot is not provided.", "Message", JOptionPane.ERROR_MESSAGE);
+                                        "Request (" + rqtID + ") cannot be rejected because available slot is not provided.", "Message", JOptionPane.ERROR_MESSAGE);
                                 return false;
                             }
                         } else {
                             JOptionPane.showMessageDialog(null,
-                                    "Request from supervisee(" + stdID + ") cannot be rejected because acceptance is not pending.", "Message", JOptionPane.ERROR_MESSAGE);
+                                    "Request (" + rqtID + ") cannot be rejected because acceptance is not pending.", "Message", JOptionPane.ERROR_MESSAGE);
                             return false;
                         }
                     }
                     case "second marker" -> {
                         if ("pending".equals(list[5])) {
-                            LecturerPresentationReject reject = new LecturerPresentationReject(userRole, stdID);
+                            LecturerPresentationReject reject = new LecturerPresentationReject(userRole, rqtID);
                             reject.setVisible(true); // This will block until the dialog is closed
 
                             if (reject.isNotificationCreated()) {
@@ -211,12 +212,12 @@ public class PresentationController {
                                 statusChanged = true;
                             } else {
                                 JOptionPane.showMessageDialog(null,
-                                        "Request from supervisee(" + stdID + ") cannot be rejected because available slot is not provided.", "Message", JOptionPane.ERROR_MESSAGE);
+                                        "Request (" + rqtID + ") cannot be rejected because available slot is not provided.", "Message", JOptionPane.ERROR_MESSAGE);
                                 return false;
                             }
                         } else {
                             JOptionPane.showMessageDialog(null,
-                                    "Request from supervisee(" + stdID + ") cannot be rejected because acceptance is not pending.", "Message", JOptionPane.ERROR_MESSAGE);
+                                    "Request (" + rqtID + ") cannot be rejected because acceptance is not pending.", "Message", JOptionPane.ERROR_MESSAGE);
                             return false;
                         }
                     }
@@ -236,7 +237,7 @@ public class PresentationController {
             return true;
         } else {
             JOptionPane.showMessageDialog(null,
-                    "Request from supervisee(" + stdID + ") cannot be rejected because it was not found.", "Message", JOptionPane.ERROR_MESSAGE);
+                    "Request (" + rqtID + ") cannot be rejected because it was not found.", "Message", JOptionPane.ERROR_MESSAGE);
             return false;
         }
     }
