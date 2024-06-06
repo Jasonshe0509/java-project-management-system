@@ -409,8 +409,10 @@ public class LecturerSummaryReport extends javax.swing.JFrame {
                 // Total Submission
                 for (String line : datax) {
                     String[] StdAssmntList = line.split(";");
-                    if (assmntID.equals(StdAssmntList[2]) && "submitted".equals(StdAssmntList[6])) {
-                        stdSubCount++;
+                    if (assmntID.equals(StdAssmntList[2])) {
+                        if("submitted".equals(StdAssmntList[6]) || "marked".equals(StdAssmntList[6])){
+                            stdSubCount++;                        
+                        }
                     }
                 }
 

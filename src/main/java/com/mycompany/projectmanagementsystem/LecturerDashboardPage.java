@@ -37,6 +37,7 @@ public class LecturerDashboardPage extends javax.swing.JFrame {
     User user = sessionManager.getCurrentUser();
     private JPanel AssessmentPanel;
     private JButton AssessmentViewBtn;
+    private JLabel AssessmentStatusLabel;
     private JPanel AssessmentBackgroundPanel;
     private JLabel bg;
     private JLabel AssessmentNameLabel;
@@ -404,7 +405,7 @@ public class LecturerDashboardPage extends javax.swing.JFrame {
             String[] AssmntList = line.split(";");
             if (user.getUserID().equals(AssmntList[4])) {
                 AssmntID = AssmntList[0];
-                intakeCode = AssmntList[2];
+                intakeCode = AssmntList[2];               
                 AssessmentPanel = new JPanel();
                 AssessmentPanel.setBackground(Color.WHITE);
                 AssessmentPanel.setPreferredSize(new java.awt.Dimension(panelWidth, panelHeight));
@@ -461,7 +462,24 @@ public class LecturerDashboardPage extends javax.swing.JFrame {
                 IntakeCodeLabel.setFont(new java.awt.Font("Bell MT", 1, 14)); 
                 IntakeCodeLabel.setForeground(new java.awt.Color(2, 50, 99));
                 IntakeCodeLabel.setBounds(10, 200, 182, 20);
-                IntakeCodeLabel.setText(AssmntList[2]);
+                IntakeCodeLabel.setText(intakeCode);
+                
+                AssessmentStatusLabel = new javax.swing.JLabel();
+                AssessmentStatusLabel.setBackground(new java.awt.Color(255, 255, 255));
+                AssessmentStatusLabel.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+                AssessmentStatusLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+                AssessmentStatusLabel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+                AssessmentStatusLabel.setOpaque(true);
+                AssessmentStatusLabel.setBounds(210, 160, 80, 25);
+                AssessmentStatusLabel.setText(AssmntList[7]);
+                switch(AssmntList[7]){
+                    case "incomplete" -> {
+                            AssessmentStatusLabel.setBackground(new java.awt.Color(255, 255, 0));                            
+                        }
+                        case "completed" -> {
+                            AssessmentStatusLabel.setBackground(new java.awt.Color(102, 255, 102));                            
+                        }
+                }
 
                 AssessmentViewBtn = new javax.swing.JButton();
                 AssessmentViewBtn.setBackground(new java.awt.Color(76, 127, 174));
@@ -479,6 +497,7 @@ public class LecturerDashboardPage extends javax.swing.JFrame {
                 AssessmentPanel.add(AssessmentBackgroundPanel);
                 AssessmentPanel.add(AssessmentNameLabel);
                 AssessmentPanel.add(IntakeCodeLabel);
+                AssessmentPanel.add(AssessmentStatusLabel);
                 AssessmentPanel.add(AssessmentViewBtn);
         
                 contentPanel.add(AssessmentPanel);
@@ -602,6 +621,15 @@ public class LecturerDashboardPage extends javax.swing.JFrame {
                 IntakeCodeLabel.setForeground(new java.awt.Color(2, 50, 99));
                 IntakeCodeLabel.setBounds(10, 200, 182, 20);
                 IntakeCodeLabel.setText(AssmntList[2]);
+                
+                AssessmentStatusLabel = new javax.swing.JLabel();
+                AssessmentStatusLabel.setBackground(new java.awt.Color(255, 255, 255));
+                AssessmentStatusLabel.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+                AssessmentStatusLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+                AssessmentStatusLabel.setText("Status");
+                AssessmentStatusLabel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+                AssessmentStatusLabel.setOpaque(true);
+                AssessmentStatusLabel.setBounds(230, 160, 60, 25);
 
                 AssessmentViewBtn = new javax.swing.JButton();
                 AssessmentViewBtn.setBackground(new java.awt.Color(76, 127, 174));
@@ -619,6 +647,7 @@ public class LecturerDashboardPage extends javax.swing.JFrame {
                 AssessmentPanel.add(AssessmentBackgroundPanel);
                 AssessmentPanel.add(AssessmentNameLabel);
                 AssessmentPanel.add(IntakeCodeLabel);
+                AssessmentPanel.add(AssessmentStatusLabel);
                 AssessmentPanel.add(AssessmentViewBtn);
         
                 contentPanel.add(AssessmentPanel);

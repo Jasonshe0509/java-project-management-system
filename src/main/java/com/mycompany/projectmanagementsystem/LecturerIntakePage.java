@@ -23,8 +23,8 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.Window;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -40,6 +40,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.LayoutStyle;
+import javax.swing.SwingUtilities;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -88,6 +89,7 @@ public class LecturerIntakePage extends javax.swing.JFrame {
         this.AssmntID = AssmntID;
         initComponents();
         setIconImage();
+        checkAssmntStatus();
         showAssmnt(AssmntType);
         IntakeLabel.setText(intakeCode);
         showNoStd();    
@@ -95,6 +97,7 @@ public class LecturerIntakePage extends javax.swing.JFrame {
         showTotalSubmission();
         showPeopleInfo();
         showPresentation();
+        showReportData();
         readPresentationFromFile();
         showCreateDiscussionBtn();
         readFromCommunicationChannel();
@@ -183,6 +186,11 @@ public class LecturerIntakePage extends javax.swing.JFrame {
                                 model.removeRow(row);
                                 JOptionPane.showMessageDialog(null, 
                                         "Presentation from supervisee (" + stdID + ") has been marked done with feedback.");
+                                // Dispose the current intake page
+                                ((Window) SwingUtilities.getWindowAncestor(reportTable)).dispose();
+                                // Display an updated intake page
+                                LecturerIntakePage update = new LecturerIntakePage(AssmntID, intakeCode, AssmntType);
+                                update.setVisible(true);
                             }
                             return; // No need to continue the loop once a match is found
                         } else if (user.getUserID().equals(list[5])) { // Second Marker
@@ -253,9 +261,14 @@ public class LecturerIntakePage extends javax.swing.JFrame {
                             for (String assmntline : assmntdata) {
                                 String[] assmntlist = assmntline.split(";");
                                 if (stdID.equals(assmntlist[1])) {
-                                    boolean result = action.spvReportDone(stdID, "marked", AssmntType);
+                                    boolean result = action.spvReportDone(stdID, AssmntID, "marked", AssmntType);
                                     if (result && !assmntlist[9].isEmpty()) {
                                         model.removeRow(row);
+                                        // Dispose the current intake page
+                                        ((Window) SwingUtilities.getWindowAncestor(reportTable)).dispose();
+                                        // Display an updated intake page
+                                        LecturerIntakePage update = new LecturerIntakePage(AssmntID, intakeCode, AssmntType);
+                                        update.setVisible(true);
                                     }
                                     found = true;
                                     break;
@@ -266,9 +279,14 @@ public class LecturerIntakePage extends javax.swing.JFrame {
                             for (String assmntline : assmntdata) {
                                 String[] assmntlist = assmntline.split(";");
                                 if (stdID.equals(assmntlist[1])) {
-                                    boolean result = action.secMarkReportDone(stdID, "marked", AssmntType);
+                                    boolean result = action.secMarkReportDone(stdID, AssmntID, "marked", AssmntType);
                                     if (result && !assmntlist[10].isEmpty()) {
                                         model.removeRow(row);
+                                        // Dispose the current intake page
+                                        ((Window) SwingUtilities.getWindowAncestor(reportTable)).dispose();
+                                        // Display an updated intake page
+                                        LecturerIntakePage update = new LecturerIntakePage(AssmntID, intakeCode, AssmntType);
+                                        update.setVisible(true);
                                     }
                                     found = true;
                                     break;
@@ -283,6 +301,7 @@ public class LecturerIntakePage extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "No matching record found for the given assessment ID and user ID", "Message", JOptionPane.INFORMATION_MESSAGE);
                 }
             }
+
         };
             reportTable.getColumnModel().getColumn(5).setCellRenderer(rpanel.new rPanelActionRenderer());
             reportTable.getColumnModel().getColumn(5).setCellEditor(rpanel.new TableActionCellEditor(rptevent));
@@ -314,10 +333,10 @@ public class LecturerIntakePage extends javax.swing.JFrame {
         TotalSubmsnLabel = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
-        SchdPresentLabel = new javax.swing.JLabel();
+        CmpltPresentLabel = new javax.swing.JLabel();
         jPanel10 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
-        CmpltPresentLabel = new javax.swing.JLabel();
+        MarkedRptLabel = new javax.swing.JLabel();
         schdPresentationList = new javax.swing.JPanel();
         jLabel20 = new javax.swing.JLabel();
         jPanel14 = new javax.swing.JPanel();
@@ -527,13 +546,13 @@ public class LecturerIntakePage extends javax.swing.JFrame {
 
         jLabel12.setFont(new java.awt.Font("SansSerif", 1, 20)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(2, 50, 99));
-        jLabel12.setText("Scheduled Presentation");
+        jLabel12.setText("Completed Presentation");
 
-        SchdPresentLabel.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
-        SchdPresentLabel.setForeground(new java.awt.Color(2, 50, 99));
-        SchdPresentLabel.setMaximumSize(new java.awt.Dimension(330, 26));
-        SchdPresentLabel.setMinimumSize(new java.awt.Dimension(330, 26));
-        SchdPresentLabel.setPreferredSize(new java.awt.Dimension(330, 26));
+        CmpltPresentLabel.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
+        CmpltPresentLabel.setForeground(new java.awt.Color(2, 50, 99));
+        CmpltPresentLabel.setMaximumSize(new java.awt.Dimension(330, 26));
+        CmpltPresentLabel.setMinimumSize(new java.awt.Dimension(330, 26));
+        CmpltPresentLabel.setPreferredSize(new java.awt.Dimension(330, 26));
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -543,7 +562,7 @@ public class LecturerIntakePage extends javax.swing.JFrame {
                 .addGap(41, 41, 41)
                 .addComponent(jLabel12)
                 .addGap(173, 173, 173)
-                .addComponent(SchdPresentLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(CmpltPresentLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel9Layout.setVerticalGroup(
@@ -552,7 +571,7 @@ public class LecturerIntakePage extends javax.swing.JFrame {
                 .addGap(15, 15, 15)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
-                    .addComponent(SchdPresentLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CmpltPresentLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
@@ -563,13 +582,13 @@ public class LecturerIntakePage extends javax.swing.JFrame {
 
         jLabel13.setFont(new java.awt.Font("SansSerif", 1, 20)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(2, 50, 99));
-        jLabel13.setText("Completed Presentation");
+        jLabel13.setText("Marked Report");
 
-        CmpltPresentLabel.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
-        CmpltPresentLabel.setForeground(new java.awt.Color(2, 50, 99));
-        CmpltPresentLabel.setMaximumSize(new java.awt.Dimension(330, 26));
-        CmpltPresentLabel.setMinimumSize(new java.awt.Dimension(330, 26));
-        CmpltPresentLabel.setPreferredSize(new java.awt.Dimension(330, 26));
+        MarkedRptLabel.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
+        MarkedRptLabel.setForeground(new java.awt.Color(2, 50, 99));
+        MarkedRptLabel.setMaximumSize(new java.awt.Dimension(330, 26));
+        MarkedRptLabel.setMinimumSize(new java.awt.Dimension(330, 26));
+        MarkedRptLabel.setPreferredSize(new java.awt.Dimension(330, 26));
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -578,9 +597,9 @@ public class LecturerIntakePage extends javax.swing.JFrame {
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addGap(41, 41, 41)
                 .addComponent(jLabel13)
-                .addGap(171, 171, 171)
-                .addComponent(CmpltPresentLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(MarkedRptLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(60, 60, 60))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -588,7 +607,7 @@ public class LecturerIntakePage extends javax.swing.JFrame {
                 .addGap(14, 14, 14)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
-                    .addComponent(CmpltPresentLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(MarkedRptLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
@@ -1202,6 +1221,44 @@ public class LecturerIntakePage extends javax.swing.JFrame {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Sysco_icon_with_background.png")));
     }
     
+    private void checkAssmntStatus() {
+        List<String> userData = FileHandler.readFile("user.txt");
+        List<String> reportData = FileHandler.readFile("student_assessment.txt");
+        List<String> assessmentData = FileHandler.readFile("assessment.txt");
+        ArrayList<String> updatedData = new ArrayList<>();
+        int markedRptCount = 0;
+        int stdCount = 0;
+
+        for (String line : userData) {
+            String[] userList = line.split(";");
+            if ("student".equals(userList[10]) && intakeCode.equals(userList[11])) {
+                stdCount++;
+            }
+        }
+
+        for (String line : reportData) {
+            String[] reportList = line.split(";");
+            if (AssmntID.equals(reportList[2])) {
+                if ("marked".equals(reportList[6])) {
+                    markedRptCount++; 
+                }
+            }
+        }
+
+        for (String line : assessmentData) {
+            String[] list = line.split(";");
+            if (AssmntID.equals(list[0])) {
+                if (stdCount == markedRptCount) {
+                    list[7] = "completed";
+                }
+                line = String.join(";", list);
+            }
+            updatedData.add(line);
+        }
+
+        FileHandler.modifyFileData("assessment.txt", updatedData);
+    }
+    
     private void showAssmnt(String assmntType){
         List<String> AssmntData = FileHandler.readFile("assessment.txt");
         
@@ -1260,8 +1317,10 @@ public class LecturerIntakePage extends javax.swing.JFrame {
         
         for (String line : StdAssmntData) {
                 String[] StdAssmntList = line.split(";");
-                if (AssmntID.equals(StdAssmntList[2]) && "submitted".equals(StdAssmntList[6])) {
-                    stdSubCount++;
+                if (AssmntID.equals(StdAssmntList[2])) {
+                    if("submitted".equals(StdAssmntList[6]) || "marked".equals(StdAssmntList[6])){
+                        stdSubCount++;                        
+                    }
                 }                      
             }
             TotalSubmsnLabel.setText(Integer.toString(stdSubCount));
@@ -1269,21 +1328,31 @@ public class LecturerIntakePage extends javax.swing.JFrame {
     
     private void showPresentation(){
         List<String> presentationData = FileHandler.readFile("presentation_confirmation.txt");
-        int schdPresentationCount = 0;
         int cmpltPresentationCount = 0;
         
         for (String line : presentationData) {
                 String[] presentationList = line.split(";");
-                if (AssmntID.equals(presentationList[2])) {
-                    if ("scheduled".equals(presentationList[5])){
-                       schdPresentationCount++; 
-                    } else                   
+                if (AssmntID.equals(presentationList[2])) {                 
                     if ("completed".equals(presentationList[5])) {
                         cmpltPresentationCount++;
                     }
 }
-            SchdPresentLabel.setText(Integer.toString(schdPresentationCount));
             CmpltPresentLabel.setText(Integer.toString(cmpltPresentationCount));
+        }     
+    }
+    
+    private void showReportData(){
+        List<String> reportData = FileHandler.readFile("student_assessment.txt");
+        int markedRptCount = 0;
+        
+        for (String line : reportData) {
+                String[] reportList = line.split(";");
+                if (AssmntID.equals(reportList[2])) {
+                    if ("marked".equals(reportList[6])){
+                       markedRptCount++; 
+                    }
+                }
+            MarkedRptLabel.setText(Integer.toString(markedRptCount));
         }     
     }
     
@@ -1974,9 +2043,9 @@ public class LecturerIntakePage extends javax.swing.JFrame {
     private javax.swing.JLabel IntakeLabel;
     private javax.swing.JLabel LecLogOutLabel;
     private javax.swing.JLabel LecProfileLabel;
+    private javax.swing.JLabel MarkedRptLabel;
     private javax.swing.JLabel NoStdLabel;
     private javax.swing.JLabel NotiLabel;
-    private javax.swing.JLabel SchdPresentLabel;
     private javax.swing.JTable SchdPresentationTable;
     private javax.swing.JLabel SumRptLabel;
     private javax.swing.JLabel TotalSubmsnLabel;
