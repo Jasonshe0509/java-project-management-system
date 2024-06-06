@@ -4,21 +4,76 @@
  */
 package com.mycompany.projectmanagementsystem;
 
+import com.mycompany.projectmanagementsystem.EC.ECApprTableActionEvent;
+import com.mycompany.projectmanagementsystem.GeneralFunction.SessionManager;
+import com.mycompany.projectmanagementsystem.User.User;
 import java.awt.Toolkit;
 import java.awt.Color;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author shuhuilee
  */
 public class PM_ec_approvement extends javax.swing.JFrame {
-
+    private final SessionManager sessionManager = SessionManager.getInstance();
+    User user = sessionManager.getCurrentUser();
     /**
      * Creates new form ProjectManagerPage
      */
     public PM_ec_approvement() {
         initComponents();
         setIconImage();
+        loadDataFromFiles();
+    
+        PM_ECActionPanel panel = new PM_ECActionPanel();
+        ECApprTableActionEvent event = new ECApprTableActionEvent() {
+            @Override
+            public void ecEdit(int row, Object value) {
+                DefaultTableModel model = (DefaultTableModel) pm_ec_approvement_table.getModel();
+                String ecID = (String) model.getValueAt(row, 0);
+                String studentID = (String) model.getValueAt(row, 2);
+                PM_duedate_edit editPage = new PM_duedate_edit(ecID,studentID);
+                editPage.setVisible(true);
+                setVisible(false); 
+            }
+        };
+        pm_ec_approvement_table.getColumnModel().getColumn(5).setCellRenderer(panel.new rPanelActionRenderer());
+        pm_ec_approvement_table.getColumnModel().getColumn(5).setCellEditor(panel.new TableActionCellEditor(event));
     }
+    
+    private void loadDataFromFiles() {
+        DefaultTableModel model = (DefaultTableModel) pm_ec_approvement_table.getModel();
+        String ecFilePath = "ec.txt";
+        String studentAssessmentFilePath = "student_assessment.txt";
+
+        try (BufferedReader ecReader = new BufferedReader(new FileReader(ecFilePath));
+             BufferedReader assessmentReader = new BufferedReader(new FileReader(studentAssessmentFilePath))) {
+
+            String ecLine;
+            String assessmentLine;
+
+            while ((ecLine = ecReader.readLine()) != null && (assessmentLine = assessmentReader.readLine()) != null) {
+                String[] ecList = ecLine.split(";");
+                String[] assessmentList = assessmentLine.split(";");
+
+                // Add EC and student assessment data to the table
+                model.insertRow(0, new Object[]{
+                    ecList[0], 
+                    assessmentList[2], 
+                    ecList[1], 
+                    ecList[5], 
+                    assessmentList[3], 
+                    null});
+            }
+        } catch (IOException ex) {
+            System.out.println("Error reading file: " + ex.getMessage());
+        }
+    }
+
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -52,22 +107,28 @@ public class PM_ec_approvement extends javax.swing.JFrame {
 
         pm_ec_approvement_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "EC ID ", "Student ID", "Student Name", "Student Intake", "Assessment Type", "Status", "Duedate", "Action"
+                "EC ID ", "Assessmnet ID", "Student ID", "Status", "Duedate", "Action"
             }
         ));
+        pm_ec_approvement_table.setRowHeight(30);
         jScrollPane1.setViewportView(pm_ec_approvement_table);
+        if (pm_ec_approvement_table.getColumnModel().getColumnCount() > 0) {
+            pm_ec_approvement_table.getColumnModel().getColumn(5).setMinWidth(140);
+            pm_ec_approvement_table.getColumnModel().getColumn(5).setPreferredWidth(140);
+            pm_ec_approvement_table.getColumnModel().getColumn(5).setMaxWidth(140);
+        }
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 960, 470));
 
@@ -76,6 +137,11 @@ public class PM_ec_approvement extends javax.swing.JFrame {
         jPanel1.setMinimumSize(new java.awt.Dimension(1000, 73));
 
         pm_logo_sysco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Sysco_logo.png"))); // NOI18N
+        pm_logo_sysco.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pm_logo_syscoMouseClicked(evt);
+            }
+        });
 
         pm_ec_approvement.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
         pm_ec_approvement.setForeground(new java.awt.Color(2, 50, 99));
@@ -138,6 +204,13 @@ public class PM_ec_approvement extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void pm_logo_syscoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pm_logo_syscoMouseClicked
+        // TODO add your handling code here:
+        ProjectManagerPage pm = new ProjectManagerPage();
+        pm.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_pm_logo_syscoMouseClicked
 
     /**
      * @param args the command line arguments

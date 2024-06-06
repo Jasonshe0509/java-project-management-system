@@ -4,21 +4,105 @@
  */
 package com.mycompany.projectmanagementsystem;
 
+import com.mycompany.projectmanagementsystem.EC.ECController;
 import java.awt.Toolkit;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author shuhuilee
  */
 public class PM_duedate_edit extends javax.swing.JFrame {
+    private String ecID;
+    private String studentID;
 
     /**
-     * Creates new form PM_duedate_edit1
+     * Creates new form 
      */
-    public PM_duedate_edit() {
+    public PM_duedate_edit(String ecID,String studentID) {
         initComponents();
         setIconImage();
+        loadDueDate();
+        this.ecID = ecID;
+        this.studentID = studentID;
+        
+   
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                int choice = JOptionPane.showConfirmDialog(null, "Are you sure you want to return to PM_ec_approvement?", "Confirmation", JOptionPane.YES_NO_OPTION);
+                if (choice == JOptionPane.YES_OPTION) {
+                    PM_ec_approvement page = new PM_ec_approvement();
+                    page.setVisible(true);
+                    dispose();
+                }
+            }
+        });
     }
+    
+    private void loadDueDate() {
+        try (BufferedReader reader = new BufferedReader(new FileReader("student_assessment.txt"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] fields = line.split(";");
+                if (fields.length >= 4 && fields[1].equals(studentID)) {
+                    long dueDateMillis = Long.parseLong(fields[3]);
+                    Date dueDate = new Date(dueDateMillis);
+                    jDateChooser1.setDate(dueDate);
+                    break;
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "An error occurred while loading the due date.");
+        }
+    }
+
+    private boolean updateStudentAssessmentDuedate(String studentID, Date selectedDate) {
+        List<String> updatedStudentAssessmentData = new ArrayList<>();
+        try (BufferedReader reader = new BufferedReader(new FileReader("student_assessment.txt"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] fields = line.split(";");
+                if (fields.length >= 4 && fields[1].equals(studentID)) {
+                    fields[3] = String.valueOf(selectedDate.getTime());
+                }
+                line = String.join(";", fields);
+                updatedStudentAssessmentData.add(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "An error occurred while updating the due date.");
+            return false;
+        }
+        return updateFileData("student_assessment.txt", updatedStudentAssessmentData);
+    }
+
+    private boolean updateFileData(String fileName, List<String> updatedData) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
+            for (String line : updatedData) {
+                writer.write(line);
+                writer.newLine();
+            }
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "An error occurred while updating the file: " + fileName);
+            return false;
+        }
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -31,13 +115,12 @@ public class PM_duedate_edit extends javax.swing.JFrame {
 
         ec_edit_duedate = new javax.swing.JLabel();
         duedate = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        save_button = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Edit duedate");
-        setMaximumSize(new java.awt.Dimension(500, 300));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -50,22 +133,18 @@ public class PM_duedate_edit extends javax.swing.JFrame {
         duedate.setForeground(new java.awt.Color(2, 50, 99));
         duedate.setText("Duedate:");
         getContentPane().add(duedate, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, -1, 30));
+        getContentPane().add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 110, 180, 30));
 
-        jTextField1.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(2, 50, 99));
-        jTextField1.setToolTipText("e.g. APU2F2402CS");
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 110, 180, -1));
-
-        jButton2.setBackground(new java.awt.Color(76, 127, 174));
-        jButton2.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Save");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        save_button.setBackground(new java.awt.Color(76, 127, 174));
+        save_button.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        save_button.setForeground(new java.awt.Color(255, 255, 255));
+        save_button.setText("Save");
+        save_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                save_buttonActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 210, -1, -1));
+        getContentPane().add(save_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 210, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main_background.png"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -78,9 +157,34 @@ public class PM_duedate_edit extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void save_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_save_buttonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+        Date selectedDate = jDateChooser1.getDate();
+            if (selectedDate == null) {
+                JOptionPane.showMessageDialog(this, "Due date cannot be empty.");
+                return;
+            }
+
+            Calendar currentDate = Calendar.getInstance();
+            currentDate.add(Calendar.DAY_OF_MONTH, 2); // Add 2 days
+            Date minDueDate = currentDate.getTime();
+
+            if (selectedDate.before(minDueDate)) {
+                JOptionPane.showMessageDialog(null, "Due date must be at least 2 days later than today.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            boolean updateSuccess = updateStudentAssessmentDuedate(studentID, selectedDate);
+            if (!updateSuccess) {
+                JOptionPane.showMessageDialog(this, "Failed to update the due date.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            dispose();
+            PM_ec_approvement page = new PM_ec_approvement();
+            page.setVisible(true);
+
+    }//GEN-LAST:event_save_buttonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -113,7 +217,9 @@ public class PM_duedate_edit extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PM_duedate_edit().setVisible(true);
+                String ecID = "";
+                String studentID = "";
+                new PM_duedate_edit(ecID,studentID).setVisible(true);
             }
         });
     }
@@ -124,8 +230,8 @@ public class PM_duedate_edit extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel duedate;
     private javax.swing.JLabel ec_edit_duedate;
-    private javax.swing.JButton jButton2;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton save_button;
     // End of variables declaration//GEN-END:variables
 }

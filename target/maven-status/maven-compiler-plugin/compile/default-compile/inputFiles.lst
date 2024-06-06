@@ -21,6 +21,7 @@
 /Users/shuhuilee/NetBeansProjects/Java_Project_Management_System/java-project-management-system/src/main/java/com/mycompany/projectmanagementsystem/StudentCreateNewMessagePage.java
 /Users/shuhuilee/NetBeansProjects/Java_Project_Management_System/java-project-management-system/src/main/java/com/mycompany/projectmanagementsystem/Intake/IntakeValidator.java
 /Users/shuhuilee/NetBeansProjects/Java_Project_Management_System/java-project-management-system/src/main/java/com/mycompany/projectmanagementsystem/LecturerSummaryReport.java
+/Users/shuhuilee/NetBeansProjects/Java_Project_Management_System/java-project-management-system/src/main/java/com/mycompany/projectmanagementsystem/EC/ECApprTableActionEvent.java
 /Users/shuhuilee/NetBeansProjects/Java_Project_Management_System/java-project-management-system/src/main/java/com/mycompany/projectmanagementsystem/LecturerPresentationFeedback.java
 /Users/shuhuilee/NetBeansProjects/Java_Project_Management_System/java-project-management-system/src/main/java/com/mycompany/projectmanagementsystem/admin_edit_intake.java
 /Users/shuhuilee/NetBeansProjects/Java_Project_Management_System/java-project-management-system/src/main/java/com/mycompany/projectmanagementsystem/admin_register_lecturer.java
@@ -81,6 +82,7 @@
 /Users/shuhuilee/NetBeansProjects/Java_Project_Management_System/java-project-management-system/src/main/java/com/mycompany/projectmanagementsystem/NotificationPage.java
 /Users/shuhuilee/NetBeansProjects/Java_Project_Management_System/java-project-management-system/src/main/java/com/mycompany/projectmanagementsystem/GeneralFunction/FileHandler.java
 /Users/shuhuilee/NetBeansProjects/Java_Project_Management_System/java-project-management-system/src/main/java/com/mycompany/projectmanagementsystem/Assessment/AssessmentValidator.java
+/Users/shuhuilee/NetBeansProjects/Java_Project_Management_System/java-project-management-system/src/main/java/com/mycompany/projectmanagementsystem/PM_ECActionPanel.java
 /Users/shuhuilee/NetBeansProjects/Java_Project_Management_System/java-project-management-system/src/main/java/com/mycompany/projectmanagementsystem/admin_view_studentrecord.java
 /Users/shuhuilee/NetBeansProjects/Java_Project_Management_System/java-project-management-system/src/main/java/com/mycompany/projectmanagementsystem/StudentECActionPanel.java
 /Users/shuhuilee/NetBeansProjects/Java_Project_Management_System/java-project-management-system/src/main/java/com/mycompany/projectmanagementsystem/Presentation/PresentationController.java

@@ -58,4 +58,12 @@ public class ECController {
         FileHandler.modifyFileData("ec.txt", array_list);
         return true;
     }
+    public boolean ecEdit(String ecID) {
+        if (ecID != null && !ecID.isEmpty()) {
+            System.out.println("Editing EC with ID: " + ecID);
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
