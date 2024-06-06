@@ -6,6 +6,7 @@ package com.mycompany.projectmanagementsystem.SchoolWiseList;
 
 import com.mycompany.projectmanagementsystem.GeneralFunction.FileHandler;
 import com.mycompany.projectmanagementsystem.admin_lecturer_record;
+import com.mycompany.projectmanagementsystem.admin_register_schoolwiselist;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;

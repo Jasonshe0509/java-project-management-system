@@ -62,8 +62,10 @@ public class admin_lecturer_record extends javax.swing.JFrame {
                 int columnIndex = 0;
                 String userID = (String) model.getValueAt(row, columnIndex);
                 UserController action = new UserController();
-                action.userDelete(userID);
-
+                boolean result = action.userDelete(userID);
+                if(result){
+                    redirectBack(0);
+                }
             }
         };
 
@@ -89,7 +91,7 @@ public class admin_lecturer_record extends javax.swing.JFrame {
                 String userID = (String) model.getValueAt(row, columnIndex);
                 UserController action = new UserController();
                 action.projectmanagerDelete(userID);
-
+                redirectBack(1);
             }
 
         };
@@ -106,11 +108,7 @@ public class admin_lecturer_record extends javax.swing.JFrame {
                 SchoolWiseController action = new SchoolWiseController();
                 boolean result = action.deleteSchoolWise(schoolWise);
                 if (result) {
-                    DefaultTableModel schoolWisemodel = (DefaultTableModel) school_wise_table.getModel();
-                    schoolWisemodel.setNumRows(0);
-                    printSchoolWiseTable();
-                    readNumOfSchoolWise();
-
+                    redirectBack(2);
                 }
             }
 
@@ -206,7 +204,13 @@ public class admin_lecturer_record extends javax.swing.JFrame {
             }
         }
     }
-
+    
+    public void redirectBack(int index) {
+        this.setVisible(false);
+        admin_lecturer_record page = new admin_lecturer_record();
+        page.setVisible(true);
+        lecturer_record.setSelectedIndex(index);
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -241,7 +245,7 @@ public class admin_lecturer_record extends javax.swing.JFrame {
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Student Record");
+        setTitle("Lecturer Record");
         setMaximumSize(new java.awt.Dimension(1000, 700));
         setMinimumSize(new java.awt.Dimension(1000, 700));
         setResizable(false);
@@ -256,6 +260,7 @@ public class admin_lecturer_record extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(2, 50, 99));
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/back.png"))); // NOI18N
         jLabel3.setText("BACK");
+        jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel3MouseClicked(evt);
@@ -357,7 +362,7 @@ public class admin_lecturer_record extends javax.swing.JFrame {
             .addGroup(admin_headerLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(admin_logo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 276, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 253, Short.MAX_VALUE)
                 .addComponent(admin_profile, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(admin_report, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -385,7 +390,7 @@ public class admin_lecturer_record extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        getContentPane().add(admin_header, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        getContentPane().add(admin_header, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, -1));
 
         numprojectmanager.setFont(new java.awt.Font("Bell MT", 1, 48)); // NOI18N
         numprojectmanager.setForeground(new java.awt.Color(2, 50, 99));

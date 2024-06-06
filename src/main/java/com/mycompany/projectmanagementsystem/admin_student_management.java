@@ -60,7 +60,9 @@ public class admin_student_management extends javax.swing.JFrame {
                 String intakeID = (String) model.getValueAt(row, columnIndex);
                 IntakeController action = new IntakeController();
                 boolean result = action.intakeDelete(intakeID);
-
+                if(result){
+                    redirectBack(1);
+                }
             }
         };
 
@@ -93,10 +95,7 @@ public class admin_student_management extends javax.swing.JFrame {
                 boolean result = action.userDelete(userID);
                 if (result) {
                     JOptionPane.showMessageDialog(null, "Successfully delete the Student: " + userID);
-                    DefaultTableModel umodel = (DefaultTableModel) student_table.getModel();
-                    umodel.setNumRows(0);
-                    printStudentTable();
-                    readNumOfStudent();
+                    redirectBack(0);
                 }
             }
         };
@@ -127,10 +126,7 @@ public class admin_student_management extends javax.swing.JFrame {
                 boolean result = action.courseDelete(courseCode);
                 if (result) {
                     JOptionPane.showMessageDialog(null, "Successfully delete the Student: " + courseCode);
-//                    DefaultTableModel umodel = (DefaultTableModel) student_table.getModel();
-//                    umodel.setNumRows(0);
-//                    printStudentTable();
-//                    readNumOfStudent();
+                    redirectBack(2);
                 }
             }
         };
@@ -224,6 +220,13 @@ public class admin_student_management extends javax.swing.JFrame {
 
         }
     }
+    
+    public void redirectBack(int index) {
+        this.setVisible(false);
+        admin_student_management page = new admin_student_management();
+        page.setVisible(true);
+        student_record.setSelectedIndex(index);
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -275,6 +278,7 @@ public class admin_student_management extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(2, 50, 99));
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/back.png"))); // NOI18N
         jLabel3.setText("BACK");
+        jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel3MouseClicked(evt);

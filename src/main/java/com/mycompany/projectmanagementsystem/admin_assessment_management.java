@@ -91,6 +91,7 @@ public class admin_assessment_management extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(2, 50, 99));
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/back.png"))); // NOI18N
         jLabel2.setText("BACK");
+        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel2MouseClicked(evt);

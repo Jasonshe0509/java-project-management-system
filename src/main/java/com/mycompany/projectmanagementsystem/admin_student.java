@@ -161,13 +161,14 @@ public class admin_student extends javax.swing.JFrame {
                 .addComponent(admin_logo)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(admin_headerLayout.createSequentialGroup()
-                .addGroup(admin_headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(admin_logout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(admin_student, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(admin_lecturer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(admin_headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(admin_headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(admin_profile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(admin_report, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(admin_report, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(admin_headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(admin_logout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(admin_student, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(admin_lecturer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -187,6 +188,7 @@ public class admin_student extends javax.swing.JFrame {
         admin_reg_intake.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         admin_reg_intake.setText("<html><div style = \"text-align: center; width: 70px;\">Register New Intake</div></html>");
         admin_reg_intake.setBorder(new LineBorder(new Color(192, 192, 192, 90), 15, true));
+        admin_reg_intake.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         admin_reg_intake.setMaximumSize(new java.awt.Dimension(380, 240));
         admin_reg_intake.setMinimumSize(new java.awt.Dimension(380, 240));
         admin_reg_intake.setOpaque(true);
@@ -222,6 +224,7 @@ public class admin_student extends javax.swing.JFrame {
         admin_reg_student.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         admin_reg_student.setText("<html><div style = \"text-align: center; width: 70px;\">Register New Student</div></html>");
         admin_reg_student.setBorder(new LineBorder(new Color(192, 192, 192, 90), 15, true));
+        admin_reg_student.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         admin_reg_student.setMaximumSize(new java.awt.Dimension(380, 240));
         admin_reg_student.setMinimumSize(new java.awt.Dimension(380, 240));
         admin_reg_student.setOpaque(true);
@@ -256,6 +259,7 @@ public class admin_student extends javax.swing.JFrame {
         admin_ec_management.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         admin_ec_management.setText("EC Management");
         admin_ec_management.setBorder(new LineBorder(new Color(192, 192, 192, 90), 15, true));
+        admin_ec_management.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         admin_ec_management.setMaximumSize(new java.awt.Dimension(380, 240));
         admin_ec_management.setMinimumSize(new java.awt.Dimension(380, 240));
         admin_ec_management.setOpaque(true);
@@ -292,6 +296,7 @@ public class admin_student extends javax.swing.JFrame {
         admin_stu_management.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         admin_stu_management.setText("View Intake/ Student");
         admin_stu_management.setBorder(new LineBorder(new Color(192, 192, 192, 90), 15, true));
+        admin_stu_management.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         admin_stu_management.setMaximumSize(new java.awt.Dimension(380, 240));
         admin_stu_management.setMinimumSize(new java.awt.Dimension(380, 240));
         admin_stu_management.setOpaque(true);
@@ -326,6 +331,7 @@ public class admin_student extends javax.swing.JFrame {
         admin_reg_student1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         admin_reg_student1.setText("<html><div style = \"text-align: center; width: 70px;\">Register New Course</div></html>");
         admin_reg_student1.setBorder(new LineBorder(new Color(192, 192, 192, 90), 15, true));
+        admin_reg_student1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         admin_reg_student1.setMaximumSize(new java.awt.Dimension(380, 240));
         admin_reg_student1.setMinimumSize(new java.awt.Dimension(380, 240));
         admin_reg_student1.setOpaque(true);
@@ -486,7 +492,7 @@ public class admin_student extends javax.swing.JFrame {
     }
 
     private void setIconImage() {
-        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Sysco_icon.png")));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Sysco_icon_with_background.png")));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

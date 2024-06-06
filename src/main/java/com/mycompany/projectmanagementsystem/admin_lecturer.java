@@ -35,7 +35,7 @@ public class admin_lecturer extends javax.swing.JFrame {
         admin_background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Admin: Student Management");
+        setTitle("Admin: Lecturer Management");
         setBackground(new java.awt.Color(255, 255, 255));
         setMinimumSize(new java.awt.Dimension(1000, 700));
         setResizable(false);
@@ -180,6 +180,7 @@ public class admin_lecturer extends javax.swing.JFrame {
         admin_reg_school.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         admin_reg_school.setText("<html><div style='text-align: center; width: 200px;'>Register School Wise List</div></html>");
         admin_reg_school.setBorder(new LineBorder(new Color(192, 192, 192, 90), 15, true));
+        admin_reg_school.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         admin_reg_school.setMaximumSize(new java.awt.Dimension(380, 240));
         admin_reg_school.setMinimumSize(new java.awt.Dimension(380, 240));
         admin_reg_school.setOpaque(true);
@@ -215,6 +216,7 @@ public class admin_lecturer extends javax.swing.JFrame {
         admin_reg_lecturer.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         admin_reg_lecturer.setText("<html><div style='text-align: center; width: 200px;'>Register New Lecturer</div></html>");
         admin_reg_lecturer.setBorder(new LineBorder(new Color(192, 192, 192, 90), 15, true));
+        admin_reg_lecturer.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         admin_reg_lecturer.setMaximumSize(new java.awt.Dimension(380, 240));
         admin_reg_lecturer.setMinimumSize(new java.awt.Dimension(380, 240));
         admin_reg_lecturer.setOpaque(true);
@@ -249,6 +251,7 @@ public class admin_lecturer extends javax.swing.JFrame {
         admin_lec_management.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         admin_lec_management.setText("<html><div style='text-align: center; width: 200px;'>View Lecturer/ Project Manager</div></html>");
         admin_lec_management.setBorder(new LineBorder(new Color(192, 192, 192, 90), 15, true));
+        admin_lec_management.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         admin_lec_management.setMaximumSize(new java.awt.Dimension(380, 240));
         admin_lec_management.setMinimumSize(new java.awt.Dimension(380, 240));
         admin_lec_management.setOpaque(true);

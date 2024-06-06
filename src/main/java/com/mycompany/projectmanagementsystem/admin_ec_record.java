@@ -249,7 +249,6 @@ public class admin_ec_record extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("EC Record");
-        setMaximumSize(new java.awt.Dimension(1000, 700));
         setMinimumSize(new java.awt.Dimension(1000, 700));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -263,6 +262,7 @@ public class admin_ec_record extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(2, 50, 99));
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/back.png"))); // NOI18N
         jLabel2.setText("BACK");
+        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel2MouseClicked(evt);
@@ -495,7 +495,7 @@ public class admin_ec_record extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Bell MT", 1, 14)); // NOI18N
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/search.png"))); // NOI18N
         jLabel1.setText("Type To Search");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 210, 130, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 210, 180, -1));
 
         search.setForeground(new java.awt.Color(2, 50, 99));
         search.addActionListener(new java.awt.event.ActionListener() {

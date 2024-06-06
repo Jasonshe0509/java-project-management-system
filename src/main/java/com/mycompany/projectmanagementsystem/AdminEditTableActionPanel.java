@@ -89,6 +89,7 @@ public class AdminEditTableActionPanel extends javax.swing.JPanel {
         admin_edit = new javax.swing.JLabel();
 
         admin_edit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edit icon.png"))); // NOI18N
+        admin_edit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
