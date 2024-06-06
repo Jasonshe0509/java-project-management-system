@@ -31,12 +31,12 @@ public class admin_lecturer_record extends javax.swing.JFrame {
         school_wise_table.getTableHeader().setOpaque(false);
         school_wise_table.getTableHeader().setBackground(new Color(2, 50, 99));
         school_wise_table.getTableHeader().setForeground(new Color(255, 255, 255));
-        
+
         projectmanager_table.getTableHeader().setFont(new Font("SansSerif", Font.BOLD, 18));
         projectmanager_table.getTableHeader().setOpaque(false);
         projectmanager_table.getTableHeader().setBackground(new Color(2, 50, 99));
         projectmanager_table.getTableHeader().setForeground(new Color(255, 255, 255));
-        
+
         lecturer_table.getTableHeader().setFont(new Font("SansSerif", Font.BOLD, 18));
         lecturer_table.getTableHeader().setOpaque(false);
         lecturer_table.getTableHeader().setBackground(new Color(2, 50, 99));
@@ -212,6 +212,7 @@ public class admin_lecturer_record extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         admin_header = new javax.swing.JPanel();
         admin_lecturer = new javax.swing.JLabel();
         admin_student = new javax.swing.JLabel();
@@ -249,7 +250,18 @@ public class admin_lecturer_record extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Bell MT", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(2, 50, 99));
         jLabel1.setText("Lecturer Record");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 250, 30));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 80, 180, 30));
+
+        jLabel3.setFont(new java.awt.Font("Bell MT", 1, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(2, 50, 99));
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/back.png"))); // NOI18N
+        jLabel3.setText("BACK");
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, -1, -1));
 
         admin_header.setBackground(new Color(255, 255, 255, 90));
         admin_header.setToolTipText("");
@@ -360,16 +372,16 @@ public class admin_lecturer_record extends javax.swing.JFrame {
         admin_headerLayout.setVerticalGroup(
             admin_headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(admin_headerLayout.createSequentialGroup()
-                .addGroup(admin_headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(admin_logout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(admin_student, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(admin_lecturer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(admin_report, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(admin_profile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(admin_headerLayout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(admin_logo)
+                .addGroup(admin_headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(admin_headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(admin_logout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(admin_student, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(admin_lecturer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(admin_report, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(admin_profile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(admin_headerLayout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(admin_logo)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -613,6 +625,12 @@ public class admin_lecturer_record extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_searchActionPerformed
 
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        dispose();
+        admin_lecturer adminLecturer = new admin_lecturer();
+        adminLecturer.show();
+    }//GEN-LAST:event_jLabel3MouseClicked
+
     public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -637,6 +655,7 @@ public class admin_lecturer_record extends javax.swing.JFrame {
     private javax.swing.JLabel background;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private static javax.swing.JTabbedPane lecturer_record;
     private static javax.swing.JTable lecturer_table;

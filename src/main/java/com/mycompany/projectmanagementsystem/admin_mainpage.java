@@ -52,13 +52,13 @@ public class admin_mainpage extends javax.swing.JFrame {
         ec_list.getTableHeader().setOpaque(false);
         ec_list.getTableHeader().setBackground(new Color(2, 50, 99));
         ec_list.getTableHeader().setForeground(new Color(255, 255, 255));
-        
+
         //addMouseListener(this);
         //timer = new Timer();
         secondColor = Color.RED;
         hourColor = Color.BLACK;
         numberColor = Color.BLACK;
-        
+
         ClockPanel clockPanel = new ClockPanel();
         clockPanel.setPreferredSize(new Dimension(200, 200));
         clockPanel.setBackground(new Color(0, 0, 0, 0));
@@ -68,7 +68,7 @@ public class admin_mainpage extends javax.swing.JFrame {
 
         timer = new Timer();
         timer.scheduleAtFixedRate(new TickTimerTask(), 0, 1000);
-        
+
         //center the clock horrizontally and position it at the bottom
         int graph2Width = graph2.getPreferredSize().width;
         int graph2Height = graph2.getPreferredSize().height;
@@ -77,7 +77,7 @@ public class admin_mainpage extends javax.swing.JFrame {
 
         int x = (graph2Width - clockPanelWidth) / 2;
         int y = graph2Height - clockPanelHeight;
-        clockPanel.setBounds(x, y, clockPanelWidth, clockPanelHeight); 
+        clockPanel.setBounds(x, y, clockPanelWidth, clockPanelHeight);
 
     }
 
@@ -89,11 +89,12 @@ public class admin_mainpage extends javax.swing.JFrame {
             repaint();
         }
     }
+
     class ClockPanel extends javax.swing.JPanel {
+
         @Override
         protected void paintComponent(Graphics graphics) {
             super.paintComponent(graphics);
-            
 
             // Clock border
             graphics.setColor(new Color(2, 50, 99));
@@ -115,69 +116,68 @@ public class admin_mainpage extends javax.swing.JFrame {
             drawHands(graphics, hour, minute, second, secondColor, hourColor);
         }
 
+        private void drawClockFace(Graphics graphics) {
+            for (int sec = 0; sec < 60; sec++) {
+                int ticStart;
+                if (sec % 5 == 0) {
+                    ticStart = size / 2 - 10;
+                } else {
+                    ticStart = size / 2 - 5;
+                }
+                drawRadius(graphics, centerX, centerY, radiusPerSecMin * sec, ticStart, //drawing ticks for each second,
+                        size / 2 - 1, Color.BLACK);
 
-
-    private void drawClockFace(Graphics graphics) {
-        for (int sec = 0; sec < 60; sec++) {
-            int ticStart;
-            if (sec % 5 == 0) {
-                ticStart = size / 2 - 10;
-            } else {
-                ticStart = size / 2 - 5;
             }
-            drawRadius(graphics, centerX, centerY, radiusPerSecMin * sec, ticStart, //drawing ticks for each second,
-                    size / 2 - 1, Color.BLACK);
+        }
 
+        private void drawRadius(Graphics graphics, int x, int y, double angle,
+                int minRadius, int maxRadius, Color numberColor) {
+            float sine = (float) Math.sin(angle);
+            float cosine = (float) Math.cos(angle);
+            int dxmin = (int) (minRadius * sine);
+            int dymin = (int) (minRadius * cosine);
+            int dxmax = (int) (maxRadius * sine);
+            int dymax = (int) (maxRadius * cosine);
+            graphics.setColor(numberColor);
+            graphics.drawLine(x + dxmin, y + dymin, x + dxmax, y + dymax);
+
+        }
+
+        //clock number
+        private void drawClockNumber(Graphics graphics) {
+            for (int num = 12; num > 0; num--) {
+                drawNumber(graphics, radiusPerNumber * num, num);
+            }
+        }
+
+        private void drawNumber(Graphics graphics, float angle, int n) {
+            float sine = (float) Math.sin(angle);
+            float cosine = (float) Math.cos(angle);
+            int dx = (int) ((size / 2 - 15) * -sine);
+            int dy = (int) ((size / 2 - 15) * -cosine);
+            graphics.setColor(numberColor);
+            graphics.drawString("" + n, dx + centerX - 5, dy + centerY + 5);
+        }
+
+        private void drawHands(Graphics graphics, double hour, double minute, double second,
+                Color secondColor, Color colorMinutesHour) {
+            double radiussecond = (second * 6) * (Math.PI) / 180;
+            double radiusminute = ((minute + (second / 60)) * 6) * (Math.PI) / 180;
+            double radiushours = ((hour + (minute / 60)) * 30) * (Math.PI) / 180;
+
+            graphics.setColor(secondColor);
+
+            graphics.drawLine(centerX, centerY, centerX + (int) (90 * Math.cos(radiussecond
+                    - (Math.PI / 2))), centerY + (int) (90 * Math.sin(radiussecond - (Math.PI / 2))));
+
+            graphics.setColor(colorMinutesHour);
+            graphics.drawLine(centerX, centerY, centerX + (int) (70 * Math.cos(radiusminute
+                    - (Math.PI / 2))), centerY + (int) (70 * Math.sin(radiusminute - (Math.PI / 2))));
+            graphics.drawLine(centerX, centerY, centerX + (int) (50 * Math.cos(radiushours
+                    - (Math.PI / 2))), centerY + (int) (50 * Math.sin(radiushours - (Math.PI / 2))));
         }
     }
 
-    private void drawRadius(Graphics graphics, int x, int y, double angle,
-            int minRadius, int maxRadius, Color numberColor) {
-        float sine = (float) Math.sin(angle);
-        float cosine = (float) Math.cos(angle);
-        int dxmin = (int) (minRadius * sine);
-        int dymin = (int) (minRadius * cosine);
-        int dxmax = (int) (maxRadius * sine);
-        int dymax = (int) (maxRadius * cosine);
-        graphics.setColor(numberColor);
-        graphics.drawLine(x + dxmin, y + dymin, x + dxmax, y + dymax);
-
-    }
-
-    //clock number
-    private void drawClockNumber(Graphics graphics) {
-        for (int num = 12; num > 0; num--) {
-            drawNumber(graphics, radiusPerNumber * num, num);
-        }
-    }
-
-    private void drawNumber(Graphics graphics, float angle, int n) {
-        float sine = (float) Math.sin(angle);
-        float cosine = (float) Math.cos(angle);
-        int dx = (int) ((size / 2 - 15) * -sine);
-        int dy = (int) ((size / 2 - 15) * -cosine);
-        graphics.setColor(numberColor);
-        graphics.drawString("" + n, dx + centerX - 5, dy + centerY + 5);
-    }
-
-    private void drawHands(Graphics graphics, double hour, double minute, double second,
-            Color secondColor, Color colorMinutesHour) {
-        double radiussecond = (second * 6) * (Math.PI) / 180;
-        double radiusminute = ((minute + (second / 60)) * 6) * (Math.PI) / 180;
-        double radiushours = ((hour + (minute / 60)) * 30) * (Math.PI) / 180;
-
-        graphics.setColor(secondColor);
-
-        graphics.drawLine(centerX, centerY, centerX + (int) (90 * Math.cos(radiussecond
-                - (Math.PI / 2))), centerY + (int) (90 * Math.sin(radiussecond - (Math.PI / 2))));
-
-        graphics.setColor(colorMinutesHour);
-        graphics.drawLine(centerX, centerY, centerX + (int) (70 * Math.cos(radiusminute
-                - (Math.PI / 2))), centerY + (int) (70 * Math.sin(radiusminute - (Math.PI / 2))));
-        graphics.drawLine(centerX, centerY, centerX + (int) (50 * Math.cos(radiushours
-                - (Math.PI / 2))), centerY + (int) (50 * Math.sin(radiushours - (Math.PI / 2))));
-    }
-    }
     public void showLecturerBarChart() {
         DefaultPieDataset lecturerDataset = new DefaultPieDataset();
 
@@ -200,7 +200,6 @@ public class admin_mainpage extends javax.swing.JFrame {
                 lecturerDataset, true, true, false);
 
         PiePlot lecturerpieplot = (PiePlot) lecturerpieChart.getPlot();
-
 
         lecturerpieplot.setBackgroundPaint(new Color(192, 192, 192, 90));
 
@@ -417,6 +416,11 @@ public class admin_mainpage extends javax.swing.JFrame {
         admin_logout.setMaximumSize(new java.awt.Dimension(96, 73));
         admin_logout.setMinimumSize(new java.awt.Dimension(96, 73));
         admin_logout.setPreferredSize(new java.awt.Dimension(96, 73));
+        admin_logout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                admin_logoutMouseClicked(evt);
+            }
+        });
 
         admin_report1.setBackground(new Color(255, 255, 255, 0));
         admin_report1.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
@@ -579,6 +583,12 @@ public class admin_mainpage extends javax.swing.JFrame {
         admin_ec_record ecManagement = new admin_ec_record();
         ecManagement.show();
     }//GEN-LAST:event_admin_report1MouseClicked
+
+    private void admin_logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_admin_logoutMouseClicked
+        dispose();
+        GeneralPage generalPage = new GeneralPage();
+        generalPage.show();
+    }//GEN-LAST:event_admin_logoutMouseClicked
 
     public static void main(String args[]) {
 
