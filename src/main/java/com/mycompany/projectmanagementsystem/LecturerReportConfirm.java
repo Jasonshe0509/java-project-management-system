@@ -401,7 +401,7 @@ public class LecturerReportConfirm extends javax.swing.JFrame {
         // Update the student assessment data based on the user's role
         for (String line : studentAssessmentData) {
             String[] parts = line.split(";");
-            if (parts[1].equals(stdID)) {
+            if (parts[1].equals(stdID) && parts[2].equals(AssmntID)) {
                 parts[7] = feedbackLabel.getText(); // Update feedback
 
                 if (isSupervisor) {
