@@ -6,11 +6,14 @@ import com.mycompany.projectmanagementsystem.User.AdminDeleteActionEvent;
 import com.mycompany.projectmanagementsystem.User.UserController;
 import com.mycompany.projectmanagementsystem.User.UserTableActionEvent;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Toolkit;
 import java.util.List;
-import javax.swing.JOptionPane;
+import java.util.regex.Pattern;
+import javax.swing.RowFilter;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 public class admin_lecturer_record extends javax.swing.JFrame {
 
@@ -24,6 +27,21 @@ public class admin_lecturer_record extends javax.swing.JFrame {
         printSchoolWiseTable();
         printLecturerTable();
 
+        school_wise_table.getTableHeader().setFont(new Font("SansSerif", Font.BOLD, 18));
+        school_wise_table.getTableHeader().setOpaque(false);
+        school_wise_table.getTableHeader().setBackground(new Color(2, 50, 99));
+        school_wise_table.getTableHeader().setForeground(new Color(255, 255, 255));
+        
+        projectmanager_table.getTableHeader().setFont(new Font("SansSerif", Font.BOLD, 18));
+        projectmanager_table.getTableHeader().setOpaque(false);
+        projectmanager_table.getTableHeader().setBackground(new Color(2, 50, 99));
+        projectmanager_table.getTableHeader().setForeground(new Color(255, 255, 255));
+        
+        lecturer_table.getTableHeader().setFont(new Font("SansSerif", Font.BOLD, 18));
+        lecturer_table.getTableHeader().setOpaque(false);
+        lecturer_table.getTableHeader().setBackground(new Color(2, 50, 99));
+        lecturer_table.getTableHeader().setForeground(new Color(255, 255, 255));
+
         UserTableActionPanel actionPanel = new UserTableActionPanel();
         UserTableActionEvent event;
         event = new UserTableActionEvent() {
@@ -35,7 +53,7 @@ public class admin_lecturer_record extends javax.swing.JFrame {
                 String userID = (String) model.getValueAt(row, columnIndex);
                 UserController action = new UserController();
                 action.viewUser(userID);
-                
+
             }
 
             @Override
@@ -45,14 +63,14 @@ public class admin_lecturer_record extends javax.swing.JFrame {
                 String userID = (String) model.getValueAt(row, columnIndex);
                 UserController action = new UserController();
                 action.userDelete(userID);
-                
+
             }
         };
 
         UserTableActionPanel removePMPanel = new UserTableActionPanel();
         UserTableActionEvent deletePMEvent;
         deletePMEvent = new UserTableActionEvent() {
-            
+
             @Override
             public void userView(int row, Object value) {
 
@@ -61,27 +79,27 @@ public class admin_lecturer_record extends javax.swing.JFrame {
                 String userID = (String) model.getValueAt(row, columnIndex);
                 UserController action = new UserController();
                 action.viewUser(userID);
-                
+
             }
-            
+
             @Override
-            public void userDelete(int row, Object value){
+            public void userDelete(int row, Object value) {
                 DefaultTableModel model = (DefaultTableModel) projectmanager_table.getModel();
                 int columnIndex = 0;
                 String userID = (String) model.getValueAt(row, columnIndex);
                 UserController action = new UserController();
                 action.projectmanagerDelete(userID);
-                
+
             }
-            
+
         };
-        
+
         AdminDeleteActionPanel removeSWPanel = new AdminDeleteActionPanel();
         AdminDeleteActionEvent deleteSWEvent;
         deleteSWEvent = new AdminDeleteActionEvent() {
-            
+
             @Override
-            public void adminDelete(int row, Object value){
+            public void adminDelete(int row, Object value) {
                 DefaultTableModel model = (DefaultTableModel) school_wise_table.getModel();
                 int columnIndex = 0;
                 String schoolWise = (String) model.getValueAt(row, columnIndex);
@@ -95,46 +113,46 @@ public class admin_lecturer_record extends javax.swing.JFrame {
 
                 }
             }
-            
+
         };
 
         lecturer_table.getColumnModel().getColumn(5).setCellRenderer(actionPanel.new rPanelActionRenderer());
         lecturer_table.getColumnModel().getColumn(5).setCellEditor(actionPanel.new UserTableActionCellEditor(event));
-        
+
         projectmanager_table.getColumnModel().getColumn(5).setCellRenderer(removePMPanel.new rPanelActionRenderer());
         projectmanager_table.getColumnModel().getColumn(5).setCellEditor(removePMPanel.new UserTableActionCellEditor(deletePMEvent));
-        
+
         school_wise_table.getColumnModel().getColumn(2).setCellRenderer(removeSWPanel.new rPanelActionRenderer());
         school_wise_table.getColumnModel().getColumn(2).setCellEditor(removeSWPanel.new AdminDeleteActionCellEditor(deleteSWEvent));
     }
 
     public static void readNumOfSchoolWise() {
         List<String> data = FileHandler.readFile("school_wise.txt");
-        int i= 0;
-        for(String lines: data){
+        int i = 0;
+        for (String lines : data) {
             i++;
         }
         numOfSchoolWise = i;
         numSchoolWise.setText(String.valueOf(numOfSchoolWise));
-        
+
     }
 
     public static void readNumOfLecturer() {
         List<String> data = FileHandler.readFile("user.txt");
         int countLecturer = 0;
         int countProjectManager = 0;
-        for (String lines: data) {
-            
+        for (String lines : data) {
+
             String[] userData = lines.split(";");
 
             String user = userData[10];
             if (user.equals("lecturer")) {
                 countLecturer++;
-                
+
             }
             if (user.equals("project manager")) {
-                    countProjectManager++;
-                }
+                countProjectManager++;
+            }
         }
         numOfLecturer = countLecturer;
         numOfProjectManager = countProjectManager;
@@ -146,20 +164,19 @@ public class admin_lecturer_record extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) school_wise_table.getModel();
         model.setNumRows(0);
         List<String> data = FileHandler.readFile("school_wise.txt");
-        
-        for (String line: data) {
-            
-            
+
+        for (String line : data) {
+
             int numOfLecturer = 0;
             List<String> lecturerList = FileHandler.readFile("user.txt");
-            
-            for(String line2: lecturerList){
+
+            for (String line2 : lecturerList) {
                 String[] lecturerRecord = line2.split(";");
-                if(lecturerRecord.length >11 && lecturerRecord[11].equals(line)){
+                if (lecturerRecord.length > 11 && lecturerRecord[11].equals(line)) {
                     numOfLecturer++;
                 }
             }
-            
+
             String[] schoolWiseRow = {line, String.valueOf(numOfLecturer)};
             model.addRow(schoolWiseRow);
         }
@@ -172,22 +189,21 @@ public class admin_lecturer_record extends javax.swing.JFrame {
         DefaultTableModel model1 = (DefaultTableModel) projectmanager_table.getModel();
         model1.setNumRows(0);
         List<String> data = FileHandler.readFile("user.txt");
-        
 
-        for (String line: data) {
-            
+        for (String line : data) {
+
             String[] userData = line.split(";");
             String user = userData[10];
             if (user.equals("lecturer")) {
                 String[] lecturerRow = {userData[0], userData[1], userData[11], userData[8], userData[3]};
                 model.addRow(lecturerRow);
-                
+
             }
             if (user.equals("project manager")) {
-                    String[] projectManagerRow = {userData[0], userData[1], userData[11], userData[8], userData[3]};
-                    model1.addRow(projectManagerRow);
+                String[] projectManagerRow = {userData[0], userData[1], userData[11], userData[8], userData[3]};
+                model1.addRow(projectManagerRow);
 
-                }
+            }
         }
     }
 
@@ -219,6 +235,8 @@ public class admin_lecturer_record extends javax.swing.JFrame {
         school_wise_table = new javax.swing.JTable();
         totalpm_background = new javax.swing.JLabel();
         totalpm_border = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        search = new javax.swing.JTextField();
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -247,6 +265,11 @@ public class admin_lecturer_record extends javax.swing.JFrame {
         admin_lecturer.setMaximumSize(new java.awt.Dimension(96, 73));
         admin_lecturer.setMinimumSize(new java.awt.Dimension(96, 73));
         admin_lecturer.setPreferredSize(new java.awt.Dimension(96, 73));
+        admin_lecturer.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                admin_lecturerMouseClicked(evt);
+            }
+        });
 
         admin_student.setBackground(new Color(255, 255, 255, 0));
         admin_student.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
@@ -267,21 +290,31 @@ public class admin_lecturer_record extends javax.swing.JFrame {
         admin_report.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
         admin_report.setForeground(new java.awt.Color(2, 50, 99));
         admin_report.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        admin_report.setText("Report");
+        admin_report.setText("Assessment");
         admin_report.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         admin_report.setMaximumSize(new java.awt.Dimension(96, 73));
         admin_report.setMinimumSize(new java.awt.Dimension(96, 73));
         admin_report.setPreferredSize(new java.awt.Dimension(96, 73));
+        admin_report.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                admin_reportMouseClicked(evt);
+            }
+        });
 
         admin_profile.setBackground(new Color(255, 255, 255, 0));
         admin_profile.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
         admin_profile.setForeground(new java.awt.Color(2, 50, 99));
         admin_profile.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        admin_profile.setText("Profile");
+        admin_profile.setText("EC Management");
         admin_profile.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         admin_profile.setMaximumSize(new java.awt.Dimension(96, 73));
         admin_profile.setMinimumSize(new java.awt.Dimension(96, 73));
         admin_profile.setPreferredSize(new java.awt.Dimension(96, 73));
+        admin_profile.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                admin_profileMouseClicked(evt);
+            }
+        });
 
         admin_logout.setBackground(new Color(255, 255, 255, 0));
         admin_logout.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
@@ -292,6 +325,11 @@ public class admin_lecturer_record extends javax.swing.JFrame {
         admin_logout.setMaximumSize(new java.awt.Dimension(96, 73));
         admin_logout.setMinimumSize(new java.awt.Dimension(96, 73));
         admin_logout.setPreferredSize(new java.awt.Dimension(96, 73));
+        admin_logout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                admin_logoutMouseClicked(evt);
+            }
+        });
 
         admin_logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Sysco_logo.png"))); // NOI18N
         admin_logo.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -307,32 +345,28 @@ public class admin_lecturer_record extends javax.swing.JFrame {
             .addGroup(admin_headerLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(admin_logo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 294, Short.MAX_VALUE)
-                .addComponent(admin_lecturer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(admin_student, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 276, Short.MAX_VALUE)
+                .addComponent(admin_profile, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(admin_report, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(admin_profile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(admin_lecturer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(admin_student, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(admin_logout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         admin_headerLayout.setVerticalGroup(
             admin_headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(admin_headerLayout.createSequentialGroup()
-                .addGroup(admin_headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(admin_headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(admin_report, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(admin_profile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(admin_logout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, admin_headerLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(admin_headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(admin_student, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(admin_lecturer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap())
+                .addGroup(admin_headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(admin_logout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(admin_student, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(admin_lecturer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(admin_report, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(admin_profile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(admin_headerLayout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addComponent(admin_logo)
@@ -396,7 +430,8 @@ public class admin_lecturer_record extends javax.swing.JFrame {
 
         lecturer_record.setOpaque(true);
 
-        lecturer_table.setBackground(new java.awt.Color(192, 192, 192));
+        lecturer_table.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        lecturer_table.setForeground(new java.awt.Color(2, 50, 99));
         lecturer_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -418,6 +453,8 @@ public class admin_lecturer_record extends javax.swing.JFrame {
 
         lecturer_record.addTab("Lecturer", lectuter_record);
 
+        projectmanager_table.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        projectmanager_table.setForeground(new java.awt.Color(2, 50, 99));
         projectmanager_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -439,7 +476,8 @@ public class admin_lecturer_record extends javax.swing.JFrame {
 
         lecturer_record.addTab("Project Manager", jScrollPane1);
 
-        school_wise_table.setBackground(new java.awt.Color(192, 192, 192));
+        school_wise_table.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        school_wise_table.setForeground(new java.awt.Color(2, 50, 99));
         school_wise_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -461,7 +499,7 @@ public class admin_lecturer_record extends javax.swing.JFrame {
 
         lecturer_record.addTab("School Wise List", schoolwise_record);
 
-        getContentPane().add(lecturer_record, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, 920, 370));
+        getContentPane().add(lecturer_record, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, 920, 370));
         lecturer_record.getAccessibleContext().setAccessibleName("");
         lecturer_record.getAccessibleContext().setAccessibleDescription("");
 
@@ -484,6 +522,26 @@ public class admin_lecturer_record extends javax.swing.JFrame {
         totalpm_border.setPreferredSize(new java.awt.Dimension(440, 125));
         getContentPane().add(totalpm_border, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 110, 300, 90));
 
+        jLabel2.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(2, 50, 99));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/search.png"))); // NOI18N
+        jLabel2.setText("Type To Search");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 220, -1, 30));
+
+        search.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        search.setForeground(new java.awt.Color(2, 50, 99));
+        search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchActionPerformed(evt);
+            }
+        });
+        search.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                searchKeyReleased(evt);
+            }
+        });
+        getContentPane().add(search, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 250, 170, 40));
+
         background.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main_background.png"))); // NOI18N
         getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, -1));
@@ -493,14 +551,67 @@ public class admin_lecturer_record extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void admin_studentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_admin_studentMouseClicked
-        // TODO add your handling code here:
+        dispose();
+        admin_student adminStudent = new admin_student();
+        adminStudent.show();
 
     }//GEN-LAST:event_admin_studentMouseClicked
 
     private void admin_logoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_admin_logoMouseClicked
-        // TODO add your handling code here:
+        dispose();
+        admin_mainpage adminMainpage = new admin_mainpage();
+        adminMainpage.show();
 
     }//GEN-LAST:event_admin_logoMouseClicked
+
+    private void admin_logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_admin_logoutMouseClicked
+        dispose();
+        GeneralPage generalPage = new GeneralPage();
+        generalPage.show();
+    }//GEN-LAST:event_admin_logoutMouseClicked
+
+    private void admin_lecturerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_admin_lecturerMouseClicked
+        dispose();
+        admin_lecturer adminLecturer = new admin_lecturer();
+        adminLecturer.show();
+    }//GEN-LAST:event_admin_lecturerMouseClicked
+
+    private void admin_reportMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_admin_reportMouseClicked
+        dispose();
+        admin_assessment_management assessmentManagement = new admin_assessment_management();
+        assessmentManagement.show();
+    }//GEN-LAST:event_admin_reportMouseClicked
+
+    private void admin_profileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_admin_profileMouseClicked
+        dispose();
+        admin_ec_record ecRecord = new admin_ec_record();
+        ecRecord.show();
+    }//GEN-LAST:event_admin_profileMouseClicked
+
+    private void searchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchKeyReleased
+        String searchText = search.getText();
+
+        DefaultTableModel lecturer = (DefaultTableModel) lecturer_table.getModel();
+        TableRowSorter<DefaultTableModel> searchLecturer = new TableRowSorter<>(lecturer);
+        lecturer_table.setRowSorter(searchLecturer);
+        searchLecturer.setRowFilter(RowFilter.regexFilter(searchText));
+        searchLecturer.setRowFilter(RowFilter.regexFilter("(?i)" + Pattern.quote(searchText)));
+
+        DefaultTableModel project_manager = (DefaultTableModel) projectmanager_table.getModel();
+        TableRowSorter<DefaultTableModel> searchProjectManager = new TableRowSorter<>(project_manager);
+        projectmanager_table.setRowSorter(searchProjectManager);
+        searchProjectManager.setRowFilter(RowFilter.regexFilter(searchText));
+        searchProjectManager.setRowFilter(RowFilter.regexFilter("(?i)" + Pattern.quote(searchText)));
+
+        DefaultTableModel school_wise = (DefaultTableModel) school_wise_table.getModel();
+        TableRowSorter<DefaultTableModel> searchSchoolwise = new TableRowSorter<>(school_wise);
+        school_wise_table.setRowSorter(searchSchoolwise);
+        searchSchoolwise.setRowFilter(RowFilter.regexFilter("(?i)" + Pattern.quote(searchText)));
+    }//GEN-LAST:event_searchKeyReleased
+
+    private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchActionPerformed
 
     public static void main(String args[]) {
 
@@ -525,6 +636,7 @@ public class admin_lecturer_record extends javax.swing.JFrame {
     private javax.swing.JLabel admin_student;
     private javax.swing.JLabel background;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private static javax.swing.JTabbedPane lecturer_record;
     private static javax.swing.JTable lecturer_table;
@@ -533,6 +645,7 @@ public class admin_lecturer_record extends javax.swing.JFrame {
     private static javax.swing.JLabel numprojectmanager;
     private static javax.swing.JTable projectmanager_table;
     private static javax.swing.JTable school_wise_table;
+    private javax.swing.JTextField search;
     private javax.swing.JLabel totallec_background;
     private javax.swing.JLabel totallec_border;
     private javax.swing.JLabel totalpm_background;
