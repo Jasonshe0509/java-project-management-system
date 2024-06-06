@@ -4,6 +4,8 @@
  */
 package com.mycompany.projectmanagementsystem.Course;
 
+import java.util.Arrays;
+
 /**
  *
  * @author ASUS
@@ -11,12 +13,17 @@ package com.mycompany.projectmanagementsystem.Course;
 public class CourseValidator {
     
     public static boolean validateCourse(String[] userInput){
-        for (String userInput1 : userInput) {
-            if (userInput1 == null || userInput1.equals("")) {
-                return false;
-            } 
+        
+            System.out.println(Arrays.toString(userInput));
+            System.out.println(userInput[0]);
+            System.out.println(userInput[1]);
+            if (userInput.length < 2) {
+            return false;
         }
-        return true;
+        // Check if the first or second elements are null or empty
+        
+        return !(userInput[0] == null || userInput[0].equals("") ||
+                userInput[1] == null || userInput[1].equals(""));
     }
     
 }
