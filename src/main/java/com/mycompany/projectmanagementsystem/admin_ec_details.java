@@ -72,6 +72,7 @@ public class admin_ec_details extends javax.swing.JFrame {
         ecdocument_link = new javax.swing.JTextField();
         ecdertail_background = new javax.swing.JLabel();
         ecdetail_border = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -269,6 +270,17 @@ public class admin_ec_details extends javax.swing.JFrame {
         ecdetail_border.setPreferredSize(new java.awt.Dimension(800, 220));
         getContentPane().add(ecdetail_border, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 800, 220));
 
+        jLabel1.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(2, 50, 99));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/back.png"))); // NOI18N
+        jLabel1.setText("BACK");
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
+
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main_background.png"))); // NOI18N
         background.setText("jLabel1");
         background.setMaximumSize(new java.awt.Dimension(800, 500));
@@ -308,6 +320,10 @@ public class admin_ec_details extends javax.swing.JFrame {
     private void ec_statusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ec_statusActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ec_statusActionPerformed
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        dispose();
+    }//GEN-LAST:event_jLabel1MouseClicked
     
     public static void main(String args[]) {
         
@@ -352,6 +368,7 @@ public class admin_ec_details extends javax.swing.JFrame {
     private javax.swing.JLabel ecdertail_background;
     private javax.swing.JLabel ecdetail_border;
     private javax.swing.JTextField ecdocument_link;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

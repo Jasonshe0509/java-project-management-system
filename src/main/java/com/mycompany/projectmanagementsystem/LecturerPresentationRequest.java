@@ -84,6 +84,7 @@ public class LecturerPresentationRequest extends javax.swing.JFrame {
             @Override
             public void presentationRqtApprove(int row, Object value) {
                 List<String> data = FileHandler.readFile("assessment.txt");
+                List<String> datax = FileHandler.readFile("presentation_request.txt");
 
                 DefaultTableModel model = (DefaultTableModel) PresentRqtTable.getModel();
                 String stdID = (String) model.getValueAt(row, 0);
@@ -98,45 +99,55 @@ public class LecturerPresentationRequest extends javax.swing.JFrame {
                             boolean result = action.presentationRqtApprove("supervisor", stdID, "approved");
                             if (result) {
                                 model.removeRow(row);
-                                String[] schdPInput = new String[3];
-                                schdPInput[0] = stdID;
-                                schdPInput[1] = AssmntID;
-                                schdPInput[2] = presentSlot;
-                                boolean confirm = action.writeAccptPresentation(schdPInput);
-                                if (confirm){
-                                    JOptionPane.showMessageDialog(null, 
-                                        "Presentation request from supervisee (" + stdID + ") has been approved.");
-                                } 
-                            } else {
-                                JOptionPane.showMessageDialog(null, 
-                                        "You have accepted the presentation request from supervisee (" + stdID 
-                                                + ").\nSecond marker acceptance is still pending.");
+                                for (String linex : datax) {
+                                    String[] listx = linex.split(";");
+                                    if (stdID.equals(listx[1]) && "approved".equals(listx[5]) || listx[5].isEmpty()) {
+                                        String[] schdPInput = new String[3];
+                                        schdPInput[0] = stdID;
+                                        schdPInput[1] = AssmntID;
+                                        schdPInput[2] = presentSlot;
+                                        boolean confirm = action.writeAccptPresentation(schdPInput);
+                                        if (confirm) {
+                                            JOptionPane.showMessageDialog(null,
+                                                    "Presentation request from supervisee (" + stdID + ") has been approved.");
+                                        }
+                                        return;
+                                    }
+                                }
+                                JOptionPane.showMessageDialog(null, "Supervisor has approved the presentation request from supervisee (" + stdID
+                                        + ").\nSecond marker acceptance is still pending.");
                             }
                             return;
                         } else if (user.getUserID().equals(list[5])) { // Second Marker
                             boolean result = action.presentationRqtApprove("second marker", stdID, "approved");
                             if (result) {
                                 model.removeRow(row);
-                                String[] schdPInput = new String[3];
-                                schdPInput[0] = stdID;
-                                schdPInput[1] = AssmntID;
-                                schdPInput[2] = presentSlot;
-                                boolean confirm = action.writeAccptPresentation(schdPInput);
-                                if (confirm){
-                                    JOptionPane.showMessageDialog(null, 
-                                        "Presentation request from supervisee (" + stdID + ") has been approved.");
-                                } 
-                            } else {
-                                JOptionPane.showMessageDialog(null, 
-                                        "You have accepted the presentation request from supervisee (" + stdID 
-                                                + ").\nSupervisor acceptance is still pending.");
+                                for (String linex : datax) {
+                                    String[] listx = linex.split(";");
+                                    if (stdID.equals(listx[1]) && "approved".equals(listx[4])) {
+                                        String[] schdPInput = new String[3];
+                                        schdPInput[0] = stdID;
+                                        schdPInput[1] = AssmntID;
+                                        schdPInput[2] = presentSlot;
+                                        boolean confirm = action.writeAccptPresentation(schdPInput);
+                                        if (confirm) {
+                                            JOptionPane.showMessageDialog(null,
+                                                    "Presentation request from supervisee (" + stdID + ") has been approved.");
+                                        }
+                                        return;
+                                    }
+                                }
+                                JOptionPane.showMessageDialog(null, "Second marker has approved the presentation request from supervisee (" + stdID
+                                        + ").\nSupervisor acceptance is still pending.");
                             }
                             return;
                         }
                     }
                 }
-                JOptionPane.showMessageDialog(null, "No matching record found for the given assessment ID and user ID", "Message", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "No matching record found for the given assessment ID and user ID", "Message",
+                        JOptionPane.INFORMATION_MESSAGE);
             }
+
             
             @Override
             public void presentationRqtReject(int row, Object value) {
