@@ -4,7 +4,13 @@
  */
 package com.mycompany.projectmanagementsystem;
 
+import com.mycompany.projectmanagementsystem.Presentation.PresentationTableActionEvent;
+import java.awt.Color;
 import java.awt.Component;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.DefaultCellEditor;
+import javax.swing.JCheckBox;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
@@ -15,6 +21,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 public class lect_PresentationPanelAction extends javax.swing.JPanel {
 
     
+    private int row = 0;
     public lect_PresentationPanelAction() {
         initComponents();
     }
@@ -24,49 +31,86 @@ public class lect_PresentationPanelAction extends javax.swing.JPanel {
         @Override
         public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
             Component com = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-                
-            lect_PresentationPanelAction panel = new lect_PresentationPanelAction();
-            if(isSelected){
-                panel.setBackground(com.getBackground());
+            lect_PresentationPanelAction action = new lect_PresentationPanelAction();
+            if (isSelected == false && row % 2 == 0) {
+                action.setBackground(Color.WHITE);
+            } else {
+                action.setBackground(com.getBackground());
             }
-            return panel;
-                
+            return action;
+
         }
     }
+        
+    public class TableActionCellEditor extends DefaultCellEditor {
+        private PresentationTableActionEvent event;
+        public TableActionCellEditor(PresentationTableActionEvent event) {
+            super(new JCheckBox());
+            this.event = event;
+        }
+
+        @Override
+        public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
+            lect_PresentationPanelAction action = new lect_PresentationPanelAction();
+            action.initEvent(event, row, value);
+            action.setBackground(table.getSelectionBackground());
+            if (isSelected == true){
+                System.out.println(row);
+            }
+            return action;
+        }
+    }
+        public void initEvent(PresentationTableActionEvent event, int row , Object value) {
+            feedbackBtn.addActionListener(new ActionListener(){
+                @Override
+                public void actionPerformed(ActionEvent ae) {
+                    event.presentationFeedback(row, value);
+                }
+            });
+            doneBtn.addActionListener(new ActionListener(){
+                @Override
+                public void actionPerformed(ActionEvent ae) {
+                    event.presentationDone(row, value);
+                }
+        });
+    }
+ 
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        feedbackBtn = new javax.swing.JButton();
+        doneBtn = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setMaximumSize(new java.awt.Dimension(170, 21));
-        setMinimumSize(new java.awt.Dimension(170, 21));
-        setPreferredSize(new java.awt.Dimension(170, 21));
+        setMaximumSize(new java.awt.Dimension(170, 31));
+        setMinimumSize(new java.awt.Dimension(170, 31));
+        setPreferredSize(new java.awt.Dimension(170, 31));
 
-        jButton1.setBackground(new java.awt.Color(76, 127, 174));
-        jButton1.setFont(new java.awt.Font("Bell MT", 1, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Feedback");
-        jButton1.setBorder(javax.swing.BorderFactory.createEmptyBorder(3, 3, 3, 3));
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        feedbackBtn.setBackground(new java.awt.Color(76, 127, 174));
+        feedbackBtn.setFont(new java.awt.Font("Bell MT", 1, 12)); // NOI18N
+        feedbackBtn.setForeground(new java.awt.Color(255, 255, 255));
+        feedbackBtn.setText("Feedback");
+        feedbackBtn.setBorder(javax.swing.BorderFactory.createEmptyBorder(3, 3, 3, 3));
+        feedbackBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        feedbackBtn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        feedbackBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                feedbackBtnActionPerformed(evt);
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(51, 199, 146));
-        jButton2.setFont(new java.awt.Font("Bell MT", 1, 12)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Done");
-        jButton2.setBorder(javax.swing.BorderFactory.createEmptyBorder(3, 3, 3, 3));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        doneBtn.setBackground(new java.awt.Color(51, 199, 146));
+        doneBtn.setFont(new java.awt.Font("Bell MT", 1, 12)); // NOI18N
+        doneBtn.setForeground(new java.awt.Color(255, 255, 255));
+        doneBtn.setText("Done");
+        doneBtn.setBorder(javax.swing.BorderFactory.createEmptyBorder(3, 3, 3, 3));
+        doneBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        doneBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                doneBtnActionPerformed(evt);
             }
         });
 
@@ -76,9 +120,9 @@ public class lect_PresentationPanelAction extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(feedbackBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(doneBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(12, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -86,23 +130,23 @@ public class lect_PresentationPanelAction extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(feedbackBtn)
+                    .addComponent(doneBtn))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void doneBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doneBtnActionPerformed
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_doneBtnActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void feedbackBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_feedbackBtnActionPerformed
 
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_feedbackBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton doneBtn;
+    private javax.swing.JButton feedbackBtn;
     // End of variables declaration//GEN-END:variables
 }

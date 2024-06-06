@@ -4,20 +4,38 @@
  */
 package com.mycompany.projectmanagementsystem;
 
+import com.mycompany.projectmanagementsystem.GeneralFunction.SessionManager;
+import com.mycompany.projectmanagementsystem.User.Lecturer;
+import com.mycompany.projectmanagementsystem.User.User;
+import com.mycompany.projectmanagementsystem.User.UserController;
 import java.awt.Toolkit;
 import java.awt.Color;
+import java.text.SimpleDateFormat;
+import javax.swing.JOptionPane;
 /**
  *
  * @author shuhuilee
  */
 public class PM_profile_page extends javax.swing.JFrame {
-
+   
     /**
      * Creates new form ProjectManagerPage
      */
+    private final SessionManager sessionManager = SessionManager.getInstance();
+    User user = sessionManager.getCurrentUser();
+    
     public PM_profile_page() {
         initComponents();
         setIconImage();
+        save_button.setVisible(false);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        ID.setText(user.getUserID());
+        name.setText(user.getName());
+        school.setText(((Lecturer) user).getSchoolWise());
+        gender.setText(user.getGender());
+        nationality.setText(user.getNationality());
+        DOB.setText(dateFormat.format(user.getDateOfBirth()));
+        identity.setText(user.getIdentityNumber());
     }
 
     /**
@@ -30,27 +48,28 @@ public class PM_profile_page extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel8 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
+        edit_button = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
+        name = new javax.swing.JLabel();
+        DOB = new javax.swing.JLabel();
+        ID = new javax.swing.JLabel();
+        gender = new javax.swing.JLabel();
+        nationality = new javax.swing.JLabel();
+        identity = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
+        school = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        save_button = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        addressField = new javax.swing.JTextArea(user.getAddress());
+        passwordField = new javax.swing.JPasswordField(user.getPassword());
+        emailField = new javax.swing.JTextField(user.getEmail());
+        numberField = new javax.swing.JTextField(user.getPhoneNumber());
         jPanel1 = new javax.swing.JPanel();
         pm_logo_sysco = new javax.swing.JLabel();
         pm_ec_approvement = new javax.swing.JLabel();
@@ -69,79 +88,75 @@ public class PM_profile_page extends javax.swing.JFrame {
         jLabel8.setText("Profile Page");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
 
-        jButton3.setBackground(new java.awt.Color(76, 127, 174));
-        jButton3.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Back");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        edit_button.setBackground(new java.awt.Color(76, 127, 174));
+        edit_button.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
+        edit_button.setForeground(new java.awt.Color(255, 255, 255));
+        edit_button.setText("Edit");
+        edit_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                edit_buttonActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 90, -1, -1));
+        getContentPane().add(edit_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 90, -1, -1));
 
-        jLabel9.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(2, 50, 99));
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setText("Name");
+        name.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        name.setForeground(new java.awt.Color(2, 50, 99));
+        name.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        name.setText("Name");
 
-        jLabel10.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(2, 50, 99));
-        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel10.setText("DOB");
+        DOB.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        DOB.setForeground(new java.awt.Color(2, 50, 99));
+        DOB.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        DOB.setText("DOB");
 
-        jLabel11.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(2, 50, 99));
-        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel11.setText("ID");
+        ID.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        ID.setForeground(new java.awt.Color(2, 50, 99));
+        ID.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ID.setText("ID");
 
-        jLabel12.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(2, 50, 99));
-        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel12.setText("Gender");
+        gender.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        gender.setForeground(new java.awt.Color(2, 50, 99));
+        gender.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        gender.setText("Gender");
 
-        jLabel14.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(2, 50, 99));
-        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel14.setText("Nationality");
+        nationality.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        nationality.setForeground(new java.awt.Color(2, 50, 99));
+        nationality.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        nationality.setText("Nationality");
 
-        jLabel15.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(2, 50, 99));
-        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel15.setText("I/C Number");
+        identity.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        identity.setForeground(new java.awt.Color(2, 50, 99));
+        identity.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        identity.setText("I/C Number");
 
         jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/profile_icon.png"))); // NOI18N
         jLabel16.setMaximumSize(new java.awt.Dimension(119, 119));
         jLabel16.setMinimumSize(new java.awt.Dimension(119, 119));
         jLabel16.setPreferredSize(new java.awt.Dimension(119, 119));
 
-        jLabel18.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jLabel18.setForeground(new java.awt.Color(2, 50, 99));
-        jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel18.setText("School");
+        school.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        school.setForeground(new java.awt.Color(2, 50, 99));
+        school.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        school.setText("School");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(ID, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(name, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(school, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE))
-                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE))
-                            .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(77, 77, 77)
-                        .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(104, Short.MAX_VALUE))
+                        .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 98, Short.MAX_VALUE))
+                    .addComponent(gender, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+            .addComponent(nationality, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(DOB, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(identity, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -149,19 +164,19 @@ public class PM_profile_page extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
-                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ID, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(school, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(gender, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(nationality, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(DOB, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(identity, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(64, 64, 64))
         );
 
@@ -187,46 +202,48 @@ public class PM_profile_page extends javax.swing.JFrame {
         jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel23.setText("Phone Number:");
 
-        jTextField1.setMaximumSize(new java.awt.Dimension(230, 30));
-        jTextField1.setMinimumSize(new java.awt.Dimension(230, 30));
-        jTextField1.setPreferredSize(new java.awt.Dimension(230, 30));
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
-
-        jTextField2.setMaximumSize(new java.awt.Dimension(230, 30));
-        jTextField2.setMinimumSize(new java.awt.Dimension(230, 30));
-        jTextField2.setPreferredSize(new java.awt.Dimension(230, 30));
-
-        jTextField3.setMaximumSize(new java.awt.Dimension(230, 30));
-        jTextField3.setMinimumSize(new java.awt.Dimension(230, 30));
-        jTextField3.setPreferredSize(new java.awt.Dimension(230, 30));
-
         jLabel13.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(2, 50, 99));
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel13.setText("Address");
 
-        jTextField4.setMaximumSize(new java.awt.Dimension(230, 30));
-        jTextField4.setMinimumSize(new java.awt.Dimension(230, 30));
-        jTextField4.setPreferredSize(new java.awt.Dimension(230, 30));
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        save_button.setBackground(new java.awt.Color(76, 127, 174));
+        save_button.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
+        save_button.setForeground(new java.awt.Color(255, 255, 255));
+        save_button.setText("Save");
+        save_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                save_buttonActionPerformed(evt);
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(76, 127, 174));
-        jButton1.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Save");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
+        addressField.setEditable(false);
+        addressField.setColumns(20);
+        addressField.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        addressField.setForeground(new java.awt.Color(2, 50, 99));
+        addressField.setRows(5);
+        jScrollPane1.setViewportView(addressField);
+
+        passwordField.setEditable(false);
+        passwordField.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        passwordField.setForeground(new java.awt.Color(2, 50, 99));
+        passwordField.setMaximumSize(new java.awt.Dimension(230, 30));
+        passwordField.setMinimumSize(new java.awt.Dimension(230, 30));
+        passwordField.setPreferredSize(new java.awt.Dimension(230, 30));
+
+        emailField.setEditable(false);
+        emailField.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        emailField.setForeground(new java.awt.Color(2, 50, 99));
+        emailField.setMaximumSize(new java.awt.Dimension(230, 30));
+        emailField.setMinimumSize(new java.awt.Dimension(230, 30));
+        emailField.setPreferredSize(new java.awt.Dimension(230, 30));
+
+        numberField.setEditable(false);
+        numberField.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        numberField.setForeground(new java.awt.Color(2, 50, 99));
+        numberField.setMaximumSize(new java.awt.Dimension(230, 30));
+        numberField.setMinimumSize(new java.awt.Dimension(230, 30));
+        numberField.setPreferredSize(new java.awt.Dimension(230, 30));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -244,16 +261,18 @@ public class PM_profile_page extends javax.swing.JFrame {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE))))
-                .addGap(41, 41, 41))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(save_button)
+                        .addGap(260, 260, 260))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 367, Short.MAX_VALUE)
+                            .addComponent(passwordField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(emailField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(numberField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18))))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(137, 137, 137)
                 .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -263,54 +282,82 @@ public class PM_profile_page extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(45, 45, 45)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(45, 45, 45)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(emailField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(42, 42, 42)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(45, 45, 45)
+                    .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(numberField, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(48, 48, 48)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(56, 56, 56)
-                .addComponent(jButton1)
+                    .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(59, 59, 59)
+                .addComponent(save_button)
                 .addGap(40, 40, 40))
         );
 
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 150, 590, 490));
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 150, 620, 490));
 
         jPanel1.setBackground(new Color(255, 255, 255, 90));
         jPanel1.setMaximumSize(new java.awt.Dimension(1000, 73));
         jPanel1.setMinimumSize(new java.awt.Dimension(1000, 73));
 
         pm_logo_sysco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Sysco_logo.png"))); // NOI18N
+        pm_logo_sysco.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pm_logo_sysco.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pm_logo_syscoMouseClicked(evt);
+            }
+        });
 
         pm_ec_approvement.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
         pm_ec_approvement.setForeground(new java.awt.Color(2, 50, 99));
         pm_ec_approvement.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pm_ec_approvement.setText("EC Approvement");
+        pm_ec_approvement.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pm_ec_approvement.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pm_ec_approvementMouseClicked(evt);
+            }
+        });
 
         pm_notification.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
         pm_notification.setForeground(new java.awt.Color(2, 50, 99));
         pm_notification.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pm_notification.setText("Notification");
+        pm_notification.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pm_notification.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pm_notificationMouseClicked(evt);
+            }
+        });
 
         pm_profile.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
         pm_profile.setForeground(new java.awt.Color(2, 50, 99));
         pm_profile.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pm_profile.setText("Profile");
+        pm_profile.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         pm_logout.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
         pm_logout.setForeground(new java.awt.Color(2, 50, 99));
         pm_logout.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pm_logout.setText("Log Out");
+        pm_logout.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pm_logout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pm_logoutMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -354,21 +401,63 @@ public class PM_profile_page extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void edit_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edit_buttonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+        edit_button.setVisible(false);
+        save_button.setVisible(true);
+        addressField.setEditable(true);
+        emailField.setEditable(true);
+        numberField.setEditable(true);
+        passwordField.setEditable(true);
+    }//GEN-LAST:event_edit_buttonActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void pm_ec_approvementMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pm_ec_approvementMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+        PM_ec_approvement ecApprove = new PM_ec_approvement();
+        ecApprove.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_pm_ec_approvementMouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void pm_notificationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pm_notificationMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        NotificationPage noti = new NotificationPage();
+        noti.setVisible(true);
+    }//GEN-LAST:event_pm_notificationMouseClicked
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void pm_logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pm_logoutMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+        this.setVisible(false);
+        UserController action = new UserController();
+        action.userLogout();
+    }//GEN-LAST:event_pm_logoutMouseClicked
+
+    private void save_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_save_buttonActionPerformed
+        // TODO add your handling code here:
+        String[] userInput = new String[5];
+        userInput[0] = user.getUserID();
+        userInput[1] = addressField.getText();
+        userInput[2] = emailField.getText();
+        userInput[3] = numberField.getText();
+        userInput[4] = passwordField.getText();
+        UserController action = new UserController();
+        boolean result = action.userProfileUpdate(userInput);
+        if (result) {
+            JOptionPane.showMessageDialog(null, "Successfully change your profile information");
+            edit_button.setVisible(true);
+            save_button.setVisible(false);
+            addressField.setEditable(false);
+            emailField.setEditable(true);
+            numberField.setEditable(true);
+            passwordField.setEditable(false);
+        }
+    }//GEN-LAST:event_save_buttonActionPerformed
+
+    private void pm_logo_syscoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pm_logo_syscoMouseClicked
+        // TODO add your handling code here:
+        ProjectManagerPage pm = new ProjectManagerPage();
+        pm.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_pm_logo_syscoMouseClicked
 
     /**
      * @param args the command line arguments
@@ -410,34 +499,35 @@ public class PM_profile_page extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel DOB;
+    private javax.swing.JLabel ID;
+    private javax.swing.JTextArea addressField;
+    private javax.swing.JButton edit_button;
+    private javax.swing.JTextField emailField;
+    private javax.swing.JLabel gender;
+    private javax.swing.JLabel identity;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel name;
+    private javax.swing.JLabel nationality;
+    private javax.swing.JTextField numberField;
+    private javax.swing.JPasswordField passwordField;
     private javax.swing.JLabel pm_ec_approvement;
     private javax.swing.JLabel pm_logo_sysco;
     private javax.swing.JLabel pm_logout;
     private javax.swing.JLabel pm_notification;
     private javax.swing.JLabel pm_profile;
+    private javax.swing.JButton save_button;
+    private javax.swing.JLabel school;
     // End of variables declaration//GEN-END:variables
 }

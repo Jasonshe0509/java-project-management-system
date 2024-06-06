@@ -4,7 +4,15 @@
  */
 package com.mycompany.projectmanagementsystem;
 
+import com.mycompany.projectmanagementsystem.Presentation.PresentationController;
 import java.awt.Toolkit;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerDateModel;
 
 /**
  *
@@ -15,9 +23,17 @@ public class StudentPresentationRequestPage extends javax.swing.JFrame {
     /**
      * Creates new form StudentPresentationRequestPage
      */
-    public StudentPresentationRequestPage() {
+    private String assessmentID;
+    private String assessmentType;
+    private StudentAssessmentDetailPage parentpage;
+
+    public StudentPresentationRequestPage(String assessmentID, String assessmentType, StudentAssessmentDetailPage parentpage) {
         initComponents();
         setIconImage();
+        this.parentpage = parentpage;
+        this.assessmentID = assessmentID;
+        this.assessmentType = assessmentType;
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
     /**
@@ -30,47 +46,65 @@ public class StudentPresentationRequestPage extends javax.swing.JFrame {
     private void initComponents() {
 
         email = new javax.swing.JLabel();
-        emailField = new javax.swing.JTextField();
         admin_register_intake_title = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        submitBtn = new javax.swing.JButton();
+        presentationDate = new com.toedter.calendar.JDateChooser();
+        email1 = new javax.swing.JLabel();
+        Date date = new Date();
+        SpinnerDateModel sm  = new SpinnerDateModel(date,null,null,Calendar.HOUR_OF_DAY);
+        jSpinner1 = new javax.swing.JSpinner(sm);
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Student Presentation Request");
-        setMaximumSize(new java.awt.Dimension(500, 300));
         setMinimumSize(new java.awt.Dimension(500, 300));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         email.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         email.setForeground(new java.awt.Color(2, 50, 99));
-        email.setText("Presentation Date:");
+        email.setText("Presentation Time:");
         email.setMaximumSize(new java.awt.Dimension(78, 36));
         email.setMinimumSize(new java.awt.Dimension(78, 36));
         email.setPreferredSize(new java.awt.Dimension(78, 36));
-        getContentPane().add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 160, -1));
-
-        emailField.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        emailField.setMaximumSize(new java.awt.Dimension(335, 40));
-        emailField.setMinimumSize(new java.awt.Dimension(335, 40));
-        emailField.setPreferredSize(new java.awt.Dimension(335, 40));
-        emailField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                emailFieldActionPerformed(evt);
-            }
-        });
-        getContentPane().add(emailField, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 120, 260, -1));
+        getContentPane().add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 200, -1));
 
         admin_register_intake_title.setFont(new java.awt.Font("Bell MT", 1, 24)); // NOI18N
         admin_register_intake_title.setForeground(new java.awt.Color(2, 50, 99));
         admin_register_intake_title.setText("Presentation Request");
         getContentPane().add(admin_register_intake_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 30, -1, -1));
 
-        jButton1.setBackground(new java.awt.Color(27, 61, 96));
-        jButton1.setFont(new java.awt.Font("Bell MT", 1, 19)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("SUBMIT");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 210, -1, -1));
+        submitBtn.setBackground(new java.awt.Color(27, 61, 96));
+        submitBtn.setFont(new java.awt.Font("Bell MT", 1, 19)); // NOI18N
+        submitBtn.setForeground(new java.awt.Color(255, 255, 255));
+        submitBtn.setText("SUBMIT");
+        submitBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitBtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(submitBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 230, -1, -1));
+
+        presentationDate.setMaximumSize(new java.awt.Dimension(260, 40));
+        presentationDate.setMinimumSize(new java.awt.Dimension(260, 40));
+        presentationDate.setPreferredSize(new java.awt.Dimension(260, 40));
+        getContentPane().add(presentationDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 100, -1, -1));
+
+        email1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        email1.setForeground(new java.awt.Color(2, 50, 99));
+        email1.setText("Presentation Date:");
+        email1.setMaximumSize(new java.awt.Dimension(78, 36));
+        email1.setMinimumSize(new java.awt.Dimension(78, 36));
+        email1.setPreferredSize(new java.awt.Dimension(78, 36));
+        getContentPane().add(email1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 200, -1));
+
+        JSpinner.DateEditor de = new JSpinner.DateEditor(jSpinner1,"HH:mm");
+        jSpinner1.setEditor(de);
+        jSpinner1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jSpinner1.setMaximumSize(new java.awt.Dimension(260, 40));
+        jSpinner1.setMinimumSize(new java.awt.Dimension(260, 40));
+        jSpinner1.setPreferredSize(new java.awt.Dimension(260, 40));
+        getContentPane().add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 170, -1, -1));
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main_background.png"))); // NOI18N
         background.setText("jLabel1");
@@ -83,9 +117,43 @@ public class StudentPresentationRequestPage extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void emailFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_emailFieldActionPerformed
+    private void submitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitBtnActionPerformed
+        String[] presentationInput = new String[3];
+        String dateTimeText = null;
+        presentationInput[0] = assessmentID;
+        Date selectedDate = presentationDate.getDate();
+        Date selectedTime = (Date) jSpinner1.getValue();
+
+        if (selectedDate != null && selectedTime != null) {
+            // Combine date and time
+            Calendar dateCal = Calendar.getInstance();
+            dateCal.setTime(selectedDate);
+
+            Calendar timeCal = Calendar.getInstance();
+            timeCal.setTime(selectedTime);
+
+            dateCal.set(Calendar.HOUR_OF_DAY, timeCal.get(Calendar.HOUR_OF_DAY));
+            dateCal.set(Calendar.MINUTE, timeCal.get(Calendar.MINUTE));
+            dateCal.set(Calendar.SECOND, 0); // set seconds to zero if not needed
+
+            Date combinedDateTime = dateCal.getTime();
+
+            SimpleDateFormat dateTimeFormat = new SimpleDateFormat("yy-MM-dd-HH-mm");
+            dateTimeText = dateTimeFormat.format(combinedDateTime);
+        }
+        presentationInput[1] = dateTimeText;
+        presentationInput[2] = assessmentType;
+        PresentationController action = new PresentationController();
+        boolean result = action.studentRequestPresentation(presentationInput);
+        if (result) {
+            JOptionPane.showMessageDialog(null, "Successfully request a presentation date");
+            this.setVisible(false);
+            parentpage.setVisible(false);
+            StudentAssessmentDetailPage page = new StudentAssessmentDetailPage(assessmentID, assessmentType);
+            page.setVisible(true);
+            page.selectPresentationPanel();
+        }
+    }//GEN-LAST:event_submitBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -117,10 +185,11 @@ public class StudentPresentationRequestPage extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new StudentPresentationRequestPage().setVisible(true);
+                new StudentPresentationRequestPage("A0001","internship_report",null).setVisible(true);
             }
         });
     }
+
     private void setIconImage() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Sysco_icon_with_background.png")));
     }
@@ -129,7 +198,9 @@ public class StudentPresentationRequestPage extends javax.swing.JFrame {
     private javax.swing.JLabel admin_register_intake_title;
     private javax.swing.JLabel background;
     private javax.swing.JLabel email;
-    private javax.swing.JTextField emailField;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel email1;
+    private javax.swing.JSpinner jSpinner1;
+    private com.toedter.calendar.JDateChooser presentationDate;
+    private javax.swing.JButton submitBtn;
     // End of variables declaration//GEN-END:variables
 }

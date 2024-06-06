@@ -7,7 +7,6 @@ package com.mycompany.projectmanagementsystem;
 import com.mycompany.projectmanagementsystem.EC.ECController;
 import com.mycompany.projectmanagementsystem.GeneralFunction.FileHandler;
 import com.mycompany.projectmanagementsystem.GeneralFunction.SessionManager;
-import com.mycompany.projectmanagementsystem.Notification.NotificationController;
 import com.mycompany.projectmanagementsystem.User.User;
 import java.awt.Color;
 import java.awt.Toolkit;
@@ -26,10 +25,12 @@ public class StudentEcForm extends javax.swing.JFrame {
      */
     private final SessionManager sessionManager = SessionManager.getInstance();
     User user = sessionManager.getCurrentUser();
+    private StudentEcSubmissionPage parentPage;
 
-    public StudentEcForm() {
+    public StudentEcForm(StudentEcSubmissionPage parentPage) {
         initComponents();
         setIconImage();
+        this.parentPage = parentPage;
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setAssessmentData();
     }
@@ -182,17 +183,22 @@ public class StudentEcForm extends javax.swing.JFrame {
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
         String[] ecInput = new String[4];
         ecInput[0] = user.getUserID();
-        String assessment = (String)assessmentCB.getSelectedItem();
+        String assessment = (String) assessmentCB.getSelectedItem();
         String assessmentID = getPrefix(assessment);
         ecInput[1] = assessmentID;
         ecInput[2] = ecReasonField.getText();
         ecInput[3] = ecDocLinkField.getText();
         ECController action = new ECController();
         boolean result = action.ecApply(ecInput);
-        if (result){
+        if (result) {
             JOptionPane.showMessageDialog(null, "Successfully apply for ec");
             this.setVisible(false);
-            NotificationController.create(user.getUserID(), "New EC has been applied");
+            // Refresh the parent page
+            if (parentPage != null) {
+                parentPage.setVisible(false);
+                StudentEcSubmissionPage page = new StudentEcSubmissionPage();
+                page.setVisible(true);
+            }
         }
     }//GEN-LAST:event_saveBtnActionPerformed
 
@@ -226,7 +232,7 @@ public class StudentEcForm extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new StudentEcForm().setVisible(true);
+                new StudentEcForm(null).setVisible(true);
             }
         });
     }
@@ -234,12 +240,12 @@ public class StudentEcForm extends javax.swing.JFrame {
     private void setIconImage() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Sysco_icon_with_background.png")));
     }
-    
+
     public static String getPrefix(String input) {
         if (input == null || input.isEmpty()) {
             return "";
         }
-        
+
         String[] parts = input.split("_");
         if (parts.length > 0) {
             return parts[0];
@@ -252,15 +258,15 @@ public class StudentEcForm extends javax.swing.JFrame {
         List<String> data = FileHandler.readFile("student_assessment.txt");
         for (String line : data) {
             String[] list = line.split(";");
-            if(list[1].equals(user.getUserID())){
+            if (list[1].equals(user.getUserID())) {
                 String assessmentID = list[2];
                 List<String> Assessmentdata = FileHandler.readFile("assessment.txt");
                 for (String assessmentline : Assessmentdata) {
-                     String[] assessmentlist = assessmentline.split(";");
-                     if(assessmentlist[0].equals(assessmentID)){
-                         String assessmentName = assessmentID + "_" + assessmentlist[1];
-                         assessmentCB.addItem(assessmentName);
-                     }
+                    String[] assessmentlist = assessmentline.split(";");
+                    if (assessmentlist[0].equals(assessmentID)) {
+                        String assessmentName = assessmentID + "_" + assessmentlist[1];
+                        assessmentCB.addItem(assessmentName);
+                    }
                 }
             }
         }
