@@ -1352,7 +1352,7 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
         List<String> data = FileHandler.readFile("presentation_confirmation.txt");
         for (String line : data) {
             String[] list = line.split(";");
-            if (list[1].equals(user.getUserID())) {
+            if (list[1].equals(user.getUserID()) && list[2].equals(assessmentID)) {
                 x = 1;
             }
         }
