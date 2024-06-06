@@ -9,9 +9,12 @@ import java.awt.Toolkit;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.JOptionPane;
 
 /**
@@ -21,6 +24,7 @@ import javax.swing.JOptionPane;
 public class PM_assessment_edit extends javax.swing.JFrame {
     private final String assessmentType;
     private final String assessmentID;
+    private Map<String, String> userIdToNameMap = new HashMap<>();
 
     public PM_assessment_edit(String assessmentType, String assessmentID) {
         initComponents();
@@ -28,8 +32,21 @@ public class PM_assessment_edit extends javax.swing.JFrame {
         populateLecturers();
         this.assessmentType = assessmentType;
         this.assessmentID = assessmentID;
+        assessment_Type();
+        ShowLecturers();
         
     }
+    
+    private void assessment_Type() {
+            if (assessmentType.equalsIgnoreCase("internship_report") || assessmentType.equalsIgnoreCase("investigation")) {
+                secondmarker_name.setVisible(false);
+                second_maker_name.setVisible(false); // Ensure the label is also hidden
+            } else {
+                secondmarker_name.setVisible(true);
+                second_maker_name.setVisible(true); // Ensure the label is also shown
+            }
+    }
+    
     private void populateLecturers() {
             String fileName = "user.txt";
             try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
@@ -40,9 +57,35 @@ public class PM_assessment_edit extends javax.swing.JFrame {
                         String userIdAndName = list[0] + " - " + list[1]; // Concatenate user ID and name
                         supervisorName.addItem(userIdAndName);
                         secondmarker_name.addItem(userIdAndName);
+                        userIdToNameMap.put(list[0], userIdAndName);
                     }
                 }
             } catch (IOException ex) {
+                System.out.println("Error reading file: " + ex.getMessage());
+            }
+        }
+    
+    private void ShowLecturers() {
+        String fileName = "assessment.txt";
+            try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+                String line;
+                while ((line = br.readLine()) != null) {
+                    String[] list = line.split(";");
+                    if (list.length > 3 && list[1].equalsIgnoreCase(assessmentType)) {
+                        // Extract supervisor, second marker, and due date from the line
+                        String supervisorId = list[4]; 
+                        String secondMarkerId = list[5]; 
+                        String dueDateString = list[3]; 
+
+                        Date dueDate = new SimpleDateFormat("yyyy-MM-dd").parse(dueDateString);
+                        jDateChooser1.setDate(dueDate);
+
+                        // Set supervisor and second marker in JComboBox
+                        supervisorName.setSelectedItem(userIdToNameMap.get(supervisorId));
+                        secondmarker_name.setSelectedItem(userIdToNameMap.get(secondMarkerId));
+                    }
+                }
+            } catch (IOException | ParseException ex) {
                 System.out.println("Error reading file: " + ex.getMessage());
             }
         }
@@ -80,27 +123,27 @@ public class PM_assessment_edit extends javax.swing.JFrame {
 
         supervisor_name.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         supervisor_name.setText("Supervisor Name：");
-        getContentPane().add(supervisor_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, -1, -1));
+        getContentPane().add(supervisor_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, -1));
 
         second_maker_name.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         second_maker_name.setText("Second Marker Name ：");
-        getContentPane().add(second_maker_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, -1, -1));
+        getContentPane().add(second_maker_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, -1, -1));
 
         duedate.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         duedate.setText("Duedate：");
-        getContentPane().add(duedate, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 90, -1));
+        getContentPane().add(duedate, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 90, -1));
 
         supervisorName.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         supervisorName.setMaximumSize(new java.awt.Dimension(64, 28));
         supervisorName.setMinimumSize(new java.awt.Dimension(64, 28));
         supervisorName.setPreferredSize(new java.awt.Dimension(64, 28));
-        getContentPane().add(supervisorName, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 60, 210, -1));
+        getContentPane().add(supervisorName, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, 250, -1));
 
         secondmarker_name.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         secondmarker_name.setMaximumSize(new java.awt.Dimension(64, 28));
         secondmarker_name.setMinimumSize(new java.awt.Dimension(64, 28));
         secondmarker_name.setPreferredSize(new java.awt.Dimension(64, 28));
-        getContentPane().add(secondmarker_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 120, 210, -1));
+        getContentPane().add(secondmarker_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 180, 250, -1));
 
         sava_button.setBackground(new java.awt.Color(76, 127, 174));
         sava_button.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
@@ -123,7 +166,7 @@ public class PM_assessment_edit extends javax.swing.JFrame {
             }
         });
         getContentPane().add(back_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 250, -1, -1));
-        getContentPane().add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 180, 210, 30));
+        getContentPane().add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 60, 210, 30));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main_background.png"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -140,23 +183,37 @@ public class PM_assessment_edit extends javax.swing.JFrame {
         // TODO add your handling code here:
         String supervisor = (String) supervisorName.getSelectedItem();
         String secondMarker = (String) secondmarker_name.getSelectedItem();
+        
+        if (supervisor == null || secondMarker == null) {
+        JOptionPane.showMessageDialog(null, "Please select both supervisor and second marker.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+        
+    }
+        
         Date dueDate = jDateChooser1.getDate();
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String formattedDueDate = dateFormat.format(dueDate);
         
         // Extract only the ID
-        String supervisorID = supervisor.split(" - ")[0]; // Extract supervisor ID
-        String secondMarkerID = secondMarker.split(" - ")[0]; // Extract second marker ID
+        String supervisorID = supervisor.split(" - ")[0];
+        String secondMarkerID = secondMarker.split(" - ")[0]; 
+        
+        // Check if supervisor and second marker are the same
+        if (supervisorID.equals(secondMarkerID)) {
+            JOptionPane.showMessageDialog(null, "Supervisor and second marker cannot be the same person.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
         
         // Check if the due date is later than the current date
         Calendar currentDate = Calendar.getInstance();
-        currentDate.add(Calendar.DAY_OF_MONTH, 5); // Add 5 days
+        currentDate.add(Calendar.DAY_OF_MONTH, 2); // Add 2 days
         Date minDueDate = currentDate.getTime();
 
         if (dueDate.before(minDueDate)) {
-            JOptionPane.showMessageDialog(null, "Due date must be at least 5 days later than today.", "Error", JOptionPane.ERROR_MESSAGE);
-            return; 
+            JOptionPane.showMessageDialog(null, "Due date must be at least 2 days later than today.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
         }
         
         AssessmentController controller = new AssessmentController();
@@ -167,7 +224,7 @@ public class PM_assessment_edit extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Assessment details saved successfully");
         } else {
             JOptionPane.showMessageDialog(null, "Failed to save assessment details. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
-            return; // Stop further execution if the update failed
+            return;
         }
         
         PM_assessment_page assessmentPage = new PM_assessment_page(assessmentType);

@@ -5,3 +5,6 @@ TP0004;Chan Kar Heng;Male;0124013739;2003-09-10;Bukit Jalil;030910-10-1039;Malay
 TP0005;Tan Mei Ling;Female;0187654321;1980-11-25;Puchong;801125-12-1234;Malaysian;meiling.tan@example.com;Meiling@1123;lecturer;School of Business
 TP0008;DALTON GAN;Male;019-3813812;2002-05-10;PUCHONG;020510-20-1023;MALAYSIAN;dalton@mail.agh.edu.my;Tp0008@;lecturer;School of Engineering
 TP0011;She Jun Yuan;Male;017-3953823;2003-05-09;D'Kiara Apt;030509-12-1938;Malaysian;jasonshe80@mail.agh.edu.my;Jy!030509;student;CERT2307CS(DA)
+TP0012;Lee Jia Xuan;Female;017-3953823;2003-05-09;D'Kiara Apt;030509-12-1938;Malaysian;jx@mail.agh.edu.my;Jy!030509;student;CERT2308CS(DA)
+TP0013;Tan Jia Hui;Female;0187654321;1980-11-25;Puchong;801125-12-1234;Malaysian;jh@example.com;Meiling@1123;lecturer;School of Business
+TP0014; Ray ;Female;0187654321;1980-11-25;Puchong;801125-12-1234;Malaysian;ray@example.com;ray@1123;lecturer;School of Computing

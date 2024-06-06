@@ -11,6 +11,11 @@ import java.util.Calendar;
 import java.util.Date;
 import com.mycompany.projectmanagementsystem.GeneralFunction.SessionManager;
 import com.mycompany.projectmanagementsystem.User.User;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -182,21 +187,62 @@ public class AssessmentController implements StudentAssessmentController {
             if (mark >= 50) return "Pass";
             return "Fail";
         }
-        }
-
-        public boolean assessment_Delete(String assessmentID) {
-        List<String> data = FileHandler.readFile("assessment.txt");
-        ArrayList<String> array_list = new ArrayList<>();
-        for (String line : data) {
-            String[] list = line.split(";");
-            if (!list[0].equals(assessmentID)) {
-                line = String.join(";", list);
-                array_list.add(line);
-            }
-        }
-        FileHandler.modifyFileData("assessment.txt", array_list);
-        return true;
     }
+    
+    
+    public List<String> getStudentsByIntake(String studentIntake) {
+        List<String> students = new ArrayList<>();
+        String fileName = "user.txt";
+        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] list = line.split(";");
+                if (list.length >= 12 && list[11].equalsIgnoreCase(studentIntake) && list[10].equalsIgnoreCase("student")) {
+                    students.add(list[0]);
+                }
+            }
+        } catch (IOException ex) {
+            System.err.println("Error reading file: " + ex.getMessage());
+        }
+        return students;
+    }
+
+    public void saveStudentAssessment(String[] studentAssessmentData) {
+        String fileName = "student_assessment.txt";
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(fileName, true))) {
+            bw.write(String.join(";", studentAssessmentData));
+            bw.newLine();
+        } catch (IOException ex) {
+            System.err.println("Error writing to file: " + ex.getMessage());
+        }
+    }
+
+    public boolean assessment_Delete(String assessmentID) {
+         boolean success = true;
+    
+         // Read and update assessment.txt
+         List<String> data = FileHandler.readFile("assessment.txt");
+         ArrayList<String> updatedAssessmentData = new ArrayList<>();
+         for (String line : data) {
+             String[] list = line.split(";");
+             if (!list[0].equals(assessmentID)) {
+                 updatedAssessmentData.add(line);
+             }
+         }
+         FileHandler.modifyFileData("assessment.txt", updatedAssessmentData);
+         // Read and update student_assessment.txt
+         List<String> studentAssessmentData = FileHandler.readFile("student_assessment.txt");
+         ArrayList<String> updatedStudentAssessmentData = new ArrayList<>();
+         for (String line : studentAssessmentData) {
+             String[] parts = line.split(";");
+             if (!parts[0].equals(assessmentID)) {
+                 updatedStudentAssessmentData.add(line);
+             }
+         }
+         FileHandler.modifyFileData("student_assessment.txt", updatedStudentAssessmentData);
+            return success;
+        }
+    
 
     public boolean assessment_Edit(String assessmentID, String supervisorID, String secondMarkerID, String dueDate) {
         List<String> data = FileHandler.readFile("assessment.txt");
@@ -210,36 +256,55 @@ public class AssessmentController implements StudentAssessmentController {
                     Date originalDate = dateFormat.parse(originalDueDate);
                     Date newDate = dateFormat.parse(dueDate);
 
-                    // Check if the new due date is at least 5 days later than the original due date
+                    // Check if the new due date is at least 2 days later than the current date
                     Calendar minDueDateCalendar = Calendar.getInstance();
-                    minDueDateCalendar.setTime(originalDate);
-                    minDueDateCalendar.add(Calendar.DAY_OF_MONTH, 5); // Add 5 days to the original due date
+                    minDueDateCalendar.add(Calendar.DAY_OF_MONTH, 2); // Add 2 days to the current date
                     Date minDueDate = minDueDateCalendar.getTime();
 
                     if (newDate.before(minDueDate)) {
-                        // New due date is not valid
                         return false;
                     }
 
                     // Update supervisor ID, second marker ID, and due date
-                    list[4] = supervisorID; // Update supervisor ID
-                    list[5] = secondMarkerID; // Update second marker ID
-                    list[3] = dueDate; // Update due date
+                    list[4] = supervisorID; 
+                    list[5] = secondMarkerID; 
+                    list[3] = dueDate; 
 
                     line = String.join(";", list);
                 } catch (ParseException e) {
                     e.printStackTrace();
-                    return false; // Return false if parsing fails
+                    return false; 
                 }
             }
             array_list.add(line);
         }
         FileHandler.modifyFileData("assessment.txt", array_list);
-        return true; // Return true if update is successful
+        return true; 
     }
 
     public boolean assessment_Report(String assessmentID) {
-        return false;
+        List<String> data = FileHandler.readFile("student_assessment.txt");
+        for (String line : data) {
+            String[] list = line.split(";");
+            if (list[0].equals(assessmentID)) {
+                return true; // Assessment report exists
+            }
+        }
+        return false; // Assessment report does not exist
+    }
+    
+    public boolean report_Delete(String assessmentID) {
+        List<String> data = FileHandler.readFile("student_assessment.txt");
+        ArrayList<String> array_list = new ArrayList<>();
+        for (String line : data) {
+            String[] list = line.split(";");
+            if (!list[0].equals(assessmentID)) {
+                line = String.join(";", list);
+                array_list.add(line);
+            }
+        }
+        FileHandler.modifyFileData("student_assessment.txt", array_list);
+        return true;
     }
 }
 

@@ -271,6 +271,9 @@
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="EC Approvement"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="pm_ec_approvementMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="pm_notification">
           <Properties>
@@ -283,6 +286,9 @@
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="Notification"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="pm_notificationMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="pm_profile">
           <Properties>
@@ -295,6 +301,9 @@
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="Profile"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="pm_profileMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="pm_logout">
           <Properties>
@@ -307,6 +316,9 @@
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="Log Out"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="pm_logoutMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

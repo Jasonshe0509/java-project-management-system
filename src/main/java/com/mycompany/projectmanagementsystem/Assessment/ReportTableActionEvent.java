@@ -8,9 +8,7 @@ package com.mycompany.projectmanagementsystem.Assessment;
  *
  * @author shuhuilee
  */
-public interface AssessmentTableActionEvent {
-    public void assessment_Delete(int row, Object value);
-    public void assessment_Edit(int row, Object value);
-    public void assessment_Report(int row, Object value);
+public interface ReportTableActionEvent {
+    public void report_Delete(int row, Object value);
 
 }

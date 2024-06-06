@@ -4,15 +4,24 @@
  */
 package com.mycompany.projectmanagementsystem;
 
+import com.mycompany.projectmanagementsystem.Assessment.AssessmentController;
+import com.mycompany.projectmanagementsystem.GeneralFunction.IDGenerator;
 import com.mycompany.projectmanagementsystem.GeneralFunction.SessionManager;
 import com.mycompany.projectmanagementsystem.User.User;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -41,7 +50,7 @@ public class PM_register_assessment_create extends javax.swing.JFrame {
         assessment_Type();
         assessment_Type.setEditable(false); 
         pm_studentIntakeActionPerformed(null);
-        populateLecturers();
+     
     }
     
     private String generateUniqueId() {
@@ -68,13 +77,21 @@ public class PM_register_assessment_create extends javax.swing.JFrame {
     
         private void saveAssessmentToFile(String uniqueId, String[] list) {
             String fileName = "assessment.txt";
-            try (BufferedWriter bw = new BufferedWriter(new FileWriter(fileName, true))) {
-                String line = uniqueId + ";" + list[0] + ";" + list[1] + ";" + list[2] + ";" + list[3] + ";" + list[4] + ";" + list[5] + ";" + list[6] + "\n";
-                bw.write(line);
-            } catch (IOException ex) {
-                System.err.println("Error writing to file: " + ex.getMessage());
+                try (BufferedWriter bw = new BufferedWriter(new FileWriter(fileName, true))) {
+                    // Determine whether to include the second marker or a placeholder based on the assessment type
+                    String secondMarkerData = "";
+                    if (list[0].equalsIgnoreCase("internship_report") || list[0].equalsIgnoreCase("investigation")) {
+                        secondMarkerData = "-"; // Add a placeholder if no second marker is required
+                    } else {
+                        secondMarkerData = list[4]; // Use the provided second marker ID
+                    }
+
+                    String line = uniqueId + ";" + list[0] + ";" + list[1] + ";" + list[2] + ";" + list[3] + ";" + secondMarkerData + ";" + list[5] + ";" + list[6] + "\n";
+                    bw.write(line);
+                } catch (IOException ex) {
+                    System.err.println("Error writing to file: " + ex.getMessage());
+                }
             }
-        }
         
         private void readAssessmentFromFile() {
             String fileName = "assessment.txt";
@@ -140,6 +157,14 @@ public class PM_register_assessment_create extends javax.swing.JFrame {
         }
         
         private void assessment_Type() {
+            if (assessmentType.equalsIgnoreCase("internship_report") || assessmentType.equalsIgnoreCase("investigation")) {
+                secondmarker_name.setVisible(false);
+                second_maker_name.setVisible(false); // Ensure the label is also hidden
+            } else {
+                secondmarker_name.setVisible(true);
+                second_maker_name.setVisible(true); // Ensure the label is also shown
+            }
+            
             if (assessmentType.equalsIgnoreCase("internship_report")) {
                 assessment_Type.setText("internship_report");
             } else if (assessmentType.equalsIgnoreCase("fyp")) {
@@ -157,13 +182,15 @@ public class PM_register_assessment_create extends javax.swing.JFrame {
             }
         }
     
-        private void populateLecturers() {
+        private void populateLecturers(String school) {
+            supervisor_name.removeAllItems();
+            secondmarker_name.removeAllItems();
             String fileName = "user.txt";
             try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
                 String line;
                 while ((line = br.readLine()) != null) {
                     String[] list = line.split(";");
-                    if (list.length > 10 && list[10].equalsIgnoreCase("lecturer")) {
+                    if (list.length > 11 && list[10].equalsIgnoreCase("lecturer") && list[11].trim().equalsIgnoreCase(school)) {
                         String userIdAndName = list[0] + " - " + list[1]; // Concatenate user ID and name
                         supervisor_name.addItem(userIdAndName);
                         secondmarker_name.addItem(userIdAndName);
@@ -173,6 +200,77 @@ public class PM_register_assessment_create extends javax.swing.JFrame {
                 System.out.println("Error reading file: " + ex.getMessage());
             }
         }
+        
+        private Set<String> getStudentIntakeCodes() {
+            Set<String> studentIntakeCodes = new HashSet<>();
+            String fileName = "user.txt";
+            try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+                String line;
+                while ((line = br.readLine()) != null) {
+                    String[] list = line.split(";");
+                    if (list.length > 10 && list[10].equalsIgnoreCase("student")) {
+                        studentIntakeCodes.add(list[11].trim());
+                    }
+                }
+            } catch (IOException ex) {
+                System.err.println("Error reading file: " + ex.getMessage());
+            }
+            return studentIntakeCodes;
+        }
+
+        private void loadIntakeCodes(Set<String> validIntakeCodes) {
+            String fileName = "intake.txt";
+            try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+                String line;
+                while ((line = br.readLine()) != null) {
+                    String intakeCode = line.split(";")[0].trim();
+                    if (validIntakeCodes.contains(intakeCode)) {
+                        pm_studentIntake.addItem(intakeCode);
+                    }
+                }
+            } catch (IOException ex) {
+                System.err.println("Error reading file: " + ex.getMessage());
+            }
+        }
+
+        private String getSchoolByIntake(String intakeCode) {
+            String fileName = "intake.txt";
+            try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+                String line;
+                while ((line = br.readLine()) != null) {
+                    String[] list = line.split(";");
+                    if (list[0].trim().equals(intakeCode)) {
+                        return list[1].trim(); // School wise
+                    }
+                }
+            } catch (IOException ex) {
+                System.err.println("Error reading file: " + ex.getMessage());
+            }
+            return null;
+        }
+        
+        private boolean SupervisorSecondMarkerSameWithinIntake(String studentIntake, String supervisorId, String secondMarkerId) {
+            String fileName = "assessment.txt";
+            try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+                String line;
+                while ((line = br.readLine()) != null) {
+                    String[] list = line.split(";");
+                    if (list.length >= 3 && list[2].equalsIgnoreCase(studentIntake)) {
+                        String supervisorInFile = list[4];
+                        String secondMarkerInFile = list[5];
+                        if (supervisorInFile.equals(supervisorId) && secondMarkerInFile.equals(secondMarkerId)) {
+                            return true;
+                        }
+                    }
+                }
+            } catch (IOException ex) {
+                System.err.println("Error reading file: " + ex.getMessage());
+            }
+            return false;
+        }
+
+        
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -206,23 +304,23 @@ public class PM_register_assessment_create extends javax.swing.JFrame {
 
         supervisorName.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         supervisorName.setText("Supervisor Name：");
-        getContentPane().add(supervisorName, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 230, -1, -1));
+        getContentPane().add(supervisorName, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 290, -1, -1));
 
         assessment_type.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         assessment_type.setText("Assessment Type ：");
-        getContentPane().add(assessment_type, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, -1, -1));
+        getContentPane().add(assessment_type, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, -1, -1));
 
         student_intake.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         student_intake.setText("Student Intake ：");
-        getContentPane().add(student_intake, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 170, -1, -1));
+        getContentPane().add(student_intake, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 170, -1, -1));
 
         second_maker_name.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         second_maker_name.setText("Second Marker Name ：");
-        getContentPane().add(second_maker_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 290, -1, -1));
+        getContentPane().add(second_maker_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 350, -1, -1));
 
         duedate.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         duedate.setText("Duedate：");
-        getContentPane().add(duedate, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 350, 90, -1));
+        getContentPane().add(duedate, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 230, 90, -1));
 
         assessment_Type.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         assessment_Type.setMaximumSize(new java.awt.Dimension(64, 28));
@@ -243,14 +341,14 @@ public class PM_register_assessment_create extends javax.swing.JFrame {
         supervisor_name.setMaximumSize(new java.awt.Dimension(64, 28));
         supervisor_name.setMinimumSize(new java.awt.Dimension(64, 28));
         supervisor_name.setPreferredSize(new java.awt.Dimension(64, 28));
-        getContentPane().add(supervisor_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 230, 210, -1));
+        getContentPane().add(supervisor_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 290, 310, -1));
 
         secondmarker_name.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         secondmarker_name.setMaximumSize(new java.awt.Dimension(64, 28));
         secondmarker_name.setMinimumSize(new java.awt.Dimension(64, 28));
         secondmarker_name.setPreferredSize(new java.awt.Dimension(64, 28));
-        getContentPane().add(secondmarker_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 290, 210, -1));
-        getContentPane().add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 350, 210, 30));
+        getContentPane().add(secondmarker_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 350, 310, -1));
+        getContentPane().add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 230, 210, 30));
 
         back_jButton1.setBackground(new java.awt.Color(76, 127, 174));
         back_jButton1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
@@ -299,24 +397,68 @@ public class PM_register_assessment_create extends javax.swing.JFrame {
         // TODO add your handling code here:
         String assessmentType = assessment_Type.getText();
         String studentIntake = (String) pm_studentIntake.getSelectedItem();
-        String dueDate = new SimpleDateFormat("yyyy-MM-dd").format(jDateChooser1.getDate());
+        Date dueDate = jDateChooser1.getDate();
+        String dueDateString = new SimpleDateFormat("yyyy-MM-dd").format(dueDate);
         String supervisor = (String) supervisor_name.getSelectedItem();
         String secondMarker = (String) secondmarker_name.getSelectedItem();
         User user = sessionManager.getCurrentUser(); // Get the current user ID
         String userID = user != null ? user.getUserID() : ""; 
         String assessmentStatus = "incomplete"; 
+
+
         
-        if (assessmentType.isEmpty() || studentIntake.isEmpty() || dueDate.isEmpty() || supervisor.isEmpty() || secondMarker.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Please fill in all the fields.", "Warning", JOptionPane.WARNING_MESSAGE);
-            return;
+        // Current date plus two days
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DAY_OF_YEAR, 2);
+        Date minDueDate = calendar.getTime();
+
+        if (assessmentType.isEmpty() || studentIntake.isEmpty() || dueDate == null || supervisor.isEmpty() || secondMarker.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Please fill in all the fields.", "Warning", JOptionPane.WARNING_MESSAGE);
+        return;
         }
 
+        // Check if the due date is at least 2 days greater than the current date
+        if (dueDate.before(minDueDate)) {
+            JOptionPane.showMessageDialog(this, "The due date must be at least 2 days from today.", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        
+        // Check if the assessment type requires a second marker
+        boolean requiresSecondMarker = !(assessmentType.equalsIgnoreCase("internship_report") || assessmentType.equalsIgnoreCase("investigation"));
+        if (!(assessmentType.equalsIgnoreCase("internship_report") || assessmentType.equalsIgnoreCase("investigation"))) {
+            if (secondMarker == null || secondMarker.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Please select a second marker.", "Warning", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+        }
+
+        String supervisorId = supervisor.split(" - ")[0];  // Extract ID
+        String secondMarkerId = secondMarker != null && !secondMarker.isEmpty() ? secondMarker.split(" - ")[0] : ""; // Extract ID
+
+
+        // Check if supervisor and second marker are the same
+        if (supervisorId.equals(secondMarkerId)) {
+            JOptionPane.showMessageDialog(this, "Supervisor and Second Marker cannot be the same person.", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        
+        
+        // Check if supervisor and second marker are the same within the same intake
+        if (SupervisorSecondMarkerSameWithinIntake(studentIntake, supervisorId, secondMarkerId)) {
+            JOptionPane.showMessageDialog(this, "Supervisor and Second Marker cannot be the same person within the same intake.", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        
+        
         String[] assessmentData = {
             assessmentType,
             studentIntake,
-            dueDate,
-            supervisor.split(" - ")[0],  // Extract ID
-            secondMarker.split(" - ")[0], // Extract ID
+            dueDateString,
+            supervisorId, 
+            secondMarkerId, 
             userID,
             assessmentStatus
         };
@@ -325,10 +467,32 @@ public class PM_register_assessment_create extends javax.swing.JFrame {
         saveAssessmentToFile(uniqueId, assessmentData);
         JOptionPane.showMessageDialog(this, "Assessment has been created successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);
         saved = true;
+        
+        AssessmentController controller = new AssessmentController();
+
+            List<String> students = controller.getStudentsByIntake(studentIntake);
+            for (String student : students) {
+                String studentAssessmentId = IDGenerator.genID("SA");
+                String[] studentAssessmentData = {
+                    studentAssessmentId,
+                    student,
+                    uniqueId,
+                    dueDateString,
+                    "", // submission link
+                    "late", // submission date time
+                    "pending", // submission status
+                    "", // feedback
+                    "", // grade
+                    "", // supervisor mark
+                    "", // second marker mark
+                    "0"  // resubmit count
+                };
+                controller.saveStudentAssessment(studentAssessmentData);
+            }
 
         readAssessmentFromFile();
         
-        // Navigate back to the assessment page
+        
         PM_assessment_page assessment = new PM_assessment_page(assessmentType);
         assessment.setVisible(true);
         this.dispose();
@@ -336,17 +500,33 @@ public class PM_register_assessment_create extends javax.swing.JFrame {
 
     private void pm_studentIntakeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pm_studentIntakeActionPerformed
         // TODO add your handling code here:
-        if (pm_studentIntake.getItemCount() == 0) { // Check if the combo box is empty
-            try (BufferedReader br = new BufferedReader(new FileReader("intake.txt"))) {
-                String line;
-                while ((line = br.readLine()) != null) {
-                    String intakeCode = line.split(";")[0].trim(); 
-                    pm_studentIntake.addItem(intakeCode);
+        
+        // Load intake codes with students
+        Set<String> studentIntakeCodes = getStudentIntakeCodes();
+        pm_studentIntake.removeAllItems();
+        loadIntakeCodes(studentIntakeCodes);
+        
+        // Load lecturers based on the school of the chosen intake
+        pm_studentIntake.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                String selectedIntake = (String) pm_studentIntake.getSelectedItem();
+                if (selectedIntake != null && !selectedIntake.isEmpty()) {
+                    String school = getSchoolByIntake(selectedIntake);
+                    populateLecturers(school);
                 }
-            } catch (IOException ex) {
-                System.err.println("Error reading file: " + ex.getMessage());
             }
-        }
+        });
+//        if (pm_studentIntake.getItemCount() == 0) { // Check if the combo box is empty
+//            try (BufferedReader br = new BufferedReader(new FileReader("intake.txt"))) {
+//                String line;
+//                while ((line = br.readLine()) != null) {
+//                    String intakeCode = line.split(";")[0].trim(); 
+//                    pm_studentIntake.addItem(intakeCode);
+//                }
+//            } catch (IOException ex) {
+//                System.err.println("Error reading file: " + ex.getMessage());
+//            }
+//        }
     }//GEN-LAST:event_pm_studentIntakeActionPerformed
 
     /**

@@ -9,6 +9,7 @@ import com.mycompany.projectmanagementsystem.Assessment.AssessmentTableActionEve
 import com.mycompany.projectmanagementsystem.GeneralFunction.FileHandler;
 import com.mycompany.projectmanagementsystem.GeneralFunction.SessionManager;
 import com.mycompany.projectmanagementsystem.User.User;
+import com.mycompany.projectmanagementsystem.User.UserController;
 import java.awt.Toolkit;
 import java.awt.Color;
 import java.io.BufferedReader;
@@ -37,6 +38,7 @@ public class PM_assessment_page extends javax.swing.JFrame {
 
     /**
      * Creates new form Internship
+     * @param assessmentType
      */
     public PM_assessment_page(String assessmentType) {
         this.assessmentType = assessmentType;
@@ -51,6 +53,7 @@ public class PM_assessment_page extends javax.swing.JFrame {
         pm_assessment_table.setRowSorter(rowSorter);
         setupTable();
     }
+   
     
     private void setupTable() {
         PM_assessment_ActionPanel action = new PM_assessment_ActionPanel();
@@ -58,43 +61,79 @@ public class PM_assessment_page extends javax.swing.JFrame {
             @Override
             public void assessment_Delete(int row, Object value) {
                 DefaultTableModel model = (DefaultTableModel) pm_assessment_table.getModel();
-                int columnIndex = 0;
-                String assessmentID = (String) model.getValueAt(row, columnIndex);
-                AssessmentController action = new AssessmentController();
-                boolean result = action.assessment_Delete(assessmentID);
-                if (result) {
-                    JOptionPane.showMessageDialog(null, "Assessment successfully deleted");
-                    PM_assessment_page assessmentPage = new PM_assessment_page(assessmentType);
-                    assessmentPage.setVisible(true);
-                    assessmentPage.dispose();
+                String assessmentID = (String) model.getValueAt(row, 0); // Assuming assessmentID is in the first column
+
+                int response = JOptionPane.showConfirmDialog(
+                    null,
+                    "Are you sure you want to delete the assessment with ID " + assessmentID + "?",
+                    "Confirm Delete",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.WARNING_MESSAGE
+                );
+                if (response == JOptionPane.YES_OPTION) {
+                    boolean canDelete = canDeleteAssessment(assessmentID);
+                    if (canDelete) {
+                        AssessmentController controller = new AssessmentController();
+                        boolean result = controller.assessment_Delete(assessmentID);
+                        if (result) {
+                            JOptionPane.showMessageDialog(null, "Assessment successfully deleted");
+                            backAssessmentPage(); // Refresh the table data
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Cannot delete assessment. There are submitted or marked student submissions related to it.");
+                    }
                 }
             }
-        
+                
             @Override
             public void assessment_Edit(int row, Object value) {
                 DefaultTableModel model = (DefaultTableModel) pm_assessment_table.getModel();
-               
-                    if (row >= 0 && row < model.getRowCount()) {
-                        String assessmentID = (String) model.getValueAt(row, 0); 
-
-                        PM_assessment_edit edit = new PM_assessment_edit(assessmentType, assessmentID);
-                        edit.setVisible(true); 
-                        PM_assessment_page.this.dispose(); 
-                    }
-
+                if (row >= 0 && row < model.getRowCount()) {
+                    String assessmentID = (String) model.getValueAt(row, 0);
+                    PM_assessment_edit edit = new PM_assessment_edit(assessmentType, assessmentID);
+                    edit.setVisible(true);
+                    PM_assessment_page.this.dispose();
+                }
             }
-            
-
             @Override
             public void assessment_Report(int row, Object value) {
+                DefaultTableModel model = (DefaultTableModel) pm_assessment_table.getModel();
+                if (row >= 0 && row < model.getRowCount()) {
+                    String assessmentID = (String) model.getValueAt(row, 0);
+                    PM_report_status report = new PM_report_status(assessmentType, assessmentID);
+                    report.setVisible(true);
+                    PM_assessment_page.this.dispose();
+                }
             }
         };
-        
-
         pm_assessment_table.getColumnModel().getColumn(7).setCellRenderer(action.new rPanelActionRenderer());
         pm_assessment_table.getColumnModel().getColumn(7).setCellEditor(action.new TableActionCellEditor(event));
-    }
 
+    };
+            
+            private boolean canDeleteAssessment(String assessmentID) {
+            // Check if there are any student submissions related to this assessment
+            List<String> studentSubmissions = FileHandler.readFile("student_assessment.txt");
+            for (String line : studentSubmissions) {
+                String[] parts = line.split(";");
+                if (parts[0].equals(assessmentID)) {
+                    // Assuming status is stored at index 2
+                    String status = parts[2];
+                    if (status.equals("submitted") || status.equals("marked")) {
+                        return false; // There are submitted or marked student submissions
+                    }
+                }
+            }
+            return true; // No submitted or marked student submissions found
+        }
+
+    private void backAssessmentPage() {
+            // Refresh the assessment page by creating a new instance of it
+            PM_assessment_page assessmentPage = new PM_assessment_page(assessmentType);
+            assessmentPage.setVisible(true);
+            assessmentPage.dispose();
+        }
+            
     private void assessmentType() {
         if (assessmentType.equalsIgnoreCase("internship_report")) {
             pm_assessment.setText("Internship Report");
@@ -146,7 +185,12 @@ public class PM_assessment_page extends javax.swing.JFrame {
 
                 // Replace supervisor and second marker IDs with names
                 list[4] = names[0]; // Supervisor Name
-                list[5] = names[1]; // Second Marker Name
+                // Check assessment type and set second marker accordingly
+                if (list[1].equalsIgnoreCase("internship_report") || list[1].equalsIgnoreCase("investigation")) {
+                    list[5] = "-"; // Set to "-" for internship and investigation
+                } else {
+                    list[5] = names[1]; // Second Marker Name for other types
+                }
 
                 String[] reorderedData = {
                     list[0], // Assessment ID
@@ -309,21 +353,41 @@ public class PM_assessment_page extends javax.swing.JFrame {
         pm_ec_approvement.setForeground(new java.awt.Color(2, 50, 99));
         pm_ec_approvement.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pm_ec_approvement.setText("EC Approvement");
+        pm_ec_approvement.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pm_ec_approvementMouseClicked(evt);
+            }
+        });
 
         pm_notification.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
         pm_notification.setForeground(new java.awt.Color(2, 50, 99));
         pm_notification.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pm_notification.setText("Notification");
+        pm_notification.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pm_notificationMouseClicked(evt);
+            }
+        });
 
         pm_profile.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
         pm_profile.setForeground(new java.awt.Color(2, 50, 99));
         pm_profile.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pm_profile.setText("Profile");
+        pm_profile.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pm_profileMouseClicked(evt);
+            }
+        });
 
         pm_logout.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
         pm_logout.setForeground(new java.awt.Color(2, 50, 99));
         pm_logout.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pm_logout.setText("Log Out");
+        pm_logout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pm_logoutMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -414,6 +478,33 @@ public class PM_assessment_page extends javax.swing.JFrame {
             rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + searchText));
         }
     }//GEN-LAST:event_pm_assessment_searchKeyReleased
+
+    private void pm_ec_approvementMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pm_ec_approvementMouseClicked
+        // TODO add your handling code here:
+        PM_ec_approvement ecApprove = new PM_ec_approvement();
+        ecApprove.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_pm_ec_approvementMouseClicked
+
+    private void pm_notificationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pm_notificationMouseClicked
+        // TODO add your handling code here:
+        NotificationPage noti = new NotificationPage();
+        noti.setVisible(true);
+    }//GEN-LAST:event_pm_notificationMouseClicked
+
+    private void pm_profileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pm_profileMouseClicked
+        // TODO add your handling code here:
+        PM_profile_page profile = new PM_profile_page();
+        profile.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_pm_profileMouseClicked
+
+    private void pm_logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pm_logoutMouseClicked
+        // TODO add your handling code here:
+        this.setVisible(false);
+        UserController action = new UserController();
+        action.userLogout();
+    }//GEN-LAST:event_pm_logoutMouseClicked
 
     /**
      * @param args the command line arguments

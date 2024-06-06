@@ -1,1 +1,4 @@
 SA0001;TP0001;A0001;2024-05-19;https://quillbot.com/ai-content-detector;2024-05-23-23-05;submitted;;;;;0
+SA0005;TP0001;A0010;2024-06-28;;late;pending;;;;;0
+SA0006;TP0001;A0010;2024-06-13;;late;pending;;;;;0
+SA0007;TP0001;A0010;2024-06-21;;late;pending;;;;;0
