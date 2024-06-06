@@ -351,12 +351,7 @@ public class LecturerSummaryReport extends javax.swing.JFrame {
         String fileNamez = "user.txt";
         String fileNamea = "ec.txt";
         String fileNameb = "presentation_confirmation.txt";
-        int stdCount = 0;
-        int ecCount = 0;
-        int stdSubCount = 0;
-        int stdCmpltCount = 0;
-        int stdPassCount = 0;
-        
+
         DefaultTableModel model = (DefaultTableModel) sumRptTable.getModel();
         model.setRowCount(0); // Clear existing rows
 
@@ -365,7 +360,9 @@ public class LecturerSummaryReport extends javax.swing.JFrame {
         List<String> dataz = FileHandler.readFile(fileNamez);
         List<String> dataa = FileHandler.readFile(fileNamea);
         List<String> datab = FileHandler.readFile(fileNameb);
-               
+
+        String currentUserID = user.getUserID(); // Get the current user's ID
+
         // Map to store assessment ID to assessment type
         Map<String, String> AssessmentTypes = new HashMap<>();
         for (String liney : datay) {
@@ -374,105 +371,92 @@ public class LecturerSummaryReport extends javax.swing.JFrame {
             String assmntType = listy[1];
             AssessmentTypes.put(assmntID, assmntType);
         }
-        
-        //Total Student
-        for (String line : dataz) {
-            String[] UserList = line.split(";");
-            if ("student".equals(UserList[10]) && intakeCode.equals(UserList[11])) {
-                stdCount++;
-            }
-        }
-        
-        //Total EC
-        for (String line : dataa) {
-            String[] ecList = line.split(";");
-            if (AssmntID.equals(ecList[2])) {
-                ecCount++;
-            }
-        }
-        
-        //Total Submission
-        for (String line : datax) {
-                String[] StdAssmntList = line.split(";");
-                if (AssmntID.equals(StdAssmntList[2]) && "submitted".equals(StdAssmntList[6])) {
-                    stdSubCount++;
-                }                      
-            }
-        
-        // Completed Assessment (marked & presented)
-        for (String line : datax) {
-            String[] StdAssmntList = line.split(";");
-            if (AssmntID.equals(StdAssmntList[2]) && "marked".equals(StdAssmntList[6])) {
-                for (String linea : datab) {
-                    String[] StdPresentList = linea.split(";");
-                    if (AssmntID.equals(StdPresentList[2]) && "completed".equals(StdPresentList[5])) {
-                        stdCmpltCount++;
-                    }
-                }
-            }
-        }
-        
-        // Passing Percentage
-        for (String line : datax) {
-            String[] StdAssmntList = line.split(";");
-            if (AssmntID.equals(StdAssmntList[2]) && 
-               ("Pass".equals(StdAssmntList[8]) || "Pass with Small Changes".equals(StdAssmntList[8]))) {
-                stdPassCount++;
-            }                      
-        }
-        int passPercent = stdPassCount / stdCount * 100;
-        String finalpercent = Integer.toString(passPercent) + "%";
-        
+
         // Set to track added rows to avoid duplication
         Set<String> addedRows = new HashSet<>();
-        
-        for (String linex : datax) {
-        String[] listx = linex.split(";");
-        String assessmentID = listx[2];
 
         for (String liney : datay) {
             String[] listy = liney.split(";");
-            String currentAssessmentID = listy[0];
-            if (currentAssessmentID.equals(assessmentID) && currentAssessmentID.equals(AssmntID)) {
-                String spv = listy[4];
-                String secMarker = listy[5];
-                String AssmntType = AssessmentTypes.get(AssmntID);
+            String assmntID = listy[0];
+            String assmntType = listy[1];
+            String spv = listy[4];
+            String secMarker = listy[5];
 
-                String rowIdentifier = assessmentID + "-" + user.getUserID();
+            // Check if the current user is either the supervisor or the second marker
+            if (currentUserID.equals(spv) || currentUserID.equals(secMarker)) {
+                int stdCount = 0;
+                int ecCount = 0;
+                int stdSubCount = 0;
+                int stdCmpltCount = 0;
+                int stdPassCount = 0;
+
+                // Total Student
+                for (String line : dataz) {
+                    String[] UserList = line.split(";");
+                    if ("student".equals(UserList[10]) && intakeCode.equals(UserList[11])) {
+                        stdCount++;
+                    }
+                }
+
+                // Total EC
+                for (String line : dataa) {
+                    String[] ecList = line.split(";");
+                    if (assmntID.equals(ecList[2])) {
+                        ecCount++;
+                    }
+                }
+
+                // Total Submission
+                for (String line : datax) {
+                    String[] StdAssmntList = line.split(";");
+                    if (assmntID.equals(StdAssmntList[2]) && "submitted".equals(StdAssmntList[6])) {
+                        stdSubCount++;
+                    }
+                }
+
+                // Completed Assessment (marked & presented)
+                for (String line : datax) {
+                    String[] StdAssmntList = line.split(";");
+                    if (assmntID.equals(StdAssmntList[2]) && "marked".equals(StdAssmntList[6])) {
+                        for (String linea : datab) {
+                            String[] StdPresentList = linea.split(";");
+                            if (assmntID.equals(StdPresentList[2]) && "completed".equals(StdPresentList[5])) {
+                                stdCmpltCount++;
+                            }
+                        }
+                    }
+                }
+
+                // Passing Percentage
+                for (String line : datax) {
+                    String[] StdAssmntList = line.split(";");
+                    if (assmntID.equals(StdAssmntList[2]) &&
+                            ("Pass".equals(StdAssmntList[8]) || "Pass with Small Changes".equals(StdAssmntList[8]))) {
+                        stdPassCount++;
+                    }
+                }
+
+                int passPercent = (stdCount != 0) ? (stdPassCount * 100 / stdCount) : 0;
+                String finalpercent = passPercent + "%";
+
+                String rowIdentifier = assmntID + "-" + currentUserID;
                 if (!addedRows.contains(rowIdentifier)) {
-                    if (spv.equals(user.getUserID())) {
-                        String[] reorderedData = {
-                            AssmntID,       // Supervisee ID
-                            AssmntType,     // Supervisee Name
-                            Integer.toString(stdCount),         // Supervisor Name
-                            Integer.toString(ecCount), // Presentation Slot
-                            Integer.toString(stdSubCount),
-                            Integer.toString(stdCmpltCount),
-                            finalpercent, 
-                        };
-                        model.addRow(reorderedData);
-                        addedRows.add(rowIdentifier);
-                    } else if (secMarker.equals(user.getUserID())) {
-                        sumRptTable.getColumnModel().getColumn(2).setHeaderValue("Supervisor");
-                        sumRptTable.getTableHeader().repaint();
-                        String[] reorderedData = {
-                            AssmntID,       // Supervisee ID
-                            AssmntType,     // Supervisee Name
-                            Integer.toString(stdCount),         // Supervisor Name
-                            Integer.toString(ecCount), // Presentation Slot
-                            Integer.toString(stdSubCount),
-                            Integer.toString(stdCmpltCount),
-                            finalpercent,                            
-                        };
-                        model.addRow(reorderedData);
-                        addedRows.add(rowIdentifier);
-                    }
-                }
-                }
-
-                    }
+                    String[] reorderedData = {
+                            assmntID,       // Assessment ID
+                            assmntType,     // Assessment Type
+                            Integer.toString(stdCount),         // Total Students
+                            Integer.toString(ecCount), // Total EC
+                            Integer.toString(stdSubCount),      // Total Submissions
+                            Integer.toString(stdCmpltCount),    // Completed Assessments
+                            finalpercent,                       // Passing Percentage
+                    };
+                    model.addRow(reorderedData);
+                    addedRows.add(rowIdentifier);
                 }
             }
+        }
+    }
+
     
         public void generateReport(JTable table, String reportPath) {
         try {
