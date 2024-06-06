@@ -75,7 +75,6 @@ com\mycompany\projectmanagementsystem\StudentAssessmentDetailPage$10.class
 com\mycompany\projectmanagementsystem\admin_edit_intake$1.class
 com\mycompany\projectmanagementsystem\Presentation\Presentation.class
 com\mycompany\projectmanagementsystem\PM_assessment_page$5.class
-com\mycompany\projectmanagementsystem\LecturerPresentationRequest.class
 com\mycompany\projectmanagementsystem\AdminECTableActionPanel.class
 com\mycompany\projectmanagementsystem\ProjectManagerPage$3.class
 com\mycompany\projectmanagementsystem\AdminDeleteActionPanel$AdminDeleteActionCellEditor.class
@@ -375,7 +374,6 @@ com\mycompany\projectmanagementsystem\GeneralFunction\IDGenerator.class
 com\mycompany\projectmanagementsystem\admin_assessment_management$1.class
 com\mycompany\projectmanagementsystem\Course\CourseController.class
 com\mycompany\projectmanagementsystem\GeneralFunction\URLRenderer.class
-com\mycompany\projectmanagementsystem\LecturerSummaryReport$2.class
 com\mycompany\projectmanagementsystem\LecturerDashboardPage$9.class
 com\mycompany\projectmanagementsystem\LecturerIntakePage$17.class
 com\mycompany\projectmanagementsystem\lect_PresentationRqtActionPanel$PanelActionRenderer.class
@@ -468,7 +466,6 @@ com\mycompany\projectmanagementsystem\admin_lecturer_record$2.class
 com\mycompany\projectmanagementsystem\admin_assessment_management$2.class
 com\mycompany\projectmanagementsystem\LecturerSummaryReport$1.class
 com\mycompany\projectmanagementsystem\admin_approval_ec_details$7.class
-com\mycompany\projectmanagementsystem\StudentAssessmentDetailPage$3.class
 com\mycompany\projectmanagementsystem\lect_PresentationPanelAction$4.class
 com\mycompany\projectmanagementsystem\admin_edit_assessment.class
 com\mycompany\projectmanagementsystem\admin_mainpage$4.class
@@ -497,7 +494,6 @@ com\mycompany\projectmanagementsystem\LecturerMarkedReport$3.class
 com\mycompany\projectmanagementsystem\LecturerIntakePage$20.class
 com\mycompany\projectmanagementsystem\PM_investigation_page$5.class
 com\mycompany\projectmanagementsystem\admin_register_intake$2.class
-com\mycompany\projectmanagementsystem\StudentAssessmentDetailPage$4.class
 com\mycompany\projectmanagementsystem\admin_approval_ec_details$8.class
 com\mycompany\projectmanagementsystem\PM_investigation_page.class
 com\mycompany\projectmanagementsystem\LecturerIntakePage$15.class

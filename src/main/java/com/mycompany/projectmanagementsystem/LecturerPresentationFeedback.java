@@ -324,7 +324,7 @@ public class LecturerPresentationFeedback extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(null, "Failed to submit feedback.", "Error", JOptionPane.ERROR_MESSAGE);
             }
-        } else {
+        } else if (feedback.isEmpty()){
             JOptionPane.showMessageDialog(null, "Feedback field cannot be empty.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_saveFeedbackBtnActionPerformed
@@ -399,7 +399,7 @@ public class LecturerPresentationFeedback extends javax.swing.JFrame {
                 String[] listy = liney.split(";");
                 if (listy[1].equals(stdID)) {
                     if (listy.length > 5 && listy[4] != null && !listy[4].isEmpty()) {
-                        feedbackField.setText(listy[5]);
+                        feedbackField.setText(listy[4]);
                         feedbackField.setEditable(true); // Editable if feedback exists
                         feedbackExists = true;
                     }

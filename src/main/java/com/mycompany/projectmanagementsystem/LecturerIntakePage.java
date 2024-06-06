@@ -88,7 +88,7 @@ public class LecturerIntakePage extends javax.swing.JFrame {
         this.AssmntID = AssmntID;
         initComponents();
         setIconImage();
-        showAssmnt();
+        showAssmnt(AssmntType);
         IntakeLabel.setText(intakeCode);
         showNoStd();    
         showAssmntDueDate();
@@ -178,7 +178,7 @@ public class LecturerIntakePage extends javax.swing.JFrame {
                     String[] list = line.split(";");
                     if (AssmntID.equals(list[0])) {
                         if (user.getUserID().equals(list[4])) { // Supervisor
-                            boolean result = action.spvPresentationDone(stdID, "completed");
+                            boolean result = action.spvPresentationDone(stdID, "completed", AssmntType);
                             if (result) {
                                 model.removeRow(row);
                                 JOptionPane.showMessageDialog(null, 
@@ -186,7 +186,7 @@ public class LecturerIntakePage extends javax.swing.JFrame {
                             }
                             return; // No need to continue the loop once a match is found
                         } else if (user.getUserID().equals(list[5])) { // Second Marker
-                            boolean result = action.secMarkPresentationDone(stdID);
+                            boolean result = action.secMarkPresentationDone(stdID, "true");
                             if (result) {
                                 model.removeRow(row);
                                 JOptionPane.showMessageDialog(null, 
@@ -1202,12 +1202,12 @@ public class LecturerIntakePage extends javax.swing.JFrame {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Sysco_icon_with_background.png")));
     }
     
-    private void showAssmnt(){
+    private void showAssmnt(String assmntType){
         List<String> AssmntData = FileHandler.readFile("assessment.txt");
         
         for (String line : AssmntData) {
             String[] AssmntList = line.split(";");
-            if (user.getUserID().equals(AssmntList[4])) {
+            if (assmntType.equals(AssmntList[1])) {
                 switch (AssmntList[1]) {
                     case "internship_report" -> {                       
                         jLabel7.setText("Intake (Internship Report)");
@@ -1365,7 +1365,7 @@ public class LecturerIntakePage extends javax.swing.JFrame {
                                     model.addRow(reorderedData);
                                 }
                                 addedRows.add(rowIdentifier);
-                            } else if (secMarker.equals(user.getUserID())) {
+                            } else if (secMarker.equals(user.getUserID()) && "false".equals(listx[6])) {
                                 SchdPresentationTable.getColumnModel().getColumn(2).setHeaderValue("Supervisor");
                                 SchdPresentationTable.getTableHeader().repaint();
                                 String[] reorderedData = {
