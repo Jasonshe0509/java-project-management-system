@@ -6,7 +6,6 @@ import javax.swing.border.LineBorder;
 
 public class admin_student extends javax.swing.JFrame {
 
-    
     public admin_student() {
         initComponents();
         setIconImage();
@@ -49,7 +48,7 @@ public class admin_student extends javax.swing.JFrame {
 
         admin_header.setBackground(new Color(255, 255, 255, 90));
         admin_header.setToolTipText("");
-        admin_header.setMaximumSize(new java.awt.Dimension(1000, 73));
+        admin_header.setMaximumSize(new java.awt.Dimension(1000, 700));
         admin_header.setMinimumSize(new java.awt.Dimension(1000, 73));
         admin_header.setPreferredSize(new java.awt.Dimension(1000, 73));
 
@@ -102,8 +101,14 @@ public class admin_student extends javax.swing.JFrame {
         admin_logout.setMaximumSize(new java.awt.Dimension(96, 73));
         admin_logout.setMinimumSize(new java.awt.Dimension(96, 73));
         admin_logout.setPreferredSize(new java.awt.Dimension(96, 73));
+        admin_logout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                admin_logoutMouseClicked(evt);
+            }
+        });
 
         admin_logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Sysco_logo.png"))); // NOI18N
+        admin_logo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         admin_logo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 admin_logoMouseClicked(evt);
@@ -229,7 +234,7 @@ public class admin_student extends javax.swing.JFrame {
         admin_stu_management.setFont(new java.awt.Font("Bell MT", 1, 36)); // NOI18N
         admin_stu_management.setForeground(new java.awt.Color(2, 50, 99));
         admin_stu_management.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        admin_stu_management.setText("View Intale/ Student");
+        admin_stu_management.setText("View Intake/ Student");
         admin_stu_management.setBorder(new LineBorder(new Color(192, 192, 192, 90), 15, true));
         admin_stu_management.setMaximumSize(new java.awt.Dimension(380, 240));
         admin_stu_management.setMinimumSize(new java.awt.Dimension(380, 240));
@@ -287,14 +292,14 @@ public class admin_student extends javax.swing.JFrame {
         // TODO add your handling code here:
         //admin_register_intake admin_regintake = new admin_register_intake();
         //admin_regintake.show();
-        
+
     }//GEN-LAST:event_admin_reg_intakeMouseClicked
 
     private void admin_reg_studentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_admin_reg_studentMouseClicked
         // TODO add your handling code here:
         //admin_register_student admin_regstu = new admin_register_student();
         //admin_regstu.show();
-        
+
     }//GEN-LAST:event_admin_reg_studentMouseClicked
 
     private void admin_ec_managementMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_admin_ec_managementMouseClicked
@@ -312,23 +317,29 @@ public class admin_student extends javax.swing.JFrame {
     }//GEN-LAST:event_admin_stu_managementMouseClicked
 
     private void admin_logoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_admin_logoMouseClicked
-        // TODO add your handling code here:
-        //admin_mainpage admin_main = new admin_mainpage();
-        //admin_main.show();
         dispose();
+        admin_mainpage adminMainpage = new admin_mainpage();
+        adminMainpage.show();
     }//GEN-LAST:event_admin_logoMouseClicked
 
     private void admin_reg_student1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_admin_reg_student1MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_admin_reg_student1MouseClicked
 
-    
+    private void admin_logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_admin_logoutMouseClicked
+        dispose();
+        GeneralPage generalPage = new GeneralPage();
+        generalPage.show();
+
+    }//GEN-LAST:event_admin_logoutMouseClicked
+
     public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(() -> {
             new admin_student().setVisible(true);
         });
     }
+
     private void setIconImage() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Sysco_icon.png")));
     }

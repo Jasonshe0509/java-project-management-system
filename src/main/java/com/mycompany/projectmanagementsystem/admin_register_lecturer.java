@@ -64,6 +64,7 @@ public class admin_register_lecturer extends javax.swing.JFrame {
         lecturer_schoolwise_title = new javax.swing.JLabel();
         dob_chooser = new com.toedter.calendar.JDateChooser();
         schoolwise_dropbox = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -149,8 +150,9 @@ public class admin_register_lecturer extends javax.swing.JFrame {
         });
         getContentPane().add(lecturer_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 350, 190, 50));
 
-        register_lecturer_submit.setBackground(new java.awt.Color(76, 127, 174));
+        register_lecturer_submit.setBackground(new java.awt.Color(2, 50, 99));
         register_lecturer_submit.setFont(new java.awt.Font("Bell MT", 1, 19)); // NOI18N
+        register_lecturer_submit.setForeground(new java.awt.Color(255, 255, 255));
         register_lecturer_submit.setText("SUBMIT");
         register_lecturer_submit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -214,6 +216,17 @@ public class admin_register_lecturer extends javax.swing.JFrame {
             }
         });
         getContentPane().add(schoolwise_dropbox, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 70, 190, 50));
+
+        jLabel1.setFont(new java.awt.Font("Bell MT", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(2, 50, 99));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/back.png"))); // NOI18N
+        jLabel1.setText("BACK");
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main_background.png"))); // NOI18N
         background.setToolTipText("");
@@ -292,6 +305,10 @@ public class admin_register_lecturer extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_schoolwise_dropboxActionPerformed
 
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        dispose();
+    }//GEN-LAST:event_jLabel1MouseClicked
+
     
     public static void main(String args[]) {
 
@@ -309,6 +326,7 @@ public class admin_register_lecturer extends javax.swing.JFrame {
     private javax.swing.JLabel background;
     private com.toedter.calendar.JDateChooser dob_chooser;
     private javax.swing.JTextField emp_tpno;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField lecturer_address;
     private javax.swing.JLabel lecturer_address_title;
     private javax.swing.JTextField lecturer_contact;

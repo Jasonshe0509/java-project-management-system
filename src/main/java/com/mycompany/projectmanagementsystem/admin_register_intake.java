@@ -116,8 +116,6 @@ public class admin_register_intake extends javax.swing.JFrame {
 
         enrolledmonth_chooser.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         getContentPane().add(enrolledmonth_chooser, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 230, 190, 30));
-
-        enrolledyear_chooser.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         getContentPane().add(enrolledyear_chooser, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 230, 100, 30));
 
         coursecode_title.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
