@@ -23,8 +23,8 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.Window;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -40,6 +40,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.LayoutStyle;
+import javax.swing.SwingUtilities;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -67,7 +68,7 @@ public class LecturerIntakePage extends javax.swing.JFrame {
     private JLabel StdIDLabel;
     private JLabel StdNameLabel;
     List<JPanel> people = new ArrayList<JPanel>();
-    
+
     private JPanel communicationPanel;
     private JLabel subject;
     private JButton openComBtn;
@@ -81,77 +82,80 @@ public class LecturerIntakePage extends javax.swing.JFrame {
     private JLabel replyName;
     private JLabel replyDate;
     private JLabel deleteReply;
-    
+
     public LecturerIntakePage(String AssmntID, String intakeCode, String AssmntType) {
         this.AssmntType = AssmntType;
         this.intakeCode = intakeCode;
         this.AssmntID = AssmntID;
         initComponents();
         setIconImage();
+        checkAssmntStatus();
         showAssmnt(AssmntType);
         IntakeLabel.setText(intakeCode);
-        showNoStd();    
+        showNoStd();
         showAssmntDueDate();
         showTotalSubmission();
         showPeopleInfo();
         showPresentation();
+        showReportData();
         readPresentationFromFile();
         showCreateDiscussionBtn();
         readFromCommunicationChannel();
         showReport();
         int index1 = jTabbedPane1.indexOfComponent(lecreplyCommunicationScrollPanel);
         jTabbedPane1.removeTabAt(index1);
-        
+
         // Set preferred width for each column in presentation tab
-        int[] columnWidths1 = {100, 170, 170, 200, 170}; 
+        int[] columnWidths1 = {100, 170, 170, 200, 170};
         int numColumns1 = SchdPresentationTable.getColumnCount();
         for (int i = 0; i < numColumns1; i++) {
             TableColumn column = SchdPresentationTable.getColumnModel().getColumn(i);
             column.setPreferredWidth(columnWidths1[i]);
         }
-        
+
         // Set preferred width for each column in report tab
-        int[] columnWidths2 = {110, 160, 190, 150, 110, 170}; 
+        int[] columnWidths2 = {110, 160, 190, 150, 110, 170};
         int numColumns2 = reportTable.getColumnCount();
         for (int i = 0; i < numColumns2; i++) {
             TableColumn column = reportTable.getColumnModel().getColumn(i);
             column.setPreferredWidth(columnWidths2[i]);
         }
-        
+
         // Custom cell renderer to set white background
         class WhiteBackgroundRenderer extends DefaultTableCellRenderer {
+
             public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
                 Component cellComponent = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-                
-            // Set white background for unselected cells
-            cellComponent.setBackground(Color.WHITE);
 
-            // If the cell is selected, use the default selection background color
-            if (isSelected) {
-                cellComponent.setBackground(table.getSelectionBackground());
-            }
+                // Set white background for unselected cells
+                cellComponent.setBackground(Color.WHITE);
 
-            return cellComponent;
+                // If the cell is selected, use the default selection background color
+                if (isSelected) {
+                    cellComponent.setBackground(table.getSelectionBackground());
+                }
+
+                return cellComponent;
             }
         }
 
         for (int i = 0; i < SchdPresentationTable.getColumnCount(); i++) {
-            SchdPresentationTable.getColumnModel().getColumn(i).setCellRenderer(new WhiteBackgroundRenderer());            
+            SchdPresentationTable.getColumnModel().getColumn(i).setCellRenderer(new WhiteBackgroundRenderer());
         }
-        
+
         for (int i = 0; i < reportTable.getColumnCount(); i++) {
-            reportTable.getColumnModel().getColumn(i).setCellRenderer(new WhiteBackgroundRenderer());           
+            reportTable.getColumnModel().getColumn(i).setCellRenderer(new WhiteBackgroundRenderer());
         }
-        
+
         SchdPresentationTable.getTableHeader().setFont(new Font("SansSerif", Font.BOLD, 16));
         SchdPresentationTable.getTableHeader().setForeground(new Color(2, 50, 99));
-        ((DefaultTableCellRenderer)SchdPresentationTable.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
-        
+        ((DefaultTableCellRenderer) SchdPresentationTable.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
+
         reportTable.getTableHeader().setFont(new Font("SansSerif", Font.BOLD, 14));
         reportTable.getTableHeader().setForeground(new Color(2, 50, 99));
-        ((DefaultTableCellRenderer)reportTable.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
+        ((DefaultTableCellRenderer) reportTable.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
         //end of table properties codes
-        
+
         lect_PresentationPanelAction ppanel = new lect_PresentationPanelAction();
         PresentationTableActionEvent event = new PresentationTableActionEvent() {
             @Override
@@ -161,10 +165,10 @@ public class LecturerIntakePage extends javax.swing.JFrame {
                 String name = (String) model.getValueAt(row, 1);
                 String marker = (String) model.getValueAt(row, 2);
                 String presentSlot = (String) model.getValueAt(row, 3);
-                LecturerPresentationFeedback pfeedback = new LecturerPresentationFeedback(AssmntID ,stdID, name, marker, presentSlot, AssmntType);
+                LecturerPresentationFeedback pfeedback = new LecturerPresentationFeedback(AssmntID, stdID, name, marker, presentSlot, AssmntType);
                 pfeedback.setVisible(true);
             }
-            
+
             @Override
             public void presentationDone(int row, Object value) {
                 List<String> data = FileHandler.readFile("assessment.txt");
@@ -181,15 +185,20 @@ public class LecturerIntakePage extends javax.swing.JFrame {
                             boolean result = action.spvPresentationDone(stdID, "completed", AssmntType);
                             if (result) {
                                 model.removeRow(row);
-                                JOptionPane.showMessageDialog(null, 
+                                JOptionPane.showMessageDialog(null,
                                         "Presentation from supervisee (" + stdID + ") has been marked done with feedback.");
+                                // Dispose the current intake page
+                                ((Window) SwingUtilities.getWindowAncestor(reportTable)).dispose();
+                                // Display an updated intake page
+                                LecturerIntakePage update = new LecturerIntakePage(AssmntID, intakeCode, AssmntType);
+                                update.setVisible(true);
                             }
                             return; // No need to continue the loop once a match is found
                         } else if (user.getUserID().equals(list[5])) { // Second Marker
                             boolean result = action.secMarkPresentationDone(stdID, "true");
                             if (result) {
                                 model.removeRow(row);
-                                JOptionPane.showMessageDialog(null, 
+                                JOptionPane.showMessageDialog(null,
                                         "Presentation from supervisee (" + stdID + ") has been marked done.");
                             }
                             return; // No need to continue the loop once a match is found
@@ -207,7 +216,7 @@ public class LecturerIntakePage extends javax.swing.JFrame {
             SchdPresentationTable.getColumnModel().getColumn(4).setCellRenderer(ppanel.new PanelActionRenderer());
             SchdPresentationTable.getColumnModel().getColumn(4).setCellEditor(ppanel.new TableActionCellEditor(event));
         }
-               
+
         lect_ReportPanelAction rpanel = new lect_ReportPanelAction();
         LecReportTableActionEvent rptevent = new LecReportTableActionEvent() {
             @Override
@@ -222,7 +231,7 @@ public class LecturerIntakePage extends javax.swing.JFrame {
                 for (String line : data) {
                     String[] list = line.split(";");
                     if (list[1].equals(stdID)) {
-                        subLink = list[4]; 
+                        subLink = list[4];
                         break;
                     }
                 }
@@ -234,7 +243,7 @@ public class LecturerIntakePage extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Submission link not found for student ID: " + stdID);
                 }
             }
-            
+
             @Override
             public void reportDone(int row, Object value) {
                 List<String> data = FileHandler.readFile("assessment.txt");
@@ -253,9 +262,14 @@ public class LecturerIntakePage extends javax.swing.JFrame {
                             for (String assmntline : assmntdata) {
                                 String[] assmntlist = assmntline.split(";");
                                 if (stdID.equals(assmntlist[1])) {
-                                    boolean result = action.spvReportDone(stdID, "marked", AssmntType);
+                                    boolean result = action.spvReportDone(stdID, AssmntID, "marked", AssmntType);
                                     if (result && !assmntlist[9].isEmpty()) {
                                         model.removeRow(row);
+                                        // Dispose the current intake page
+                                        ((Window) SwingUtilities.getWindowAncestor(reportTable)).dispose();
+                                        // Display an updated intake page
+                                        LecturerIntakePage update = new LecturerIntakePage(AssmntID, intakeCode, AssmntType);
+                                        update.setVisible(true);
                                     }
                                     found = true;
                                     break;
@@ -266,9 +280,14 @@ public class LecturerIntakePage extends javax.swing.JFrame {
                             for (String assmntline : assmntdata) {
                                 String[] assmntlist = assmntline.split(";");
                                 if (stdID.equals(assmntlist[1])) {
-                                    boolean result = action.secMarkReportDone(stdID, "marked", AssmntType);
+                                    boolean result = action.secMarkReportDone(stdID, AssmntID, "marked", AssmntType);
                                     if (result && !assmntlist[10].isEmpty()) {
                                         model.removeRow(row);
+                                        // Dispose the current intake page
+                                        ((Window) SwingUtilities.getWindowAncestor(reportTable)).dispose();
+                                        // Display an updated intake page
+                                        LecturerIntakePage update = new LecturerIntakePage(AssmntID, intakeCode, AssmntType);
+                                        update.setVisible(true);
                                     }
                                     found = true;
                                     break;
@@ -283,11 +302,12 @@ public class LecturerIntakePage extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "No matching record found for the given assessment ID and user ID", "Message", JOptionPane.INFORMATION_MESSAGE);
                 }
             }
+
         };
-            reportTable.getColumnModel().getColumn(5).setCellRenderer(rpanel.new rPanelActionRenderer());
-            reportTable.getColumnModel().getColumn(5).setCellEditor(rpanel.new TableActionCellEditor(rptevent));
+        reportTable.getColumnModel().getColumn(5).setCellRenderer(rpanel.new rPanelActionRenderer());
+        reportTable.getColumnModel().getColumn(5).setCellEditor(rpanel.new TableActionCellEditor(rptevent));
     }
-         
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -314,10 +334,10 @@ public class LecturerIntakePage extends javax.swing.JFrame {
         TotalSubmsnLabel = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
-        SchdPresentLabel = new javax.swing.JLabel();
+        CmpltPresentLabel = new javax.swing.JLabel();
         jPanel10 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
-        CmpltPresentLabel = new javax.swing.JLabel();
+        MarkedRptLabel = new javax.swing.JLabel();
         schdPresentationList = new javax.swing.JPanel();
         jLabel20 = new javax.swing.JLabel();
         jPanel14 = new javax.swing.JPanel();
@@ -527,13 +547,13 @@ public class LecturerIntakePage extends javax.swing.JFrame {
 
         jLabel12.setFont(new java.awt.Font("SansSerif", 1, 20)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(2, 50, 99));
-        jLabel12.setText("Scheduled Presentation");
+        jLabel12.setText("Completed Presentation");
 
-        SchdPresentLabel.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
-        SchdPresentLabel.setForeground(new java.awt.Color(2, 50, 99));
-        SchdPresentLabel.setMaximumSize(new java.awt.Dimension(330, 26));
-        SchdPresentLabel.setMinimumSize(new java.awt.Dimension(330, 26));
-        SchdPresentLabel.setPreferredSize(new java.awt.Dimension(330, 26));
+        CmpltPresentLabel.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
+        CmpltPresentLabel.setForeground(new java.awt.Color(2, 50, 99));
+        CmpltPresentLabel.setMaximumSize(new java.awt.Dimension(330, 26));
+        CmpltPresentLabel.setMinimumSize(new java.awt.Dimension(330, 26));
+        CmpltPresentLabel.setPreferredSize(new java.awt.Dimension(330, 26));
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -543,7 +563,7 @@ public class LecturerIntakePage extends javax.swing.JFrame {
                 .addGap(41, 41, 41)
                 .addComponent(jLabel12)
                 .addGap(173, 173, 173)
-                .addComponent(SchdPresentLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(CmpltPresentLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel9Layout.setVerticalGroup(
@@ -552,7 +572,7 @@ public class LecturerIntakePage extends javax.swing.JFrame {
                 .addGap(15, 15, 15)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
-                    .addComponent(SchdPresentLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CmpltPresentLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
@@ -563,13 +583,13 @@ public class LecturerIntakePage extends javax.swing.JFrame {
 
         jLabel13.setFont(new java.awt.Font("SansSerif", 1, 20)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(2, 50, 99));
-        jLabel13.setText("Completed Presentation");
+        jLabel13.setText("Marked Report");
 
-        CmpltPresentLabel.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
-        CmpltPresentLabel.setForeground(new java.awt.Color(2, 50, 99));
-        CmpltPresentLabel.setMaximumSize(new java.awt.Dimension(330, 26));
-        CmpltPresentLabel.setMinimumSize(new java.awt.Dimension(330, 26));
-        CmpltPresentLabel.setPreferredSize(new java.awt.Dimension(330, 26));
+        MarkedRptLabel.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
+        MarkedRptLabel.setForeground(new java.awt.Color(2, 50, 99));
+        MarkedRptLabel.setMaximumSize(new java.awt.Dimension(330, 26));
+        MarkedRptLabel.setMinimumSize(new java.awt.Dimension(330, 26));
+        MarkedRptLabel.setPreferredSize(new java.awt.Dimension(330, 26));
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -578,17 +598,17 @@ public class LecturerIntakePage extends javax.swing.JFrame {
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addGap(41, 41, 41)
                 .addComponent(jLabel13)
-                .addGap(171, 171, 171)
-                .addComponent(CmpltPresentLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(MarkedRptLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(60, 60, 60))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel13)
-                    .addComponent(CmpltPresentLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(MarkedRptLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel13))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
@@ -659,7 +679,7 @@ public class LecturerIntakePage extends javax.swing.JFrame {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, true, false, true
+                false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -1124,13 +1144,14 @@ public class LecturerIntakePage extends javax.swing.JFrame {
     }//GEN-LAST:event_LecProfileLabelMouseClicked
 
     private void LecLogOutLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LecLogOutLabelMouseClicked
-        int confirm = JOptionPane.showConfirmDialog(null, "Are you confirmed to log out?", 
-                    "Confirmation", JOptionPane.YES_NO_OPTION);
-        if(confirm == JOptionPane.YES_OPTION){
+        int confirm = JOptionPane.showConfirmDialog(null, "Are you confirmed to log out?",
+                "Confirmation", JOptionPane.YES_NO_OPTION);
+        if (confirm == JOptionPane.YES_OPTION) {
             this.setVisible(false);
             UserController logout = new UserController();
             logout.userLogout();
-        } else {}
+        } else {
+        }
     }//GEN-LAST:event_LecLogOutLabelMouseClicked
 
     private void viewPresentRqtLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewPresentRqtLabelMouseClicked
@@ -1198,44 +1219,83 @@ public class LecturerIntakePage extends javax.swing.JFrame {
             }
         });
     }
+
     private void setIconImage() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Sysco_icon_with_background.png")));
     }
-    
-    private void showAssmnt(String assmntType){
+
+    private void checkAssmntStatus() {
+        List<String> userData = FileHandler.readFile("user.txt");
+        List<String> reportData = FileHandler.readFile("student_assessment.txt");
+        List<String> assessmentData = FileHandler.readFile("assessment.txt");
+        ArrayList<String> updatedData = new ArrayList<>();
+        int markedRptCount = 0;
+        int stdCount = 0;
+
+        for (String line : userData) {
+            String[] userList = line.split(";");
+            if ("student".equals(userList[10]) && intakeCode.equals(userList[11])) {
+                stdCount++;
+            }
+        }
+
+        for (String line : reportData) {
+            String[] reportList = line.split(";");
+            if (AssmntID.equals(reportList[2])) {
+                if ("marked".equals(reportList[6])) {
+                    markedRptCount++;
+                }
+            }
+        }
+
+        for (String line : assessmentData) {
+            String[] list = line.split(";");
+            if (AssmntID.equals(list[0])) {
+                if (stdCount == markedRptCount) {
+                    list[7] = "completed";
+                }
+                line = String.join(";", list);
+            }
+            updatedData.add(line);
+        }
+
+        FileHandler.modifyFileData("assessment.txt", updatedData);
+    }
+
+    private void showAssmnt(String assmntType) {
         List<String> AssmntData = FileHandler.readFile("assessment.txt");
-        
+
         for (String line : AssmntData) {
             String[] AssmntList = line.split(";");
             if (assmntType.equals(AssmntList[1])) {
                 switch (AssmntList[1]) {
-                    case "internship_report" -> {                       
+                    case "internship_report" -> {
                         jLabel7.setText("Intake (Internship Report)");
                     }
-                    case "fyp" -> {    
+                    case "fyp" -> {
                         jLabel7.setText("Intake (Final Year Project)");
                     }
                     case "investigation" -> {
                         jLabel7.setText("Intake (Investigation Report)");
                     }
-                    case "cp1" -> {                 
+                    case "cp1" -> {
                         jLabel7.setText("Intake (Capstone Project 1)");
                     }
                     case "cp2" -> {
                         jLabel7.setText("Intake (Capstone Project 2)");
                     }
-                    case "rmcp" -> {                       
+                    case "rmcp" -> {
                         jLabel7.setText("Intake (Research Methodology for Capstone Project)");
                     }
                 }
             }
         }
     }
-    
-    private void showNoStd(){
+
+    private void showNoStd() {
         List<String> UserData = FileHandler.readFile("user.txt");
         int stdCount = 0;
-        
+
         for (String line : UserData) {
             String[] UserList = line.split(";");
             if ("student".equals(UserList[10]) && intakeCode.equals(UserList[11])) {
@@ -1244,49 +1304,61 @@ public class LecturerIntakePage extends javax.swing.JFrame {
         }
         NoStdLabel.setText(Integer.toString(stdCount));
     }
-    
-    private void showAssmntDueDate(){
+
+    private void showAssmntDueDate() {
         List<String> AssmntData = FileHandler.readFile("assessment.txt");
-        
+
         for (String line : AssmntData) {
             String[] AssmntList = line.split(";");
             AssmntDueLabel.setText(AssmntList[3]);
-        }            
+        }
     }
-    
-    private void showTotalSubmission(){
+
+    private void showTotalSubmission() {
         List<String> StdAssmntData = FileHandler.readFile("student_assessment.txt");
         int stdSubCount = 0;
-        
+
         for (String line : StdAssmntData) {
-                String[] StdAssmntList = line.split(";");
-                if (AssmntID.equals(StdAssmntList[2]) && "submitted".equals(StdAssmntList[6])) {
+            String[] StdAssmntList = line.split(";");
+            if (AssmntID.equals(StdAssmntList[2])) {
+                if ("submitted".equals(StdAssmntList[6]) || "marked".equals(StdAssmntList[6])) {
                     stdSubCount++;
-                }                      
+                }
             }
-            TotalSubmsnLabel.setText(Integer.toString(stdSubCount));
-        }     
-    
-    private void showPresentation(){
-        List<String> presentationData = FileHandler.readFile("presentation_confirmation.txt");
-        int schdPresentationCount = 0;
-        int cmpltPresentationCount = 0;
-        
-        for (String line : presentationData) {
-                String[] presentationList = line.split(";");
-                if (AssmntID.equals(presentationList[2])) {
-                    if ("scheduled".equals(presentationList[5])){
-                       schdPresentationCount++; 
-                    } else                   
-                    if ("completed".equals(presentationList[5])) {
-                        cmpltPresentationCount++;
-                    }
-}
-            SchdPresentLabel.setText(Integer.toString(schdPresentationCount));
-            CmpltPresentLabel.setText(Integer.toString(cmpltPresentationCount));
-        }     
+        }
+        TotalSubmsnLabel.setText(Integer.toString(stdSubCount));
     }
-    
+
+    private void showPresentation() {
+        List<String> presentationData = FileHandler.readFile("presentation_confirmation.txt");
+        int cmpltPresentationCount = 0;
+
+        for (String line : presentationData) {
+            String[] presentationList = line.split(";");
+            if (AssmntID.equals(presentationList[2])) {
+                if ("completed".equals(presentationList[5])) {
+                    cmpltPresentationCount++;
+                }
+            }
+            CmpltPresentLabel.setText(Integer.toString(cmpltPresentationCount));
+        }
+    }
+
+    private void showReportData() {
+        List<String> reportData = FileHandler.readFile("student_assessment.txt");
+        int markedRptCount = 0;
+
+        for (String line : reportData) {
+            String[] reportList = line.split(";");
+            if (AssmntID.equals(reportList[2])) {
+                if ("marked".equals(reportList[6])) {
+                    markedRptCount++;
+                }
+            }
+            MarkedRptLabel.setText(Integer.toString(markedRptCount));
+        }
+    }
+
     private void readPresentationFromFile() {
         String fileNamex = "presentation_confirmation.txt";
         String fileNamey = "assessment.txt";
@@ -1307,7 +1379,7 @@ public class LecturerIntakePage extends javax.swing.JFrame {
             String MarkerName = listz[1];
             MarkerNames.put(MarkerID, MarkerName);
         }
-        
+
         // Map to store studentID to studentName
         Map<String, String> studentNames = new HashMap<>();
         for (String linez : dataz) {
@@ -1316,68 +1388,68 @@ public class LecturerIntakePage extends javax.swing.JFrame {
             String studentName = listz[1];
             studentNames.put(studentID, studentName);
         }
-        
+
         // Set to track added rows to avoid duplication
         Set<String> addedRows = new HashSet<>();
-        
+
         for (String linex : datax) {
-        String[] listx = linex.split(";");
-        String studentID = listx[1];
-        String assessmentID = listx[2];
-        String presentationSlot = listx[3];
-        String status = listx[5];
+            String[] listx = linex.split(";");
+            String studentID = listx[1];
+            String assessmentID = listx[2];
+            String presentationSlot = listx[3];
+            String status = listx[5];
 
-        if (studentID != null) {
-            String studentName = studentNames.get(studentID);
-            if (studentName != null) {
-                for (String liney : datay) {
-                    String[] listy = liney.split(";");
-                    String currentAssessmentID = listy[0];
-                    if (currentAssessmentID.equals(assessmentID) && currentAssessmentID.equals(AssmntID)) {
-                        String spv = listy[4];
-                        String secMarker = listy[5];
-                        String spvName = MarkerNames.get(spv);
-                        String SecMarkerName = MarkerNames.get(secMarker);
+            if (studentID != null) {
+                String studentName = studentNames.get(studentID);
+                if (studentName != null) {
+                    for (String liney : datay) {
+                        String[] listy = liney.split(";");
+                        String currentAssessmentID = listy[0];
+                        if (currentAssessmentID.equals(assessmentID) && currentAssessmentID.equals(AssmntID)) {
+                            String spv = listy[4];
+                            String secMarker = listy[5];
+                            String spvName = MarkerNames.get(spv);
+                            String SecMarkerName = MarkerNames.get(secMarker);
 
-                        String rowIdentifier = studentID + "-" + assessmentID;
-                        if (!addedRows.contains(rowIdentifier) && "scheduled".equals(status)) {
-                            if (spv.equals(user.getUserID())) {
-                                if ("internship_report".equals(AssmntType) || "investigation".equals(AssmntType)) {
-                                    SchdPresentationTable.removeColumn(SchdPresentationTable.getColumnModel().getColumn(2)); 
+                            String rowIdentifier = studentID + "-" + assessmentID;
+                            if (!addedRows.contains(rowIdentifier) && "scheduled".equals(status)) {
+                                if (spv.equals(user.getUserID())) {
+                                    if ("internship_report".equals(AssmntType) || "investigation".equals(AssmntType)) {
+                                        SchdPresentationTable.removeColumn(SchdPresentationTable.getColumnModel().getColumn(2));
+                                        SchdPresentationTable.getTableHeader().repaint();
+                                        String[] reorderedData = {
+                                            studentID, // Supervisee ID
+                                            studentName, // Supervisee Name
+                                            "null",
+                                            presentationSlot // Presentation Slot
+                                        };
+                                        model.addRow(reorderedData);
+                                    } else {
+                                        SchdPresentationTable.getColumnModel().getColumn(2).setHeaderValue("Second Marker");
+                                        SchdPresentationTable.getTableHeader().repaint();
+                                        String[] reorderedData = {
+                                            studentID, // Supervisee ID
+                                            studentName, // Supervisee Name
+                                            SecMarkerName, // Second Marker Name
+                                            presentationSlot // Presentation Slot
+                                        };
+                                        model.addRow(reorderedData);
+                                    }
+                                    addedRows.add(rowIdentifier);
+                                } else if (secMarker.equals(user.getUserID()) && "false".equals(listx[6])) {
+                                    SchdPresentationTable.getColumnModel().getColumn(2).setHeaderValue("Supervisor");
                                     SchdPresentationTable.getTableHeader().repaint();
                                     String[] reorderedData = {
-                                        studentID,       // Supervisee ID
-                                        studentName,     // Supervisee Name
-                                        "null",
+                                        studentID, // Supervisee ID
+                                        studentName, // Supervisee Name
+                                        spvName, // Supervisor Name
                                         presentationSlot // Presentation Slot
                                     };
                                     model.addRow(reorderedData);
-                                } else {
-                                    SchdPresentationTable.getColumnModel().getColumn(2).setHeaderValue("Second Marker");
-                                    SchdPresentationTable.getTableHeader().repaint();
-                                    String[] reorderedData = {
-                                        studentID,       // Supervisee ID
-                                        studentName,     // Supervisee Name
-                                        SecMarkerName,   // Second Marker Name
-                                        presentationSlot // Presentation Slot
-                                    };
-                                    model.addRow(reorderedData);
+                                    addedRows.add(rowIdentifier);
                                 }
-                                addedRows.add(rowIdentifier);
-                            } else if (secMarker.equals(user.getUserID()) && "false".equals(listx[6])) {
-                                SchdPresentationTable.getColumnModel().getColumn(2).setHeaderValue("Supervisor");
-                                SchdPresentationTable.getTableHeader().repaint();
-                                String[] reorderedData = {
-                                    studentID,       // Supervisee ID
-                                    studentName,     // Supervisee Name
-                                    spvName,         // Supervisor Name
-                                    presentationSlot // Presentation Slot
-                                };
-                                model.addRow(reorderedData);
-                                addedRows.add(rowIdentifier);
                             }
                         }
-                }
 
                     }
                 }
@@ -1385,12 +1457,16 @@ public class LecturerIntakePage extends javax.swing.JFrame {
         }
     }
 
-    private void redirectPresentRqt(String id){
-        LecturerPresentationRequest request = new LecturerPresentationRequest(id, intakeCode, AssmntType);
+    private void redirectPresentRqt(String id) {
+        LecturerPresentationRequest request = new LecturerPresentationRequest(id, intakeCode, AssmntType, this);
         request.setVisible(true);
     }
-    
-    private void showReport(){
+
+    void selectPresentationPanel() {
+        jTabbedPane1.setSelectedIndex(1);
+    }
+
+    private void showReport() {
         String fileNamex = "student_assessment.txt";
         String fileNamey = "assessment.txt";
         String fileNamez = "user.txt";
@@ -1403,7 +1479,7 @@ public class LecturerIntakePage extends javax.swing.JFrame {
         List<String> datay = FileHandler.readFile(fileNamey);
         List<String> dataz = FileHandler.readFile(fileNamez);
         List<String> dataa = FileHandler.readFile(fileNamea);
-        
+
         // Map to store studentID to studentName
         Map<String, String> studentNames = new HashMap<>();
         for (String linez : dataz) {
@@ -1412,7 +1488,7 @@ public class LecturerIntakePage extends javax.swing.JFrame {
             String studentName = listz[1];
             studentNames.put(studentID, studentName);
         }
-        
+
         // Map to store studentID to EC status
         Map<String, String> ecStatus = new HashMap<>();
         for (String linea : dataa) {
@@ -1422,10 +1498,10 @@ public class LecturerIntakePage extends javax.swing.JFrame {
             String ecStatusString = hasEC ? "Approved" : "None";
             ecStatus.put(studentID, ecStatusString);
         }
-        
+
         // Set to track added rows to avoid duplication
         Set<String> addedRows = new HashSet<>();
-        
+
         for (String linex : datax) {
             String[] listx = linex.split(";");
             String studentID = listx[1];
@@ -1435,15 +1511,15 @@ public class LecturerIntakePage extends javax.swing.JFrame {
 
             if (studentID != null) {
                 String studentName = studentNames.get(studentID);
-                 String ecStatusString = ecStatus.getOrDefault(studentID, "None");
+                String ecStatusString = ecStatus.getOrDefault(studentID, "None");
                 if (studentName != null) {
                     for (String liney : datay) {
                         String[] listy = liney.split(";");
-                        String currentAssessmentID = listy[0]; 
+                        String currentAssessmentID = listy[0];
                         if (currentAssessmentID.equals(assessmentID) && currentAssessmentID.equals(AssmntID)) {
                             String spv = listy[4];
                             String secMarker = listy[5];
-                            
+
                             // Validate and adjust resubmissionCount
                             int resubCount;
                             try {
@@ -1465,20 +1541,20 @@ public class LecturerIntakePage extends javax.swing.JFrame {
                                 if (!"partially marked".equals(listx[6]) && !"marked".equals(listx[6])) {
                                     if (spv.equals(user.getUserID()) && !listx[4].isEmpty()) { // supervisor
                                         String[] reorderedData = {
-                                            studentID,         // Supervisee ID
-                                            studentName,       // Supervisee Name
-                                            submissionDate,    // Submission Date
-                                            ecStatusString,    // EC Status                                        
+                                            studentID, // Supervisee ID
+                                            studentName, // Supervisee Name
+                                            submissionDate, // Submission Date
+                                            ecStatusString, // EC Status                                        
                                             finalResubmissionCount // Resubmission Count
                                         };
                                         model.addRow(reorderedData);
                                         addedRows.add(rowIdentifier);
                                     } else if (secMarker.equals(user.getUserID()) && !listx[4].isEmpty()) { // second marker
                                         String[] reorderedData = {
-                                            studentID,         // second marker ID
-                                            studentName,       // second marker Name
-                                            submissionDate,    // Submission Date
-                                            ecStatusString,    // EC Status                                        
+                                            studentID, // second marker ID
+                                            studentName, // second marker Name
+                                            submissionDate, // Submission Date
+                                            ecStatusString, // EC Status                                        
                                             finalResubmissionCount // Resubmission Count
                                         };
                                         model.addRow(reorderedData);
@@ -1492,18 +1568,18 @@ public class LecturerIntakePage extends javax.swing.JFrame {
             }
         }
     }
-    
-    private void redirectMarkedReport(String id){
+
+    private void redirectMarkedReport(String id) {
         LecturerMarkedReport marked = new LecturerMarkedReport(id, intakeCode, AssmntType);
         marked.setVisible(true);
     }
-        
+
     public void selectCommunicationPanel(int selection, String channelID) {
         // Check if the reply panel is currently displayed
         int replyPanelIndex = jTabbedPane1.indexOfComponent(lecreplyCommunicationScrollPanel);
 
         if (selection == 1) {
-            if(replyPanelIndex != -1){
+            if (replyPanelIndex != -1) {
                 jTabbedPane1.removeTabAt(replyPanelIndex);
                 jTabbedPane1.insertTab("Communication", null, lecCommunicationScrollPanel, null, replyPanelIndex);
                 jTabbedPane1.setSelectedComponent(lecCommunicationScrollPanel);
@@ -1518,7 +1594,7 @@ public class LecturerIntakePage extends javax.swing.JFrame {
             readFromCommunicationMessage(channelID);
         }
     }
-    
+
     private void showCreateDiscussionBtn() {
         createDiscussionBtn.setVisible(false);
 
@@ -1536,7 +1612,7 @@ public class LecturerIntakePage extends javax.swing.JFrame {
             }
         });
     }
-    
+
     private void readFromCommunicationChannel() {
         List<String> data = FileHandler.readFile("communication_channel.txt");
 
@@ -1655,7 +1731,7 @@ public class LecturerIntakePage extends javax.swing.JFrame {
         jPanel12.revalidate();
         jPanel12.repaint();
     }
-    
+
     private void readFromCommunicationMessage(String channelID) {
         List<String> data = FileHandler.readFile("communication_channel.txt");
         List<String> messageData = FileHandler.readFile("communication_message.txt");
@@ -1837,31 +1913,31 @@ public class LecturerIntakePage extends javax.swing.JFrame {
         lecreplyCommunicationScrollPanel.setViewportView(jPanel13);
 
     }
-    
+
     public void refreshContent() {
         //refreshing data
         revalidate();
         repaint();
     }
-    
+
     private void redirectIntakePage(String assessmentID, String intakecode, String assessmentType, int number, String ID) {
         LecturerIntakePage intake = new LecturerIntakePage(assessmentID, intakecode, assessmentType);
         intake.setVisible(true);
         intake.selectCommunicationPanel(number, ID);
         this.setVisible(false);
     }
-    
-    private void showPeopleInfo(){
+
+    private void showPeopleInfo() {
         List<String> StdData = FileHandler.readFile("user.txt");
         List<String> AssmntData = FileHandler.readFile("student_assessment.txt");
         boolean StudentFound = false;
-        
+
         // Create a panel to hold all assessment panels
         stdContentPanel = new JPanel();
         stdContentPanel.setLayout(new BoxLayout(stdContentPanel, BoxLayout.Y_AXIS));
         stdContentPanel.add(Box.createVerticalStrut(5));
         stdContentPanel.setBackground(Color.WHITE);
-        
+
         for (String line : StdData) {
             for (String lines : AssmntData) {
                 String[] StdList = line.split(";");
@@ -1872,7 +1948,7 @@ public class LecturerIntakePage extends javax.swing.JFrame {
                     PeoplePanel.setMaximumSize(new java.awt.Dimension(884, 41));
                     PeoplePanel.setMinimumSize(new java.awt.Dimension(884, 41));
                     PeoplePanel.setPreferredSize(new java.awt.Dimension(884, 41));
-                    
+
                     StatusLabel = new JLabel();
                     StatusLabel.setOpaque(true);
                     StatusLabel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -1880,24 +1956,24 @@ public class LecturerIntakePage extends javax.swing.JFrame {
                     switch (AssmntList[6]) {
                         case "pending" -> {
                             StatusLabel.setText("in progress");
-                            StatusLabel.setBackground(new java.awt.Color(255, 255, 0));                            
+                            StatusLabel.setBackground(new java.awt.Color(255, 255, 0));
                         }
                         case "submitted" -> {
                             StatusLabel.setText("in progress");
-                            StatusLabel.setBackground(new java.awt.Color(255, 255, 0));                            
+                            StatusLabel.setBackground(new java.awt.Color(255, 255, 0));
                         }
                         case "marked" -> {
                             StatusLabel.setText("completed");
-                            StatusLabel.setBackground(new java.awt.Color(102, 255, 102));                            
+                            StatusLabel.setBackground(new java.awt.Color(102, 255, 102));
                         }
-                    } 
-                    
+                    }
+
                     StdIDLabel = new JLabel();
                     StdIDLabel.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
                     StdIDLabel.setForeground(new java.awt.Color(2, 50, 99));
                     String stdID = AssmntList[1];
                     StdIDLabel.setText(stdID);
-                    
+
                     StdNameLabel = new JLabel();
                     StdNameLabel.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
                     StdNameLabel.setForeground(new java.awt.Color(2, 50, 99));
@@ -1918,37 +1994,37 @@ public class LecturerIntakePage extends javax.swing.JFrame {
                     javax.swing.GroupLayout PeoplePanelLayout = new javax.swing.GroupLayout(PeoplePanel);
                     PeoplePanel.setLayout(PeoplePanelLayout);
                     PeoplePanelLayout.setHorizontalGroup(
-                        PeoplePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(PeoplePanelLayout.createSequentialGroup()
-                            .addGap(38, 38, 38)
-                            .addComponent(StdIDLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(72, 72, 72)
-                            .addComponent(StdNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 309, Short.MAX_VALUE)
-                            .addComponent(StatusLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(PeopleViewBtn)
-                            .addGap(22, 22, 22))
+                            PeoplePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(PeoplePanelLayout.createSequentialGroup()
+                                            .addGap(38, 38, 38)
+                                            .addComponent(StdIDLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(72, 72, 72)
+                                            .addComponent(StdNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 309, Short.MAX_VALUE)
+                                            .addComponent(StatusLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(PeopleViewBtn)
+                                            .addGap(22, 22, 22))
                     );
                     PeoplePanelLayout.setVerticalGroup(
-                        PeoplePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(PeoplePanelLayout.createSequentialGroup()
-                            .addContainerGap()
-                            .addGroup(PeoplePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(StdIDLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(StdNameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(StatusLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(PeopleViewBtn))
-                            .addContainerGap())
-                    );                   
+                            PeoplePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(PeoplePanelLayout.createSequentialGroup()
+                                            .addContainerGap()
+                                            .addGroup(PeoplePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                    .addComponent(StdIDLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(StdNameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(StatusLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(PeopleViewBtn))
+                                            .addContainerGap())
+                    );
 
                     stdContentPanel.add(PeoplePanel);
                     stdContentPanel.add(Box.createVerticalStrut(5));
                     peoplePanel.add(stdContentPanel);
                     people.add(PeoplePanel);
                     StudentFound = true;
-                    
-            }                           
+
+                }
             }
         }
         if (!StudentFound) {
@@ -1972,9 +2048,9 @@ public class LecturerIntakePage extends javax.swing.JFrame {
     private javax.swing.JLabel IntakeLabel;
     private javax.swing.JLabel LecLogOutLabel;
     private javax.swing.JLabel LecProfileLabel;
+    private javax.swing.JLabel MarkedRptLabel;
     private javax.swing.JLabel NoStdLabel;
     private javax.swing.JLabel NotiLabel;
-    private javax.swing.JLabel SchdPresentLabel;
     private javax.swing.JTable SchdPresentationTable;
     private javax.swing.JLabel SumRptLabel;
     private javax.swing.JLabel TotalSubmsnLabel;
