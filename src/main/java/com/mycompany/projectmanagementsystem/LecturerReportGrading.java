@@ -27,17 +27,21 @@ public class LecturerReportGrading extends javax.swing.JFrame {
     private String stdName;
     private String submissionLink;
     private String AssmntType;
+    private String intakeCode;
     private int mark1;
     private int mark2;
     private int mark3;
     private String feedback;
+    private LecturerIntakePage intakePage;
     
-    public LecturerReportGrading(String assmntid, String id, String name, String link, String type) {
+    public LecturerReportGrading(LecturerIntakePage intakePage, String assmntid, String id, String name, String link, String type, String code) {
+        this.intakePage = intakePage;
         this.AssmntID = assmntid;
         this.stdID = id;
         this.stdName = name;
         this.submissionLink = link;
         this.AssmntType = type;
+        this.intakeCode = code;
         initComponents();
         setIconImage();
         showReportMarkingScheme();
@@ -50,7 +54,7 @@ public class LecturerReportGrading extends javax.swing.JFrame {
     }
     
     private void openConfirmationDialog(int mark1, int mark2, int mark3, String feedback) {
-        LecturerReportConfirm confirm = new LecturerReportConfirm(this, AssmntID, stdID, stdName, mark1, mark2, mark3, feedback);
+        LecturerReportConfirm confirm = new LecturerReportConfirm(this, intakePage, AssmntID, stdID, stdName, mark1, mark2, mark3, feedback, AssmntType, intakeCode);
         confirm.setVisible(true);
     }
     /**
@@ -536,7 +540,7 @@ public class LecturerReportGrading extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LecturerReportGrading("AssmntID", "stdID", "name", "subLink", "type").setVisible(true);
+                new LecturerReportGrading(null, "AssmntID", "stdID", "name", "subLink", "type", "code").setVisible(true);
             }
         });
     }

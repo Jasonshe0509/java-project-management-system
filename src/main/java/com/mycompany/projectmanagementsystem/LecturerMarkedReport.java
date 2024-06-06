@@ -31,8 +31,10 @@ public class LecturerMarkedReport extends javax.swing.JFrame {
     private String AssmntID;
     private String intakeCode;
     private String AssmntType;
+    private LecturerIntakePage intakePage;
     
-    public LecturerMarkedReport(String id, String code, String type) {
+    public LecturerMarkedReport(String id, String code, String type, LecturerIntakePage intakePage) {
+        this.intakePage = intakePage;
         this.AssmntID = id;
         this.intakeCode = code;
         this.AssmntType = type;
@@ -50,23 +52,27 @@ public class LecturerMarkedReport extends javax.swing.JFrame {
                 String stdID = (String) model.getValueAt(row, 0);
                 String name = (String) model.getValueAt(row, 1);
                 String subLink = null;
+                boolean canViewReport = false;
 
                 for (String line : data) {
                     String[] list = line.split(";");
                     if (list[1].equals(stdID)) {
-                        subLink = list[4]; 
+                        if (!list[8].isEmpty()) { // Check if grade has been given or not
+                            subLink = list[4];
+                            canViewReport = true;
+                        }
                         break;
                     }
                 }
 
-                if (subLink != null) {
-                    LecturerReportGrading markReport = new LecturerReportGrading(AssmntID, stdID, name, subLink, AssmntType);
+                if (canViewReport && subLink != null) {
+                    LecturerReportGrading markReport = new LecturerReportGrading(intakePage, AssmntID, stdID, name, subLink, AssmntType, intakeCode);
                     markReport.setVisible(true);
                 } else {
-                    JOptionPane.showMessageDialog(null, "Submission link not found for student ID: " + stdID);
+                    JOptionPane.showMessageDialog(null, "Cannot view marked report. Grade is not assigned for student ID: " + stdID);
                 }
             }
-            
+   
         };
         if ("internship_report".equals(AssmntType) || "investigation".equals(AssmntType)) {
             MarkedReportTable.getColumnModel().getColumn(3).setCellRenderer(rpanel.new rPanelActionRenderer());
@@ -98,7 +104,6 @@ public class LecturerMarkedReport extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(700, 500));
         setMinimumSize(new java.awt.Dimension(700, 500));
-        setPreferredSize(new java.awt.Dimension(700, 500));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -224,7 +229,7 @@ public class LecturerMarkedReport extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LecturerMarkedReport("id", "code", "type").setVisible(true);
+                new LecturerMarkedReport("id", "code", "type", null).setVisible(true);
             }
         });
     }
@@ -272,51 +277,55 @@ public class LecturerMarkedReport extends javax.swing.JFrame {
 
                             String rowIdentifier = studentID + "-" + assessmentID;
                             if (!addedRows.contains(rowIdentifier)) {
-                                if (spv.equals(user.getUserID()) && "partially marked".equals(listx[6]) || "marked".equals(listx[6])) { // supervisor
-                                    if ("internship_report".equals(AssmntType) || "investigation".equals(AssmntType)) {
-                                        MarkedReportTable.removeColumn(MarkedReportTable.getColumnModel().getColumn(3)); 
-                                        MarkedReportTable.getTableHeader().repaint();
-                                        String[] reorderedData = {
-                                        studentID,               // Supervisee ID
-                                        studentName,             // Supervisee Name
-                                        markGivenBySupervisor,   // Mark given by supervisor
-                                        "null"
-                                    };
-                                    model.addRow(reorderedData);
-                                    addedRows.add(rowIdentifier);
-                                    } else {
-                                        MarkedReportTable.getColumnModel().getColumn(3).setHeaderValue("Second Marker Mark");
+                                if (spv.equals(user.getUserID()) && !listx[9].isEmpty()) { // supervisor
+                                    if("partially marked".equals(listx[6]) || "marked".equals(listx[6])){
+                                        if ("internship_report".equals(AssmntType) || "investigation".equals(AssmntType)) {
+                                            MarkedReportTable.removeColumn(MarkedReportTable.getColumnModel().getColumn(3)); 
+                                            MarkedReportTable.getTableHeader().repaint();
+                                            String[] reorderedData = {
+                                            studentID,               // Supervisee ID
+                                            studentName,             // Supervisee Name
+                                            markGivenBySupervisor,   // Mark given by supervisor
+                                            "null"
+                                        };
+                                        model.addRow(reorderedData);
+                                        addedRows.add(rowIdentifier);
+                                        } else {
+                                            MarkedReportTable.getColumnModel().getColumn(3).setHeaderValue("Second Marker Mark");
+                                            MarkedReportTable.getTableHeader().repaint();
+
+                                            // Replace null values with "pending"
+                                            markGivenBySupervisor = (markGivenBySupervisor.isEmpty()) ? "pending" : markGivenBySupervisor;
+                                            markGivenBySecondMarker = (markGivenBySecondMarker.isEmpty()) ? "pending" : markGivenBySecondMarker;
+
+                                            String[] reorderedData = {
+                                                studentID,               // Supervisee ID
+                                                studentName,             // Supervisee Name
+                                                markGivenBySupervisor,   // Mark given by supervisor
+                                                markGivenBySecondMarker  // Mark given by second marker
+                                            };
+                                            model.addRow(reorderedData);
+                                            addedRows.add(rowIdentifier);
+                                        }
+                                    }                                   
+                                } else if (secMarker.equals(user.getUserID()) && !listx[10].isEmpty()) { // second marker
+                                    if("partially marked".equals(listx[6]) || "marked".equals(listx[6])){
+                                        MarkedReportTable.getColumnModel().getColumn(3).setHeaderValue("Supervisor Mark");
                                         MarkedReportTable.getTableHeader().repaint();
 
                                         // Replace null values with "pending"
-                                        markGivenBySupervisor = (markGivenBySupervisor.isEmpty()) ? "pending" : markGivenBySupervisor;
                                         markGivenBySecondMarker = (markGivenBySecondMarker.isEmpty()) ? "pending" : markGivenBySecondMarker;
+                                        markGivenBySupervisor = (markGivenBySupervisor.isEmpty()) ? "pending" : markGivenBySupervisor;
 
                                         String[] reorderedData = {
                                             studentID,               // Supervisee ID
                                             studentName,             // Supervisee Name
-                                            markGivenBySupervisor,   // Mark given by supervisor
-                                            markGivenBySecondMarker  // Mark given by second marker
+                                            markGivenBySecondMarker, // Mark given by second marker
+                                            markGivenBySupervisor    // Mark given by supervisor
                                         };
                                         model.addRow(reorderedData);
                                         addedRows.add(rowIdentifier);
-                                    } 
-                                } else if (secMarker.equals(user.getUserID()) && "partially marked".equals(listx[6]) || "marked".equals(listx[6])) { // second marker
-                                    MarkedReportTable.getColumnModel().getColumn(3).setHeaderValue("Supervisor Mark");
-                                    MarkedReportTable.getTableHeader().repaint();
-
-                                    // Replace null values with "pending"
-                                    markGivenBySecondMarker = (markGivenBySecondMarker.isEmpty()) ? "pending" : markGivenBySecondMarker;
-                                    markGivenBySupervisor = (markGivenBySupervisor.isEmpty()) ? "pending" : markGivenBySupervisor;
-
-                                    String[] reorderedData = {
-                                        studentID,               // Supervisee ID
-                                        studentName,             // Supervisee Name
-                                        markGivenBySecondMarker, // Mark given by second marker
-                                        markGivenBySupervisor    // Mark given by supervisor
-                                    };
-                                    model.addRow(reorderedData);
-                                    addedRows.add(rowIdentifier);
+                                    }      
                                 }
                             }
                         }

@@ -139,7 +139,7 @@ public class AssessmentController implements StudentAssessmentController {
                         list[6] = "partially marked";
                         line = String.join(";", list);
                         JOptionPane.showMessageDialog(null,
-                                "Successfully marked as done.");
+                                "Report successfully marked.");
                         updateStatus = true;
                     } else {
                         JOptionPane.showMessageDialog(null,
@@ -193,7 +193,7 @@ public class AssessmentController implements StudentAssessmentController {
                     list[6] = "partially marked";
                     line = String.join(";", list);
                     JOptionPane.showMessageDialog(null,
-                            "Successfully marked as done.");
+                            "Report successfully marked.");
                     updateStatus = true;
                 } else {
                     JOptionPane.showMessageDialog(null,

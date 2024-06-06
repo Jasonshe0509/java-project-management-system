@@ -82,6 +82,8 @@ public class LecturerIntakePage extends javax.swing.JFrame {
     private JLabel replyName;
     private JLabel replyDate;
     private JLabel deleteReply;
+    
+    private DefaultTableModel reportTableModel;
 
     public LecturerIntakePage(String AssmntID, String intakeCode, String AssmntType) {
         this.AssmntType = AssmntType;
@@ -104,6 +106,8 @@ public class LecturerIntakePage extends javax.swing.JFrame {
         showReport();
         int index1 = jTabbedPane1.indexOfComponent(lecreplyCommunicationScrollPanel);
         jTabbedPane1.removeTabAt(index1);
+        reportTableModel = new DefaultTableModel();
+        reportTableModel = (DefaultTableModel) reportTable.getModel();
 
         // Set preferred width for each column in presentation tab
         int[] columnWidths1 = {100, 170, 170, 200, 170};
@@ -182,7 +186,7 @@ public class LecturerIntakePage extends javax.swing.JFrame {
                     String[] list = line.split(";");
                     if (AssmntID.equals(list[0])) {
                         if (user.getUserID().equals(list[4])) { // Supervisor
-                            boolean result = action.spvPresentationDone(stdID, "completed", AssmntType);
+                            boolean result = action.spvPresentationDone(stdID, AssmntID, "completed", AssmntType);
                             if (result) {
                                 model.removeRow(row);
                                 JOptionPane.showMessageDialog(null,
@@ -195,7 +199,7 @@ public class LecturerIntakePage extends javax.swing.JFrame {
                             }
                             return; // No need to continue the loop once a match is found
                         } else if (user.getUserID().equals(list[5])) { // Second Marker
-                            boolean result = action.secMarkPresentationDone(stdID, "true");
+                            boolean result = action.secMarkPresentationDone(stdID, AssmntID, "true");
                             if (result) {
                                 model.removeRow(row);
                                 JOptionPane.showMessageDialog(null,
@@ -227,6 +231,8 @@ public class LecturerIntakePage extends javax.swing.JFrame {
                 String stdID = (String) model.getValueAt(row, 0);
                 String name = (String) model.getValueAt(row, 1);
                 String subLink = null;
+//                AssessmentController action = new AssessmentController();
+//                boolean found = false;
 
                 for (String line : data) {
                     String[] list = line.split(";");
@@ -237,72 +243,11 @@ public class LecturerIntakePage extends javax.swing.JFrame {
                 }
 
                 if (subLink != null) {
-                    LecturerReportGrading markReport = new LecturerReportGrading(AssmntID, stdID, name, subLink, AssmntType);
-                    markReport.setVisible(true);
+                    gradeReport(stdID, name, subLink);
                 } else {
                     JOptionPane.showMessageDialog(null, "Submission link not found for student ID: " + stdID);
-                }
-            }
-
-            @Override
-            public void reportDone(int row, Object value) {
-                List<String> data = FileHandler.readFile("assessment.txt");
-                List<String> assmntdata = FileHandler.readFile("student_assessment.txt");
-
-                DefaultTableModel model = (DefaultTableModel) reportTable.getModel();
-                int columnIndex = 0;
-                String stdID = (String) model.getValueAt(row, columnIndex);
-                AssessmentController action = new AssessmentController();
-                boolean found = false;
-
-                for (String line : data) {
-                    String[] list = line.split(";");
-                    if (AssmntID.equals(list[0])) {
-                        if (user.getUserID().equals(list[4])) { // Supervisor
-                            for (String assmntline : assmntdata) {
-                                String[] assmntlist = assmntline.split(";");
-                                if (stdID.equals(assmntlist[1])) {
-                                    boolean result = action.spvReportDone(stdID, AssmntID, "marked", AssmntType);
-                                    if (result && !assmntlist[9].isEmpty()) {
-                                        model.removeRow(row);
-                                        // Dispose the current intake page
-                                        ((Window) SwingUtilities.getWindowAncestor(reportTable)).dispose();
-                                        // Display an updated intake page
-                                        LecturerIntakePage update = new LecturerIntakePage(AssmntID, intakeCode, AssmntType);
-                                        update.setVisible(true);
-                                    }
-                                    found = true;
-                                    break;
-                                }
-                            }
-                            break;
-                        } else if (user.getUserID().equals(list[5])) { // Second Marker
-                            for (String assmntline : assmntdata) {
-                                String[] assmntlist = assmntline.split(";");
-                                if (stdID.equals(assmntlist[1])) {
-                                    boolean result = action.secMarkReportDone(stdID, AssmntID, "marked", AssmntType);
-                                    if (result && !assmntlist[10].isEmpty()) {
-                                        model.removeRow(row);
-                                        // Dispose the current intake page
-                                        ((Window) SwingUtilities.getWindowAncestor(reportTable)).dispose();
-                                        // Display an updated intake page
-                                        LecturerIntakePage update = new LecturerIntakePage(AssmntID, intakeCode, AssmntType);
-                                        update.setVisible(true);
-                                    }
-                                    found = true;
-                                    break;
-                                }
-                            }
-                            break;
-                        }
-                    }
-                }
-
-                if (!found) {
-                    JOptionPane.showMessageDialog(null, "No matching record found for the given assessment ID and user ID", "Message", JOptionPane.INFORMATION_MESSAGE);
-                }
-            }
-
+                } 
+            } 
         };
         reportTable.getColumnModel().getColumn(5).setCellRenderer(rpanel.new rPanelActionRenderer());
         reportTable.getColumnModel().getColumn(5).setCellEditor(rpanel.new TableActionCellEditor(rptevent));
@@ -1182,7 +1127,7 @@ public class LecturerIntakePage extends javax.swing.JFrame {
     }//GEN-LAST:event_backIconMouseClicked
 
     private void viewMarkedRptLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewMarkedRptLabelMouseClicked
-        redirectMarkedReport(AssmntID);
+        redirectMarkedReport(AssmntID, this);
     }//GEN-LAST:event_viewMarkedRptLabelMouseClicked
 
     /**
@@ -1223,7 +1168,20 @@ public class LecturerIntakePage extends javax.swing.JFrame {
     private void setIconImage() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Sysco_icon_with_background.png")));
     }
-
+    
+    private void gradeReport(String stdID, String name, String subLink){
+        LecturerReportGrading markReport = new LecturerReportGrading(this, AssmntID, stdID, name, subLink, AssmntType, intakeCode);
+        markReport.setVisible(true);
+    }
+    
+    public DefaultTableModel getReportTableModel() {
+        return reportTableModel;
+    }
+    
+    public JTable getReportTable() {
+        return reportTable;
+    }
+    
     private void checkAssmntStatus() {
         List<String> userData = FileHandler.readFile("user.txt");
         List<String> reportData = FileHandler.readFile("student_assessment.txt");
@@ -1321,7 +1279,7 @@ public class LecturerIntakePage extends javax.swing.JFrame {
         for (String line : StdAssmntData) {
             String[] StdAssmntList = line.split(";");
             if (AssmntID.equals(StdAssmntList[2])) {
-                if ("submitted".equals(StdAssmntList[6]) || "marked".equals(StdAssmntList[6])) {
+                if ("submitted".equals(StdAssmntList[6]) || "partially marked".equals(StdAssmntList[6]) || "marked".equals(StdAssmntList[6])) {
                     stdSubCount++;
                 }
             }
@@ -1537,19 +1495,22 @@ public class LecturerIntakePage extends javax.swing.JFrame {
 
                             String rowIdentifier = studentID + "-" + assessmentID;
                             if (!addedRows.contains(rowIdentifier)) {
-                                // Check if listx[6] is 'partially marked' or 'marked'
-                                if (!"partially marked".equals(listx[6]) && !"marked".equals(listx[6])) {
-                                    if (spv.equals(user.getUserID()) && !listx[4].isEmpty()) { // supervisor
-                                        String[] reorderedData = {
-                                            studentID, // Supervisee ID
-                                            studentName, // Supervisee Name
-                                            submissionDate, // Submission Date
-                                            ecStatusString, // EC Status                                        
-                                            finalResubmissionCount // Resubmission Count
-                                        };
-                                        model.addRow(reorderedData);
-                                        addedRows.add(rowIdentifier);
-                                    } else if (secMarker.equals(user.getUserID()) && !listx[4].isEmpty()) { // second marker
+                                if (spv.equals(user.getUserID()) && !listx[4].isEmpty() && listx[9].isEmpty()) { // supervisor
+                                    // Check if listx[6] is 'marked'
+                                    if (!"marked".equals(listx[6])) {
+                                    String[] reorderedData = {
+                                        studentID, // Supervisee ID
+                                        studentName, // Supervisee Name
+                                        submissionDate, // Submission Date
+                                        ecStatusString, // EC Status                                        
+                                        finalResubmissionCount // Resubmission Count
+                                    };
+                                    model.addRow(reorderedData);
+                                    addedRows.add(rowIdentifier);
+                                    }
+                                } else if (secMarker.equals(user.getUserID()) && !listx[4].isEmpty() && listx[10].isEmpty()) { // second marker
+                                    // Check if listx[6] is 'marked'
+                                    if (!"marked".equals(listx[6])) {
                                         String[] reorderedData = {
                                             studentID, // second marker ID
                                             studentName, // second marker Name
@@ -1569,8 +1530,8 @@ public class LecturerIntakePage extends javax.swing.JFrame {
         }
     }
 
-    private void redirectMarkedReport(String id) {
-        LecturerMarkedReport marked = new LecturerMarkedReport(id, intakeCode, AssmntType);
+    private void redirectMarkedReport(String id, LecturerIntakePage intakePage) {
+        LecturerMarkedReport marked = new LecturerMarkedReport(id, intakeCode, AssmntType, intakePage);
         marked.setVisible(true);
     }
 
@@ -1959,6 +1920,10 @@ public class LecturerIntakePage extends javax.swing.JFrame {
                             StatusLabel.setBackground(new java.awt.Color(255, 255, 0));
                         }
                         case "submitted" -> {
+                            StatusLabel.setText("in progress");
+                            StatusLabel.setBackground(new java.awt.Color(255, 255, 0));
+                        }
+                        case "partially marked" -> {
                             StatusLabel.setText("in progress");
                             StatusLabel.setBackground(new java.awt.Color(255, 255, 0));
                         }
