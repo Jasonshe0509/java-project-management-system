@@ -1389,7 +1389,6 @@ public class LecturerIntakePage extends javax.swing.JFrame {
     private void redirectPresentRqt(String id){
         LecturerPresentationRequest request = new LecturerPresentationRequest(id, intakeCode, AssmntType);
         request.setVisible(true);
-        this.setVisible(false);
     }
     
     private void showReport(){
