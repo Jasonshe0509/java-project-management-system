@@ -556,9 +556,9 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="MarkedRptLabel" alignment="0" min="-2" pref="26" max="-2" attributes="0"/>
+                                  <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace pref="16" max="32767" attributes="0"/>
                           </Group>
@@ -690,7 +690,7 @@
                           <Table columnCount="5" rowCount="0">
                             <Column editable="false" title="Request ID" type="java.lang.Object"/>
                             <Column editable="false" title="Name" type="java.lang.Object"/>
-                            <Column editable="true" title="Marker" type="java.lang.Object"/>
+                            <Column editable="false" title="Marker" type="java.lang.Object"/>
                             <Column editable="false" title="Presentation Slot" type="java.lang.Object"/>
                             <Column editable="true" title="Action" type="java.lang.Object"/>
                           </Table>

@@ -632,10 +632,18 @@ public class LecturerDashboardPage extends javax.swing.JFrame {
                 AssessmentStatusLabel.setBackground(new java.awt.Color(255, 255, 255));
                 AssessmentStatusLabel.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
                 AssessmentStatusLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-                AssessmentStatusLabel.setText("Status");
                 AssessmentStatusLabel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
                 AssessmentStatusLabel.setOpaque(true);
-                AssessmentStatusLabel.setBounds(230, 160, 60, 25);
+                AssessmentStatusLabel.setBounds(210, 160, 80, 25);
+                AssessmentStatusLabel.setText(AssmntList[7]);
+                switch(AssmntList[7]){
+                    case "incomplete" -> {
+                            AssessmentStatusLabel.setBackground(new java.awt.Color(255, 255, 0));                            
+                        }
+                        case "completed" -> {
+                            AssessmentStatusLabel.setBackground(new java.awt.Color(102, 255, 102));                            
+                        }
+                }
 
                 AssessmentViewBtn = new javax.swing.JButton();
                 AssessmentViewBtn.setBackground(new java.awt.Color(76, 127, 174));
