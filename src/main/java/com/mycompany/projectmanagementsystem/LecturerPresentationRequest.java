@@ -83,25 +83,39 @@ public class LecturerPresentationRequest extends javax.swing.JFrame {
         PresentationRqtTableActionEvent event = new PresentationRqtTableActionEvent() {
             @Override
             public void presentationRqtApprove(int row, Object value) {
-                List<String> data = FileHandler.readFile("assessment.txt");
-                List<String> datax = FileHandler.readFile("presentation_request.txt");
+                List<String> assessmentData = FileHandler.readFile("assessment.txt");
+                List<String> presentationRequestData = FileHandler.readFile("presentation_request.txt");
 
                 DefaultTableModel model = (DefaultTableModel) PresentRqtTable.getModel();
-                String stdID = (String) model.getValueAt(row, 0);
-                String acceptance = (String) model.getValueAt(row, 2);
+                String rqtID = (String) model.getValueAt(row, 0);
                 String presentSlot = (String) model.getValueAt(row, 3);
                 PresentationController action = new PresentationController();
 
-                for (String line : data) {
+                String stdID = null;
+                // Find the stdID corresponding to the rqtID from the presentation_request.txt
+                for (String linex : presentationRequestData) {
+                    String[] listx = linex.split(";");
+                    if (listx[0].equals(rqtID)) {
+                        stdID = listx[1]; // Assuming stdID is at index 1, adjust based on your actual data format
+                        break;
+                    }
+                }
+
+                if (stdID == null) {
+                    JOptionPane.showMessageDialog(null, "No matching presentation request found for the given rqtID", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+                for (String line : assessmentData) {
                     String[] list = line.split(";");
                     if (AssmntID.equals(list[0])) {
                         if (user.getUserID().equals(list[4])) { // Supervisor
-                            boolean result = action.presentationRqtApprove("supervisor", stdID, "approved");
+                            boolean result = action.presentationRqtApprove("supervisor", rqtID, "approved");
                             if (result) {
                                 model.removeRow(row);
-                                for (String linex : datax) {
+                                for (String linex : presentationRequestData) {
                                     String[] listx = linex.split(";");
-                                    if (stdID.equals(listx[1]) && "approved".equals(listx[5]) || listx[5].isEmpty()) {
+                                    if (rqtID.equals(listx[0]) && ("approved".equals(listx[5]) || listx[5].isEmpty())) {
                                         String[] schdPInput = new String[3];
                                         schdPInput[0] = stdID;
                                         schdPInput[1] = AssmntID;
@@ -109,22 +123,22 @@ public class LecturerPresentationRequest extends javax.swing.JFrame {
                                         boolean confirm = action.writeAccptPresentation(schdPInput);
                                         if (confirm) {
                                             JOptionPane.showMessageDialog(null,
-                                                    "Presentation request from supervisee (" + stdID + ") has been approved.");
+                                                    "Presentation request (" + rqtID + ") has been approved.");
                                         }
                                         return;
                                     }
                                 }
-                                JOptionPane.showMessageDialog(null, "Supervisor has approved the presentation request from supervisee (" + stdID
+                                JOptionPane.showMessageDialog(null, "Supervisor has approved the presentation request (" + rqtID
                                         + ").\nSecond marker acceptance is still pending.");
                             }
                             return;
                         } else if (user.getUserID().equals(list[5])) { // Second Marker
-                            boolean result = action.presentationRqtApprove("second marker", stdID, "approved");
+                            boolean result = action.presentationRqtApprove("second marker", rqtID, "approved");
                             if (result) {
                                 model.removeRow(row);
-                                for (String linex : datax) {
+                                for (String linex : presentationRequestData) {
                                     String[] listx = linex.split(";");
-                                    if (stdID.equals(listx[1]) && "approved".equals(listx[4])) {
+                                    if (rqtID.equals(listx[0]) && "approved".equals(listx[4])) {
                                         String[] schdPInput = new String[3];
                                         schdPInput[0] = stdID;
                                         schdPInput[1] = AssmntID;
@@ -132,12 +146,12 @@ public class LecturerPresentationRequest extends javax.swing.JFrame {
                                         boolean confirm = action.writeAccptPresentation(schdPInput);
                                         if (confirm) {
                                             JOptionPane.showMessageDialog(null,
-                                                    "Presentation request from supervisee (" + stdID + ") has been approved.");
+                                                    "Presentation request (" + rqtID + ") has been approved.");
                                         }
                                         return;
                                     }
                                 }
-                                JOptionPane.showMessageDialog(null, "Second marker has approved the presentation request from supervisee (" + stdID
+                                JOptionPane.showMessageDialog(null, "Second marker has approved the presentation request (" + rqtID
                                         + ").\nSupervisor acceptance is still pending.");
                             }
                             return;
@@ -148,38 +162,55 @@ public class LecturerPresentationRequest extends javax.swing.JFrame {
                         JOptionPane.INFORMATION_MESSAGE);
             }
 
+
             
             @Override
             public void presentationRqtReject(int row, Object value) {
-                List<String> data = FileHandler.readFile("assessment.txt");
+                List<String> assessmentData = FileHandler.readFile("assessment.txt");
+                List<String> presentationRequestData = FileHandler.readFile("presentation_request.txt");
 
                 DefaultTableModel model = (DefaultTableModel) PresentRqtTable.getModel();
-                String stdID = (String) model.getValueAt(row, 0);
-                String acceptance = (String) model.getValueAt(row, 2);
+                String rqtID = (String) model.getValueAt(row, 0);
                 PresentationController action = new PresentationController();
 
-                for (String line : data) {
+                String stdID = null;
+                // Find the stdID corresponding to the rqtID from the presentation_request.txt
+                for (String linex : presentationRequestData) {
+                    String[] listx = linex.split(";");
+                    if (listx[0].equals(rqtID)) {
+                        stdID = listx[1]; // Assuming stdID is at index 1, adjust based on your actual data format
+                        break;
+                    }
+                }
+
+                if (stdID == null) {
+                    JOptionPane.showMessageDialog(null, "No matching presentation request found for the given rqtID", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+                for (String line : assessmentData) {
                     String[] list = line.split(";");
                     if (AssmntID.equals(list[0])) {
                         if (user.getUserID().equals(list[4])) { // Supervisor
-                            boolean result = action.presentationRqtReject("supervisor", stdID, AssmntID, "rejected");
+                            boolean result = action.presentationRqtReject("supervisor", rqtID, stdID, AssmntID, "rejected");
                             if (result) {
                                 model.removeRow(row);
                                 JOptionPane.showMessageDialog(null, 
-                                        "Presentation from supervisee (" + stdID + ") has been rejected with provided available slot.");
+                                        "Presentation (" + rqtID + ") has been rejected with provided available slot.");
                             }
                             return; // No need to continue the loop once a match is found
                         } else if (user.getUserID().equals(list[5])) { // Second Marker
-                            boolean result = action.presentationRqtReject("second marker", stdID, AssmntID, "rejected");
+                            boolean result = action.presentationRqtReject("second marker", rqtID, stdID, AssmntID, "rejected");
                             if (result) {
                                 model.removeRow(row);
                                 JOptionPane.showMessageDialog(null, 
-                                        "Presentation from supervisee (" + stdID + ") has been rejected with provided available slot.");
+                                        "Presentation (" + rqtID + ") has been rejected with provided available slot.");
                             }
                             return; // No need to continue the loop once a match is found
                         }
                     }
                 }
+
                 JOptionPane.showMessageDialog(null, "No matching record found for the given assessment ID and user ID", "Message", JOptionPane.INFORMATION_MESSAGE);
             }
 
@@ -209,9 +240,8 @@ public class LecturerPresentationRequest extends javax.swing.JFrame {
         backBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Lecturer Presentation Request");
-        setMaximumSize(new java.awt.Dimension(700, 500));
         setMinimumSize(new java.awt.Dimension(700, 500));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -231,7 +261,7 @@ public class LecturerPresentationRequest extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Supervisee ID", "Name", "Acceptance", "Requested Slot", "Action"
+                "Request ID", "Name", "Acceptance", "Requested Slot", "Action"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -318,8 +348,6 @@ public class LecturerPresentationRequest extends javax.swing.JFrame {
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         this.setVisible(false);
-        LecturerIntakePage intake = new LecturerIntakePage(AssmntID, intakeCode, AssmntType);
-        intake.setVisible(true);
     }//GEN-LAST:event_backBtnActionPerformed
 
     /**
@@ -386,6 +414,7 @@ public class LecturerPresentationRequest extends javax.swing.JFrame {
         
         for (String linex : datax) {
         String[] listx = linex.split(";");
+        String requestID = listx[0];
         String studentID = listx[1];
         String assessmentID = listx[2];
         String rqtPresentationSlot = listx[3];
@@ -409,7 +438,7 @@ public class LecturerPresentationRequest extends javax.swing.JFrame {
                                     PresentRqtTable.removeColumn(PresentRqtTable.getColumnModel().getColumn(2)); 
                                     PresentRqtTable.getTableHeader().repaint();
                                     String[] reorderedData = {
-                                        studentID,       // Supervisee ID
+                                        requestID,       // Supervisee ID
                                         studentName,     // Supervisee Name
                                         "null",
                                         rqtPresentationSlot // Requested Presentation Slot
@@ -419,7 +448,7 @@ public class LecturerPresentationRequest extends javax.swing.JFrame {
                                     PresentRqtTable.getColumnModel().getColumn(2).setHeaderValue("Second Marker Acceptance");
                                     PresentRqtTable.getTableHeader().repaint();
                                     String[] reorderedData = {
-                                        studentID,       // Supervisee ID
+                                        requestID,       // Supervisee ID
                                         studentName,     // Supervisee Name
                                         secMarkerstatus,   // Second Marker Name
                                         rqtPresentationSlot // Requested Presentation Slot
@@ -431,7 +460,7 @@ public class LecturerPresentationRequest extends javax.swing.JFrame {
                                 PresentRqtTable.getColumnModel().getColumn(2).setHeaderValue("Supervisor Acceptance");
                                 PresentRqtTable.getTableHeader().repaint();
                                 String[] reorderedData = {
-                                    studentID,       // Supervisee ID
+                                    requestID,       // Supervisee ID
                                     studentName,     // Supervisee Name
                                     spvStatus,         // Supervisor Name
                                     rqtPresentationSlot // Presentation Slot

@@ -655,7 +655,7 @@ public class LecturerIntakePage extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Supervisee ID", "Name", "Marker", "Presentation Slot", "Action"
+                "Request ID", "Name", "Marker", "Presentation Slot", "Action"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -1326,7 +1326,6 @@ public class LecturerIntakePage extends javax.swing.JFrame {
         String assessmentID = listx[2];
         String presentationSlot = listx[3];
         String status = listx[5];
-
 
         if (studentID != null) {
             String studentName = studentNames.get(studentID);
