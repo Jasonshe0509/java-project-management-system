@@ -6,3 +6,4 @@ School of General Studies
 School Of Innovation
 School Of Information Technology
 School Of Psychology 
+School Of Example 

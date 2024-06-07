@@ -144,19 +144,19 @@ public class UserController extends UserAuthenticationController {
                                                 FileHandler.writeFile("user.txt", userInput[3] + ";" + userInput[0] + ";" + userInput[1] + ";"
                                                         + userInput[5] + ";" + userInput[2] + ";" + userInput[4] + ";" + userInput[6] + ";" + userInput[7]
                                                         + ";" + userInput[8] + ";" + initialPassword + ";" + userInput[9] + ";" + userInput[10]);
+                                                
+                                                JOptionPane.showMessageDialog(null, "Student: " + userID + " has been added succefully!", "Successful Added", JOptionPane.INFORMATION_MESSAGE);
                                                 admin_student_management.printStudentTable();
                                                 admin_student_management.readNumOfStudent();
-                                                JOptionPane.showMessageDialog(null, "Student: " + userID + " has been added succefully!", "Successful Added", JOptionPane.INFORMATION_MESSAGE);
                                             }
                                             case "lecturer" -> {
                                                 FileHandler.writeFile("user.txt", userInput[3] + ";" + userInput[0] + ";" + userInput[1] + ";"
                                                         + userInput[5] + ";" + userInput[2] + ";" + userInput[4] + ";" + userInput[6] + ";" + userInput[7]
                                                         + ";" + userInput[8] + ";" + initialPassword + ";" + userInput[9] + ";" + userInput[10]);
+                                               
                                                 JOptionPane.showMessageDialog(null, "Lecturer: " + userID + " has been added succefully!", "Successful Added", JOptionPane.INFORMATION_MESSAGE);
-                                            }
-                                            case "project manager" -> {
-                                            }
-                                            case "admin" -> {
+                                                 admin_lecturer_record.printLecturerTable();
+                                                admin_lecturer_record.readNumOfLecturer();
                                             }
                                         }
 

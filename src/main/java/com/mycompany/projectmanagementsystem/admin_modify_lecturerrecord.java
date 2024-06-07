@@ -94,7 +94,7 @@ public class admin_modify_lecturerrecord extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         background = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Modify Lecturer Record");
         setMaximumSize(new java.awt.Dimension(700, 580));
         setMinimumSize(new java.awt.Dimension(700, 580));
@@ -123,6 +123,7 @@ public class admin_modify_lecturerrecord extends javax.swing.JFrame {
         });
         getContentPane().add(lecturer_gender_selection, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 150, 190, 50));
 
+        lec_empno.setEditable(false);
         lec_empno.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         lec_empno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -235,7 +236,7 @@ public class admin_modify_lecturerrecord extends javax.swing.JFrame {
         lec_details_background.setName(""); // NOI18N
         lec_details_background.setOpaque(true);
         lec_details_background.setPreferredSize(new java.awt.Dimension(550, 350));
-        getContentPane().add(lec_details_background, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 630, 420));
+        getContentPane().add(lec_details_background, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 630, 420));
 
         lec_details_border.setBackground(new Color(255, 255, 255, 0));
         lec_details_border.setBorder(new LineBorder(new Color(192, 192, 192, 90), 15, true));

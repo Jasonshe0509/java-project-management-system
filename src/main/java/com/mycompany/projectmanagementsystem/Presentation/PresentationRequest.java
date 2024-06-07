@@ -19,7 +19,9 @@ public class PresentationRequest {
     private String secondMarkerApprovalStatus;
     private String presentationApprovalStatus;
 
-    public PresentationRequest(String presentationRequestID, String userID, String assessmentID, LocalDateTime requestDateTime, String supervisorApprovalStatus, String secondMarkerApprovalStatus, String presentationApprovalStatus) {
+    public PresentationRequest(String presentationRequestID, String userID, String assessmentID, 
+            LocalDateTime requestDateTime, String supervisorApprovalStatus, String secondMarkerApprovalStatus, 
+            String presentationApprovalStatus) {
         this.presentationRequestID = presentationRequestID;
         this.userID = userID;
         this.assessmentID = assessmentID;

@@ -237,7 +237,7 @@ public class admin_register_lecturer extends javax.swing.JFrame {
     }//GEN-LAST:event_lecturer_emailActionPerformed
 
     private void register_lecturer_submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_register_lecturer_submitActionPerformed
-        while (true) {
+        
             try {
                 String[] userInput = new String[11];
                 userInput[0] = lecturer_name.getText().toUpperCase().trim();
@@ -258,11 +258,11 @@ public class admin_register_lecturer extends javax.swing.JFrame {
                 userInput[9] = "lecturer";
                 userInput[10] = schoolwise_dropbox.getSelectedItem().toString();
                 UserController.userCreate(userInput);
-                break;
+                
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Please Fill In Date!", "Error: Missing Value(s)", JOptionPane.ERROR_MESSAGE);
-                break;
-            }
+                
+            
         }
     }//GEN-LAST:event_register_lecturer_submitActionPerformed
 
