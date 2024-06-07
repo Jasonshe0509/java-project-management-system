@@ -1264,7 +1264,7 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
                         }
                     });
                 }
-                if (list[5] == null || list[4].trim().isEmpty()) {
+                if (list[5] == null || list[5].trim().isEmpty()) {
                     lastModified.setText("-");
                 } else {
                     lastModified.setText(list[5]);

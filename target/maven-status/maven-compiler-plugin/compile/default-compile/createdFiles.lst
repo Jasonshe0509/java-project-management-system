@@ -41,7 +41,6 @@ com\mycompany\projectmanagementsystem\StudentAssessmentDetailPage$15.class
 com\mycompany\projectmanagementsystem\StudentProfilePage$5.class
 com\mycompany\projectmanagementsystem\PM_cp1_page.class
 com\mycompany\projectmanagementsystem\admin_approval_ec_details$11.class
-com\mycompany\projectmanagementsystem\LecturerComm_CreateMessage$2.class
 com\mycompany\projectmanagementsystem\PM_ECActionPanel$1.class
 com\mycompany\projectmanagementsystem\ProjectManagerPage$8.class
 com\mycompany\projectmanagementsystem\GeneralFunction\GeneralValidator.class
@@ -58,7 +57,6 @@ com\mycompany\projectmanagementsystem\AdminECTableActionPanel$AdminECTableAction
 com\mycompany\projectmanagementsystem\LecturerIntakePage.class
 com\mycompany\projectmanagementsystem\admin_approval_ec_details$4.class
 com\mycompany\projectmanagementsystem\StudentPresentationActionPanel$1.class
-com\mycompany\projectmanagementsystem\LecturerComm_CreateMessage.class
 com\mycompany\projectmanagementsystem\admin_view_projectmanager_details.class
 com\mycompany\projectmanagementsystem\LecturerIntakePage$19.class
 com\mycompany\projectmanagementsystem\ProjectManagerPage$1.class
@@ -139,7 +137,6 @@ com\mycompany\projectmanagementsystem\admin_student$6.class
 com\mycompany\projectmanagementsystem\PM_profile_page$2.class
 com\mycompany\projectmanagementsystem\PM_register_assessment_create$1.class
 com\mycompany\projectmanagementsystem\StudentProfilePage$3.class
-com\mycompany\projectmanagementsystem\LecturerCommunication.class
 com\mycompany\projectmanagementsystem\Assessment\ReportTableActionEvent.class
 com\mycompany\projectmanagementsystem\StudentCreateNewDiscussionPage$1.class
 com\mycompany\projectmanagementsystem\StudentAssessmentDetailPage$13.class
@@ -194,7 +191,6 @@ com\mycompany\projectmanagementsystem\StudentEcSubmissionPage$8.class
 com\mycompany\projectmanagementsystem\Presentation\StudentPresentationTableActionEvent.class
 com\mycompany\projectmanagementsystem\PM_assessment_edit$1.class
 com\mycompany\projectmanagementsystem\admin_view_projectmanager_details$9.class
-com\mycompany\projectmanagementsystem\LecturerComm_CreateDiscussion$2.class
 com\mycompany\projectmanagementsystem\Intake\IntakeController.class
 com\mycompany\projectmanagementsystem\LecturerReportConfirm$1.class
 com\mycompany\projectmanagementsystem\lect_ReportPanelAction$1.class
@@ -211,7 +207,6 @@ com\mycompany\projectmanagementsystem\PM_RMCP_page$3.class
 com\mycompany\projectmanagementsystem\StudentProfilePage$1.class
 com\mycompany\projectmanagementsystem\admin_lecturer$11.class
 com\mycompany\projectmanagementsystem\admin_register_student$1.class
-com\mycompany\projectmanagementsystem\LecturerComm_CreateDiscussion$1.class
 com\mycompany\projectmanagementsystem\admin_student_management$6.class
 com\mycompany\projectmanagementsystem\PM_assessment_edit$2.class
 com\mycompany\projectmanagementsystem\User\UserAuthenticationController.class
@@ -246,7 +241,6 @@ com\mycompany\projectmanagementsystem\admin_student$21.class
 com\mycompany\projectmanagementsystem\admin_view_projectmanager_details$11.class
 com\mycompany\projectmanagementsystem\LecturerProfile$5.class
 com\mycompany\projectmanagementsystem\AdminEditTableActionPanel$AdminEditTableActionCellEditor.class
-com\mycompany\projectmanagementsystem\LecturerCommunication$1.class
 com\mycompany\projectmanagementsystem\StudentEcSubmissionPage$7.class
 com\mycompany\projectmanagementsystem\admin_ec_record$18.class
 com\mycompany\projectmanagementsystem\admin_lecturer$5.class
@@ -273,7 +267,6 @@ com\mycompany\projectmanagementsystem\admin_modify_studentrecord$3.class
 com\mycompany\projectmanagementsystem\LecturerIntakePage$6.class
 com\mycompany\projectmanagementsystem\LecturerProfile$3.class
 com\mycompany\projectmanagementsystem\admin_student$16.class
-com\mycompany\projectmanagementsystem\PM_FYP_page$4.class
 com\mycompany\projectmanagementsystem\admin_lecturer$14.class
 com\mycompany\projectmanagementsystem\LecturerPresentationReject$3.class
 com\mycompany\projectmanagementsystem\admin_modify_lecturerrecord$4.class
@@ -285,7 +278,6 @@ com\mycompany\projectmanagementsystem\StudentECActionPanel$rPanelActionRenderer.
 com\mycompany\projectmanagementsystem\PM_ECActionPanel$TableActionCellEditor.class
 com\mycompany\projectmanagementsystem\AdminEditTableActionPanel.class
 com\mycompany\projectmanagementsystem\LecturerIntakePage$7.class
-com\mycompany\projectmanagementsystem\PM_FYP_page$5.class
 com\mycompany\projectmanagementsystem\admin_student_management$2.class
 com\mycompany\projectmanagementsystem\admin_student$20.class
 com\mycompany\projectmanagementsystem\admin_view_projectmanager_details$12.class
@@ -313,7 +305,6 @@ com\mycompany\projectmanagementsystem\User\AdminDeleteActionEvent.class
 com\mycompany\projectmanagementsystem\StudentAssessmentDetailPage$9.class
 com\mycompany\projectmanagementsystem\Presentation\PresentationValidator.class
 com\mycompany\projectmanagementsystem\PM_assessment_ActionPanel$4.class
-com\mycompany\projectmanagementsystem\PM_FYP_page$3.class
 com\mycompany\projectmanagementsystem\admin_student$10.class
 com\mycompany\projectmanagementsystem\PM_duedate_edit$1.class
 com\mycompany\projectmanagementsystem\admin_lecturer$9.class
@@ -338,7 +329,7 @@ com\mycompany\projectmanagementsystem\UserTableAction$1.class
 com\mycompany\projectmanagementsystem\IntakeTableActionPanel$IntakeTableActionCellEditor.class
 com\mycompany\projectmanagementsystem\admin_view_course$4.class
 com\mycompany\projectmanagementsystem\admin_view_projectmanager_details$7.class
-com\mycompany\projectmanagementsystem\LecturerComm_CreateMessage$1.class
+com\mycompany\projectmanagementsystem\PM_ec_approvement$5.class
 com\mycompany\projectmanagementsystem\admin_ec_record$17.class
 com\mycompany\projectmanagementsystem\EC\ECTableActionEvent.class
 com\mycompany\projectmanagementsystem\LecturerSummaryReport$WrappedHeaderRenderer.class
@@ -455,6 +446,7 @@ com\mycompany\projectmanagementsystem\admin_register_schoolwiselist.class
 com\mycompany\projectmanagementsystem\PM_assessment_ActionPanel$TableActionCellEditor.class
 com\mycompany\projectmanagementsystem\LecturerPresentationRequest$2.class
 com\mycompany\projectmanagementsystem\PM_investigation_page$4.class
+com\mycompany\projectmanagementsystem\PM_ec_approvement$7.class
 com\mycompany\projectmanagementsystem\admin_lecturer_record$6.class
 com\mycompany\projectmanagementsystem\PM_cp1_page$2.class
 com\mycompany\projectmanagementsystem\PM_delete_ActionPanel$1.class
@@ -469,13 +461,13 @@ com\mycompany\projectmanagementsystem\admin_register_lecturer.class
 com\mycompany\projectmanagementsystem\lect_PresentationRqtActionPanel$1.class
 com\mycompany\projectmanagementsystem\StudentPresentationActionPanel$TableActionCellEditor.class
 com\mycompany\projectmanagementsystem\admin_student_management$15.class
-com\mycompany\projectmanagementsystem\LecturerComm_CreateDiscussion.class
 com\mycompany\projectmanagementsystem\StudentECActionPanel.class
 com\mycompany\projectmanagementsystem\admin_ec_details$3.class
 com\mycompany\projectmanagementsystem\JPanel.class
 com\mycompany\projectmanagementsystem\StudentAssessmentDetailPage$6.class
 com\mycompany\projectmanagementsystem\admin_lecturer_record$5.class
 com\mycompany\projectmanagementsystem\admin_modify_lecturerrecord$11.class
+com\mycompany\projectmanagementsystem\PM_ec_approvement$6.class
 com\mycompany\projectmanagementsystem\StudentAssessmentDetailPage$17.class
 com\mycompany\projectmanagementsystem\AdminDeleteActionPanel$1.class
 com\mycompany\projectmanagementsystem\LecturerIntakePage$12.class
@@ -553,7 +545,6 @@ com\mycompany\projectmanagementsystem\admin_view_course.class
 com\mycompany\projectmanagementsystem\admin_lecturer_record$16.class
 com\mycompany\projectmanagementsystem\Course\Course.class
 com\mycompany\projectmanagementsystem\Intake\Intake.class
-com\mycompany\projectmanagementsystem\PM_FYP_page.class
 com\mycompany\projectmanagementsystem\StudentAssessmentDetailPage.class
 com\mycompany\projectmanagementsystem\PM_cp1_page$4.class
 com\mycompany\projectmanagementsystem\StudentPresentationActionPanel.class
