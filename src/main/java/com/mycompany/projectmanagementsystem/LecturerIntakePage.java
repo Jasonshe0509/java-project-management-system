@@ -196,6 +196,7 @@ public class LecturerIntakePage extends javax.swing.JFrame {
                                 // Display an updated intake page
                                 LecturerIntakePage update = new LecturerIntakePage(AssmntID, intakeCode, AssmntType);
                                 update.setVisible(true);
+                                update.selectPresentationPanel();
                             }
                             return; // No need to continue the loop once a match is found
                         } else if (user.getUserID().equals(list[5])) { // Second Marker
@@ -1423,6 +1424,10 @@ public class LecturerIntakePage extends javax.swing.JFrame {
     void selectPresentationPanel() {
         jTabbedPane1.setSelectedIndex(1);
     }
+    
+    void selectMarkingPanel() {
+        jTabbedPane1.setSelectedIndex(2);
+    }
 
     private void showReport() {
         String fileNamex = "student_assessment.txt";
@@ -1486,7 +1491,7 @@ public class LecturerIntakePage extends javax.swing.JFrame {
                                 resubCount = 0; // Default to 0 if parsing fails
                             }
 
-                            if (resubCount < 2) {
+                            if (resubCount < 1) {
                                 resubCount = 0;
                             } else {
                                 resubCount -= 1;

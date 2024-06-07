@@ -56,7 +56,7 @@ public class LecturerMarkedReport extends javax.swing.JFrame {
 
                 for (String line : data) {
                     String[] list = line.split(";");
-                    if (list[1].equals(stdID)) {
+                    if (list[1].equals(stdID) && list[2].equals(AssmntID)) {
                         if (!list[8].isEmpty()) { // Check if grade has been given or not
                             subLink = list[4];
                             canViewReport = true;

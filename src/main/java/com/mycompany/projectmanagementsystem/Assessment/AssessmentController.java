@@ -65,7 +65,9 @@ public class AssessmentController implements StudentAssessmentController {
                             list[4] = assessmentInput[1];
                             list[5] = formattedDateTime;
                             list[6] = "submitted";
-                            list[10] = "1";
+                            list[9] = "";
+                            list[10] = "";
+                            list[11] = "1";
                         }
                         line = String.join(";", list);
                         array_list.add(line);

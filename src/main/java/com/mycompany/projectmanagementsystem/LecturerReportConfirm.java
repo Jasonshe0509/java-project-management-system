@@ -444,6 +444,7 @@ public class LecturerReportConfirm extends javax.swing.JFrame {
                                 // Display an updated intake page
                                 LecturerIntakePage update = new LecturerIntakePage(AssmntID, intakeCode, AssmntType);
                                 update.setVisible(true);
+                                update.selectMarkingPanel();
                             }
                             found = true;
                             break;
