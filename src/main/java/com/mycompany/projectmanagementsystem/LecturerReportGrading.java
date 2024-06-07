@@ -576,7 +576,7 @@ public class LecturerReportGrading extends javax.swing.JFrame {
         // show feedback given by another marker 
         for (String line : data) {
             String[] list = line.split(";");
-            if (list[1].equals(stdID) && !list[7].isEmpty()) {
+            if (list[1].equals(stdID) && list[2].equals(AssmntID) && !list[7].isEmpty()) {
                 feedbackRptField.setText(list[7]);
                 if(!list[8].isEmpty() && !list[8].equals("pass_with_changes")){
                     feedbackRptField.setText(list[7] + "\n\nGrade Obtained: " + list[8]);
@@ -679,7 +679,7 @@ public class LecturerReportGrading extends javax.swing.JFrame {
     private void displayGradedReport(List<String> studentAssessmentData, boolean isSupervisor) {
         for (String line : studentAssessmentData) {
             String[] fields = line.split(";");
-            if (fields[1].equals(stdID)) {
+            if (fields[1].equals(stdID) & fields[2].equals(AssmntID)) {
                 boolean isMarked = !fields[9].isEmpty();
                 boolean isSecMarked = !fields[10].isEmpty();
                 boolean hasFeedback = fields.length > 5 && fields[4] != null && !fields[4].isEmpty();

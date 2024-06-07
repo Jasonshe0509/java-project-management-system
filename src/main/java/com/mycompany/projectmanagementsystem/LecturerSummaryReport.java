@@ -348,7 +348,6 @@ public class LecturerSummaryReport extends javax.swing.JFrame {
     private void showRptData() {
         String fileNamex = "student_assessment.txt";
         String fileNamey = "assessment.txt";
-        String fileNamez = "user.txt";
         String fileNamea = "ec.txt";
         String fileNameb = "presentation_confirmation.txt";
 
@@ -357,7 +356,6 @@ public class LecturerSummaryReport extends javax.swing.JFrame {
 
         List<String> datax = FileHandler.readFile(fileNamex);
         List<String> datay = FileHandler.readFile(fileNamey);
-        List<String> dataz = FileHandler.readFile(fileNamez);
         List<String> dataa = FileHandler.readFile(fileNamea);
         List<String> datab = FileHandler.readFile(fileNameb);
 
@@ -391,9 +389,9 @@ public class LecturerSummaryReport extends javax.swing.JFrame {
                 int stdPassCount = 0;
 
                 // Total Student
-                for (String line : dataz) {
+                for (String line : datax) {
                     String[] UserList = line.split(";");
-                    if ("student".equals(UserList[10]) && intakeCode.equals(UserList[11])) {
+                    if (assmntID.equals(UserList[2])) {
                         stdCount++;
                     }
                 }

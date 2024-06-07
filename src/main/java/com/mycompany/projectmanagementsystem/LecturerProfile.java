@@ -440,13 +440,8 @@ public class LecturerProfile extends javax.swing.JFrame {
     }//GEN-LAST:event_saveBtnActionPerformed
 
     private void notiLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_notiLabelMouseClicked
-        int confirm = JOptionPane.showConfirmDialog(null, "Are you confirmed to log out?", 
-                    "Confirmation", JOptionPane.YES_NO_OPTION);
-        if(confirm == JOptionPane.YES_OPTION){
-            this.setVisible(false);
-            UserController logout = new UserController();
-            logout.userLogout();
-        } else {}
+        NotificationPage lectNoti = new NotificationPage();
+        lectNoti.setVisible(true);
     }//GEN-LAST:event_notiLabelMouseClicked
 
     private void logoutLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutLabelMouseClicked
