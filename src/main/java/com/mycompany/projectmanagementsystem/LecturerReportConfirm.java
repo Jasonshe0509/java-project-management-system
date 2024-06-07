@@ -384,7 +384,7 @@ public class LecturerReportConfirm extends javax.swing.JFrame {
     private void showGradeFeedback(){
         total = mark1 + mark2 + mark3;
         gradeLabel.setText("<html>Content: " + mark1 + "\nFormat: " + mark2 + "\nPresentation: " + mark3 + "   Total:- " + total + "</html>");
-        feedbackLabel.setText("<html>" + feedback + "</html>");
+        feedbackLabel.setText(feedback);
     }
     
     private void updateStudentReportGrade() {
