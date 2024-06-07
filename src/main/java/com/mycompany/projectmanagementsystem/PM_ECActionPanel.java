@@ -47,19 +47,15 @@ public class PM_ECActionPanel extends javax.swing.JPanel {
 
     public class TableActionCellEditor extends DefaultCellEditor {
         private ECApprTableActionEvent event;
-        private String ecID;
-        private String studentID;
         public TableActionCellEditor(ECApprTableActionEvent event) {
             super(new JCheckBox());
             this.event = event;
-            this.ecID = ecID;
-            this.studentID = studentID;
         }
 
         @Override
         public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
             PM_ECActionPanel action = new PM_ECActionPanel();
-            action.initEvent(event, row, value,ecID,studentID);
+            action.initEvent(event, row, value);
             action.setBackground(table.getSelectionBackground());
             if (isSelected == true){
                 System.out.println(row);
@@ -68,13 +64,11 @@ public class PM_ECActionPanel extends javax.swing.JPanel {
         }
     }
     
-    public void initEvent(ECApprTableActionEvent event, int row , Object value, String ecID,String studentID) {
+    public void initEvent(ECApprTableActionEvent event, int row , Object value) {
         edit_button.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent ae) {
                 event.ecEdit(row, value);
-                PM_duedate_edit duedate = new PM_duedate_edit(ecID,studentID);
-                duedate.setVisible(true);
             }
         });
     }

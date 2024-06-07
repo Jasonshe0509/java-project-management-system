@@ -4,7 +4,9 @@
  */
 package com.mycompany.projectmanagementsystem;
 
+import com.mycompany.projectmanagementsystem.Assessment.AssessmentController;
 import com.mycompany.projectmanagementsystem.EC.ECController;
+import com.mycompany.projectmanagementsystem.GeneralFunction.FileHandler;
 import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -13,10 +15,13 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -24,86 +29,49 @@ import javax.swing.JOptionPane;
  * @author shuhuilee
  */
 public class PM_duedate_edit extends javax.swing.JFrame {
-    private String ecID;
-    private String studentID;
 
     /**
-     * Creates new form 
+     * Creates new form
      */
-    public PM_duedate_edit(String ecID,String studentID) {
+    private String assessmentID;
+    private String studentID;
+    private String dueDate;
+    PM_ec_approvement parentpage;
+
+    public PM_duedate_edit(String assessmentID, String studentID, String dueDate, PM_ec_approvement parentpage) {
         initComponents();
         setIconImage();
-        loadDueDate();
-        this.ecID = ecID;
+        this.assessmentID = assessmentID;
         this.studentID = studentID;
-        
-   
+        this.dueDate = dueDate;
+        this.parentpage = parentpage;
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd"); // Adjust the format as per your date format in the file
+
+        // Parse the date string to Date object
+        Date date = null;
+        try {
+            String dateString;
+            date = dateFormat.parse(dueDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        if (date != null) {
+            jDateChooser1.setDate(date);
+        }
+
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
                 int choice = JOptionPane.showConfirmDialog(null, "Are you sure you want to return to PM_ec_approvement?", "Confirmation", JOptionPane.YES_NO_OPTION);
                 if (choice == JOptionPane.YES_OPTION) {
-                    PM_ec_approvement page = new PM_ec_approvement();
-                    page.setVisible(true);
                     dispose();
                 }
             }
         });
     }
-    
-    private void loadDueDate() {
-        try (BufferedReader reader = new BufferedReader(new FileReader("student_assessment.txt"))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                String[] fields = line.split(";");
-                if (fields.length >= 4 && fields[1].equals(studentID)) {
-                    long dueDateMillis = Long.parseLong(fields[3]);
-                    Date dueDate = new Date(dueDateMillis);
-                    jDateChooser1.setDate(dueDate);
-                    break;
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "An error occurred while loading the due date.");
-        }
-    }
-
-    private boolean updateStudentAssessmentDuedate(String studentID, Date selectedDate) {
-        List<String> updatedStudentAssessmentData = new ArrayList<>();
-        try (BufferedReader reader = new BufferedReader(new FileReader("student_assessment.txt"))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                String[] fields = line.split(";");
-                if (fields.length >= 4 && fields[1].equals(studentID)) {
-                    fields[3] = String.valueOf(selectedDate.getTime());
-                }
-                line = String.join(";", fields);
-                updatedStudentAssessmentData.add(line);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "An error occurred while updating the due date.");
-            return false;
-        }
-        return updateFileData("student_assessment.txt", updatedStudentAssessmentData);
-    }
-
-    private boolean updateFileData(String fileName, List<String> updatedData) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
-            for (String line : updatedData) {
-                writer.write(line);
-                writer.newLine();
-            }
-            return true;
-        } catch (IOException e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "An error occurred while updating the file: " + fileName);
-            return false;
-        }
-    }
-    
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -159,31 +127,20 @@ public class PM_duedate_edit extends javax.swing.JFrame {
 
     private void save_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_save_buttonActionPerformed
         // TODO add your handling code here:
+        String[] assessmentInput = new String[3];
+        assessmentInput[0] = studentID;
+        assessmentInput[1] = assessmentID;
         Date selectedDate = jDateChooser1.getDate();
-            if (selectedDate == null) {
-                JOptionPane.showMessageDialog(this, "Due date cannot be empty.");
-                return;
-            }
-
-            Calendar currentDate = Calendar.getInstance();
-            currentDate.add(Calendar.DAY_OF_MONTH, 2); // Add 2 days
-            Date minDueDate = currentDate.getTime();
-
-            if (selectedDate.before(minDueDate)) {
-                JOptionPane.showMessageDialog(null, "Due date must be at least 2 days later than today.", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-
-            boolean updateSuccess = updateStudentAssessmentDuedate(studentID, selectedDate);
-            if (!updateSuccess) {
-                JOptionPane.showMessageDialog(this, "Failed to update the due date.", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-
-            dispose();
-            PM_ec_approvement page = new PM_ec_approvement();
-            page.setVisible(true);
-
+        SimpleDateFormat dateTimeFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String dateTimeText = dateTimeFormat.format(selectedDate);
+        assessmentInput[2] = dateTimeText;
+        AssessmentController action = new AssessmentController();
+        boolean result =  action.editDueDate(assessmentInput);
+        if (result) {
+            JOptionPane.showMessageDialog(null, "Successfully edit the student due date");
+            this.setVisible(false);
+            parentpage.loadDataFromFiles();
+        }
     }//GEN-LAST:event_save_buttonActionPerformed
 
     /**
@@ -217,12 +174,13 @@ public class PM_duedate_edit extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                String ecID = "";
+                String assessmentID = "";
                 String studentID = "";
-                new PM_duedate_edit(ecID,studentID).setVisible(true);
+                new PM_duedate_edit(assessmentID, studentID, "", null).setVisible(true);
             }
         });
     }
+
     private void setIconImage() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Sysco_icon_with_background.png")));
     }

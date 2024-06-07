@@ -1,2 +1,2 @@
-EC0006;TP0001;A0002;sick;https://contentatscale.ai/ai-content-detector/;rejected
+EC0006;TP0001;A0002;sick;https://contentatscale.ai/ai-content-detector/;approved
 EC0007;TP0001;A0002;sick;https://contentatscale.ai/ai-content-detector/;rejected

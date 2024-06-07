@@ -5,6 +5,7 @@
 package com.mycompany.projectmanagementsystem;
 
 import com.mycompany.projectmanagementsystem.EC.ECApprTableActionEvent;
+import com.mycompany.projectmanagementsystem.GeneralFunction.FileHandler;
 import com.mycompany.projectmanagementsystem.GeneralFunction.SessionManager;
 import com.mycompany.projectmanagementsystem.User.User;
 import java.awt.Toolkit;
@@ -12,14 +13,18 @@ import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.List;
 import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author shuhuilee
  */
 public class PM_ec_approvement extends javax.swing.JFrame {
+
     private final SessionManager sessionManager = SessionManager.getInstance();
     User user = sessionManager.getCurrentUser();
+
     /**
      * Creates new form ProjectManagerPage
      */
@@ -27,53 +32,47 @@ public class PM_ec_approvement extends javax.swing.JFrame {
         initComponents();
         setIconImage();
         loadDataFromFiles();
-    
+
         PM_ECActionPanel panel = new PM_ECActionPanel();
         ECApprTableActionEvent event = new ECApprTableActionEvent() {
             @Override
             public void ecEdit(int row, Object value) {
                 DefaultTableModel model = (DefaultTableModel) pm_ec_approvement_table.getModel();
-                String ecID = (String) model.getValueAt(row, 0);
+                String assessmentID = (String) model.getValueAt(row, 1);
                 String studentID = (String) model.getValueAt(row, 2);
-                PM_duedate_edit editPage = new PM_duedate_edit(ecID,studentID);
-                editPage.setVisible(true);
-                setVisible(false); 
+                String dueDate = (String) model.getValueAt(row, 4);
+                redirectPage(assessmentID, studentID, dueDate);
             }
         };
         pm_ec_approvement_table.getColumnModel().getColumn(5).setCellRenderer(panel.new rPanelActionRenderer());
         pm_ec_approvement_table.getColumnModel().getColumn(5).setCellEditor(panel.new TableActionCellEditor(event));
     }
-    
-    private void loadDataFromFiles() {
+
+    void loadDataFromFiles() {
         DefaultTableModel model = (DefaultTableModel) pm_ec_approvement_table.getModel();
+        model.setRowCount(0);
         String ecFilePath = "ec.txt";
         String studentAssessmentFilePath = "student_assessment.txt";
-
-        try (BufferedReader ecReader = new BufferedReader(new FileReader(ecFilePath));
-             BufferedReader assessmentReader = new BufferedReader(new FileReader(studentAssessmentFilePath))) {
-
-            String ecLine;
-            String assessmentLine;
-
-            while ((ecLine = ecReader.readLine()) != null && (assessmentLine = assessmentReader.readLine()) != null) {
-                String[] ecList = ecLine.split(";");
-                String[] assessmentList = assessmentLine.split(";");
-
-                // Add EC and student assessment data to the table
-                model.insertRow(0, new Object[]{
-                    ecList[0], 
-                    assessmentList[2], 
-                    ecList[1], 
-                    ecList[5], 
-                    assessmentList[3], 
-                    null});
+        List<String> data = FileHandler.readFile("ec.txt");
+        List<String> studentAdata = FileHandler.readFile("student_assessment.txt");
+        for (String line : data) {
+            String[] list = line.split(";");
+            if (list[5].equals("approved")) {
+                for (String sALine : studentAdata) {
+                    String[] SAList = sALine.split(";");
+                    if (SAList[1].equals(list[1]) && SAList[2].equals(list[2])) {
+                        model.insertRow(0, new Object[]{
+                            list[0],
+                            SAList[2],
+                            list[1],
+                            list[5],
+                            SAList[3],
+                            null});
+                    }
+                }
             }
-        } catch (IOException ex) {
-            System.out.println("Error reading file: " + ex.getMessage());
         }
     }
-
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -105,23 +104,24 @@ public class PM_ec_approvement extends javax.swing.JFrame {
         jLabel8.setText("EC Approvement");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
 
+        pm_ec_approvement_table.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
+        pm_ec_approvement_table.setForeground(new java.awt.Color(2, 50, 99));
         pm_ec_approvement_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
                 "EC ID ", "Assessmnet ID", "Student ID", "Status", "Duedate", "Action"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         pm_ec_approvement_table.setRowHeight(30);
         jScrollPane1.setViewportView(pm_ec_approvement_table);
         if (pm_ec_approvement_table.getColumnModel().getColumnCount() > 0) {
@@ -246,9 +246,16 @@ public class PM_ec_approvement extends javax.swing.JFrame {
             }
         });
     }
+
     private void setIconImage() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Sysco_icon_with_background.png")));
     }
+
+    private void redirectPage(String ecID, String studentID, String dueDate) {
+        PM_duedate_edit editPage = new PM_duedate_edit(ecID, studentID, dueDate, this);
+        editPage.setVisible(true);
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel2;

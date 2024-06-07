@@ -169,7 +169,6 @@ public class AssessmentController implements StudentAssessmentController {
         }
     }
 
-
     public boolean secMarkReportDone(String stdID, String assmntID, String newStatus, String type) {
         List<String> data = FileHandler.readFile("student_assessment.txt");
         ArrayList<String> updatedData = new ArrayList<>();
@@ -195,10 +194,10 @@ public class AssessmentController implements StudentAssessmentController {
                     line = String.join(";", list);
                     updateStatus = true;
                     JOptionPane.showMessageDialog(null,
-                                "The final mark (" + avgMark + ") has been submitted, grade \"" + grade + "\" is recorded.");
-                    if("Pass with Changes".equals(grade)){
-                        NotificationController.create(stdID, "The submitted report for assessment (" + list[2] 
-                                        + ") has been graded \"Pass with Changes\". Please note that you may resubmit your report for regrading.");
+                            "The final mark (" + avgMark + ") has been submitted, grade \"" + grade + "\" is recorded.");
+                    if ("Pass with Changes".equals(grade)) {
+                        NotificationController.create(stdID, "The submitted report for assessment (" + list[2]
+                                + ") has been graded \"Pass with Changes\". Please note that you may resubmit your report for regrading.");
                     }
                 } else if (!list[10].isEmpty() && list[9].isEmpty()) {
                     list[6] = "partially marked";
@@ -222,7 +221,6 @@ public class AssessmentController implements StudentAssessmentController {
         }
     }
 
-
     private String assignGrade(String type, int mark, int count) {
         List<String> data = FileHandler.readFile("assessment_type.txt");
         for (String line : data) {
@@ -232,20 +230,20 @@ public class AssessmentController implements StudentAssessmentController {
 
             if (list[0].equals(type)) {
                 if (count >= 2) {
-                    if (mark >= pass){
+                    if (mark >= pass) {
                         return "pass";
                     } else {
-                        return "fail";                       
+                        return "fail";
                     }
                 } else {
                     if (isWithinRange(mark, passChangesRange)) {
                         return "pass_with_changes"; //allow student to resubmit
-                    } else if ("0".equals(passChangesRange) && mark >= pass){
+                    } else if ("0".equals(passChangesRange) && mark >= pass) {
                         return "pass";
-                    } else if (mark >= pass){
+                    } else if (mark >= pass) {
                         return "pass";
-                    } else{
-                        return "fail";                       
+                    } else {
+                        return "fail";
                     }
                 }
             }
@@ -265,8 +263,7 @@ public class AssessmentController implements StudentAssessmentController {
             return mark == exactValue;
         }
     }
-    
-    
+
     public List<String> getStudentsByIntake(String studentIntake) {
         List<String> students = new ArrayList<>();
         String fileName = "user.txt";
@@ -295,31 +292,30 @@ public class AssessmentController implements StudentAssessmentController {
     }
 
     public boolean assessment_Delete(String assessmentID) {
-         boolean success = true;
-    
-         // Read and update assessment.txt
-         List<String> data = FileHandler.readFile("assessment.txt");
-         ArrayList<String> updatedAssessmentData = new ArrayList<>();
-         for (String line : data) {
-             String[] list = line.split(";");
-             if (!list[0].equals(assessmentID)) {
-                 updatedAssessmentData.add(line);
-             }
-         }
-         FileHandler.modifyFileData("assessment.txt", updatedAssessmentData);
-         // Read and update student_assessment.txt
-         List<String> studentAssessmentData = FileHandler.readFile("student_assessment.txt");
-         ArrayList<String> updatedStudentAssessmentData = new ArrayList<>();
-         for (String line : studentAssessmentData) {
-             String[] parts = line.split(";");
-             if (!parts[0].equals(assessmentID)) {
-                 updatedStudentAssessmentData.add(line);
-             }
-         }
-         FileHandler.modifyFileData("student_assessment.txt", updatedStudentAssessmentData);
-            return success;
+        boolean success = true;
+
+        // Read and update assessment.txt
+        List<String> data = FileHandler.readFile("assessment.txt");
+        ArrayList<String> updatedAssessmentData = new ArrayList<>();
+        for (String line : data) {
+            String[] list = line.split(";");
+            if (!list[0].equals(assessmentID)) {
+                updatedAssessmentData.add(line);
+            }
         }
-    
+        FileHandler.modifyFileData("assessment.txt", updatedAssessmentData);
+        // Read and update student_assessment.txt
+        List<String> studentAssessmentData = FileHandler.readFile("student_assessment.txt");
+        ArrayList<String> updatedStudentAssessmentData = new ArrayList<>();
+        for (String line : studentAssessmentData) {
+            String[] parts = line.split(";");
+            if (!parts[0].equals(assessmentID)) {
+                updatedStudentAssessmentData.add(line);
+            }
+        }
+        FileHandler.modifyFileData("student_assessment.txt", updatedStudentAssessmentData);
+        return success;
+    }
 
     public boolean assessment_Edit(String assessmentID, String supervisorID, String secondMarkerID, String dueDate) {
         List<String> data = FileHandler.readFile("assessment.txt");
@@ -343,20 +339,20 @@ public class AssessmentController implements StudentAssessmentController {
                     }
 
                     // Update supervisor ID, second marker ID, and due date
-                    list[4] = supervisorID; 
-                    list[5] = secondMarkerID; 
-                    list[3] = dueDate; 
+                    list[4] = supervisorID;
+                    list[5] = secondMarkerID;
+                    list[3] = dueDate;
 
                     line = String.join(";", list);
                 } catch (ParseException e) {
                     e.printStackTrace();
-                    return false; 
+                    return false;
                 }
             }
             array_list.add(line);
         }
         FileHandler.modifyFileData("assessment.txt", array_list);
-        return true; 
+        return true;
     }
 
     public boolean assessment_Report(String assessmentID) {
@@ -369,7 +365,7 @@ public class AssessmentController implements StudentAssessmentController {
         }
         return false; // Assessment report does not exist
     }
-    
+
     public boolean report_Delete(String assessmentID) {
         List<String> data = FileHandler.readFile("student_assessment.txt");
         ArrayList<String> array_list = new ArrayList<>();
@@ -390,7 +386,7 @@ public class AssessmentController implements StudentAssessmentController {
             int totalMark = Integer.parseInt(marklist[1]) + Integer.parseInt(marklist[2]) + Integer.parseInt(marklist[3]);
             if (totalMark <= 100) {
 
-                if ((Integer.parseInt(marklist[6]) < Integer.parseInt(marklist[4])) ) {
+                if ((Integer.parseInt(marklist[6]) < Integer.parseInt(marklist[4]))) {
                     List<String> data = FileHandler.readFile("assessment_type.txt");
                     ArrayList<String> updatedData = new ArrayList();
                     for (String line : data) {
@@ -428,5 +424,30 @@ public class AssessmentController implements StudentAssessmentController {
             JOptionPane.showMessageDialog(null, "Please Ensure All The Fields Are Filled!", "Invalid Changes: Incomplete Input!", JOptionPane.ERROR_MESSAGE);
         }
     }
-}
 
+    public boolean editDueDate(String[] assessmentInput) {
+        if (AssessmentValidator.validateAssessmentInput(assessmentInput)) {
+            if (AssessmentValidator.validateAssessmentDueDate(assessmentInput[2])) {
+                List<String> data = FileHandler.readFile("student_assessment.txt");
+                ArrayList<String> array_list = new ArrayList<>();
+                for (String line : data) {
+                    String[] list = line.split(";");
+                    if (list[1].equals(assessmentInput[0]) && list[2].equals(assessmentInput[1])) {
+                        list[3] = assessmentInput[2];
+                        line = String.join(";", list);
+                        array_list.add(line);
+                    } else {
+                        array_list.add(line);
+                    }
+                }
+                FileHandler.modifyFileData("student_assessment.txt", array_list);
+                return true;
+            }else{
+                JOptionPane.showMessageDialog(null, "The due date much be two days more than current date", "Message", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "All input cannot be null", "Message", JOptionPane.ERROR_MESSAGE);
+        }
+        return false;
+    }
+}
