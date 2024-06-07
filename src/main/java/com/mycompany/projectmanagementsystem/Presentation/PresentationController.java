@@ -23,13 +23,13 @@ public class PresentationController {
     private final SessionManager sessionManager = SessionManager.getInstance();
     User user = sessionManager.getCurrentUser();
 
-    public boolean spvPresentationDone(String stdID, String newStatus, String type) {
+    public boolean spvPresentationDone(String stdID, String assmntid, String newStatus, String type) {
         List<String> data = FileHandler.readFile("presentation_confirmation.txt");
         ArrayList<String> updatedData = new ArrayList<>();
 
         for (String line : data) {
             String[] list = line.split(";");
-            if (list[1].equals(stdID)) {
+            if (list[1].equals(stdID) && list[2].equals(assmntid)) {
                 if ("internship_report".equals(type) || "investigation".equals(type)) {
                     if (!list[4].isEmpty()) {
                         list[5] = newStatus;
@@ -62,13 +62,13 @@ public class PresentationController {
         return true;
     }
 
-    public boolean secMarkPresentationDone(String stdID, String secMarkFeedbackStatus) {
+    public boolean secMarkPresentationDone(String stdID, String assmntid, String secMarkFeedbackStatus) {
         List<String> data = FileHandler.readFile("presentation_confirmation.txt");
         ArrayList<String> updatedData = new ArrayList<>();
 
         for (String line : data) {
             String[] list = line.split(";");
-            if (list[1].equals(stdID)) {
+            if (list[1].equals(stdID) && list[2].equals(assmntid)) {
                 // Validate if feedback has no value or not
                 if (list[4].isEmpty()) {
                     JOptionPane.showMessageDialog(null,
@@ -284,14 +284,14 @@ public class PresentationController {
         return true;
     }
 
-    public boolean updateStudentPresentationIndex(String stdID, String feedback) {
+    public boolean updateStudentPresentationIndex(String stdID, String assmntid, String feedback) {
         List<String> data = FileHandler.readFile("presentation_confirmation.txt");
         ArrayList<String> updatedData = new ArrayList<>();
         boolean isUpdated = false;
 
         for (String line : data) {
             String[] list = line.split(";");
-            if (list[1].equals(stdID)) {
+            if (list[1].equals(stdID) && list[2].equals(assmntid)) {
                 list[4] = feedback; // Update the feedback at index 5
                 line = String.join(";", list);
                 isUpdated = true;

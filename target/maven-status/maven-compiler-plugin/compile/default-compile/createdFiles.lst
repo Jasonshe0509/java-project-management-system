@@ -4,7 +4,6 @@ com\mycompany\projectmanagementsystem\LecturerIntakePage$14.class
 com\mycompany\projectmanagementsystem\LoginPage.class
 com\mycompany\projectmanagementsystem\admin_ec_record$11.class
 com\mycompany\projectmanagementsystem\StudentCreateNewDiscussionPage.class
-com\mycompany\projectmanagementsystem\lect_ReportPanelAction$3.class
 com\mycompany\projectmanagementsystem\LecturerSummaryReport$5.class
 com\mycompany\projectmanagementsystem\admin_ec_details$1.class
 com\mycompany\projectmanagementsystem\LecturerMarkedReport$2.class
@@ -254,7 +253,6 @@ com\mycompany\projectmanagementsystem\LecturerPresentationReject$1.class
 com\mycompany\projectmanagementsystem\PM_profile_page$7.class
 com\mycompany\projectmanagementsystem\lect_PresentationPanelAction$TableActionCellEditor.class
 com\mycompany\projectmanagementsystem\PM_RMCP_page$4.class
-com\mycompany\projectmanagementsystem\lect_ReportPanelAction$4.class
 com\mycompany\projectmanagementsystem\PM_assessment_page$2.class
 com\mycompany\projectmanagementsystem\User\UserValidator.class
 com\mycompany\projectmanagementsystem\admin_modify_lecturerrecord$2.class

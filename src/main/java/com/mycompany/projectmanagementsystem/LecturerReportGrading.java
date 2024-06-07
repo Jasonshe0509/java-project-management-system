@@ -27,17 +27,21 @@ public class LecturerReportGrading extends javax.swing.JFrame {
     private String stdName;
     private String submissionLink;
     private String AssmntType;
+    private String intakeCode;
     private int mark1;
     private int mark2;
     private int mark3;
     private String feedback;
+    private LecturerIntakePage intakePage;
     
-    public LecturerReportGrading(String assmntid, String id, String name, String link, String type) {
+    public LecturerReportGrading(LecturerIntakePage intakePage, String assmntid, String id, String name, String link, String type, String code) {
+        this.intakePage = intakePage;
         this.AssmntID = assmntid;
         this.stdID = id;
         this.stdName = name;
         this.submissionLink = link;
         this.AssmntType = type;
+        this.intakeCode = code;
         initComponents();
         setIconImage();
         showReportMarkingScheme();
@@ -50,7 +54,7 @@ public class LecturerReportGrading extends javax.swing.JFrame {
     }
     
     private void openConfirmationDialog(int mark1, int mark2, int mark3, String feedback) {
-        LecturerReportConfirm confirm = new LecturerReportConfirm(this, AssmntID, stdID, stdName, mark1, mark2, mark3, feedback);
+        LecturerReportConfirm confirm = new LecturerReportConfirm(this, intakePage, AssmntID, stdID, stdName, mark1, mark2, mark3, feedback, AssmntType, intakeCode);
         confirm.setVisible(true);
     }
     /**
@@ -536,7 +540,7 @@ public class LecturerReportGrading extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LecturerReportGrading("AssmntID", "stdID", "name", "subLink", "type").setVisible(true);
+                new LecturerReportGrading(null, "AssmntID", "stdID", "name", "subLink", "type", "code").setVisible(true);
             }
         });
     }
@@ -574,7 +578,7 @@ public class LecturerReportGrading extends javax.swing.JFrame {
             String[] list = line.split(";");
             if (list[1].equals(stdID) && !list[7].isEmpty()) {
                 feedbackRptField.setText(list[7]);
-                if(!list[8].isEmpty()){
+                if(!list[8].isEmpty() && !list[8].equals("pass_with_changes")){
                     feedbackRptField.setText(list[7] + "\n\nGrade Obtained: " + list[8]);
                 }
             }
@@ -586,7 +590,7 @@ public class LecturerReportGrading extends javax.swing.JFrame {
         // show feedback given by another marker 
         for (String line : data) {
             String[] list = line.split(";");
-            if (list[1].equals(stdID)) {
+            if (list[1].equals(stdID) && list[2].equals(AssmntID)) {
                 if ("internship_report".equals(AssmntType) || "investigation".equals(AssmntType)) {
                     jLabel10.setText("Your Mark:");
                     contentMark.setText(list[9]);

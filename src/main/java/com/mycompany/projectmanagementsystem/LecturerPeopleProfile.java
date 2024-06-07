@@ -389,15 +389,15 @@ public class LecturerPeopleProfile extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(23, 23, 23)
                                 .addComponent(dueDateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(125, 125, 125)
-                                .addComponent(submissionStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(96, 96, 96)
+                                .addComponent(submissionStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(232, 232, 232)
-                        .addComponent(assmntStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(159, 159, 159)
-                        .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(200, 200, 200)
+                        .addComponent(assmntStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -418,8 +418,7 @@ public class LecturerPeopleProfile extends javax.swing.JFrame {
                         .addGap(24, 24, 24)
                         .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(assmntStatus)
-                        .addGap(0, 40, Short.MAX_VALUE))
+                        .addComponent(assmntStatus))
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 151, Short.MAX_VALUE))
         );
@@ -574,6 +573,13 @@ public class LecturerPeopleProfile extends javax.swing.JFrame {
                             setStatusColor(submissionStatus, "pending");
                         }
                         case "submitted" -> {
+                            assmntStatus.setText("pending");
+                            overallStatus.setText("in progress");
+                            setStatusColor(assmntStatus, "pending");
+                            setStatusColor(overallStatus, "pending");
+                            setStatusColor(submissionStatus, "submitted");
+                        }
+                        case "partially marked" -> {
                             assmntStatus.setText("pending");
                             overallStatus.setText("in progress");
                             setStatusColor(assmntStatus, "pending");

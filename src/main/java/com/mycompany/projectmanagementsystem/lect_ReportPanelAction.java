@@ -62,12 +62,7 @@ public class lect_ReportPanelAction extends javax.swing.JPanel {
                     event.reportGrading(row, value);
                 }
             });
-            doneBtn.addActionListener(new ActionListener(){
-                @Override
-                public void actionPerformed(ActionEvent ae) {
-                    event.reportDone(row, value);
-                }
-        });
+            
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -79,7 +74,6 @@ public class lect_ReportPanelAction extends javax.swing.JPanel {
     private void initComponents() {
 
         gradeBtn = new javax.swing.JButton();
-        doneBtn = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -95,35 +89,20 @@ public class lect_ReportPanelAction extends javax.swing.JPanel {
             }
         });
 
-        doneBtn.setBackground(new java.awt.Color(51, 199, 146));
-        doneBtn.setFont(new java.awt.Font("Bell MT", 1, 12)); // NOI18N
-        doneBtn.setForeground(new java.awt.Color(255, 255, 255));
-        doneBtn.setText("Done");
-        doneBtn.setBorder(javax.swing.BorderFactory.createEmptyBorder(3, 3, 3, 3));
-        doneBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                doneBtnActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
+                .addGap(52, 52, 52)
                 .addComponent(gradeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(doneBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(gradeBtn)
-                    .addComponent(doneBtn))
+                .addComponent(gradeBtn)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -132,13 +111,8 @@ public class lect_ReportPanelAction extends javax.swing.JPanel {
 
     }//GEN-LAST:event_gradeBtnActionPerformed
 
-    private void doneBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doneBtnActionPerformed
-
-    }//GEN-LAST:event_doneBtnActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton doneBtn;
     private javax.swing.JButton gradeBtn;
     // End of variables declaration//GEN-END:variables
 }
