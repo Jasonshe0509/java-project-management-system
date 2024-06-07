@@ -1,9 +1,10 @@
 package com.mycompany.projectmanagementsystem;
 
 import com.mycompany.projectmanagementsystem.Assessment.AdminEditTableActionEvent;
-import com.mycompany.projectmanagementsystem.Assessment.AssessmentController;
 import com.mycompany.projectmanagementsystem.GeneralFunction.FileHandler;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Toolkit;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
@@ -14,6 +15,12 @@ public class admin_assessment_management extends javax.swing.JFrame {
         initComponents();
         setIconImage();
         printAssessmentTable();
+
+        assessment_table.getTableHeader().setFont(new Font("SansSerif", Font.BOLD, 13));
+        assessment_table.getTableHeader().setOpaque(false);
+        assessment_table.getTableHeader().setBackground(new Color(2, 50, 99));
+        assessment_table.getTableHeader().setForeground(new Color(255, 255, 255));
+        assessment_table.getTableHeader().setPreferredSize(new Dimension(assessment_table.getTableHeader().getPreferredSize().width, 40));
 
         AdminEditTableActionPanel editPanel = new AdminEditTableActionPanel();
         AdminEditTableActionEvent editEvent;
@@ -119,6 +126,11 @@ public class admin_assessment_management extends javax.swing.JFrame {
         admin_lecturer.setMaximumSize(new java.awt.Dimension(96, 73));
         admin_lecturer.setMinimumSize(new java.awt.Dimension(96, 73));
         admin_lecturer.setPreferredSize(new java.awt.Dimension(96, 73));
+        admin_lecturer.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                admin_lecturerMouseClicked(evt);
+            }
+        });
 
         admin_student.setBackground(new Color(255, 255, 255, 0));
         admin_student.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
@@ -139,21 +151,31 @@ public class admin_assessment_management extends javax.swing.JFrame {
         admin_report.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
         admin_report.setForeground(new java.awt.Color(2, 50, 99));
         admin_report.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        admin_report.setText("Report");
+        admin_report.setText("EC Management");
         admin_report.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         admin_report.setMaximumSize(new java.awt.Dimension(96, 73));
         admin_report.setMinimumSize(new java.awt.Dimension(96, 73));
         admin_report.setPreferredSize(new java.awt.Dimension(96, 73));
+        admin_report.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                admin_reportMouseClicked(evt);
+            }
+        });
 
         admin_profile.setBackground(new Color(255, 255, 255, 0));
         admin_profile.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
         admin_profile.setForeground(new java.awt.Color(2, 50, 99));
         admin_profile.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        admin_profile.setText("Profile");
+        admin_profile.setText("Assessment");
         admin_profile.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         admin_profile.setMaximumSize(new java.awt.Dimension(96, 73));
         admin_profile.setMinimumSize(new java.awt.Dimension(96, 73));
         admin_profile.setPreferredSize(new java.awt.Dimension(96, 73));
+        admin_profile.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                admin_profileMouseClicked(evt);
+            }
+        });
 
         admin_logout.setBackground(new Color(255, 255, 255, 0));
         admin_logout.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
@@ -164,6 +186,11 @@ public class admin_assessment_management extends javax.swing.JFrame {
         admin_logout.setMaximumSize(new java.awt.Dimension(96, 73));
         admin_logout.setMinimumSize(new java.awt.Dimension(96, 73));
         admin_logout.setPreferredSize(new java.awt.Dimension(96, 73));
+        admin_logout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                admin_logoutMouseClicked(evt);
+            }
+        });
 
         admin_logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Sysco_logo.png"))); // NOI18N
         admin_logo.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -179,14 +206,14 @@ public class admin_assessment_management extends javax.swing.JFrame {
             .addGroup(admin_headerLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(admin_logo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 288, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 247, Short.MAX_VALUE)
+                .addComponent(admin_report, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(admin_profile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(admin_lecturer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(admin_student, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(admin_report, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(admin_profile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(admin_logout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -195,15 +222,15 @@ public class admin_assessment_management extends javax.swing.JFrame {
             admin_headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(admin_headerLayout.createSequentialGroup()
                 .addGroup(admin_headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(admin_headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(admin_report, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(admin_profile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(admin_logout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(admin_logout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, admin_headerLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(admin_headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(admin_student, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(admin_lecturer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(admin_lecturer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(admin_headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(admin_report, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(admin_profile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
             .addGroup(admin_headerLayout.createSequentialGroup()
                 .addGap(17, 17, 17)
@@ -213,6 +240,9 @@ public class admin_assessment_management extends javax.swing.JFrame {
 
         getContentPane().add(admin_header, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
+        assessment_table.setAutoCreateRowSorter(true);
+        assessment_table.setFont(new java.awt.Font("SansSerif", 0, 13)); // NOI18N
+        assessment_table.setForeground(new java.awt.Color(2, 50, 99));
         assessment_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null},
@@ -221,7 +251,7 @@ public class admin_assessment_management extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Assessment Name", "Content Mark", "Format Mark", "Presentation Mark", "Fail Mark", "Pass Mark", "Pass With Changes Mark", "Action"
+                "<html>Assessment</html>", "Content", "Format", "Presentation", "Fail", "Pass", "<html>Pass With Changes</html>", "Action"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -232,7 +262,7 @@ public class admin_assessment_management extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        assessment_table.setRowHeight(30);
+        assessment_table.setRowHeight(50);
         jScrollPane1.setViewportView(assessment_table);
         if (assessment_table.getColumnModel().getColumnCount() > 0) {
             assessment_table.getColumnModel().getColumn(1).setMinWidth(120);
@@ -258,7 +288,7 @@ public class admin_assessment_management extends javax.swing.JFrame {
             assessment_table.getColumnModel().getColumn(7).setMaxWidth(80);
         }
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 940, -1));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 237, 980, 260));
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main_background.png"))); // NOI18N
         getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -268,17 +298,15 @@ public class admin_assessment_management extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void admin_studentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_admin_studentMouseClicked
-        // TODO add your handling code here:
-        admin_student admin_stu = new admin_student();
-        admin_stu.show();
         dispose();
+        admin_student adminStudent = new admin_student();
+        adminStudent.show();
     }//GEN-LAST:event_admin_studentMouseClicked
 
     private void admin_logoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_admin_logoMouseClicked
-        // TODO add your handling code here:
-        admin_mainpage admin_main = new admin_mainpage();
-        admin_main.show();
         dispose();
+        admin_mainpage adminMainpage = new admin_mainpage();
+        adminMainpage.show();
     }//GEN-LAST:event_admin_logoMouseClicked
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
@@ -286,6 +314,29 @@ public class admin_assessment_management extends javax.swing.JFrame {
         admin_student adminStudent = new admin_student();
         adminStudent.show();
     }//GEN-LAST:event_jLabel2MouseClicked
+
+    private void admin_reportMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_admin_reportMouseClicked
+        dispose();
+        admin_ec_record adminEC = new admin_ec_record();
+        adminEC.show();
+    }//GEN-LAST:event_admin_reportMouseClicked
+
+    private void admin_profileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_admin_profileMouseClicked
+        dispose();
+        admin_assessment_management assessmentManagement = new admin_assessment_management();
+        assessmentManagement.show();
+    }//GEN-LAST:event_admin_profileMouseClicked
+
+    private void admin_lecturerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_admin_lecturerMouseClicked
+        dispose();
+        admin_lecturer adminLecturer = new admin_lecturer();
+        adminLecturer.show();    }//GEN-LAST:event_admin_lecturerMouseClicked
+
+    private void admin_logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_admin_logoutMouseClicked
+        dispose();
+        GeneralPage generalPage = new GeneralPage();
+        generalPage.show();
+    }//GEN-LAST:event_admin_logoutMouseClicked
 
     public static void main(String args[]) {
 

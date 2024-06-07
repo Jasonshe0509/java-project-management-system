@@ -3,3 +3,4 @@ CERT2405CS(DA);School of Foundation;Certificate;Computer Science (Data Analyst);
 CERT2406CS(DA);School of Foundation;Certificate;Computer Science (Data Analyst);2024;06
 CERT2307CS(DA);School of Foundation;Certificate;Computer Science (Data Analyst);2023;07
 CERT2308CS(DA);School of Business;Certificate;Computer Science (Data Analyst);2023;07
+PHD2408CS(DA);School of Business;Doctor of Philosophy;Computer Science (Data Analyst);2024;08

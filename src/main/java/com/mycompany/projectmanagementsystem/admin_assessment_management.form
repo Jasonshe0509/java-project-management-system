@@ -99,14 +99,14 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="admin_logo" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="288" max="32767" attributes="0"/>
+                  <EmptySpace pref="247" max="32767" attributes="0"/>
+                  <Component id="admin_report" min="-2" pref="143" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="admin_profile" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="admin_lecturer" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="admin_student" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="admin_report" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="admin_profile" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="admin_logout" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -117,16 +117,16 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                          <Component id="admin_report" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="admin_profile" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="admin_logout" alignment="3" max="32767" attributes="0"/>
-                      </Group>
+                      <Component id="admin_logout" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="admin_student" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="admin_lecturer" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+                                  <Component id="admin_report" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="admin_profile" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                   </Group>
@@ -167,6 +167,9 @@
               <Dimension value="[96, 73]"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="admin_lecturerMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="admin_student">
           <Properties>
@@ -210,7 +213,7 @@
               <Color blue="63" green="32" red="2" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Report"/>
+            <Property name="text" type="java.lang.String" value="EC Management"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Hand Cursor"/>
             </Property>
@@ -224,6 +227,9 @@
               <Dimension value="[96, 73]"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="admin_reportMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="admin_profile">
           <Properties>
@@ -237,7 +243,7 @@
               <Color blue="63" green="32" red="2" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Profile"/>
+            <Property name="text" type="java.lang.String" value="Assessment"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Hand Cursor"/>
             </Property>
@@ -251,6 +257,9 @@
               <Dimension value="[96, 73]"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="admin_profileMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="admin_logout">
           <Properties>
@@ -278,6 +287,9 @@
               <Dimension value="[96, 73]"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="admin_logoutMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="admin_logo">
           <Properties>
@@ -297,7 +309,7 @@
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="30" y="170" width="940" height="-1"/>
+          <AbsoluteConstraints x="10" y="237" width="980" height="260"/>
         </Constraint>
       </Constraints>
 
@@ -305,15 +317,22 @@
       <SubComponents>
         <Component class="javax.swing.JTable" name="assessment_table">
           <Properties>
+            <Property name="autoCreateRowSorter" type="boolean" value="true"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="SansSerif" size="13" style="0"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="63" green="32" red="2" type="rgb"/>
+            </Property>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="8" rowCount="4">
-                <Column editable="false" title="Assessment Name" type="java.lang.Object"/>
-                <Column editable="false" title="Content Mark" type="java.lang.Object"/>
-                <Column editable="false" title="Format Mark" type="java.lang.Object"/>
-                <Column editable="false" title="Presentation Mark" type="java.lang.Object"/>
-                <Column editable="false" title="Fail Mark" type="java.lang.Object"/>
-                <Column editable="false" title="Pass Mark" type="java.lang.Object"/>
-                <Column editable="false" title="Pass With Changes Mark" type="java.lang.Object"/>
+                <Column editable="false" title="&lt;html&gt;Assessment&lt;/html&gt;" type="java.lang.Object"/>
+                <Column editable="false" title="Content" type="java.lang.Object"/>
+                <Column editable="false" title="Format" type="java.lang.Object"/>
+                <Column editable="false" title="Presentation" type="java.lang.Object"/>
+                <Column editable="false" title="Fail" type="java.lang.Object"/>
+                <Column editable="false" title="Pass" type="java.lang.Object"/>
+                <Column editable="false" title="&lt;html&gt;Pass With Changes&lt;/html&gt;" type="java.lang.Object"/>
                 <Column editable="true" title="Action" type="java.lang.Object"/>
               </Table>
             </Property>
@@ -361,7 +380,7 @@
                 </Column>
               </TableColumnModel>
             </Property>
-            <Property name="rowHeight" type="int" value="30"/>
+            <Property name="rowHeight" type="int" value="50"/>
             <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
               <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
             </Property>

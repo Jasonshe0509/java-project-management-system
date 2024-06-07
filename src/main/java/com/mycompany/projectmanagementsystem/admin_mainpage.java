@@ -361,6 +361,11 @@ public class admin_mainpage extends javax.swing.JFrame {
 
         admin_logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Sysco_logo.png"))); // NOI18N
         admin_logo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        admin_logo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                admin_logoMouseClicked(evt);
+            }
+        });
 
         admin_lecturer.setBackground(new Color(255, 255, 255, 0));
         admin_lecturer.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
@@ -502,6 +507,7 @@ public class admin_mainpage extends javax.swing.JFrame {
         admin_greeting.setPreferredSize(new java.awt.Dimension(230, 18));
         getContentPane().add(admin_greeting, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 170, 30));
 
+        ec_list.setAutoCreateRowSorter(true);
         ec_list.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         ec_list.setForeground(new java.awt.Color(2, 50, 99));
         ec_list.setModel(new javax.swing.table.DefaultTableModel(
@@ -563,7 +569,7 @@ public class admin_mainpage extends javax.swing.JFrame {
 
     private void admin_lecturerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_admin_lecturerMouseClicked
         dispose();
-        admin_lecturer_record lecturerManagement = new admin_lecturer_record();
+        admin_lecturer lecturerManagement = new admin_lecturer();
         lecturerManagement.show();
     }//GEN-LAST:event_admin_lecturerMouseClicked
 
@@ -590,6 +596,12 @@ public class admin_mainpage extends javax.swing.JFrame {
         GeneralPage generalPage = new GeneralPage();
         generalPage.show();
     }//GEN-LAST:event_admin_logoutMouseClicked
+
+    private void admin_logoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_admin_logoMouseClicked
+        dispose();
+        admin_mainpage adminMainPage = new admin_mainpage();
+        adminMainPage.show();
+    }//GEN-LAST:event_admin_logoMouseClicked
 
     public static void main(String args[]) {
 

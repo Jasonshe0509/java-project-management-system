@@ -461,6 +461,7 @@ public class admin_student_management extends javax.swing.JFrame {
 
         student_record.setOpaque(true);
 
+        student_table.setAutoCreateRowSorter(true);
         student_table.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
         student_table.setForeground(new java.awt.Color(2, 50, 99));
         student_table.setModel(new javax.swing.table.DefaultTableModel(
@@ -495,6 +496,7 @@ public class admin_student_management extends javax.swing.JFrame {
 
         student_record.addTab("Student", ec_rejeceted_record);
 
+        intake_table.setAutoCreateRowSorter(true);
         intake_table.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
         intake_table.setForeground(new java.awt.Color(2, 50, 99));
         intake_table.setModel(new javax.swing.table.DefaultTableModel(
@@ -526,6 +528,7 @@ public class admin_student_management extends javax.swing.JFrame {
 
         student_record.addTab("Intake", ec_approved_record);
 
+        course_table.setAutoCreateRowSorter(true);
         course_table.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         course_table.setForeground(new java.awt.Color(2, 50, 99));
         course_table.setModel(new javax.swing.table.DefaultTableModel(

@@ -259,7 +259,7 @@ public class admin_register_student extends javax.swing.JFrame {
     }//GEN-LAST:event_student_emailActionPerformed
 
     private void register_student_submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_register_student_submitActionPerformed
-        while (true) {
+        
             try {
                 String[] userInput = new String[11];
                 userInput[0] = student_name.getText().toUpperCase().trim();
@@ -280,11 +280,12 @@ public class admin_register_student extends javax.swing.JFrame {
                 userInput[9] = "student";
                 userInput[10] = intakcode_selection.getSelectedItem().toString();
                 UserController.userCreate(userInput);
-                break;
+                
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Please Fill In Date!", "Error: Missing Value(s)", JOptionPane.ERROR_MESSAGE);
-                break;
-            }
+                e.printStackTrace();
+                System.err.println("Error: " + e.getMessage());
+            
         }
 
 
