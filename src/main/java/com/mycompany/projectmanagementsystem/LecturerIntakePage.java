@@ -946,7 +946,7 @@ public class LecturerIntakePage extends javax.swing.JFrame {
         jLabel7.setMaximumSize(new java.awt.Dimension(400, 47));
         jLabel7.setMinimumSize(new java.awt.Dimension(400, 47));
         jLabel7.setPreferredSize(new java.awt.Dimension(400, 47));
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 400, 47));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 720, 47));
 
         jPanel1.setBackground(new Color(255, 255, 255, 90));
         jPanel1.setMaximumSize(new java.awt.Dimension(1000, 73));

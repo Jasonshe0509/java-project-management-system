@@ -40,3 +40,7 @@ NT0034;TP0001;Successfully modify the submission forFinal Year Project;2024-06-0
 NT0035;TP0001;Successfully submit theFinal Year Project;2024-06-07-08-10
 NT0036;TP0001;Successfully resubmit theFinal Year Project;2024-06-07-08-20
 NT0037;TP0001;Successfully resubmit theFinal Year Project;2024-06-07-08-30
+NT0038;TP0001;Successfully submit theResearch Methodology for Capstone Project;2024-06-07-21-33
+NT0039;TP0001;Successfully modify the submission forResearch Methodology for Capstone Project;2024-06-07-21-34
+NT0040;TP0001;Your presentation request has been approved. Please view your scheduled presentation date & time;2024-06-07-21-36
+NT0041;TP0001;Your presentation request has been approved. Please view your scheduled presentation date & time;2024-06-07-22-10
