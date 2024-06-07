@@ -117,7 +117,7 @@ public class CreateNewMessagePage extends javax.swing.JFrame {
         });
 
         messageField.setColumns(20);
-        messageField.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        messageField.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         messageField.setForeground(new java.awt.Color(2, 50, 99));
         messageField.setRows(5);
         jScrollPane2.setViewportView(messageField);

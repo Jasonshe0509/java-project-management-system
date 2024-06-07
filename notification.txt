@@ -27,3 +27,16 @@ NT0022;TP0001;Your presentation request has been approved. Please view your sche
 NT0022;TP0001;New EC has been applied;2024-06-06-00-14
 NT0023;TP0001;New EC has been applied;2024-06-06-00-15
 NT0024;TP0001;New EC has been applied;2024-06-06-00-15
+NT0025;TP0001;New EC has been applied;2024-06-06-09-35
+NT0026;TP0001;New EC has been applied for assessment:Final Year Project;2024-06-06-09-45
+NT0027;TP0001;Your supervisor(Chan Kar Heng) has rejected your presentation request. Please refer to the available slot given:- Date: 2024-06-13 Time: 12:00-17:00;2024-06-06-10-05
+NT0028;TP0001;Your second marker(TAN MEI LING) has rejected your presentation request. Please refer to the available slot given:- Date: 2024-06-20 Time: 13:00-17:00;2024-06-06-10-06
+NT0029;TP0001;Your second marker(TAN MEI LING) has rejected your presentation request. Please refer to the available slot given:- Date: 2024-06-28 Time: 18:00-19:00;2024-06-06-10-08
+NT0030;TP0001;Your presentation request has been approved. Please view your scheduled presentation date & time;2024-06-06-21-42
+NT0031;TP0001;Successfully submit theFinal Year Project;2024-06-07-07-37
+NT0032;TP0001;Successfully modify the submission forFinal Year Project;2024-06-07-07-38
+NT0033;TP0001;Successfully submit theFinal Year Project;2024-06-07-07-57
+NT0034;TP0001;Successfully modify the submission forFinal Year Project;2024-06-07-07-57
+NT0035;TP0001;Successfully submit theFinal Year Project;2024-06-07-08-10
+NT0036;TP0001;Successfully resubmit theFinal Year Project;2024-06-07-08-20
+NT0037;TP0001;Successfully resubmit theFinal Year Project;2024-06-07-08-30

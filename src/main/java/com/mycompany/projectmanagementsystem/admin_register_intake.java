@@ -74,6 +74,7 @@ public class admin_register_intake extends javax.swing.JFrame {
         enrolledyear_chooser = new com.toedter.calendar.JYearChooser();
         coursecode_title = new javax.swing.JLabel();
         course_dropbox = new javax.swing.JComboBox<>();
+        jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
@@ -116,8 +117,6 @@ public class admin_register_intake extends javax.swing.JFrame {
 
         enrolledmonth_chooser.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         getContentPane().add(enrolledmonth_chooser, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 230, 190, 30));
-
-        enrolledyear_chooser.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         getContentPane().add(enrolledyear_chooser, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 230, 100, 30));
 
         coursecode_title.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
@@ -128,15 +127,27 @@ public class admin_register_intake extends javax.swing.JFrame {
         course_dropbox.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         getContentPane().add(course_dropbox, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 180, 290, 30));
 
-        jButton1.setBackground(new java.awt.Color(76, 127, 174));
+        jButton2.setBackground(new java.awt.Color(2, 50, 99));
+        jButton2.setFont(new java.awt.Font("Bell MT", 1, 19)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setText("BACK");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 310, -1, -1));
+
+        jButton1.setBackground(new java.awt.Color(2, 50, 99));
         jButton1.setFont(new java.awt.Font("Bell MT", 1, 19)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("SUBMIT");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 320, -1, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 310, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main_background.png"))); // NOI18N
         jLabel1.setMaximumSize(new java.awt.Dimension(500, 300));
@@ -169,6 +180,10 @@ public class admin_register_intake extends javax.swing.JFrame {
         IntakeController.addIntake(userInput);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -179,7 +194,7 @@ public class admin_register_intake extends javax.swing.JFrame {
     }
 
     private void setIconImage() {
-        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Sysco_icon.png")));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Sysco_icon_with_background.png")));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -192,6 +207,7 @@ public class admin_register_intake extends javax.swing.JFrame {
     private com.toedter.calendar.JMonthChooser enrolledmonth_chooser;
     private com.toedter.calendar.JYearChooser enrolledyear_chooser;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JComboBox<String> schoolwise_dropbox;
     private javax.swing.JLabel schoolwise_title;

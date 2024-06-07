@@ -471,7 +471,7 @@
                               <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                               <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="173" max="-2" attributes="0"/>
-                              <Component id="SchdPresentLabel" min="-2" pref="330" max="-2" attributes="0"/>
+                              <Component id="CmpltPresentLabel" min="-2" pref="330" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -482,7 +482,7 @@
                               <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="SchdPresentLabel" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
+                                  <Component id="CmpltPresentLabel" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace pref="15" max="32767" attributes="0"/>
                           </Group>
@@ -498,10 +498,10 @@
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="63" green="32" red="2" type="rgb"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="Scheduled Presentation"/>
+                        <Property name="text" type="java.lang.String" value="Completed Presentation"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="SchdPresentLabel">
+                    <Component class="javax.swing.JLabel" name="CmpltPresentLabel">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="SansSerif" size="20" style="0"/>
@@ -546,9 +546,9 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                               <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="171" max="-2" attributes="0"/>
-                              <Component id="CmpltPresentLabel" min="-2" pref="330" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
+                              <Component id="MarkedRptLabel" min="-2" pref="330" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -556,9 +556,9 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="CmpltPresentLabel" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="MarkedRptLabel" alignment="0" min="-2" pref="26" max="-2" attributes="0"/>
+                                  <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace pref="16" max="32767" attributes="0"/>
                           </Group>
@@ -574,10 +574,10 @@
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="63" green="32" red="2" type="rgb"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="Completed Presentation"/>
+                        <Property name="text" type="java.lang.String" value="Marked Report"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="CmpltPresentLabel">
+                    <Component class="javax.swing.JLabel" name="MarkedRptLabel">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="SansSerif" size="20" style="0"/>
@@ -688,9 +688,9 @@
                         </Property>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                           <Table columnCount="5" rowCount="0">
-                            <Column editable="false" title="Supervisee ID" type="java.lang.Object"/>
+                            <Column editable="false" title="Request ID" type="java.lang.Object"/>
                             <Column editable="false" title="Name" type="java.lang.Object"/>
-                            <Column editable="true" title="Marker" type="java.lang.Object"/>
+                            <Column editable="false" title="Marker" type="java.lang.Object"/>
                             <Column editable="false" title="Presentation Slot" type="java.lang.Object"/>
                             <Column editable="true" title="Action" type="java.lang.Object"/>
                           </Table>

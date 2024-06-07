@@ -1280,11 +1280,8 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
                         gradeStatus.setBackground(new Color(0xE3AC41)); // Set the background color
                     }
                     case "fail" -> {
-                        gradeStatus.setText("Marked");
+                        gradeStatus.setText("Fail");
                         gradeStatus.setBackground(new Color(0xE34141)); // Set the background color
-                    }
-                    default -> {
-                        gradeStatus.setVisible(false);
                     }
                 }
 
@@ -1314,7 +1311,7 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
                     submitBtn.setVisible(true);
                     modifyBtn.setVisible(false);
                     resubmitBtn.setVisible(false);
-                } else if (list[6].equals("submitted") && !currentDate.isAfter(dueDate) && submissionCount == 0) {
+                } else if (list[6].equals("submitted") && list[8].isEmpty() &&!currentDate.isAfter(dueDate) && submissionCount == 0) {
                     submitBtn.setVisible(false);
                     modifyBtn.setVisible(true);
                     resubmitBtn.setVisible(false);
@@ -1352,7 +1349,7 @@ public class StudentAssessmentDetailPage extends javax.swing.JFrame {
         List<String> data = FileHandler.readFile("presentation_confirmation.txt");
         for (String line : data) {
             String[] list = line.split(";");
-            if (list[1].equals(user.getUserID())) {
+            if (list[1].equals(user.getUserID()) && list[2].equals(assessmentID)) {
                 x = 1;
             }
         }

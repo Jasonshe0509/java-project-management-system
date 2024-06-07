@@ -48,6 +48,7 @@ public class admin_view_projectmanager_details extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
         lec_name_title = new javax.swing.JLabel();
         lec_name = new javax.swing.JTextField();
         lec_empno = new javax.swing.JTextField();
@@ -71,7 +72,6 @@ public class admin_view_projectmanager_details extends javax.swing.JFrame {
         lec_details_background = new javax.swing.JLabel();
         lec_details_border = new javax.swing.JLabel();
         modify_lecturer = new javax.swing.JButton();
-        admin_viewstudent_back = new javax.swing.JButton();
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -80,10 +80,21 @@ public class admin_view_projectmanager_details extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel1.setFont(new java.awt.Font("Bell MT", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(2, 50, 99));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/back.png"))); // NOI18N
+        jLabel1.setText("BACK");
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+
         lec_name_title.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         lec_name_title.setForeground(new java.awt.Color(2, 50, 99));
         lec_name_title.setText("Full Name");
-        getContentPane().add(lec_name_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 120, 90, -1));
+        getContentPane().add(lec_name_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, 90, -1));
 
         lec_name.setEditable(false);
         lec_name.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
@@ -93,7 +104,7 @@ public class admin_view_projectmanager_details extends javax.swing.JFrame {
                 lec_nameActionPerformed(evt);
             }
         });
-        getContentPane().add(lec_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 110, 190, 50));
+        getContentPane().add(lec_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 150, 190, 50));
 
         lec_empno.setEditable(false);
         lec_empno.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
@@ -102,12 +113,12 @@ public class admin_view_projectmanager_details extends javax.swing.JFrame {
                 lec_empnoActionPerformed(evt);
             }
         });
-        getContentPane().add(lec_empno, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 40, 190, 50));
+        getContentPane().add(lec_empno, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 80, 190, 50));
 
         lec_empno_title.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         lec_empno_title.setForeground(new java.awt.Color(2, 50, 99));
         lec_empno_title.setText("<html><div style = \"text-align: center; width: 50px;\">EMP Number</div></html>");
-        getContentPane().add(lec_empno_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, 70, -1));
+        getContentPane().add(lec_empno_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, 70, -1));
 
         lec_dob.setEditable(false);
         lec_dob.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
@@ -116,17 +127,17 @@ public class admin_view_projectmanager_details extends javax.swing.JFrame {
                 lec_dobActionPerformed(evt);
             }
         });
-        getContentPane().add(lec_dob, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 180, 190, 50));
+        getContentPane().add(lec_dob, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 220, 190, 50));
 
         lec_dob_title.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         lec_dob_title.setForeground(new java.awt.Color(2, 50, 99));
         lec_dob_title.setText("Date Of Birth");
-        getContentPane().add(lec_dob_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, 110, 40));
+        getContentPane().add(lec_dob_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, 110, 40));
 
         lec_address_title.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         lec_address_title.setForeground(new java.awt.Color(2, 50, 99));
         lec_address_title.setText("Address");
-        getContentPane().add(lec_address_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 330, -1, -1));
+        getContentPane().add(lec_address_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 370, -1, -1));
 
         lec_address.setEditable(false);
         lec_address.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
@@ -135,13 +146,13 @@ public class admin_view_projectmanager_details extends javax.swing.JFrame {
                 lec_addressActionPerformed(evt);
             }
         });
-        getContentPane().add(lec_address, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 320, 190, 50));
+        getContentPane().add(lec_address, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 360, 190, 50));
 
         lec_contact_title.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         lec_contact_title.setForeground(new java.awt.Color(2, 50, 99));
         lec_contact_title.setText("<html><div style = 'text-align: center; width:90px;'>Phone Number </div></html>");
         lec_contact_title.setToolTipText("");
-        getContentPane().add(lec_contact_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 180, 90, -1));
+        getContentPane().add(lec_contact_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 220, 90, -1));
 
         lec_gender.setEditable(false);
         lec_gender.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
@@ -150,7 +161,7 @@ public class admin_view_projectmanager_details extends javax.swing.JFrame {
                 lec_genderActionPerformed(evt);
             }
         });
-        getContentPane().add(lec_gender, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 110, 190, 50));
+        getContentPane().add(lec_gender, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 150, 190, 50));
 
         lec_schoolwise.setEditable(false);
         lec_schoolwise.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
@@ -159,7 +170,7 @@ public class admin_view_projectmanager_details extends javax.swing.JFrame {
                 lec_schoolwiseActionPerformed(evt);
             }
         });
-        getContentPane().add(lec_schoolwise, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 40, 190, 50));
+        getContentPane().add(lec_schoolwise, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 80, 190, 50));
 
         lec_contact.setEditable(false);
         lec_contact.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
@@ -168,7 +179,7 @@ public class admin_view_projectmanager_details extends javax.swing.JFrame {
                 lec_contactActionPerformed(evt);
             }
         });
-        getContentPane().add(lec_contact, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 180, 190, 50));
+        getContentPane().add(lec_contact, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 220, 190, 50));
 
         lec_nation.setEditable(false);
         lec_nation.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
@@ -177,12 +188,12 @@ public class admin_view_projectmanager_details extends javax.swing.JFrame {
                 lec_nationActionPerformed(evt);
             }
         });
-        getContentPane().add(lec_nation, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 250, 190, 50));
+        getContentPane().add(lec_nation, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 290, 190, 50));
 
         lec_nation_title.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         lec_nation_title.setForeground(new java.awt.Color(2, 50, 99));
         lec_nation_title.setText("Nationality");
-        getContentPane().add(lec_nation_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 260, -1, -1));
+        getContentPane().add(lec_nation_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 300, -1, -1));
 
         lec_nric.setEditable(false);
         lec_nric.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
@@ -191,7 +202,7 @@ public class admin_view_projectmanager_details extends javax.swing.JFrame {
                 lec_nricActionPerformed(evt);
             }
         });
-        getContentPane().add(lec_nric, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 250, 190, 50));
+        getContentPane().add(lec_nric, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 290, 190, 50));
 
         lec_email.setEditable(false);
         lec_email.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
@@ -200,27 +211,27 @@ public class admin_view_projectmanager_details extends javax.swing.JFrame {
                 lec_emailActionPerformed(evt);
             }
         });
-        getContentPane().add(lec_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 320, 190, 50));
+        getContentPane().add(lec_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 360, 190, 50));
 
         lec_email_title.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         lec_email_title.setForeground(new java.awt.Color(2, 50, 99));
         lec_email_title.setText("<html><div style = \"text-align: center; width: 50px;\">Email Address</div></html>");
-        getContentPane().add(lec_email_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 320, -1, -1));
+        getContentPane().add(lec_email_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 360, -1, -1));
 
         lec_nric_title.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         lec_nric_title.setForeground(new java.awt.Color(2, 50, 99));
         lec_nric_title.setText("<html><div style= 'text-align: center; width: 90px;'>NRIC/ Passoport No</div></html>");
-        getContentPane().add(lec_nric_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 120, -1));
+        getContentPane().add(lec_nric_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 120, -1));
 
         lec_gender_title.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         lec_gender_title.setForeground(new java.awt.Color(2, 50, 99));
         lec_gender_title.setText("Gender");
-        getContentPane().add(lec_gender_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 130, -1, -1));
+        getContentPane().add(lec_gender_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 170, -1, -1));
 
         lec_schoolwise_title.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         lec_schoolwise_title.setForeground(new java.awt.Color(2, 50, 99));
         lec_schoolwise_title.setText("<html><div style = 'text-align: center; width:50px;'>School Wise</div></html>");
-        getContentPane().add(lec_schoolwise_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 40, 60, -1));
+        getContentPane().add(lec_schoolwise_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 80, 60, -1));
 
         lec_details_background.setBackground(new Color(192, 192, 192, 90));
         lec_details_background.setMaximumSize(new java.awt.Dimension(550, 350));
@@ -228,7 +239,7 @@ public class admin_view_projectmanager_details extends javax.swing.JFrame {
         lec_details_background.setName(""); // NOI18N
         lec_details_background.setOpaque(true);
         lec_details_background.setPreferredSize(new java.awt.Dimension(550, 350));
-        getContentPane().add(lec_details_background, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 630, 360));
+        getContentPane().add(lec_details_background, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 630, 360));
 
         lec_details_border.setBackground(new Color(255, 255, 255, 0));
         lec_details_border.setBorder(new LineBorder(new Color(192, 192, 192, 90), 15, true));
@@ -236,29 +247,18 @@ public class admin_view_projectmanager_details extends javax.swing.JFrame {
         lec_details_border.setMinimumSize(new java.awt.Dimension(600, 400));
         lec_details_border.setOpaque(true);
         lec_details_border.setPreferredSize(new java.awt.Dimension(600, 400));
-        getContentPane().add(lec_details_border, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 650, 380));
+        getContentPane().add(lec_details_border, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 650, 380));
 
-        modify_lecturer.setBackground(new java.awt.Color(76, 127, 174));
+        modify_lecturer.setBackground(new java.awt.Color(2, 50, 99));
         modify_lecturer.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
-        modify_lecturer.setForeground(new java.awt.Color(2, 50, 99));
+        modify_lecturer.setForeground(new java.awt.Color(255, 255, 255));
         modify_lecturer.setText("MODIFY");
         modify_lecturer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 modify_lecturerActionPerformed(evt);
             }
         });
-        getContentPane().add(modify_lecturer, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 460, 110, -1));
-
-        admin_viewstudent_back.setBackground(new java.awt.Color(76, 127, 174));
-        admin_viewstudent_back.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
-        admin_viewstudent_back.setForeground(new java.awt.Color(2, 50, 99));
-        admin_viewstudent_back.setText("BACK");
-        admin_viewstudent_back.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                admin_viewstudent_backActionPerformed(evt);
-            }
-        });
-        getContentPane().add(admin_viewstudent_back, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 460, -1, -1));
+        getContentPane().add(modify_lecturer, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 470, 110, -1));
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main_background.png"))); // NOI18N
         background.setMaximumSize(new java.awt.Dimension(700, 580));
@@ -270,11 +270,6 @@ public class admin_view_projectmanager_details extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void admin_viewstudent_backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_admin_viewstudent_backActionPerformed
-        dispose();
-        
-    }//GEN-LAST:event_admin_viewstudent_backActionPerformed
 
     private void lec_nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lec_nameActionPerformed
         // TODO add your handling code here:
@@ -322,6 +317,10 @@ public class admin_view_projectmanager_details extends javax.swing.JFrame {
         modifyLecturerDetails.show();
         hide();
     }//GEN-LAST:event_modify_lecturerActionPerformed
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+       dispose();
+    }//GEN-LAST:event_jLabel1MouseClicked
     
     public static void main(String args[]) {
 
@@ -336,8 +335,8 @@ public class admin_view_projectmanager_details extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton admin_viewstudent_back;
     private javax.swing.JLabel background;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField lec_address;
     private javax.swing.JLabel lec_address_title;
     private javax.swing.JTextField lec_contact;

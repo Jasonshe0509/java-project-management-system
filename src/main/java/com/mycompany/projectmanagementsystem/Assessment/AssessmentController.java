@@ -65,7 +65,9 @@ public class AssessmentController implements StudentAssessmentController {
                             list[4] = assessmentInput[1];
                             list[5] = formattedDateTime;
                             list[6] = "submitted";
-                            list[10] = "1";
+                            list[9] = "";
+                            list[10] = "";
+                            list[11] = "1";
                         }
                         line = String.join(";", list);
                         array_list.add(line);
@@ -85,7 +87,7 @@ public class AssessmentController implements StudentAssessmentController {
         return false;
     }
 
-    public boolean spvReportDone(String stdID, String newStatus, String type) {
+    public boolean spvReportDone(String stdID, String assmntID, String newStatus, String type) {
         List<String> data = FileHandler.readFile("student_assessment.txt");
         ArrayList<String> updatedData = new ArrayList<>();
         boolean updateStatus = false; // Flag to determine if the status can be updated
@@ -95,9 +97,9 @@ public class AssessmentController implements StudentAssessmentController {
 
         for (String line : data) {
             String[] list = line.split(";");
-            if (list[1].equals(stdID)) {
+            if (list[1].equals(stdID) && list[2].equals(assmntID)) { // Validate if both stdID and assmntID match
                 if ("internship_report".equals(type) || "investigation".equals(type)) {
-                    if(!list[9].isEmpty() && !list[7].isEmpty() ){ //validate feedback and mark
+                    if (!list[9].isEmpty() && !list[7].isEmpty()) { // Validate feedback and mark
                         spvMark = Integer.parseInt(list[9]);
                         resubmissionCount = Integer.parseInt(list[11]);
                         String grade = assignGrade(type, spvMark, resubmissionCount);
@@ -108,9 +110,9 @@ public class AssessmentController implements StudentAssessmentController {
                         updateStatus = true;
                         JOptionPane.showMessageDialog(null,
                                 "The final mark (" + spvMark + ") has been submitted, grade \"" + grade + "\" is recorded.");
-                        if("Pass with Changes".equals(grade)){
-                            NotificationController.create(stdID, "The submitted report for assessment (" + list[2] 
-                                        + ") has been graded \"Pass with Changes\". Please note that you may resubmit your report for regrading.");
+                        if ("Pass with Changes".equals(grade)) {
+                            NotificationController.create(stdID, "The submitted report for assessment (" + list[2]
+                                    + ") has been graded \"Pass with Changes\". Please note that you may resubmit your report for regrading.");
                         }
                     } else {
                         JOptionPane.showMessageDialog(null,
@@ -131,21 +133,21 @@ public class AssessmentController implements StudentAssessmentController {
                         updateStatus = true;
                         JOptionPane.showMessageDialog(null,
                                 "The final mark (" + avgMark + ") has been submitted, grade \"" + grade + "\" is recorded.");
-                        if("Pass with Changes".equals(grade)){
-                            NotificationController.create(stdID, "The submitted report for assessment (" + list[2] 
-                                        + ") has been graded \"Pass with Changes\". Please note that you may resubmit your report for regrading.");
+                        if ("Pass with Changes".equals(grade)) {
+                            NotificationController.create(stdID, "The submitted report for assessment (" + list[2]
+                                    + ") has been graded \"Pass with Changes\". Please note that you may resubmit your report for regrading.");
                         }
                     } else if (!list[9].isEmpty() && list[10].isEmpty()) {
                         list[6] = "partially marked";
                         line = String.join(";", list);
                         JOptionPane.showMessageDialog(null,
-                                "Successfully marked as done.");
+                                "Report successfully marked.");
                         updateStatus = true;
                     } else {
                         JOptionPane.showMessageDialog(null,
                                 "Supervisee (" + stdID + ") cannot be marked as done because marks have not been given.", "Message", JOptionPane.ERROR_MESSAGE);
                     }
-                }  
+                }
             }
             updatedData.add(line);
         }
@@ -158,7 +160,8 @@ public class AssessmentController implements StudentAssessmentController {
         }
     }
 
-    public boolean secMarkReportDone(String stdID, String newStatus, String type) {
+
+    public boolean secMarkReportDone(String stdID, String assmntID, String newStatus, String type) {
         List<String> data = FileHandler.readFile("student_assessment.txt");
         ArrayList<String> updatedData = new ArrayList<>();
         boolean updateStatus = false; // Flag to determine if the status can be updated
@@ -169,7 +172,7 @@ public class AssessmentController implements StudentAssessmentController {
         for (String line : data) {
             String[] list = line.split(";");
 
-            if (list[1].equals(stdID)) {
+            if (list[1].equals(stdID) && list[2].equals(assmntID)) { // Validate if both stdID and assmntID match
                 if (!list[9].isEmpty() && !list[10].isEmpty()) { // Validate if both marks are given
                     // Take the higher mark to assign grade
                     spvMark = Integer.parseInt(list[9]);
@@ -185,14 +188,14 @@ public class AssessmentController implements StudentAssessmentController {
                     JOptionPane.showMessageDialog(null,
                                 "The final mark (" + avgMark + ") has been submitted, grade \"" + grade + "\" is recorded.");
                     if("Pass with Changes".equals(grade)){
-                            NotificationController.create(stdID, "The submitted report for assessment (" + list[2] 
+                        NotificationController.create(stdID, "The submitted report for assessment (" + list[2] 
                                         + ") has been graded \"Pass with Changes\". Please note that you may resubmit your report for regrading.");
-                        }
+                    }
                 } else if (!list[10].isEmpty() && list[9].isEmpty()) {
                     list[6] = "partially marked";
                     line = String.join(";", list);
                     JOptionPane.showMessageDialog(null,
-                            "Successfully marked as done.");
+                            "Report successfully marked.");
                     updateStatus = true;
                 } else {
                     JOptionPane.showMessageDialog(null,
@@ -209,6 +212,7 @@ public class AssessmentController implements StudentAssessmentController {
             return false;
         }
     }
+
 
     private String assignGrade(String type, int mark, int count) {
         List<String> data = FileHandler.readFile("assessment_type.txt");

@@ -23,13 +23,13 @@ public class PresentationController {
     private final SessionManager sessionManager = SessionManager.getInstance();
     User user = sessionManager.getCurrentUser();
 
-    public boolean spvPresentationDone(String stdID, String newStatus, String type) {
+    public boolean spvPresentationDone(String stdID, String assmntid, String newStatus, String type) {
         List<String> data = FileHandler.readFile("presentation_confirmation.txt");
         ArrayList<String> updatedData = new ArrayList<>();
 
         for (String line : data) {
             String[] list = line.split(";");
-            if (list[1].equals(stdID)) {
+            if (list[1].equals(stdID) && list[2].equals(assmntid)) {
                 if ("internship_report".equals(type) || "investigation".equals(type)) {
                     if (!list[4].isEmpty()) {
                         list[5] = newStatus;
@@ -62,13 +62,13 @@ public class PresentationController {
         return true;
     }
 
-    public boolean secMarkPresentationDone(String stdID, String secMarkFeedbackStatus) {
+    public boolean secMarkPresentationDone(String stdID, String assmntid, String secMarkFeedbackStatus) {
         List<String> data = FileHandler.readFile("presentation_confirmation.txt");
         ArrayList<String> updatedData = new ArrayList<>();
 
         for (String line : data) {
             String[] list = line.split(";");
-            if (list[1].equals(stdID)) {
+            if (list[1].equals(stdID) && list[2].equals(assmntid)) {
                 // Validate if feedback has no value or not
                 if (list[4].isEmpty()) {
                     JOptionPane.showMessageDialog(null,
@@ -92,14 +92,15 @@ public class PresentationController {
         return true;
     }
 
-    public boolean presentationRqtApprove(String userRole, String stdID, String newStatus) {
+    public boolean presentationRqtApprove(String userRole, String rqtID, String newStatus) {
         List<String> data = FileHandler.readFile("presentation_request.txt");
         ArrayList<String> updatedData = new ArrayList<>();
         boolean found = false;
 
         for (String line : data) {
             String[] list = line.split(";");
-            if (list[1].equals(stdID)) {
+            if (list[0].equals(rqtID)) {
+                String stdID = list[1];
                 found = true;
                 switch (userRole) {
                     case "supervisor" -> {
@@ -131,7 +132,7 @@ public class PresentationController {
 
         if (!found) {
             JOptionPane.showMessageDialog(null,
-                    "Request from supervisee(" + stdID + ") cannot be approved because acceptance is not pending.", "Message", JOptionPane.ERROR_MESSAGE);
+                    "Request (" + rqtID + ") cannot be approved because acceptance is not pending.", "Message", JOptionPane.ERROR_MESSAGE);
             return false;
         }
 
@@ -153,7 +154,7 @@ public class PresentationController {
 
     }
 
-    public boolean presentationRqtReject(String userRole, String stdID, String assmntID, String newStatus) {
+    public boolean presentationRqtReject(String userRole, String rqtID, String stdID, String assmntID, String newStatus) {
         List<String> data = FileHandler.readFile("presentation_request.txt");
         ArrayList<String> updatedData = new ArrayList<>();
         boolean statusChanged = false; // Track if the status has been changed
@@ -176,7 +177,7 @@ public class PresentationController {
 
         for (String line : data) {
             String[] list = line.split(";");
-            if (list[1].equals(stdID)) {
+            if (list[0].equals(rqtID)) {
                 switch (userRole) {
                     case "supervisor" -> {
                         if ("pending".equals(list[4])) {
@@ -190,18 +191,18 @@ public class PresentationController {
                                 statusChanged = true;
                             } else {
                                 JOptionPane.showMessageDialog(null,
-                                        "Request from supervisee(" + stdID + ") cannot be rejected because available slot is not provided.", "Message", JOptionPane.ERROR_MESSAGE);
+                                        "Request (" + rqtID + ") cannot be rejected because available slot is not provided.", "Message", JOptionPane.ERROR_MESSAGE);
                                 return false;
                             }
                         } else {
                             JOptionPane.showMessageDialog(null,
-                                    "Request from supervisee(" + stdID + ") cannot be rejected because acceptance is not pending.", "Message", JOptionPane.ERROR_MESSAGE);
+                                    "Request (" + rqtID + ") cannot be rejected because acceptance is not pending.", "Message", JOptionPane.ERROR_MESSAGE);
                             return false;
                         }
                     }
                     case "second marker" -> {
                         if ("pending".equals(list[5])) {
-                            LecturerPresentationReject reject = new LecturerPresentationReject(userRole, stdID);
+                            LecturerPresentationReject reject = new LecturerPresentationReject(userRole, rqtID);
                             reject.setVisible(true); // This will block until the dialog is closed
 
                             if (reject.isNotificationCreated()) {
@@ -211,12 +212,12 @@ public class PresentationController {
                                 statusChanged = true;
                             } else {
                                 JOptionPane.showMessageDialog(null,
-                                        "Request from supervisee(" + stdID + ") cannot be rejected because available slot is not provided.", "Message", JOptionPane.ERROR_MESSAGE);
+                                        "Request (" + rqtID + ") cannot be rejected because available slot is not provided.", "Message", JOptionPane.ERROR_MESSAGE);
                                 return false;
                             }
                         } else {
                             JOptionPane.showMessageDialog(null,
-                                    "Request from supervisee(" + stdID + ") cannot be rejected because acceptance is not pending.", "Message", JOptionPane.ERROR_MESSAGE);
+                                    "Request (" + rqtID + ") cannot be rejected because acceptance is not pending.", "Message", JOptionPane.ERROR_MESSAGE);
                             return false;
                         }
                     }
@@ -236,7 +237,7 @@ public class PresentationController {
             return true;
         } else {
             JOptionPane.showMessageDialog(null,
-                    "Request from supervisee(" + stdID + ") cannot be rejected because it was not found.", "Message", JOptionPane.ERROR_MESSAGE);
+                    "Request (" + rqtID + ") cannot be rejected because it was not found.", "Message", JOptionPane.ERROR_MESSAGE);
             return false;
         }
     }
@@ -272,20 +273,25 @@ public class PresentationController {
             if (!list[0].equals(requestID)) {
                 line = String.join(";", list);
                 array_list.add(line);
+            }else{
+                if(list[6].equals("rejected") || list[6].equals("approved")){
+                    JOptionPane.showMessageDialog(null, "The rejected and approved request cannot be removed", "Message", JOptionPane.ERROR_MESSAGE);
+                    return false;
+                }
             }
         }
         FileHandler.modifyFileData("presentation_request.txt", array_list);
         return true;
     }
 
-    public boolean updateStudentPresentationIndex(String stdID, String feedback) {
+    public boolean updateStudentPresentationIndex(String stdID, String assmntid, String feedback) {
         List<String> data = FileHandler.readFile("presentation_confirmation.txt");
         ArrayList<String> updatedData = new ArrayList<>();
         boolean isUpdated = false;
 
         for (String line : data) {
             String[] list = line.split(";");
-            if (list[1].equals(stdID)) {
+            if (list[1].equals(stdID) && list[2].equals(assmntid)) {
                 list[4] = feedback; // Update the feedback at index 5
                 line = String.join(";", list);
                 isUpdated = true;

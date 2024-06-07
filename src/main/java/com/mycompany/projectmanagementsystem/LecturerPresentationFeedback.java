@@ -24,9 +24,11 @@ public class LecturerPresentationFeedback extends javax.swing.JFrame {
     private final SessionManager sessionManager = SessionManager.getInstance();
     User user = sessionManager.getCurrentUser();
     private String stdID;
+    private String assmntID;
     
     public LecturerPresentationFeedback(String AssmntID, String stdID, String name, String marker, String presentSlot, String type) {
         this.stdID = stdID;
+        this.assmntID = AssmntID;
         initComponents();
         setIconImage();
         stdIDLabel.setText(stdID);
@@ -316,7 +318,7 @@ public class LecturerPresentationFeedback extends javax.swing.JFrame {
         String feedback = feedbackField.getText().trim();
         if (confirm == JOptionPane.YES_OPTION && !feedback.isEmpty()) {
             PresentationController action = new PresentationController();
-            boolean feedbackGiven = action.updateStudentPresentationIndex(stdID, feedback);
+            boolean feedbackGiven = action.updateStudentPresentationIndex(stdID, assmntID, feedback);
 
             if (feedbackGiven) {
                 JOptionPane.showMessageDialog(null, "Successfully submitted your feedback.");
@@ -388,7 +390,7 @@ public class LecturerPresentationFeedback extends javax.swing.JFrame {
         if (isSupervisor) {
             for (String liney : datay) {
                 String[] listy = liney.split(";");
-                if (listy[1].equals(stdID)) {
+                if (listy[1].equals(stdID) && listy[2].equals(assessmentID)) {
                     feedbackField.setText(listy[4]);
                     feedbackField.setEditable(true); // Supervisors can always edit
                 }
@@ -397,7 +399,7 @@ public class LecturerPresentationFeedback extends javax.swing.JFrame {
             boolean feedbackExists = false;
             for (String liney : datay) {
                 String[] listy = liney.split(";");
-                if (listy[1].equals(stdID)) {
+                if (listy[1].equals(stdID) && listy[2].equals(assessmentID)) {
                     if (listy.length > 5 && listy[4] != null && !listy[4].isEmpty()) {
                         feedbackField.setText(listy[4]);
                         feedbackField.setEditable(true); // Editable if feedback exists

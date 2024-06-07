@@ -40,68 +40,84 @@ public class LecturerPresentationRequest extends javax.swing.JFrame {
     private String AssmntID;
     private String intakeCode;
     private String AssmntType;
-    
-    public LecturerPresentationRequest(String id, String code, String type) {
+    LecturerIntakePage parentpage;
+
+    public LecturerPresentationRequest(String id, String code, String type, LecturerIntakePage parentpage) {
         this.AssmntID = id;
         this.intakeCode = code;
         this.AssmntType = type;
+        this.parentpage = parentpage;
         initComponents();
         intakeLabel.setText(code);
         setIconImage();
         showPresentRqt();
-       
+
         // Custom cell renderer to set white background
         class WhiteBackgroundRenderer extends DefaultTableCellRenderer {
-            
+
             public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
                 Component cellComponent = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-                
-            // Set white background for unselected cells
-            cellComponent.setBackground(Color.WHITE);
 
-            // If the cell is selected, use the default selection background color
-            if (isSelected) {
-                cellComponent.setBackground(table.getSelectionBackground());
-            }
+                // Set white background for unselected cells
+                cellComponent.setBackground(Color.WHITE);
 
-            return cellComponent;
+                // If the cell is selected, use the default selection background color
+                if (isSelected) {
+                    cellComponent.setBackground(table.getSelectionBackground());
+                }
+
+                return cellComponent;
             }
         }
 
         for (int i = 0; i < PresentRqtTable.getColumnCount(); i++) {
-            PresentRqtTable.getColumnModel().getColumn(i).setCellRenderer(new WhiteBackgroundRenderer());            
+            PresentRqtTable.getColumnModel().getColumn(i).setCellRenderer(new WhiteBackgroundRenderer());
         }
-        
+
         JTableHeader header = PresentRqtTable.getTableHeader();
         header.setPreferredSize(new Dimension(header.getWidth(), 40)); // Adjust the height as needed
         PresentRqtTable.getTableHeader().setFont(new Font("SansSerif", Font.BOLD, 12));
         PresentRqtTable.getTableHeader().setForeground(new Color(2, 50, 99));
-        ((DefaultTableCellRenderer)PresentRqtTable.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);   
+        ((DefaultTableCellRenderer) PresentRqtTable.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
         //end of table properties code
-        
+
         lect_PresentationRqtActionPanel panel = new lect_PresentationRqtActionPanel();
         PresentationRqtTableActionEvent event = new PresentationRqtTableActionEvent() {
             @Override
             public void presentationRqtApprove(int row, Object value) {
-                List<String> data = FileHandler.readFile("assessment.txt");
-                List<String> datax = FileHandler.readFile("presentation_request.txt");
+                List<String> assessmentData = FileHandler.readFile("assessment.txt");
+                List<String> presentationRequestData = FileHandler.readFile("presentation_request.txt");
 
                 DefaultTableModel model = (DefaultTableModel) PresentRqtTable.getModel();
-                String stdID = (String) model.getValueAt(row, 0);
-                String acceptance = (String) model.getValueAt(row, 2);
+                String rqtID = (String) model.getValueAt(row, 0);
                 String presentSlot = (String) model.getValueAt(row, 3);
                 PresentationController action = new PresentationController();
 
-                for (String line : data) {
+                String stdID = null;
+                // Find the stdID corresponding to the rqtID from the presentation_request.txt
+                for (String linex : presentationRequestData) {
+                    String[] listx = linex.split(";");
+                    if (listx[0].equals(rqtID)) {
+                        stdID = listx[1]; // Assuming stdID is at index 1, adjust based on your actual data format
+                        break;
+                    }
+                }
+
+                if (stdID == null) {
+                    JOptionPane.showMessageDialog(null, "No matching presentation request found for the given rqtID", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+                for (String line : assessmentData) {
                     String[] list = line.split(";");
                     if (AssmntID.equals(list[0])) {
                         if (user.getUserID().equals(list[4])) { // Supervisor
-                            boolean result = action.presentationRqtApprove("supervisor", stdID, "approved");
+                            boolean result = action.presentationRqtApprove("supervisor", rqtID, "approved");
                             if (result) {
                                 model.removeRow(row);
-                                for (String linex : datax) {
+                                for (String linex : presentationRequestData) {
                                     String[] listx = linex.split(";");
-                                    if (stdID.equals(listx[1]) && "approved".equals(listx[5]) || listx[5].isEmpty()) {
+                                    if (rqtID.equals(listx[0]) && ("approved".equals(listx[5]) || listx[5].isEmpty())) {
                                         String[] schdPInput = new String[3];
                                         schdPInput[0] = stdID;
                                         schdPInput[1] = AssmntID;
@@ -109,22 +125,23 @@ public class LecturerPresentationRequest extends javax.swing.JFrame {
                                         boolean confirm = action.writeAccptPresentation(schdPInput);
                                         if (confirm) {
                                             JOptionPane.showMessageDialog(null,
-                                                    "Presentation request from supervisee (" + stdID + ") has been approved.");
+                                                    "Presentation request (" + rqtID + ") has been approved.");
                                         }
                                         return;
                                     }
                                 }
-                                JOptionPane.showMessageDialog(null, "Supervisor has approved the presentation request from supervisee (" + stdID
+                                JOptionPane.showMessageDialog(null, "Supervisor has approved the presentation request (" + rqtID
                                         + ").\nSecond marker acceptance is still pending.");
+
                             }
                             return;
                         } else if (user.getUserID().equals(list[5])) { // Second Marker
-                            boolean result = action.presentationRqtApprove("second marker", stdID, "approved");
+                            boolean result = action.presentationRqtApprove("second marker", rqtID, "approved");
                             if (result) {
                                 model.removeRow(row);
-                                for (String linex : datax) {
+                                for (String linex : presentationRequestData) {
                                     String[] listx = linex.split(";");
-                                    if (stdID.equals(listx[1]) && "approved".equals(listx[4])) {
+                                    if (rqtID.equals(listx[0]) && "approved".equals(listx[4])) {
                                         String[] schdPInput = new String[3];
                                         schdPInput[0] = stdID;
                                         schdPInput[1] = AssmntID;
@@ -132,12 +149,12 @@ public class LecturerPresentationRequest extends javax.swing.JFrame {
                                         boolean confirm = action.writeAccptPresentation(schdPInput);
                                         if (confirm) {
                                             JOptionPane.showMessageDialog(null,
-                                                    "Presentation request from supervisee (" + stdID + ") has been approved.");
+                                                    "Presentation request (" + rqtID + ") has been approved.");
                                         }
                                         return;
                                     }
                                 }
-                                JOptionPane.showMessageDialog(null, "Second marker has approved the presentation request from supervisee (" + stdID
+                                JOptionPane.showMessageDialog(null, "Second marker has approved the presentation request (" + rqtID
                                         + ").\nSupervisor acceptance is still pending.");
                             }
                             return;
@@ -148,38 +165,53 @@ public class LecturerPresentationRequest extends javax.swing.JFrame {
                         JOptionPane.INFORMATION_MESSAGE);
             }
 
-            
             @Override
             public void presentationRqtReject(int row, Object value) {
-                List<String> data = FileHandler.readFile("assessment.txt");
+                List<String> assessmentData = FileHandler.readFile("assessment.txt");
+                List<String> presentationRequestData = FileHandler.readFile("presentation_request.txt");
 
                 DefaultTableModel model = (DefaultTableModel) PresentRqtTable.getModel();
-                String stdID = (String) model.getValueAt(row, 0);
-                String acceptance = (String) model.getValueAt(row, 2);
+                String rqtID = (String) model.getValueAt(row, 0);
                 PresentationController action = new PresentationController();
 
-                for (String line : data) {
+                String stdID = null;
+                // Find the stdID corresponding to the rqtID from the presentation_request.txt
+                for (String linex : presentationRequestData) {
+                    String[] listx = linex.split(";");
+                    if (listx[0].equals(rqtID)) {
+                        stdID = listx[1]; // Assuming stdID is at index 1, adjust based on your actual data format
+                        break;
+                    }
+                }
+
+                if (stdID == null) {
+                    JOptionPane.showMessageDialog(null, "No matching presentation request found for the given rqtID", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+                for (String line : assessmentData) {
                     String[] list = line.split(";");
                     if (AssmntID.equals(list[0])) {
                         if (user.getUserID().equals(list[4])) { // Supervisor
-                            boolean result = action.presentationRqtReject("supervisor", stdID, AssmntID, "rejected");
+                            boolean result = action.presentationRqtReject("supervisor", rqtID, stdID, AssmntID, "rejected");
                             if (result) {
                                 model.removeRow(row);
-                                JOptionPane.showMessageDialog(null, 
-                                        "Presentation from supervisee (" + stdID + ") has been rejected with provided available slot.");
+                                JOptionPane.showMessageDialog(null,
+                                        "Presentation (" + rqtID + ") has been rejected with provided available slot.");
                             }
                             return; // No need to continue the loop once a match is found
                         } else if (user.getUserID().equals(list[5])) { // Second Marker
-                            boolean result = action.presentationRqtReject("second marker", stdID, AssmntID, "rejected");
+                            boolean result = action.presentationRqtReject("second marker", rqtID, stdID, AssmntID, "rejected");
                             if (result) {
                                 model.removeRow(row);
-                                JOptionPane.showMessageDialog(null, 
-                                        "Presentation from supervisee (" + stdID + ") has been rejected with provided available slot.");
+                                JOptionPane.showMessageDialog(null,
+                                        "Presentation (" + rqtID + ") has been rejected with provided available slot.");
                             }
                             return; // No need to continue the loop once a match is found
                         }
                     }
                 }
+
                 JOptionPane.showMessageDialog(null, "No matching record found for the given assessment ID and user ID", "Message", JOptionPane.INFORMATION_MESSAGE);
             }
 
@@ -190,8 +222,9 @@ public class LecturerPresentationRequest extends javax.swing.JFrame {
         } else {
             PresentRqtTable.getColumnModel().getColumn(4).setCellRenderer(panel.new PanelActionRenderer());
             PresentRqtTable.getColumnModel().getColumn(4).setCellEditor(panel.new TableActionCellEditor(event));
-        }       
+        }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -209,9 +242,8 @@ public class LecturerPresentationRequest extends javax.swing.JFrame {
         backBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Lecturer Presentation Request");
-        setMaximumSize(new java.awt.Dimension(700, 500));
         setMinimumSize(new java.awt.Dimension(700, 500));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -231,7 +263,7 @@ public class LecturerPresentationRequest extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Supervisee ID", "Name", "Acceptance", "Requested Slot", "Action"
+                "Request ID", "Name", "Acceptance", "Requested Slot", "Action"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -318,8 +350,10 @@ public class LecturerPresentationRequest extends javax.swing.JFrame {
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         this.setVisible(false);
-        LecturerIntakePage intake = new LecturerIntakePage(AssmntID, intakeCode, AssmntType);
-        intake.setVisible(true);
+        parentpage.setVisible(false);
+        LecturerIntakePage intakePage = new LecturerIntakePage(AssmntID, intakeCode, AssmntType);
+        intakePage.setVisible(true);
+        intakePage.selectPresentationPanel();
     }//GEN-LAST:event_backBtnActionPerformed
 
     /**
@@ -352,10 +386,11 @@ public class LecturerPresentationRequest extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LecturerPresentationRequest("id", "intakeCode", "type").setVisible(true);
+                new LecturerPresentationRequest("id", "intakeCode", "type", null).setVisible(true);
             }
         });
     }
+
     private void setIconImage() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Sysco_icon_with_background.png")));
     }
@@ -371,7 +406,7 @@ public class LecturerPresentationRequest extends javax.swing.JFrame {
         List<String> datax = FileHandler.readFile(fileNamex);
         List<String> datay = FileHandler.readFile(fileNamey);
         List<String> dataz = FileHandler.readFile(fileNamez);
-        
+
         // Map to store studentID to studentName
         Map<String, String> studentNames = new HashMap<>();
         for (String linez : dataz) {
@@ -380,74 +415,75 @@ public class LecturerPresentationRequest extends javax.swing.JFrame {
             String studentName = listz[1];
             studentNames.put(studentID, studentName);
         }
-        
+
         // Set to track added rows to avoid duplication
         Set<String> addedRows = new HashSet<>();
-        
+
         for (String linex : datax) {
-        String[] listx = linex.split(";");
-        String studentID = listx[1];
-        String assessmentID = listx[2];
-        String rqtPresentationSlot = listx[3];
-        String spvStatus = listx[4];
-        String secMarkerstatus = listx[5];
+            String[] listx = linex.split(";");
+            String requestID = listx[0];
+            String studentID = listx[1];
+            String assessmentID = listx[2];
+            String rqtPresentationSlot = listx[3];
+            String spvStatus = listx[4];
+            String secMarkerstatus = listx[5];
 
-        if (studentID != null) {
-            String studentName = studentNames.get(studentID);
-            if (studentName != null) {
-                for (String liney : datay) {
-                    String[] listy = liney.split(";");
-                    String currentAssessmentID = listy[0];
-                    if (currentAssessmentID.equals(assessmentID) && currentAssessmentID.equals(AssmntID)) {
-                        String spv = listy[4];
-                        String secMarker = listy[5];
+            if (studentID != null) {
+                String studentName = studentNames.get(studentID);
+                if (studentName != null) {
+                    for (String liney : datay) {
+                        String[] listy = liney.split(";");
+                        String currentAssessmentID = listy[0];
+                        if (currentAssessmentID.equals(assessmentID) && currentAssessmentID.equals(AssmntID)) {
+                            String spv = listy[4];
+                            String secMarker = listy[5];
 
-                        String rowIdentifier = studentID + "-" + assessmentID;
-                        if (!addedRows.contains(rowIdentifier)) {
-                            if (spv.equals(user.getUserID()) && "pending".equals(listx[6]) && "pending".equals(listx[4])) {
-                                if ("internship_report".equals(AssmntType) || "investigation".equals(AssmntType)) {
-                                    PresentRqtTable.removeColumn(PresentRqtTable.getColumnModel().getColumn(2)); 
+                            String rowIdentifier = studentID + "-" + assessmentID;
+                            if (!addedRows.contains(rowIdentifier)) {
+                                if (spv.equals(user.getUserID()) && "pending".equals(listx[6]) && "pending".equals(listx[4])) {
+                                    if ("internship_report".equals(AssmntType) || "investigation".equals(AssmntType)) {
+                                        PresentRqtTable.removeColumn(PresentRqtTable.getColumnModel().getColumn(2));
+                                        PresentRqtTable.getTableHeader().repaint();
+                                        String[] reorderedData = {
+                                            requestID, // Supervisee ID
+                                            studentName, // Supervisee Name
+                                            "null",
+                                            rqtPresentationSlot // Requested Presentation Slot
+                                        };
+                                        model.addRow(reorderedData);
+                                    } else {
+                                        PresentRqtTable.getColumnModel().getColumn(2).setHeaderValue("Second Marker Acceptance");
+                                        PresentRqtTable.getTableHeader().repaint();
+                                        String[] reorderedData = {
+                                            requestID, // Supervisee ID
+                                            studentName, // Supervisee Name
+                                            secMarkerstatus, // Second Marker Name
+                                            rqtPresentationSlot // Requested Presentation Slot
+                                        };
+                                        model.addRow(reorderedData);
+                                    }
+                                    addedRows.add(rowIdentifier);
+                                } else if (secMarker.equals(user.getUserID()) && "pending".equals(listx[6]) && "pending".equals(listx[5])) {
+                                    PresentRqtTable.getColumnModel().getColumn(2).setHeaderValue("Supervisor Acceptance");
                                     PresentRqtTable.getTableHeader().repaint();
                                     String[] reorderedData = {
-                                        studentID,       // Supervisee ID
-                                        studentName,     // Supervisee Name
-                                        "null",
-                                        rqtPresentationSlot // Requested Presentation Slot
-                                    };
-                                    model.addRow(reorderedData);                                    
-                                } else {
-                                    PresentRqtTable.getColumnModel().getColumn(2).setHeaderValue("Second Marker Acceptance");
-                                    PresentRqtTable.getTableHeader().repaint();
-                                    String[] reorderedData = {
-                                        studentID,       // Supervisee ID
-                                        studentName,     // Supervisee Name
-                                        secMarkerstatus,   // Second Marker Name
-                                        rqtPresentationSlot // Requested Presentation Slot
+                                        requestID, // Supervisee ID
+                                        studentName, // Supervisee Name
+                                        spvStatus, // Supervisor Name
+                                        rqtPresentationSlot // Presentation Slot
                                     };
                                     model.addRow(reorderedData);
+                                    addedRows.add(rowIdentifier);
                                 }
-                                addedRows.add(rowIdentifier);
-                            } else if (secMarker.equals(user.getUserID()) && "pending".equals(listx[6]) && "pending".equals(listx[5])) {
-                                PresentRqtTable.getColumnModel().getColumn(2).setHeaderValue("Supervisor Acceptance");
-                                PresentRqtTable.getTableHeader().repaint();
-                                String[] reorderedData = {
-                                    studentID,       // Supervisee ID
-                                    studentName,     // Supervisee Name
-                                    spvStatus,         // Supervisor Name
-                                    rqtPresentationSlot // Presentation Slot
-                                };
-                                model.addRow(reorderedData);
-                                addedRows.add(rowIdentifier);
                             }
                         }
-                }
 
                     }
                 }
             }
         }
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable PresentRqtTable;
     private javax.swing.JButton backBtn;
