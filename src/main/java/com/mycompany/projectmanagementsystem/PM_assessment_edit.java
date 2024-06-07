@@ -15,6 +15,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -22,74 +23,95 @@ import javax.swing.JOptionPane;
  * @author shuhuilee
  */
 public class PM_assessment_edit extends javax.swing.JFrame {
+
     private final String assessmentType;
     private final String assessmentID;
     private Map<String, String> userIdToNameMap = new HashMap<>();
+    PM_assessment_page parentpage;
 
-    public PM_assessment_edit(String assessmentType, String assessmentID) {
+    public PM_assessment_edit(String assessmentType, String assessmentID, String intakeCode, PM_assessment_page parentpage) {
         initComponents();
         setIconImage();
-        populateLecturers();
+        String school = getSchoolByIntake(intakeCode);
+        populateLecturers(school);
         this.assessmentType = assessmentType;
         this.assessmentID = assessmentID;
+        this.parentpage = parentpage;
         assessment_Type();
         ShowLecturers();
-        
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
-    
+
     private void assessment_Type() {
-            if (assessmentType.equalsIgnoreCase("internship_report") || assessmentType.equalsIgnoreCase("investigation")) {
-                secondmarker_name.setVisible(false);
-                second_maker_name.setVisible(false); // Ensure the label is also hidden
-            } else {
-                secondmarker_name.setVisible(true);
-                second_maker_name.setVisible(true); // Ensure the label is also shown
-            }
-    }
-    
-    private void populateLecturers() {
-            String fileName = "user.txt";
-            try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
-                String line;
-                while ((line = br.readLine()) != null) {
-                    String[] list = line.split(";");
-                    if (list.length > 10 && list[10].equalsIgnoreCase("lecturer")) {
-                        String userIdAndName = list[0] + " - " + list[1]; // Concatenate user ID and name
-                        supervisorName.addItem(userIdAndName);
-                        secondmarker_name.addItem(userIdAndName);
-                        userIdToNameMap.put(list[0], userIdAndName);
-                    }
-                }
-            } catch (IOException ex) {
-                System.out.println("Error reading file: " + ex.getMessage());
-            }
+        if (assessmentType.equalsIgnoreCase("internship_report") || assessmentType.equalsIgnoreCase("investigation")) {
+            secondmarker_name.setVisible(false);
+            second_maker_name.setVisible(false); // Ensure the label is also hidden
+        } else {
+            secondmarker_name.setVisible(true);
+            second_maker_name.setVisible(true); // Ensure the label is also shown
         }
-    
+    }
+
+    private String getSchoolByIntake(String intakeCode) {
+        String fileName = "intake.txt";
+        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] list = line.split(";");
+                if (list[0].trim().equals(intakeCode)) {
+                    return list[1].trim(); // School wise
+                }
+            }
+        } catch (IOException ex) {
+            System.err.println("Error reading file: " + ex.getMessage());
+        }
+        return null;
+    }
+
+    private void populateLecturers(String school) {
+        supervisorName.removeAllItems();
+        secondmarker_name.removeAllItems();
+        String fileName = "user.txt";
+        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] list = line.split(";");
+                if (list.length > 11 && list[10].equalsIgnoreCase("lecturer") && list[11].trim().equalsIgnoreCase(school)) {
+                    String userIdAndName = list[0] + " - " + list[1]; // Concatenate user ID and name
+                    supervisorName.addItem(userIdAndName);
+                    secondmarker_name.addItem(userIdAndName);
+                    userIdToNameMap.put(list[0], userIdAndName);
+                }
+            }
+        } catch (IOException ex) {
+            System.out.println("Error reading file: " + ex.getMessage());
+        }
+    }
+
     private void ShowLecturers() {
         String fileName = "assessment.txt";
-            try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
-                String line;
-                while ((line = br.readLine()) != null) {
-                    String[] list = line.split(";");
-                    if (list.length > 3 && list[1].equalsIgnoreCase(assessmentType)) {
-                        // Extract supervisor, second marker, and due date from the line
-                        String supervisorId = list[4]; 
-                        String secondMarkerId = list[5]; 
-                        String dueDateString = list[3]; 
+        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] list = line.split(";");
+                if (list.length > 3 && list[1].equalsIgnoreCase(assessmentType)) {
+                    // Extract supervisor, second marker, and due date from the line
+                    String supervisorId = list[4];
+                    String secondMarkerId = list[5];
+                    String dueDateString = list[3];
 
-                        Date dueDate = new SimpleDateFormat("yyyy-MM-dd").parse(dueDateString);
-                        jDateChooser1.setDate(dueDate);
+                    Date dueDate = new SimpleDateFormat("yyyy-MM-dd").parse(dueDateString);
+                    jDateChooser1.setDate(dueDate);
 
-                        // Set supervisor and second marker in JComboBox
-                        supervisorName.setSelectedItem(userIdToNameMap.get(supervisorId));
-                        secondmarker_name.setSelectedItem(userIdToNameMap.get(secondMarkerId));
-                    }
+                    // Set supervisor and second marker in JComboBox
+                    supervisorName.setSelectedItem(userIdToNameMap.get(supervisorId));
+                    secondmarker_name.setSelectedItem(userIdToNameMap.get(secondMarkerId));
                 }
-            } catch (IOException | ParseException ex) {
-                System.out.println("Error reading file: " + ex.getMessage());
             }
+        } catch (IOException | ParseException ex) {
+            System.out.println("Error reading file: " + ex.getMessage());
         }
-    
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -181,31 +203,35 @@ public class PM_assessment_edit extends javax.swing.JFrame {
 
     private void sava_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sava_buttonActionPerformed
         // TODO add your handling code here:
-        String supervisor = (String) supervisorName.getSelectedItem();
-        String secondMarker = (String) secondmarker_name.getSelectedItem();
-        
-        if (supervisor == null || secondMarker == null) {
-        JOptionPane.showMessageDialog(null, "Please select both supervisor and second marker.", "Error", JOptionPane.ERROR_MESSAGE);
-        return;
-        
-    }
-        
+        String supervisor;
+        String secondMarker;
+        String secondMarkerID = "";
+        supervisor = (String) supervisorName.getSelectedItem();
+
+        String supervisorID = supervisor.split(" - ")[0];
+
+        if (assessmentType.equals("internship_report") || assessmentType.equals("investigation")) {
+            if (supervisor == null) {
+                JOptionPane.showMessageDialog(null, "Please select both supervisor and second marker.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+        } else {
+            secondMarker = (String) secondmarker_name.getSelectedItem();
+            if (supervisor == null || secondMarker == null) {
+                JOptionPane.showMessageDialog(null, "Please select both supervisor and second marker.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            secondMarkerID = secondMarker.split(" - ")[0];
+            if (supervisorID.equals(secondMarkerID)) {
+                JOptionPane.showMessageDialog(null, "Supervisor and second marker cannot be the same person.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+        }
         Date dueDate = jDateChooser1.getDate();
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String formattedDueDate = dateFormat.format(dueDate);
-        
-        // Extract only the ID
-        String supervisorID = supervisor.split(" - ")[0];
-        String secondMarkerID = secondMarker.split(" - ")[0]; 
-        
-        // Check if supervisor and second marker are the same
-        if (supervisorID.equals(secondMarkerID)) {
-            JOptionPane.showMessageDialog(null, "Supervisor and second marker cannot be the same person.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        
-        
+
         // Check if the due date is later than the current date
         Calendar currentDate = Calendar.getInstance();
         currentDate.add(Calendar.DAY_OF_MONTH, 2); // Add 2 days
@@ -215,29 +241,23 @@ public class PM_assessment_edit extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Due date must be at least 2 days later than today.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        
         AssessmentController controller = new AssessmentController();
-        boolean updateSuccessful = controller.assessment_Edit(assessmentID,supervisorID,secondMarkerID,formattedDueDate);
-        
-        
+        boolean updateSuccessful = controller.assessment_Edit(assessmentID, supervisorID, secondMarkerID, formattedDueDate);
+
         if (updateSuccessful) {
             JOptionPane.showMessageDialog(null, "Assessment details saved successfully");
-        } else {
-            JOptionPane.showMessageDialog(null, "Failed to save assessment details. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
+            dispose();
+            parentpage.setVisible(false);
+            PM_assessment_page assessmentPage = new PM_assessment_page(assessmentType);
+            assessmentPage.setVisible(true);
         }
-        
-        PM_assessment_page assessmentPage = new PM_assessment_page(assessmentType);
-        assessmentPage.setVisible(true);
-        dispose();
-      
     }//GEN-LAST:event_sava_buttonActionPerformed
 
     private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_buttonActionPerformed
         // TODO add your handling code here:
         PM_assessment_page assessment = new PM_assessment_page(assessmentType);
         assessment.setVisible(true);
-        this.dispose(); 
+        this.dispose();
     }//GEN-LAST:event_back_buttonActionPerformed
 
     /**
@@ -271,12 +291,13 @@ public class PM_assessment_edit extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                String assessmentType = "type"; 
-                String assessmentID = "ID"; 
-                new PM_assessment_edit(assessmentType, assessmentID).setVisible(true);
+                String assessmentType = "type";
+                String assessmentID = "ID";
+                new PM_assessment_edit(assessmentType, assessmentID, "Intake", null).setVisible(true);
             }
         });
     }
+
     private void setIconImage() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Sysco_icon_with_background.png")));
     }

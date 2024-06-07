@@ -354,33 +354,22 @@ public class AssessmentController implements StudentAssessmentController {
         for (String line : data) {
             String[] list = line.split(";");
             if (list[0].equals(assessmentID)) {
-                String originalDueDate = list[3]; // Get original due date
-                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-                try {
-                    Date originalDate = dateFormat.parse(originalDueDate);
-                    Date newDate = dateFormat.parse(dueDate);
+                // Update supervisor ID, second marker ID, and due date
+                list[4] = supervisorID;
+                System.out.println(secondMarkerID);
 
-                    // Check if the new due date is at least 2 days later than the current date
-                    Calendar minDueDateCalendar = Calendar.getInstance();
-                    minDueDateCalendar.add(Calendar.DAY_OF_MONTH, 2); // Add 2 days to the current date
-                    Date minDueDate = minDueDateCalendar.getTime();
-
-                    if (newDate.before(minDueDate)) {
-                        return false;
-                    }
-
-                    // Update supervisor ID, second marker ID, and due date
-                    list[4] = supervisorID;
+                if (!list[1].equals("internship_report") || !list[1].equals("investigation")) {
                     list[5] = secondMarkerID;
-                    list[3] = dueDate;
-
-                    line = String.join(";", list);
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                    return false;
+                }else{
+                    list[5] = "";
                 }
+                list[3] = dueDate;
+                line = String.join(";", list);
+                array_list.add(line);
+
+            } else {
+                array_list.add(line);
             }
-            array_list.add(line);
         }
         FileHandler.modifyFileData("assessment.txt", array_list);
         return true;

@@ -35,9 +35,9 @@ public class PM_assessment_page extends javax.swing.JFrame {
     User user = sessionManager.getCurrentUser();
     private TableRowSorter<DefaultTableModel> rowSorter;
 
-
     /**
      * Creates new form Internship
+     *
      * @param assessmentType
      */
     public PM_assessment_page(String assessmentType) {
@@ -47,14 +47,13 @@ public class PM_assessment_page extends javax.swing.JFrame {
         populateComboBox();
         readAssessmentFromFile();
         assessmentType();
-        
+
         DefaultTableModel model = (DefaultTableModel) pm_assessment_table.getModel();
         rowSorter = new TableRowSorter<>(model);
         pm_assessment_table.setRowSorter(rowSorter);
         setupTable();
     }
-   
-    
+
     private void setupTable() {
         PM_assessment_ActionPanel action = new PM_assessment_ActionPanel();
         AssessmentTableActionEvent event = new AssessmentTableActionEvent() {
@@ -64,11 +63,11 @@ public class PM_assessment_page extends javax.swing.JFrame {
                 String assessmentID = (String) model.getValueAt(row, 0); // Assuming assessmentID is in the first column
 
                 int response = JOptionPane.showConfirmDialog(
-                    null,
-                    "Are you sure you want to delete the assessment with ID " + assessmentID + "?",
-                    "Confirm Delete",
-                    JOptionPane.YES_NO_OPTION,
-                    JOptionPane.WARNING_MESSAGE
+                        null,
+                        "Are you sure you want to delete the assessment with ID " + assessmentID + "?",
+                        "Confirm Delete",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.WARNING_MESSAGE
                 );
                 if (response == JOptionPane.YES_OPTION) {
                     boolean canDelete = canDeleteAssessment(assessmentID);
@@ -84,17 +83,17 @@ public class PM_assessment_page extends javax.swing.JFrame {
                     }
                 }
             }
-                
+
             @Override
             public void assessment_Edit(int row, Object value) {
                 DefaultTableModel model = (DefaultTableModel) pm_assessment_table.getModel();
                 if (row >= 0 && row < model.getRowCount()) {
                     String assessmentID = (String) model.getValueAt(row, 0);
-                    PM_assessment_edit edit = new PM_assessment_edit(assessmentType, assessmentID);
-                    edit.setVisible(true);
-                    PM_assessment_page.this.dispose();
+                    String intakeCode = (String) model.getValueAt(row, 2);
+                    redirectEdit(assessmentID,intakeCode);
                 }
             }
+
             @Override
             public void assessment_Report(int row, Object value) {
                 DefaultTableModel model = (DefaultTableModel) pm_assessment_table.getModel();
@@ -109,31 +108,33 @@ public class PM_assessment_page extends javax.swing.JFrame {
         pm_assessment_table.getColumnModel().getColumn(7).setCellRenderer(action.new rPanelActionRenderer());
         pm_assessment_table.getColumnModel().getColumn(7).setCellEditor(action.new TableActionCellEditor(event));
 
-    };
+    }
+
+    ;
             
             private boolean canDeleteAssessment(String assessmentID) {
-            // Check if there are any student submissions related to this assessment
-            List<String> studentSubmissions = FileHandler.readFile("student_assessment.txt");
-            for (String line : studentSubmissions) {
-                String[] parts = line.split(";");
-                if (parts[0].equals(assessmentID)) {
-                    // Assuming status is stored at index 2
-                    String status = parts[2];
-                    if (status.equals("submitted") || status.equals("marked")) {
-                        return false; // There are submitted or marked student submissions
-                    }
+        // Check if there are any student submissions related to this assessment
+        List<String> studentSubmissions = FileHandler.readFile("student_assessment.txt");
+        for (String line : studentSubmissions) {
+            String[] parts = line.split(";");
+            if (parts[0].equals(assessmentID)) {
+                // Assuming status is stored at index 2
+                String status = parts[2];
+                if (status.equals("submitted") || status.equals("marked")) {
+                    return false; // There are submitted or marked student submissions
                 }
             }
-            return true; // No submitted or marked student submissions found
         }
+        return true; // No submitted or marked student submissions found
+    }
 
     private void backAssessmentPage() {
-            // Refresh the assessment page by creating a new instance of it
-            PM_assessment_page assessmentPage = new PM_assessment_page(assessmentType);
-            assessmentPage.setVisible(true);
-            assessmentPage.dispose();
-        }
-            
+        // Refresh the assessment page by creating a new instance of it
+        PM_assessment_page assessmentPage = new PM_assessment_page(assessmentType);
+        assessmentPage.setVisible(true);
+        assessmentPage.dispose();
+    }
+
     private void assessmentType() {
         if (assessmentType.equalsIgnoreCase("internship_report")) {
             pm_assessment.setText("Internship Report");
@@ -206,7 +207,7 @@ public class PM_assessment_page extends javax.swing.JFrame {
         }
         System.out.println("Table data has been loaded from " + fileName);
     }
-    
+
     private void populateComboBox() {
         String fileName = "assessment.txt";
         Set<String> intakes = new HashSet<>();
@@ -438,16 +439,16 @@ public class PM_assessment_page extends javax.swing.JFrame {
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
 
-            String selectedIntake = jComboBox1.getSelectedItem().toString();
-            DefaultTableModel model = (DefaultTableModel) pm_assessment_table.getModel();
-            TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(model);
-            pm_assessment_table.setRowSorter(sorter);
-            if ("All".equals(selectedIntake)) {
-                sorter.setRowFilter(null); // Show all rows
-            } else {
-                RowFilter<DefaultTableModel, Object> intakeFilter = new RowFilter<DefaultTableModel, Object>() {
+        String selectedIntake = jComboBox1.getSelectedItem().toString();
+        DefaultTableModel model = (DefaultTableModel) pm_assessment_table.getModel();
+        TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(model);
+        pm_assessment_table.setRowSorter(sorter);
+        if ("All".equals(selectedIntake)) {
+            sorter.setRowFilter(null); // Show all rows
+        } else {
+            RowFilter<DefaultTableModel, Object> intakeFilter = new RowFilter<DefaultTableModel, Object>() {
                 public boolean include(RowFilter.Entry<? extends DefaultTableModel, ? extends Object> entry) {
-                    return entry.getStringValue(2).equals(selectedIntake); 
+                    return entry.getStringValue(2).equals(selectedIntake);
                 }
             };
             sorter.setRowFilter(intakeFilter);
@@ -457,7 +458,7 @@ public class PM_assessment_page extends javax.swing.JFrame {
     private void pm_assessment_create_button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pm_assessment_create_button1ActionPerformed
         // TODO add your handling code here:
         // Create an instance of PM_internship_create
-        PM_register_assessment_create assessment = new PM_register_assessment_create(assessmentType,this);
+        PM_register_assessment_create assessment = new PM_register_assessment_create(assessmentType, this);
         assessment.setVisible(true);
     }//GEN-LAST:event_pm_assessment_create_button1ActionPerformed
 
@@ -541,6 +542,11 @@ public class PM_assessment_page extends javax.swing.JFrame {
 
     private void setIconImage() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Sysco_icon_with_background.png")));
+    }
+
+    void redirectEdit(String assessmentID, String intakeCode) {
+        PM_assessment_edit edit = new PM_assessment_edit(assessmentType, assessmentID, intakeCode, this);
+        edit.setVisible(true);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
