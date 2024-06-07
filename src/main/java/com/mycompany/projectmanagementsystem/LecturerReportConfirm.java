@@ -92,7 +92,6 @@ public class LecturerReportConfirm extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Lecturer Report Confirmation");
-        setMaximumSize(new java.awt.Dimension(500, 40));
         setMinimumSize(new java.awt.Dimension(500, 400));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -100,7 +99,7 @@ public class LecturerReportConfirm extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Bell MT", 1, 20)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(2, 50, 99));
         jLabel7.setText("Confirmation Message");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, 200, 30));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 30, 200, 30));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -290,7 +289,7 @@ public class LecturerReportConfirm extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 460, 240));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 460, 240));
 
         noBtn.setBackground(new java.awt.Color(76, 127, 174));
         noBtn.setFont(new java.awt.Font("Bell MT", 1, 12)); // NOI18N
@@ -302,12 +301,12 @@ public class LecturerReportConfirm extends javax.swing.JFrame {
                 noBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(noBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 320, -1, -1));
+        getContentPane().add(noBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 340, -1, -1));
 
         jLabel11.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(2, 50, 99));
         jLabel11.setText("Are you confirmed to submit the graded report?");
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, 300, 20));
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 310, 300, 20));
 
         yesBtn.setBackground(new java.awt.Color(76, 127, 174));
         yesBtn.setFont(new java.awt.Font("Bell MT", 1, 12)); // NOI18N
@@ -319,7 +318,7 @@ public class LecturerReportConfirm extends javax.swing.JFrame {
                 yesBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(yesBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 320, -1, -1));
+        getContentPane().add(yesBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 340, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main_background.png"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -385,7 +384,7 @@ public class LecturerReportConfirm extends javax.swing.JFrame {
     private void showGradeFeedback(){
         total = mark1 + mark2 + mark3;
         gradeLabel.setText("<html>Content: " + mark1 + "\nFormat: " + mark2 + "\nPresentation: " + mark3 + "   Total:- " + total + "</html>");
-        feedbackLabel.setText(feedback);
+        feedbackLabel.setText("<html>" + feedback + "</html>");
     }
     
     private void updateStudentReportGrade() {
