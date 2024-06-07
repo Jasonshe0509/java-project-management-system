@@ -9,16 +9,17 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 public class admin_register_lecturer extends javax.swing.JFrame {
+
     List<String> gender, schoolWiseList;
 
-    
     public admin_register_lecturer() {
         initComponents();
         setIconImage();
         dropbox_Gender(gender);
         dropbox_SchoolWise(schoolWiseList);
-        
+
     }
+
     public void dropbox_Gender(List<String> genderList) {
         lecturer_gender_selection.addItem("");
         lecturer_gender_selection.addItem("Female");
@@ -36,8 +37,6 @@ public class admin_register_lecturer extends javax.swing.JFrame {
         }
     }
 
-
-   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -237,32 +236,29 @@ public class admin_register_lecturer extends javax.swing.JFrame {
     }//GEN-LAST:event_lecturer_emailActionPerformed
 
     private void register_lecturer_submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_register_lecturer_submitActionPerformed
-        
-            try {
-                String[] userInput = new String[11];
-                userInput[0] = lecturer_name.getText().toUpperCase().trim();
-                userInput[1] = lecturer_gender_selection.getSelectedItem().toString();
 
-                Date date = dob_chooser.getDate();
-                if (date == null) {
-                    throw new Exception();
-                }
-                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-                userInput[2] = dateFormat.format(date).trim();
-                userInput[3] = emp_tpno.getText().toUpperCase().trim();
-                userInput[4] = lecturer_address.getText().toUpperCase().trim();
-                userInput[5] = lecturer_contact.getText().trim();
-                userInput[6] = lecturer_nric.getText().trim();
-                userInput[7] = lecturer_nation.getText().toUpperCase().trim();
-                userInput[8] = lecturer_email.getText().toLowerCase().trim();
-                userInput[9] = "lecturer";
-                userInput[10] = schoolwise_dropbox.getSelectedItem().toString();
-                UserController.userCreate(userInput);
-                
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Please Fill In Date!", "Error: Missing Value(s)", JOptionPane.ERROR_MESSAGE);
-                
-            
+        try {
+            String[] userInput = new String[11];
+            userInput[0] = lecturer_name.getText().toUpperCase().trim();
+            userInput[1] = lecturer_gender_selection.getSelectedItem().toString();
+
+            Date date = dob_chooser.getDate();
+            if (date == null) {
+                throw new Exception();
+            }
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            userInput[2] = dateFormat.format(date).trim();
+            userInput[3] = emp_tpno.getText().toUpperCase().trim();
+            userInput[4] = lecturer_address.getText().toUpperCase().trim();
+            userInput[5] = lecturer_contact.getText().trim();
+            userInput[6] = lecturer_nric.getText().trim();
+            userInput[7] = lecturer_nation.getText().toUpperCase().trim();
+            userInput[8] = lecturer_email.getText().toLowerCase().trim();
+            userInput[9] = "lecturer";
+            userInput[10] = schoolwise_dropbox.getSelectedItem().toString();
+            UserController.userCreate(userInput);
+
+        } catch (Exception e) {
         }
     }//GEN-LAST:event_register_lecturer_submitActionPerformed
 
@@ -290,7 +286,6 @@ public class admin_register_lecturer extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jLabel1MouseClicked
 
-    
     public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -299,6 +294,7 @@ public class admin_register_lecturer extends javax.swing.JFrame {
             }
         });
     }
+
     private void setIconImage() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Sysco_icon_with_background.png")));
     }
