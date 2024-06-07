@@ -5,6 +5,7 @@
 package com.mycompany.projectmanagementsystem.Intake;
 
 import com.mycompany.projectmanagementsystem.GeneralFunction.FileHandler;
+import com.mycompany.projectmanagementsystem.admin_student_management;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -109,6 +110,8 @@ public class IntakeController {
             return false;
         }
         FileHandler.modifyFileData("intake.txt", updatedData);
+        admin_student_management.printIntakeTable();
+        admin_student_management.readNumOfIntake();
         return true;
     }
 }

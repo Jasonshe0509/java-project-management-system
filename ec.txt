@@ -1,1 +1,2 @@
-EC0001;TP0001;A0001;sick;https://datatofish.com/export-dataframe-to-csv-in-r/;approve;
+EC0006;TP0001;A0002;sick;https://contentatscale.ai/ai-content-detector/;rejected
+EC0007;TP0001;A0002;sick;https://contentatscale.ai/ai-content-detector/;rejected

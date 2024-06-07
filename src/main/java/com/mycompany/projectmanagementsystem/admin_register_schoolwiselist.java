@@ -43,8 +43,9 @@ public class admin_register_schoolwiselist extends javax.swing.JFrame {
         school_wise.setToolTipText("e.g. APU2F2402CS");
         getContentPane().add(school_wise, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, 230, -1));
 
-        submit.setBackground(new java.awt.Color(76, 127, 174));
+        submit.setBackground(new java.awt.Color(2, 50, 99));
         submit.setFont(new java.awt.Font("Bell MT", 1, 19)); // NOI18N
+        submit.setForeground(new java.awt.Color(255, 255, 255));
         submit.setText("SUBMIT");
         submit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -53,8 +54,9 @@ public class admin_register_schoolwiselist extends javax.swing.JFrame {
         });
         getContentPane().add(submit, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 220, -1, -1));
 
-        back.setBackground(new java.awt.Color(76, 127, 174));
+        back.setBackground(new java.awt.Color(2, 50, 99));
         back.setFont(new java.awt.Font("Bell MT", 1, 19)); // NOI18N
+        back.setForeground(new java.awt.Color(255, 255, 255));
         back.setText("BACK");
         back.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

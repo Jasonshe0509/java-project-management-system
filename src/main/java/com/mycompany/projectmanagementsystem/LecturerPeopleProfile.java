@@ -67,6 +67,9 @@ public class LecturerPeopleProfile extends javax.swing.JFrame {
         presentStatus = new javax.swing.JLabel();
         spvPresentStatus = new javax.swing.JLabel();
         secMarkPresentStatus = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        presentFeedbackField = new javax.swing.JTextArea();
         jLabel19 = new javax.swing.JLabel();
         assmntStatus = new javax.swing.JLabel();
         backBtn = new javax.swing.JButton();
@@ -283,56 +286,75 @@ public class LecturerPeopleProfile extends javax.swing.JFrame {
         secMarkPresentStatus.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         secMarkPresentStatus.setOpaque(true);
 
+        jLabel20.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(2, 50, 99));
+        jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel20.setText("Feedback");
+        jLabel20.setMaximumSize(new java.awt.Dimension(220, 21));
+        jLabel20.setMinimumSize(new java.awt.Dimension(220, 21));
+        jLabel20.setPreferredSize(new java.awt.Dimension(220, 21));
+
+        jScrollPane1.setHorizontalScrollBar(null);
+
+        presentFeedbackField.setColumns(20);
+        presentFeedbackField.setRows(5);
+        jScrollPane1.setViewportView(presentFeedbackField);
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(74, 74, 74)
-                        .addComponent(presentStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
+                        .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(15, 15, 15))
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addComponent(spvPresentStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(86, 86, 86))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addComponent(secMarkPresentStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(88, 88, 88))))
+                .addGap(35, 35, 35)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(secMarkPresentStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(88, 88, 88))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addGap(82, 82, 82)
+                .addComponent(presentStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(spvPresentStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(86, 86, 86))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(spvPresentStatus))
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(spvPresentStatus)
+                            .addComponent(presentStatus)))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGap(29, 29, 29)
-                                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(presentStatus)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(secMarkPresentStatus)
-                .addContainerGap(20, Short.MAX_VALUE))
+                        .addGap(52, 52, 52)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(secMarkPresentStatus)
+                        .addGap(0, 20, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jLabel19.setFont(new java.awt.Font("SansSerif", 1, 16)); // NOI18N
@@ -367,38 +389,38 @@ public class LecturerPeopleProfile extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(23, 23, 23)
                                 .addComponent(dueDateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(125, 125, 125)
-                                .addComponent(submissionStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(96, 96, 96)
+                                .addComponent(submissionStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(162, 162, 162)
+                        .addGap(159, 159, 159)
                         .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(238, 238, 238)
-                        .addComponent(assmntStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(200, 200, 200)
+                        .addComponent(assmntStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(dueDateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(submissionStatus))
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(24, 24, 24)
+                        .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(assmntStatus))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 151, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(dueDateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(submissionStatus))
-                .addGap(18, 18, 18)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(assmntStatus)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -504,9 +526,11 @@ public class LecturerPeopleProfile extends javax.swing.JFrame {
     
     private void setStatusColor(Component component, String status) {
         switch (status) {
-            case "pending" -> component.setBackground(new java.awt.Color(255, 255, 0)); 
+            case "pending" -> component.setBackground(new java.awt.Color(255, 255, 0));
+            case "scheduled" -> component.setBackground(new java.awt.Color(255, 255, 0));
             case "rejected" -> component.setBackground(new java.awt.Color(255, 51, 51)); 
-            case "accepted" -> component.setBackground(new java.awt.Color(0, 204, 0));
+            case "completed" -> component.setBackground(new java.awt.Color(0, 204, 0));
+            case "approved" -> component.setBackground(new java.awt.Color(0, 204, 0));
             case "submitted" -> component.setBackground(new java.awt.Color(51, 153, 255));
             default -> {
             }
@@ -517,33 +541,58 @@ public class LecturerPeopleProfile extends javax.swing.JFrame {
     private void showAssmntDetails() {
         List<String> assmntData = FileHandler.readFile("student_assessment.txt");
         List<String> presentData = FileHandler.readFile("presentation_request.txt");
+        List<String> presentDoneData = FileHandler.readFile("presentation_confirmation.txt");
 
         for (String line : assmntData) {
             String[] list = line.split(";");
             if (list[1].equals(stdID)) {
                 dueDateLabel.setText(list[3]);
                 submissionStatus.setText(list[6]);
-                switch (list[6]) {
-                    case "pending" -> {
-                        assmntStatus.setText("pending");
-                        overallStatus.setText("in progress");
-                        setStatusColor(assmntStatus, "pending");
-                        setStatusColor(overallStatus, "pending");
-                        setStatusColor(submissionStatus, "pending");
-                    }
-                    case "submitted" -> {
-                        assmntStatus.setText("pending");
-                        overallStatus.setText("in progress");
-                        setStatusColor(assmntStatus, "pending");
-                        setStatusColor(overallStatus, "pending");
-                        setStatusColor(submissionStatus, "submitted");
-                    }
-                    case "marked" -> {
-                        assmntStatus.setText("completed");
+
+                boolean markedCompleted = false;
+                for (String linea : presentDoneData) {
+                    String[] lista = linea.split(";");
+                    if ("marked".equals(list[6]) && "completed".equals(lista[5])) {
                         overallStatus.setText("completed");
-                        setStatusColor(assmntStatus, "completed");
+                        assmntStatus.setText("completed");
                         setStatusColor(overallStatus, "completed");
-                        setStatusColor(submissionStatus, "completed");
+                        setStatusColor(assmntStatus, "completed");
+                        setStatusColor(submissionStatus, "completed");                      
+                        markedCompleted = true;
+                        break; // Exit loop early if condition is met
+                    }
+                }
+
+                if (!markedCompleted) {
+                    switch (list[6]) {
+                        case "pending" -> {
+                            assmntStatus.setText("pending");
+                            overallStatus.setText("in progress");
+                            setStatusColor(assmntStatus, "pending");
+                            setStatusColor(overallStatus, "pending");
+                            setStatusColor(submissionStatus, "pending");
+                        }
+                        case "submitted" -> {
+                            assmntStatus.setText("pending");
+                            overallStatus.setText("in progress");
+                            setStatusColor(assmntStatus, "pending");
+                            setStatusColor(overallStatus, "pending");
+                            setStatusColor(submissionStatus, "submitted");
+                        }
+                        case "partially marked" -> {
+                            assmntStatus.setText("pending");
+                            overallStatus.setText("in progress");
+                            setStatusColor(assmntStatus, "pending");
+                            setStatusColor(overallStatus, "pending");
+                            setStatusColor(submissionStatus, "submitted");
+                        }
+                        case "marked" -> {
+                            assmntStatus.setText("pending");
+                            overallStatus.setText("in progress");
+                            setStatusColor(assmntStatus, "pending");
+                            setStatusColor(overallStatus, "pending");
+                            setStatusColor(submissionStatus, "completed");
+                        }
                     }
                 }
             }
@@ -555,13 +604,27 @@ public class LecturerPeopleProfile extends javax.swing.JFrame {
                 spvPresentStatus.setText(list[4]);
                 secMarkPresentStatus.setText(list[5]);
                 presentStatus.setText(list[6]);
+
+                boolean statusSet = false;
+                for (String linea : presentDoneData) {
+                    String[] lista = linea.split(";");
+                    if ("approved".equals(list[6]) && "completed".equals(lista[5])) {
+                        presentStatus.setText(lista[5]);
+                        presentFeedbackField.setText(lista[4]);                          
+                        setStatusColor(presentStatus, lista[5]);
+                        statusSet = true;
+                        break;
+                    }
+                }
+
+                if (!statusSet) {
+                    setStatusColor(presentStatus, list[6]);
+                }
                 setStatusColor(spvPresentStatus, list[4]);
                 setStatusColor(secMarkPresentStatus, list[5]);
-                setStatusColor(presentStatus, list[6]);
             }
         }
     }
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel addressLabel;
@@ -582,14 +645,17 @@ public class LecturerPeopleProfile extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JLabel nationLabel;
     private javax.swing.JLabel overallStatus;
+    private javax.swing.JTextArea presentFeedbackField;
     private javax.swing.JLabel presentStatus;
     private javax.swing.JLabel secMarkPresentStatus;
     private javax.swing.JLabel spvPresentStatus;

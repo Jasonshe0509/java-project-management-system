@@ -1,1 +1,2 @@
-CS(DA);Computer Science (Data Analyst)
+CS(DA);Computer Science (Data Analyst);School of Computing
+CS(DA);Computer Science (Data Analyst);School of Foundation

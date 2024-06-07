@@ -4,13 +4,17 @@
  */
 package com.mycompany.projectmanagementsystem;
 
+import com.mycompany.projectmanagementsystem.Course.CourseController;
+import com.mycompany.projectmanagementsystem.GeneralFunction.FileHandler;
 import java.awt.Toolkit;
+import java.util.List;
 
 /**
  *
  * @author ASUS
  */
 public class admin_register_course extends javax.swing.JFrame {
+    List<String> schoolWiseList;
 
     /**
      * Creates new form admin_register_course
@@ -18,6 +22,18 @@ public class admin_register_course extends javax.swing.JFrame {
     public admin_register_course() {
         initComponents();
         setIconImage();
+        dropbox_SchoolWise(schoolWiseList);
+    }
+    
+    public void dropbox_SchoolWise(List<String> schoolWiseList) {
+        schoolWiseList = FileHandler.readFile("school_wise.txt");
+        Object[] lines = schoolWiseList.toArray();
+        schoolwise_dropbox.addItem("");
+
+        for (int i = 0; i < lines.length; i++) {
+            String schoolWise = lines[i].toString();
+            schoolwise_dropbox.addItem(schoolWise);
+        }
     }
 
     /**
@@ -31,15 +47,16 @@ public class admin_register_course extends javax.swing.JFrame {
 
         reg_course_title = new javax.swing.JLabel();
         school_wise_title = new javax.swing.JLabel();
-        school_wise = new javax.swing.JComboBox<>();
+        schoolwise_dropbox = new javax.swing.JComboBox<>();
         course_name_title = new javax.swing.JLabel();
-        course_name = new javax.swing.JTextField();
-        course_code_title = new javax.swing.JLabel();
-        course_code = new javax.swing.JTextField();
+        course_name_textfield = new javax.swing.JTextField();
+        specialise_title = new javax.swing.JLabel();
+        specialise_textfield = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         background = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Register New Course");
         setMaximumSize(new java.awt.Dimension(500, 300));
         setMinimumSize(new java.awt.Dimension(500, 300));
@@ -56,41 +73,59 @@ public class admin_register_course extends javax.swing.JFrame {
         school_wise_title.setText("School Wise");
         getContentPane().add(school_wise_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, -1, -1));
 
-        school_wise.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
-        school_wise.setForeground(new java.awt.Color(2, 50, 99));
-        school_wise.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(school_wise, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, 270, 40));
+        schoolwise_dropbox.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
+        schoolwise_dropbox.setForeground(new java.awt.Color(2, 50, 99));
+        schoolwise_dropbox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                schoolwise_dropboxActionPerformed(evt);
+            }
+        });
+        getContentPane().add(schoolwise_dropbox, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, 270, 40));
 
         course_name_title.setFont(new java.awt.Font("SansSerif", 0, 22)); // NOI18N
         course_name_title.setForeground(new java.awt.Color(2, 50, 99));
-        course_name_title.setText("Course Name");
-        getContentPane().add(course_name_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, -1, -1));
+        course_name_title.setText("Course ");
+        getContentPane().add(course_name_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 120, -1, -1));
 
-        course_name.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
-        course_name.setForeground(new java.awt.Color(2, 50, 99));
-        course_name.setText("jTextField1");
-        course_name.addActionListener(new java.awt.event.ActionListener() {
+        course_name_textfield.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
+        course_name_textfield.setForeground(new java.awt.Color(2, 50, 99));
+        course_name_textfield.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                course_nameActionPerformed(evt);
+                course_name_textfieldActionPerformed(evt);
             }
         });
-        getContentPane().add(course_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, 270, 40));
+        getContentPane().add(course_name_textfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, 270, 40));
 
-        course_code_title.setFont(new java.awt.Font("SansSerif", 0, 22)); // NOI18N
-        course_code_title.setForeground(new java.awt.Color(2, 50, 99));
-        course_code_title.setText("Course Code");
-        getContentPane().add(course_code_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, -1, -1));
+        specialise_title.setFont(new java.awt.Font("SansSerif", 0, 22)); // NOI18N
+        specialise_title.setForeground(new java.awt.Color(2, 50, 99));
+        specialise_title.setText("Specialism");
+        getContentPane().add(specialise_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, -1, -1));
 
-        course_code.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
-        course_code.setForeground(new java.awt.Color(2, 50, 99));
-        course_code.setText("jTextField1");
-        getContentPane().add(course_code, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 170, 270, 40));
+        specialise_textfield.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
+        specialise_textfield.setForeground(new java.awt.Color(2, 50, 99));
+        getContentPane().add(specialise_textfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 170, 270, 40));
 
-        jButton1.setBackground(new java.awt.Color(76, 127, 174));
+        jButton2.setBackground(new java.awt.Color(2, 50, 99));
+        jButton2.setFont(new java.awt.Font("Bell MT", 1, 20)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setText("BACK");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 250, -1, -1));
+
+        jButton1.setBackground(new java.awt.Color(2, 50, 99));
         jButton1.setFont(new java.awt.Font("Bell MT", 1, 20)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(2, 50, 99));
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("SUBMIT");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 240, -1, -1));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 250, -1, -1));
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main_background.png"))); // NOI18N
         background.setMaximumSize(new java.awt.Dimension(500, 300));
@@ -103,9 +138,25 @@ public class admin_register_course extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void course_nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_course_nameActionPerformed
+    private void course_name_textfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_course_name_textfieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_course_nameActionPerformed
+    }//GEN-LAST:event_course_name_textfieldActionPerformed
+
+    private void schoolwise_dropboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_schoolwise_dropboxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_schoolwise_dropboxActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String[] userInput = new String[3];
+        userInput[0] = schoolwise_dropbox.getSelectedItem().toString();
+        userInput[1] = course_name_textfield.getText().trim();
+        userInput[2] = specialise_textfield.getText().trim();
+        CourseController.addCourse(userInput);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -148,13 +199,14 @@ public class admin_register_course extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel background;
-    private javax.swing.JTextField course_code;
-    private javax.swing.JLabel course_code_title;
-    private javax.swing.JTextField course_name;
+    private javax.swing.JTextField course_name_textfield;
     private javax.swing.JLabel course_name_title;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel reg_course_title;
-    private javax.swing.JComboBox<String> school_wise;
     private javax.swing.JLabel school_wise_title;
+    private javax.swing.JComboBox<String> schoolwise_dropbox;
+    private javax.swing.JTextField specialise_textfield;
+    private javax.swing.JLabel specialise_title;
     // End of variables declaration//GEN-END:variables
 }

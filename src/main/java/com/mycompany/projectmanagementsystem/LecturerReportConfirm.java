@@ -4,14 +4,18 @@
  */
 package com.mycompany.projectmanagementsystem;
 
+import com.mycompany.projectmanagementsystem.Assessment.AssessmentController;
 import com.mycompany.projectmanagementsystem.GeneralFunction.FileHandler;
 import com.mycompany.projectmanagementsystem.GeneralFunction.SessionManager;
 import com.mycompany.projectmanagementsystem.User.User;
 import java.awt.Toolkit;
+import java.awt.Window;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -30,10 +34,14 @@ public class LecturerReportConfirm extends javax.swing.JFrame {
     private int mark2;
     private int mark3;
     private String feedback;
+    private String AssmntType;
+    private String intakeCode;
     private int total;
     private JFrame parent;
+    private LecturerIntakePage intakePage;
     
-    public LecturerReportConfirm(JFrame parent, String assmntid, String id, String name, int mark1, int mark2, int mark3, String feedback) {
+    public LecturerReportConfirm(JFrame parent, LecturerIntakePage intakePage, String assmntid, String id, String name, int mark1, int mark2, int mark3, String feedback, String type, String code) {
+        this.intakePage = intakePage;
         this.parent = parent;
         this.AssmntID = assmntid;
         this.stdID = id;
@@ -41,6 +49,8 @@ public class LecturerReportConfirm extends javax.swing.JFrame {
         this.mark2 = mark2;
         this.mark3 = mark3;
         this.feedback = feedback;
+        this.AssmntType = type;
+        this.intakeCode = code;
         initComponents();
         setIconImage();
         showGradeFeedback();
@@ -364,7 +374,7 @@ public class LecturerReportConfirm extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LecturerReportConfirm(null, "assmntID", "stdName", "stdID", 0, 0, 0, "feedback").setVisible(true);
+                new LecturerReportConfirm(null, null, "assmntID", "stdName", "stdID", 0, 0, 0, "feedback", "type", "code").setVisible(true);
             }
         });
     }
@@ -401,7 +411,7 @@ public class LecturerReportConfirm extends javax.swing.JFrame {
         // Update the student assessment data based on the user's role
         for (String line : studentAssessmentData) {
             String[] parts = line.split(";");
-            if (parts[1].equals(stdID)) {
+            if (parts[1].equals(stdID) && parts[2].equals(AssmntID)) {
                 parts[7] = feedbackLabel.getText(); // Update feedback
 
                 if (isSupervisor) {
@@ -415,7 +425,56 @@ public class LecturerReportConfirm extends javax.swing.JFrame {
         }
 
         FileHandler.modifyFileData("student_assessment.txt", updatedData);
-        JOptionPane.showMessageDialog(null, "Student assessment data updated successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);
+        
+        // Execute the spvReportDone or secMarkReportDone method based on the user's role
+        AssessmentController action = new AssessmentController();
+        boolean found = false;
+
+        for (String line : assessmentData) {
+            String[] list = line.split(";");
+            if (AssmntID.equals(list[0])) {
+                if (user.getUserID().equals(list[4])) { // Supervisor
+                    for (String assmntline : studentAssessmentData) {
+                        String[] assmntlist = assmntline.split(";");
+                        if (stdID.equals(assmntlist[1])) {
+                            boolean result = action.spvReportDone(stdID, AssmntID, "marked", AssmntType);
+                            if (result) {
+                                // Dispose the current intake page
+                                ((Window) SwingUtilities.getWindowAncestor(intakePage.getReportTable())).dispose();
+                                // Display an updated intake page
+                                LecturerIntakePage update = new LecturerIntakePage(AssmntID, intakeCode, AssmntType);
+                                update.setVisible(true);
+                                update.selectMarkingPanel();
+                            }
+                            found = true;
+                            break;
+                        }
+                    }
+                    break;
+                } else if (user.getUserID().equals(list[5])) { // Second Marker
+                    for (String assmntline : studentAssessmentData) {
+                        String[] assmntlist = assmntline.split(";");
+                        if (stdID.equals(assmntlist[1])) {
+                            boolean result = action.secMarkReportDone(stdID, AssmntID, "marked", AssmntType);
+                            if (result) {
+                                // Dispose the current intake page
+                                ((Window) SwingUtilities.getWindowAncestor(intakePage.getReportTable())).dispose();
+                                // Display an updated intake page
+                                LecturerIntakePage update = new LecturerIntakePage(AssmntID, intakeCode, AssmntType);
+                                update.setVisible(true);
+                            }
+                            found = true;
+                            break;
+                        }
+                    }
+                    break;
+                }
+            }
+        }
+
+        if (!found) {
+            JOptionPane.showMessageDialog(null, "No matching record found for the given assessment ID and user ID", "Message", JOptionPane.INFORMATION_MESSAGE);
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -11,6 +11,4 @@ package com.mycompany.projectmanagementsystem.Assessment;
 public interface LecReportTableActionEvent {
     
     public void reportGrading(int row, Object value);
-    
-    public void reportDone(int row, Object value);
 }
