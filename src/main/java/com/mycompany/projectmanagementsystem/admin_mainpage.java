@@ -502,6 +502,7 @@ public class admin_mainpage extends javax.swing.JFrame {
         admin_greeting.setPreferredSize(new java.awt.Dimension(230, 18));
         getContentPane().add(admin_greeting, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 170, 30));
 
+        ec_list.setAutoCreateRowSorter(true);
         ec_list.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         ec_list.setForeground(new java.awt.Color(2, 50, 99));
         ec_list.setModel(new javax.swing.table.DefaultTableModel(

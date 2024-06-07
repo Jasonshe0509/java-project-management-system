@@ -447,6 +447,7 @@ public class admin_lecturer_record extends javax.swing.JFrame {
 
         lecturer_record.setOpaque(true);
 
+        lecturer_table.setAutoCreateRowSorter(true);
         lecturer_table.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         lecturer_table.setForeground(new java.awt.Color(2, 50, 99));
         lecturer_table.setModel(new javax.swing.table.DefaultTableModel(
@@ -470,6 +471,7 @@ public class admin_lecturer_record extends javax.swing.JFrame {
 
         lecturer_record.addTab("Lecturer", lectuter_record);
 
+        projectmanager_table.setAutoCreateRowSorter(true);
         projectmanager_table.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         projectmanager_table.setForeground(new java.awt.Color(2, 50, 99));
         projectmanager_table.setModel(new javax.swing.table.DefaultTableModel(
@@ -493,6 +495,7 @@ public class admin_lecturer_record extends javax.swing.JFrame {
 
         lecturer_record.addTab("Project Manager", jScrollPane1);
 
+        school_wise_table.setAutoCreateRowSorter(true);
         school_wise_table.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         school_wise_table.setForeground(new java.awt.Color(2, 50, 99));
         school_wise_table.setModel(new javax.swing.table.DefaultTableModel(

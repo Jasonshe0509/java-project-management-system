@@ -213,6 +213,7 @@ public class admin_assessment_management extends javax.swing.JFrame {
 
         getContentPane().add(admin_header, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
+        assessment_table.setAutoCreateRowSorter(true);
         assessment_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null},
