@@ -477,7 +477,6 @@ com\mycompany\projectmanagementsystem\admin_student$1.class
 com\mycompany\projectmanagementsystem\UserTableActionPanel.class
 com\mycompany\projectmanagementsystem\admin_register_lecturer$2.class
 com\mycompany\projectmanagementsystem\admin_register_lecturer.class
-com\mycompany\projectmanagementsystem\PM_register_assessment_create$5.class
 com\mycompany\projectmanagementsystem\lect_PresentationRqtActionPanel$1.class
 com\mycompany\projectmanagementsystem\StudentPresentationActionPanel$TableActionCellEditor.class
 com\mycompany\projectmanagementsystem\admin_student_management$15.class

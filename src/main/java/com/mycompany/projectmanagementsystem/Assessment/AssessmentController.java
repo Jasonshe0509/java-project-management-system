@@ -5,6 +5,7 @@
 package com.mycompany.projectmanagementsystem.Assessment;
 
 import com.mycompany.projectmanagementsystem.GeneralFunction.FileHandler;
+import com.mycompany.projectmanagementsystem.GeneralFunction.IDGenerator;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -281,14 +282,44 @@ public class AssessmentController implements StudentAssessmentController {
         return students;
     }
 
-    public void saveStudentAssessment(String[] studentAssessmentData) {
-        String fileName = "student_assessment.txt";
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(fileName, true))) {
-            bw.write(String.join(";", studentAssessmentData));
-            bw.newLine();
-        } catch (IOException ex) {
-            System.err.println("Error writing to file: " + ex.getMessage());
+    public boolean assessment_Create(String[] assessmentInput) {
+        String record;
+        if (AssessmentValidator.validateAssessmentInput(assessmentInput)) {
+            if (AssessmentValidator.validateAssessmentDueDate(assessmentInput[2])) {
+                List<String> data = FileHandler.readFile("assessment.txt");
+                System.out.println("hi");
+                for (String line : data) {
+                    String[] list = line.split(";");
+                    if (list[1].equals(assessmentInput[0]) && list[2].equals(assessmentInput[1])) {
+                        JOptionPane.showMessageDialog(null, "There are same assessment has been opened for this intake.", "Warning", JOptionPane.WARNING_MESSAGE);
+                        return false;
+                    }
+                }
+                String assessmemtID = IDGenerator.genID("A");
+                if (assessmentInput[0].equals("internship_report") || assessmentInput[0].equals("investigation")) {
+                    record = assessmemtID + ";" + assessmentInput[0] + ";" + assessmentInput[1] + ";" + assessmentInput[2] + ";" + assessmentInput[3] + ";" + "" + ";" + assessmentInput[4] + ";" + assessmentInput[5];
+                } else {
+                    if (assessmentInput[3].equals(assessmentInput[6])) {
+                        JOptionPane.showMessageDialog(null, "Supervisor and Second Marker cannot be the same person.", "Warning", JOptionPane.WARNING_MESSAGE);
+                        return false;
+                    }
+                    record = assessmemtID + ";" + assessmentInput[0] + ";" + assessmentInput[1] + ";" + assessmentInput[2] + ";" + assessmentInput[3] + ";" + assessmentInput[6] + ";" + assessmentInput[4] + ";" + assessmentInput[5];
+                }
+                FileHandler.writeFile("assessment.txt", record);
+                List<String> students = getStudentsByIntake(assessmentInput[1]);
+                for (String student : students) {
+                    String studentAssessmentId = IDGenerator.genID("SA");
+                    String studentAssessmentData = studentAssessmentId + ";" + student + ";" + assessmemtID + ";" + assessmentInput[2] + ";" + "" + ";" + "" + ";" + "pending" + ";" + "" + ";" + "" + ";" + "" + ";" + "" + ";" + "0";
+                    FileHandler.writeFile("student_assessment.txt", studentAssessmentData);
+                }
+                return true;
+            } else {
+                JOptionPane.showMessageDialog(null, "The due date must be at least 2 days from today.", "Warning", JOptionPane.WARNING_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "All input cannot be null", "Message", JOptionPane.ERROR_MESSAGE);
         }
+        return false;
     }
 
     public boolean assessment_Delete(String assessmentID) {
@@ -442,7 +473,7 @@ public class AssessmentController implements StudentAssessmentController {
                 }
                 FileHandler.modifyFileData("student_assessment.txt", array_list);
                 return true;
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(null, "The due date much be two days more than current date", "Message", JOptionPane.ERROR_MESSAGE);
             }
         } else {

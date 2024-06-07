@@ -457,9 +457,8 @@ public class PM_assessment_page extends javax.swing.JFrame {
     private void pm_assessment_create_button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pm_assessment_create_button1ActionPerformed
         // TODO add your handling code here:
         // Create an instance of PM_internship_create
-        PM_register_assessment_create assessment = new PM_register_assessment_create(assessmentType);
+        PM_register_assessment_create assessment = new PM_register_assessment_create(assessmentType,this);
         assessment.setVisible(true);
-        this.dispose(); 
     }//GEN-LAST:event_pm_assessment_create_button1ActionPerformed
 
     private void pm_assessment_back_button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pm_assessment_back_button2ActionPerformed
