@@ -259,33 +259,29 @@ public class admin_register_student extends javax.swing.JFrame {
     }//GEN-LAST:event_student_emailActionPerformed
 
     private void register_student_submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_register_student_submitActionPerformed
-        
-            try {
-                String[] userInput = new String[11];
-                userInput[0] = student_name.getText().toUpperCase().trim();
-                userInput[1] = student_gender_selection.getSelectedItem().toString();
 
-                Date date = dob_chooser.getDate();
-                if (date == null) {
-                    throw new Exception();
-                }
-                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-                userInput[2] = dateFormat.format(date).trim();
-                userInput[3] = student_ID.getText().toUpperCase().trim();
-                userInput[4] = student_address.getText().toUpperCase().trim();
-                userInput[5] = student_contact.getText().trim();
-                userInput[6] = student_nric.getText().trim();
-                userInput[7] = student_nation.getText().toUpperCase().trim();
-                userInput[8] = student_email.getText().toLowerCase().trim();
-                userInput[9] = "student";
-                userInput[10] = intakcode_selection.getSelectedItem().toString();
-                UserController.userCreate(userInput);
-                
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Please Fill In Date!", "Error: Missing Value(s)", JOptionPane.ERROR_MESSAGE);
-                e.printStackTrace();
-                System.err.println("Error: " + e.getMessage());
-            
+        try {
+            String[] userInput = new String[11];
+            userInput[0] = student_name.getText().toUpperCase().trim();
+            userInput[1] = student_gender_selection.getSelectedItem().toString();
+
+            Date date = dob_chooser.getDate();
+            if (date == null) {
+                throw new Exception();
+            }
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            userInput[2] = dateFormat.format(date).trim();
+            userInput[3] = student_ID.getText().toUpperCase().trim();
+            userInput[4] = student_address.getText().toUpperCase().trim();
+            userInput[5] = student_contact.getText().trim();
+            userInput[6] = student_nric.getText().trim();
+            userInput[7] = student_nation.getText().toUpperCase().trim();
+            userInput[8] = student_email.getText().toLowerCase().trim();
+            userInput[9] = "student";
+            userInput[10] = intakcode_selection.getSelectedItem().toString();
+            UserController.userCreate(userInput);
+
+        } catch (Exception e) {
         }
 
 
