@@ -1956,7 +1956,7 @@ public class LecturerIntakePage extends javax.swing.JFrame {
                     PeopleViewBtn.setText("View");
                     PeopleViewBtn.addActionListener(new java.awt.event.ActionListener() {
                         public void actionPerformed(java.awt.event.ActionEvent evt) {
-                            LecturerPeopleProfile profile = new LecturerPeopleProfile(stdID);
+                            LecturerPeopleProfile profile = new LecturerPeopleProfile(stdID, AssmntID);
                             profile.setVisible(true);
                         }
                     });
