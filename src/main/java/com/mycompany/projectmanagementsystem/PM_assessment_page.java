@@ -76,7 +76,9 @@ public class PM_assessment_page extends javax.swing.JFrame {
                         boolean result = controller.assessment_Delete(assessmentID);
                         if (result) {
                             JOptionPane.showMessageDialog(null, "Assessment successfully deleted");
-                            backAssessmentPage(); // Refresh the table data
+                            dispose();
+                            PM_assessment_page page = new PM_assessment_page(assessmentType);
+                            page.setVisible(true);
                         }
                     } else {
                         JOptionPane.showMessageDialog(null, "Cannot delete assessment. There are submitted or marked student submissions related to it.");
