@@ -11,6 +11,7 @@ import java.awt.Toolkit;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -19,6 +20,7 @@ import javax.swing.table.DefaultTableModel;
  * @author shuhuilee
  */
 public class PM_report_status extends javax.swing.JFrame {
+
     private final SessionManager sessionManager = SessionManager.getInstance();
     private final String assessmentType;
     private final String assessmentID;
@@ -33,23 +35,24 @@ public class PM_report_status extends javax.swing.JFrame {
         this.assessmentID = assessmentID;
         report_delete();
         loadReportStatus();
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
-         
+
     private void report_delete() {
         PM_delete_ActionPanel panel = new PM_delete_ActionPanel();
         ReportTableActionEvent event = (int row, Object value) -> {
             DefaultTableModel model = (DefaultTableModel) pm_report_table.getModel();
             String userID = (String) model.getValueAt(row, 0); // Assuming userID is in the first column
             int response = JOptionPane.showConfirmDialog(
-                null,
-                "Are you sure you want to delete the report with ID " + userID + "?",
-                "Confirm Delete",
-                JOptionPane.YES_NO_OPTION,
-                JOptionPane.WARNING_MESSAGE
+                    null,
+                    "Are you sure you want to delete the report with ID " + userID + "?",
+                    "Confirm Delete",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.WARNING_MESSAGE
             );
             if (response == JOptionPane.YES_OPTION) {
                 AssessmentController controller = new AssessmentController();
-                boolean result = controller.report_Delete(userID);
+                boolean result = controller.report_Delete(userID, assessmentID);
                 if (result) {
                     JOptionPane.showMessageDialog(null, "Successfully deleted the report.");
                     loadReportStatus();  // Refresh the table data
@@ -59,9 +62,8 @@ public class PM_report_status extends javax.swing.JFrame {
         // Adjusting the column index to place the delete button in the action column
         pm_report_table.getColumnModel().getColumn(9).setCellRenderer(panel.new rPanelActionRenderer());
         pm_report_table.getColumnModel().getColumn(9).setCellEditor(panel.new TableActionCellEditor(event));
-} 
-      
-            
+    }
+
     private void loadReportStatus() {
         String fileName = "student_assessment.txt";
         DefaultTableModel model = (DefaultTableModel) pm_report_table.getModel();
@@ -71,27 +73,30 @@ public class PM_report_status extends javax.swing.JFrame {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] list = line.split(";");
-                String userID = list[1]; // Assuming UserID is in the second column
-                String studentName = getUserInfoFromUserID(userID, "name");
-                String intake = getUserInfoFromUserID(userID, "intake");
-                model.addRow(new Object[] {
-                    userID,
-                    studentName,
-                    intake,
-                    list[3], // Due Date
-                    list[5], // Submission Date
-                    list[6], // Submission Status
-                    list[8], // Grade
-                    list[9], // Supervisor Mark
-                    list[10], // Second Marker Mark
-                    "" 
-                });
+                if (list[2].equals(assessmentID)) {
+                    String userID = list[1]; // Assuming UserID is in the second column
+                    String studentName = getUserInfoFromUserID(userID, "name");
+                    String intake = getUserInfoFromUserID(userID, "intake");
+                    model.addRow(new Object[]{
+                        userID,
+                        studentName,
+                        intake,
+                        list[3], // Due Date
+                        list[5], // Submission Date
+                        list[6], // Submission Status
+                        list[8], // Grade
+                        list[9], // Supervisor Mark
+                        list[10], // Second Marker Mark
+                        ""
+                    });
+                }
+
             }
         } catch (IOException ex) {
             System.out.println("Error reading file: " + ex.getMessage());
         }
     }
-    
+
     private String getUserInfoFromUserID(String userID, String infoType) {
         String fileName = "user.txt";
         try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
@@ -101,9 +106,9 @@ public class PM_report_status extends javax.swing.JFrame {
                 if (userInfo[0].equals(userID)) {
                     switch (infoType) {
                         case "name":
-                            return userInfo[1]; 
+                            return userInfo[1];
                         case "intake":
-                            return userInfo[11]; 
+                            return userInfo[11];
                         default:
                             return "Unknown";
                     }
@@ -112,7 +117,7 @@ public class PM_report_status extends javax.swing.JFrame {
         } catch (IOException ex) {
             System.out.println("Error reading file: " + ex.getMessage());
         }
-        return "Unknown"; 
+        return "Unknown";
     }
 
     /**
@@ -149,7 +154,7 @@ public class PM_report_status extends javax.swing.JFrame {
                 back_buttomActionPerformed(evt);
             }
         });
-        getContentPane().add(back_buttom, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 650, 80, 30));
+        getContentPane().add(back_buttom, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 650, 80, 30));
 
         pm_report_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -188,13 +193,12 @@ public class PM_report_status extends javax.swing.JFrame {
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 700));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void back_buttomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_buttomActionPerformed
         // TODO add your handling code here:
-        PM_assessment_page assessment = new PM_assessment_page(assessmentType);
-        assessment.setVisible(true);
-        this.dispose(); 
+        this.dispose();
     }//GEN-LAST:event_back_buttomActionPerformed
 
     /**
@@ -224,17 +228,18 @@ public class PM_report_status extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-    
+
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                String assessmentType = "type"; 
-                String assessmentID = "ID"; 
+                String assessmentType = "type";
+                String assessmentID = "ID";
                 new PM_report_status(assessmentType, assessmentID).setVisible(true);
             }
         });
     }
+
     private void setIconImage() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Sysco_icon_with_background.png")));
     }

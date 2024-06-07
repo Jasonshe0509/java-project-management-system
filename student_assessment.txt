@@ -2,5 +2,3 @@ SA0001;TP0001;A0001;2024-05-19;https://quillbot.com/ai-content-detector;2024-05-
 SA0002;TP0011;A0002;2024-05-19;https://quillbot.com/ai-content-detector;2024-05-23-23-05;partially marked;hi;;;68;0
 SA0003;TP0001;A0002;2024-08-02;https://quillbot.com/ai-content-detector;2024-06-07-08-30;marked;goof;pass;100;100;1
 SA0002;TP0001;A0003;2024-06-20;;;pending;;;;;0
-
-SA0004;TP0001;A0006;2024-06-27;;;pending;;;;;0

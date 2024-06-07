@@ -340,7 +340,7 @@ public class AssessmentController implements StudentAssessmentController {
         ArrayList<String> updatedStudentAssessmentData = new ArrayList<>();
         for (String line : studentAssessmentData) {
             String[] parts = line.split(";");
-            if (!parts[0].equals(assessmentID)) {
+            if (!parts[2].equals(assessmentID)) {
                 updatedStudentAssessmentData.add(line);
             }
         }
@@ -360,7 +360,7 @@ public class AssessmentController implements StudentAssessmentController {
 
                 if (!list[1].equals("internship_report") || !list[1].equals("investigation")) {
                     list[5] = secondMarkerID;
-                }else{
+                } else {
                     list[5] = "";
                 }
                 list[3] = dueDate;
@@ -386,12 +386,13 @@ public class AssessmentController implements StudentAssessmentController {
         return false; // Assessment report does not exist
     }
 
-    public boolean report_Delete(String assessmentID) {
+    public boolean report_Delete(String userID, String assessmentID) {
         List<String> data = FileHandler.readFile("student_assessment.txt");
         ArrayList<String> array_list = new ArrayList<>();
         for (String line : data) {
             String[] list = line.split(";");
-            if (!list[0].equals(assessmentID)) {
+            if (list[2].equals(assessmentID) && list[1].equals(userID)) {
+            } else {
                 line = String.join(";", list);
                 array_list.add(line);
             }

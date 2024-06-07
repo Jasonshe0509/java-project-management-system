@@ -103,7 +103,6 @@ public class PM_assessment_page extends javax.swing.JFrame {
                     String assessmentID = (String) model.getValueAt(row, 0);
                     PM_report_status report = new PM_report_status(assessmentType, assessmentID);
                     report.setVisible(true);
-                    PM_assessment_page.this.dispose();
                 }
             }
         };
