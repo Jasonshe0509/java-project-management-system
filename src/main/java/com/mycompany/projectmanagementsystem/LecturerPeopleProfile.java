@@ -23,9 +23,11 @@ public class LecturerPeopleProfile extends javax.swing.JFrame {
     private final SessionManager sessionManager = SessionManager.getInstance();
     User user = sessionManager.getCurrentUser();
     private String stdID;
+    private String assmntID;
     
-    public LecturerPeopleProfile(String id) {
+    public LecturerPeopleProfile(String id, String assmntid) {
         this.stdID = id;
+        this.assmntID = assmntid;
         initComponents();
         setIconImage();
         showStdDetails();
@@ -497,7 +499,7 @@ public class LecturerPeopleProfile extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LecturerPeopleProfile("id").setVisible(true);
+                new LecturerPeopleProfile("id","assmntid").setVisible(true);
             }
         });
     }
@@ -545,7 +547,7 @@ public class LecturerPeopleProfile extends javax.swing.JFrame {
 
         for (String line : assmntData) {
             String[] list = line.split(";");
-            if (list[1].equals(stdID)) {
+            if (list[1].equals(stdID) && list[2].equals(assmntID)) {
                 dueDateLabel.setText(list[3]);
                 submissionStatus.setText(list[6]);
 
@@ -597,34 +599,44 @@ public class LecturerPeopleProfile extends javax.swing.JFrame {
                 }
             }
         }
-
+        
+        // Check presentation data
         for (String line : presentData) {
             String[] list = line.split(";");
-            if (list[1].equals(stdID)) {
+            if (list[1].equals(stdID) && list[2].equals(assmntID)) {
                 spvPresentStatus.setText(list[4]);
                 secMarkPresentStatus.setText(list[5]);
-                presentStatus.setText(list[6]);
-
-                boolean statusSet = false;
-                for (String linea : presentDoneData) {
-                    String[] lista = linea.split(";");
-                    if ("approved".equals(list[6]) && "completed".equals(lista[5])) {
-                        presentStatus.setText(lista[5]);
-                        presentFeedbackField.setText(lista[4]);                          
-                        setStatusColor(presentStatus, lista[5]);
-                        statusSet = true;
-                        break;
-                    }
-                }
-
-                if (!statusSet) {
-                    setStatusColor(presentStatus, list[6]);
-                }
                 setStatusColor(spvPresentStatus, list[4]);
                 setStatusColor(secMarkPresentStatus, list[5]);
+                presentStatus.setText(list[6]);
+
+                for (String linea : presentDoneData) {
+                    String[] lista = linea.split(";");
+                    if (lista[1].equals(stdID) && lista[2].equals(assmntID) && "approved".equals(list[6])) {
+                        presentStatus.setText(lista[5]);
+                        setStatusColor(presentStatus, lista[5]);
+                        if(!lista[4].isEmpty()){
+                            presentFeedbackField.setText(lista[4]);
+                            if ("completed".equals(lista[5])) {
+                                setStatusColor(presentStatus, lista[5]);
+                                break; // Exit loop early if condition is met
+                            }
+                        }        
+                    }
+                }               
             }
         }
     }
+    
+//    private void setStatusColor(JLabel label, String status) {
+//        switch (status) {
+//            case "completed" -> label.setForeground(Color.GREEN);
+//            case "pending", "in progress", "partially marked" -> label.setForeground(Color.ORANGE);
+//            case "scheduled" -> label.setForeground(Color.YELLOW);
+//            case "submitted" -> label.setForeground(Color.BLUE);
+//            default -> label.setForeground(Color.RED);
+//        }
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel addressLabel;
