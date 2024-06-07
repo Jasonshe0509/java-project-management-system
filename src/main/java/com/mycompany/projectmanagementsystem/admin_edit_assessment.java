@@ -6,6 +6,7 @@ package com.mycompany.projectmanagementsystem;
 
 import com.mycompany.projectmanagementsystem.Assessment.AssessmentController;
 import com.mycompany.projectmanagementsystem.GeneralFunction.FileHandler;
+import java.awt.Toolkit;
 import java.util.List;
 
 /**
@@ -21,6 +22,7 @@ public class admin_edit_assessment extends javax.swing.JFrame {
      */
     public admin_edit_assessment() {
         initComponents();
+        setIconImage();
     }
 
     public String displayAssessmentDetails(String assessmentName) {
@@ -264,6 +266,10 @@ public class admin_edit_assessment extends javax.swing.JFrame {
                 new admin_edit_assessment().setVisible(true);
             }
         });
+    }
+    
+    private void setIconImage() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Sysco_icon_with_background.png")));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -25,11 +25,9 @@ public class admin_assessment_management extends javax.swing.JFrame {
                 DefaultTableModel model = (DefaultTableModel) assessment_table.getModel();
                 int columnIndex = 0;
                 String assessmentName = (String) model.getValueAt(row, columnIndex);
-               
+
                 //AssessmentController getAssessmentName = new AssessmentController();
                 //String assessment = getAssessmentName.assessmentType(assessmentName);
-                
-                
                 admin_edit_assessment display = new admin_edit_assessment();
                 display.displayAssessmentDetails(assessmentName);
                 display.show();
@@ -55,11 +53,9 @@ public class admin_assessment_management extends javax.swing.JFrame {
                     record[i] = "N/A";
                 }
             }
-            
+
             String passmark = record[4] + "-100";
 
-            
-            
             String failmark = "0-" + record[6];
 
             String[] assessmentRow = {record[0].toUpperCase(), record[1], record[2], record[3], failmark, passmark, record[5]};
@@ -72,6 +68,7 @@ public class admin_assessment_management extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         admin_header = new javax.swing.JPanel();
         admin_lecturer = new javax.swing.JLabel();
@@ -90,10 +87,22 @@ public class admin_assessment_management extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel2.setFont(new java.awt.Font("Bell MT", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(2, 50, 99));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/back.png"))); // NOI18N
+        jLabel2.setText("BACK");
+        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, -1, -1));
+
         jLabel1.setFont(new java.awt.Font("Bell MT", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(2, 50, 99));
         jLabel1.setText("Assessment Management");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 280, 30));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 70, 280, 30));
 
         admin_header.setBackground(new Color(255, 255, 255, 90));
         admin_header.setToolTipText("");
@@ -272,6 +281,12 @@ public class admin_assessment_management extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_admin_logoMouseClicked
 
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        dispose();
+        admin_student adminStudent = new admin_student();
+        adminStudent.show();
+    }//GEN-LAST:event_jLabel2MouseClicked
+
     public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -296,6 +311,7 @@ public class admin_assessment_management extends javax.swing.JFrame {
     private static javax.swing.JTable assessment_table;
     private javax.swing.JLabel background;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

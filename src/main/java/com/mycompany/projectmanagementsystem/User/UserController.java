@@ -222,6 +222,14 @@ public class UserController extends UserAuthenticationController {
 
         int confirm = JOptionPane.showConfirmDialog(null, "Assign " + userID + " as Project Manager?", "Confirmation", JOptionPane.YES_NO_OPTION);
         if (confirm == JOptionPane.YES_OPTION) {
+            List<String> assessmentData = FileHandler.readFile("assessment.txt");
+            for (String assessmentLine : assessmentData) {
+                String[] assessmentRecord = assessmentLine.split(";");
+                if ((userID.equals(assessmentRecord[4]) || userID.equals(assessmentRecord[5])) && assessmentRecord[7].equals("incomplete")) {
+                    JOptionPane.showMessageDialog(null, "Lecturer Has Incomplete Assessment On Hand.", "Error: Fail To Assign", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+            }
 
             List<String> data = FileHandler.readFile("user.txt");
             ArrayList<String> updatedData = new ArrayList<>();

@@ -52,10 +52,11 @@ public class admin_register_course extends javax.swing.JFrame {
         course_name_textfield = new javax.swing.JTextField();
         specialise_title = new javax.swing.JLabel();
         specialise_textfield = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         background = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Register New Course");
         setMaximumSize(new java.awt.Dimension(500, 300));
         setMinimumSize(new java.awt.Dimension(500, 300));
@@ -104,16 +105,27 @@ public class admin_register_course extends javax.swing.JFrame {
         specialise_textfield.setForeground(new java.awt.Color(2, 50, 99));
         getContentPane().add(specialise_textfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 170, 270, 40));
 
-        jButton1.setBackground(new java.awt.Color(76, 127, 174));
+        jButton2.setBackground(new java.awt.Color(2, 50, 99));
+        jButton2.setFont(new java.awt.Font("Bell MT", 1, 20)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setText("BACK");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 250, -1, -1));
+
+        jButton1.setBackground(new java.awt.Color(2, 50, 99));
         jButton1.setFont(new java.awt.Font("Bell MT", 1, 20)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(2, 50, 99));
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("SUBMIT");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 240, -1, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 250, -1, -1));
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main_background.png"))); // NOI18N
         background.setMaximumSize(new java.awt.Dimension(500, 300));
@@ -141,6 +153,10 @@ public class admin_register_course extends javax.swing.JFrame {
         userInput[2] = specialise_textfield.getText().trim();
         CourseController.addCourse(userInput);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -178,7 +194,7 @@ public class admin_register_course extends javax.swing.JFrame {
         });
     }
     private void setIconImage() {
-        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Sysco_icon.png")));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Sysco_icon_with_background.png")));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -186,6 +202,7 @@ public class admin_register_course extends javax.swing.JFrame {
     private javax.swing.JTextField course_name_textfield;
     private javax.swing.JLabel course_name_title;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel reg_course_title;
     private javax.swing.JLabel school_wise_title;
     private javax.swing.JComboBox<String> schoolwise_dropbox;
