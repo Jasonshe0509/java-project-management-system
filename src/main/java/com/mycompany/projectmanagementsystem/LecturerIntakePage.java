@@ -1252,12 +1252,12 @@ public class LecturerIntakePage extends javax.swing.JFrame {
     }
 
     private void showNoStd() {
-        List<String> UserData = FileHandler.readFile("user.txt");
+        List<String> UserData = FileHandler.readFile("student_assessment.txt");
         int stdCount = 0;
 
         for (String line : UserData) {
             String[] UserList = line.split(";");
-            if ("student".equals(UserList[10]) && intakeCode.equals(UserList[11])) {
+            if (AssmntID.equals(UserList[2])) {
                 stdCount++;
             }
         }
