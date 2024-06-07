@@ -64,7 +64,7 @@ public class PM_report_status extends javax.swing.JFrame {
         pm_report_table.getColumnModel().getColumn(9).setCellEditor(panel.new TableActionCellEditor(event));
     }
 
-    private void loadReportStatus() {
+    void loadReportStatus() {
         String fileName = "student_assessment.txt";
         DefaultTableModel model = (DefaultTableModel) pm_report_table.getModel();
         model.setRowCount(0); // Clear existing rows
@@ -130,6 +130,7 @@ public class PM_report_status extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel8 = new javax.swing.JLabel();
+        addBtn = new javax.swing.JButton();
         back_buttom = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         pm_report_table = new javax.swing.JTable();
@@ -144,6 +145,17 @@ public class PM_report_status extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
         jLabel8.setText("Report Status");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, -1, -1));
+
+        addBtn.setBackground(new java.awt.Color(76, 127, 174));
+        addBtn.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        addBtn.setForeground(new java.awt.Color(255, 255, 255));
+        addBtn.setText("Add New Student");
+        addBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addBtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(addBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 30, 210, 30));
 
         back_buttom.setBackground(new java.awt.Color(76, 127, 174));
         back_buttom.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
@@ -201,6 +213,12 @@ public class PM_report_status extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_back_buttomActionPerformed
 
+    private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
+        // TODO add your handling code here:
+        PM_add_student_page page = new PM_add_student_page(assessmentID, this);
+        page.setVisible(true);
+    }//GEN-LAST:event_addBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -245,6 +263,7 @@ public class PM_report_status extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addBtn;
     private javax.swing.JButton back_buttom;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel8;
