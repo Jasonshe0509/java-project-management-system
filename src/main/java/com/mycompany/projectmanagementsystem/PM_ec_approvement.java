@@ -8,6 +8,7 @@ import com.mycompany.projectmanagementsystem.EC.ECApprTableActionEvent;
 import com.mycompany.projectmanagementsystem.GeneralFunction.FileHandler;
 import com.mycompany.projectmanagementsystem.GeneralFunction.SessionManager;
 import com.mycompany.projectmanagementsystem.User.User;
+import com.mycompany.projectmanagementsystem.User.UserController;
 import java.awt.Toolkit;
 import java.awt.Color;
 import java.io.BufferedReader;
@@ -137,6 +138,7 @@ public class PM_ec_approvement extends javax.swing.JFrame {
         jPanel1.setMinimumSize(new java.awt.Dimension(1000, 73));
 
         pm_logo_sysco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Sysco_logo.png"))); // NOI18N
+        pm_logo_sysco.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         pm_logo_sysco.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 pm_logo_syscoMouseClicked(evt);
@@ -147,21 +149,40 @@ public class PM_ec_approvement extends javax.swing.JFrame {
         pm_ec_approvement.setForeground(new java.awt.Color(2, 50, 99));
         pm_ec_approvement.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pm_ec_approvement.setText("EC Approvement");
+        pm_ec_approvement.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         pm_notification.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
         pm_notification.setForeground(new java.awt.Color(2, 50, 99));
         pm_notification.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pm_notification.setText("Notification");
+        pm_notification.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pm_notification.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pm_notificationMouseClicked(evt);
+            }
+        });
 
         pm_profile.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
         pm_profile.setForeground(new java.awt.Color(2, 50, 99));
         pm_profile.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pm_profile.setText("Profile");
+        pm_profile.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pm_profile.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pm_profileMouseClicked(evt);
+            }
+        });
 
         pm_logout.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
         pm_logout.setForeground(new java.awt.Color(2, 50, 99));
         pm_logout.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pm_logout.setText("Log Out");
+        pm_logout.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pm_logout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pm_logoutMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -211,6 +232,26 @@ public class PM_ec_approvement extends javax.swing.JFrame {
         pm.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_pm_logo_syscoMouseClicked
+
+    private void pm_notificationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pm_notificationMouseClicked
+        // TODO add your handling code here:
+        NotificationPage noti = new NotificationPage();
+        noti.setVisible(true);
+    }//GEN-LAST:event_pm_notificationMouseClicked
+
+    private void pm_profileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pm_profileMouseClicked
+        // TODO add your handling code here:
+        PM_profile_page profile = new PM_profile_page();
+        profile.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_pm_profileMouseClicked
+
+    private void pm_logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pm_logoutMouseClicked
+        // TODO add your handling code here:
+        this.setVisible(false);
+        UserController action = new UserController();
+        action.userLogout();
+    }//GEN-LAST:event_pm_logoutMouseClicked
 
     /**
      * @param args the command line arguments
